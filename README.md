@@ -30,7 +30,7 @@ See the following for more information:
 These `opendssdirect` or `odd` interfaces are flexible to adapt and are not restricted by COM limitations.
 They are intended to provide a more Pythonic, Julian or language geared API.
 
-Finally, there's slightly modified tests and examples from the official OpenDSS distribution [here](https://github.com/dss-extensions/electricdss-tst)
+Finally, there's slightly modified tests and examples from the official OpenDSS distribution [here](https://github.com/dss-extensions/electricdss-tst).
 
 If you find yourself in need of a certain feature, feel free to open an issue in the respective repository.
 
