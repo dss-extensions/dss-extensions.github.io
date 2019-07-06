@@ -1,5 +1,3 @@
-# DSS Extensions
-
 [DSS Extensions](https://github.com/dss-extensions) enables cross-platform multi-language interfaces and extensions for EPRI's [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx).
 OpenDSS is an open-source distribution system simulator.
 
