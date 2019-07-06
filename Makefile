@@ -4,7 +4,7 @@ clean:
 publish:
 	mkdir -p ./build
 	# TODO: use a static site generator
-	pandoc --self-contained --standalone README.md -c static/pandoc.css -o build/index.html
+	pandoc --self-contained --standalone README.md -c static/pandoc.css --metadata=title:"DSS Extensions: multi-platform OpenDSS extensions" -o build/index.html
 
 deploy: clean publish
 	-git branch -D master
