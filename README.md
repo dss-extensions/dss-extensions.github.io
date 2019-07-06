@@ -3,7 +3,7 @@
 [DSS Extensions](https://github.com/dss-extensions) enables cross-platform multi-language interfaces and extensions for EPRI's [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx).
 OpenDSS is an open-source distribution system simulator.
 
-### # Introduction
+### Introduction
 
 The extensions is built up of three layers:
 
@@ -15,7 +15,7 @@ Secondly, [DSS C-API](https://github.com/dss-extensions/dss_capi) exposes the Op
 This interface tries to be feature compatible with the COM interface from the official OpenDSS distribution.
 
 Lastly, language specific extensions are built on top of `dss_capi`.
-These language specific extensions mimic the `dss_capi` interface.
+The following language specific extensions mimic the `COM` interface. As such, they can be used as drop-in replacements for code that already uses the official COM module on Windows, enabling multi-platform usage.
 
 - [dss_python](https://github.com/dss-extensions/dss_python): Python interface
 - [dss_matlab](https://github.com/dss-extensions/dss_matlab): MATLAB interface
@@ -27,7 +27,7 @@ See the following for more information:
 - [OpenDSSDirect.py](https://github.com/dss-extensions/OpenDSSDirect.py)
 - [OpenDSSDirect.jl](https://github.com/dss-extensions/OpenDSSDirect.jl)
 
-These `opendssdirect` or `odd` interfaces are flexible to adapt and are not restricted by COM limitations.
+These `opendssdirect` or `odd` interfaces are flexible to adapt and are not restricted by the COM API limitations.
 They are intended to provide a more Pythonic, Julian or language geared API.
 
 Finally, there's slightly modified tests and examples from the official OpenDSS distribution [here](https://github.com/dss-extensions/electricdss-tst).
