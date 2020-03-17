@@ -1,4 +1,4 @@
-[DSS Extensions](https://github.com/dss-extensions) enables cross-platform multi-language interfaces and extensions for EPRI's [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx).
+[DSS Extensions](https://github.com/dss-extensions) enables cross-platform (Windows, Linux, macOS) multi-language interfaces and extensions for EPRI's [OpenDSS](http://smartgrid.epri.com/SimulationTool.aspx).
 OpenDSS is an open-source distribution system simulator.
 
 ### Introduction
@@ -7,7 +7,7 @@ The extensions is built up of three layers:
 
 ![](https://raw.githubusercontent.com/dss-extensions/dss_capi/master/docs/images/repomap.png)
 
-Firstly, there is the official OpenDSS SVN repository, [electricdss](https://sourceforge.net/p/electricdss/code/HEAD/tree/), hosted on SourceForge.net. A filtered copy, contaning only source code files, is provided on GitHub.
+Firstly, there is the official OpenDSS SVN repository, [electricdss](https://sourceforge.net/p/electricdss/code/HEAD/tree/), hosted on SourceForge.net. A filtered copy, contaning only source code files, is provided on GitHub on the [opendss-official-svn branch](https://github.com/dss-extensions/dss_capi/tree/opendss-official-svn).
 
 Secondly, the [DSS C-API](https://github.com/dss-extensions/dss_capi) library exposes the OpenDSS engine in `electricdss` in a plain C interface.
 The interface tries to be feature compatible with the COM interface from the official OpenDSS distribution. What was initially intended as a API-only project has evolved to contain many customizations and extensions.
@@ -15,9 +15,9 @@ The interface tries to be feature compatible with the COM interface from the off
 Lastly, there are several language specific extensions are built on top of DSS C-API.
 The following language specific extensions mimic the `COM` interface. As such, they can be used as drop-in replacements for code that already uses the official COM module on Windows, enabling multi-platform usage.
 
-- [dss_python](https://github.com/dss-extensions/dss_python): Python interface
-- [dss_matlab](https://github.com/dss-extensions/dss_matlab): MATLAB interface
-- [dss_sharp](https://github.com/dss-extensions/dss_sharp): C# interface
+- [DSS_Python](https://github.com/dss-extensions/dss_python): Python interface
+- [DSS_MATLAB](https://github.com/dss-extensions/dss_matlab): MATLAB interface
+- [DSS_Sharp](https://github.com/dss-extensions/dss_sharp): C#/.NET interface
 
 Additionally, OpenDSSDirect interfaces have been built on top of DSS C-API and the language extensions.
 See the following for more information:
