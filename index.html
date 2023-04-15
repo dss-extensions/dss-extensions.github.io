@@ -304,7 +304,7 @@ page-break-after: avoid;
 <li><a href="https://github.com/dss-extensions/OpenDSSDirect.py">OpenDSSDirect.py</a></li>
 <li><a href="https://github.com/dss-extensions/OpenDSSDirect.jl">OpenDSSDirect.jl</a></li>
 </ul>
-<p>These <code>opendssdirect</code> or <code>odd</code> interfaces are flexible to adapt and are not restricted by the COM API limitations. They are intended to provide a more Pythonic, Julian or language geared API. Although these projects now use DSS C-API, these projects originally used the official OpenDSSDirect.DLL interface, hence their names.</p>
+<p>These <code>opendssdirect</code> or <code>odd</code> interfaces are flexible to adapt and are not restricted by the COM API limitations. They are intended to provide a more Pythonic, Julian or language geared API. Although these projects now use DSS C-API, these projects originally used the official OpenDSSDirect.DLL interface, hence their names. For a better comparison between the Python alternatives, see <a href="https://dss-extensions.org/python_apis.html">OpenDSS: Overview of Python APIs</a></p>
 <p>A recent new addition is the <code>dss.hpp</code> C++ header library. It exposes the DSS C-API functions in an organized set of classes. A namespace <code>dss::classic</code> contains an organization that resembles the organization provided by the official COM implementation, which the new <code>dss::obj</code> (working name). It is currently hosted within the <a href="https://github.com/dss-extensions/dss_capi">DSS C-API</a> repository.</p>
 <p>Finally, there are slightly modified tests and examples from the official OpenDSS distribution <a href="https://github.com/dss-extensions/electricdss-tst">here</a>.</p>
 <p>If you find yourself in need of a certain feature, feel free to open an issue in the respective repository.</p>
@@ -315,7 +315,8 @@ page-break-after: avoid;
 <p>OpenDSSDirect.py’s reference is available on <a href="https://dss-extensions.org/OpenDSSDirect.py/">https://dss-extensions.org/OpenDSSDirect.py/</a> and the docs for OpenDSSDirect.jl are in <a href="https://dss-extensions.org/OpenDSSDirect.jl/stable/">https://dss-extensions.org/OpenDSSDirect.jl/stable/</a></p>
 <p>An important reminder is that most of the original COM API functionality is exposed in all projects. As expected, the calling convention and general package organization does change from package to package. The API extensions, which include many extra functions and toggles, try to follow the conventions of each package. See the <a href="https://github.com/dss-extensions/dss_capi/blob/master/docs/known_differences.md">known differences</a> document for an overview of the changes you can expected from using a DSS Extensions project instead of the official OpenDSS.</p>
 <p>Most of the documentation focuses on the API facet. For a reference of the OpenDSS commands and properties at script level, on the DSS basic scripting language, users can refer to the official OpenDSS documentation, or use <a href="https://dss-extensions.org/dss_properties.html">DSS Extensions: OpenDSS Commands and Properties</a> as a quick reference until we organize a general documentation covering important aspects of the projects listed here.</p>
-<h3 id="documentation">Citations</h3>
-<p>For a tentative list of works using DSS Extensions, see: <a href="https://dss-extensions.org/citations.html">https://dss-extensions.org/citations.html</a>.</p>
+<h3 id="documentation">Citations and repositories</h3>
+<p>For a tentative list of works using DSS Extensions, see <a href="https://dss-extensions.org/citations.html">https://dss-extensions.org/citations.html</a>, and 
+a list of source-code repositories is available at <a href="https://dss-extensions.org/repositories.html">https://dss-extensions.org/repositories.html</a>.</p>
 </body>
 </html>

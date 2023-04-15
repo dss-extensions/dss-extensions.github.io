@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DSS Extensions — Repositories</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style type="text/css">
+html {
+font-size: 100%;
+overflow-y: scroll;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+}
+body {
+color: #444;
+font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
+font-size: 12px;
+line-height: 1.7;
+padding: 1em;
+margin: auto;
+max-width: 1600px;
+background: #fefefe;
+}
+a {
+color: #0645ad;
+text-decoration: none;
+}
+a:visited {
+color: #0b0080;
+}
+a:hover {
+color: #06e;
+}
+a:active {
+color: #faa700;
+}
+a:focus {
+outline: thin dotted;
+}
+*::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+*::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #000;
+}
+a::-moz-selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+a::selection {
+background: rgba(255, 255, 0, 0.3);
+color: #0645ad;
+}
+p {
+margin: 1em 0;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+color: #111;
+line-height: 125%;
+margin-top: 2em;
+font-weight: normal;
+}
+h4, h5, h6 {
+font-weight: bold;
+}
+h1 {
+font-size: 2.5em;
+}
+h2 {
+font-size: 2em;
+}
+h3 {
+font-size: 1.5em;
+}
+h4 {
+font-size: 1.2em;
+}
+h5 {
+font-size: 1em;
+}
+h6 {
+font-size: 0.9em;
+}
+blockquote {
+color: #666666;
+margin: 0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr {
+display: block;
+height: 2px;
+border: 0;
+border-top: 1px solid #aaa;
+border-bottom: 1px solid #eee;
+margin: 1em 0;
+padding: 0;
+}
+pre, code, kbd, samp {
+color: #000;
+font-family: monospace, monospace;
+_font-family: 'courier new', monospace;
+font-size: 0.98em;
+}
+pre {
+white-space: pre;
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+b, strong {
+font-weight: bold;
+}
+dfn {
+font-style: italic;
+}
+ins {
+background: #ff9;
+color: #000;
+text-decoration: none;
+}
+mark {
+background: #ff0;
+color: #000;
+font-style: italic;
+font-weight: bold;
+}
+sub, sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+sup {
+top: -0.5em;
+}
+sub {
+bottom: -0.25em;
+}
+ul, ol {
+margin: 1em 0;
+padding: 0 0 0 2em;
+}
+li p:last-child {
+margin-bottom: 0;
+}
+ul ul, ol ol {
+margin: .3em 0;
+}
+dl {
+margin-bottom: 1em;
+}
+dt {
+font-weight: bold;
+margin-bottom: .8em;
+}
+dd {
+margin: 0 0 .8em 2em;
+}
+dd:last-child {
+margin-bottom: 0;
+}
+img {
+border: 0;
+-ms-interpolation-mode: bicubic;
+vertical-align: middle;
+}
+figure {
+display: block;
+text-align: center;
+margin: 1em 0;
+}
+figure img {
+border: none;
+margin: 0 auto;
+}
+figcaption {
+font-size: 0.8em;
+font-style: italic;
+margin: 0 0 .8em;
+}
+table {
+margin-bottom: 2em;
+border-bottom: 1px solid #ddd;
+border-right: 1px solid #ddd;
+border-spacing: 0;
+border-collapse: collapse;
+margin-right: auto;
+margin-left: auto;
+}
+table th {
+padding: .2em 1em;
+background-color: #eee;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+}
+table td {
+padding: .2em 1em;
+border-top: 1px solid #ddd;
+border-left: 1px solid #ddd;
+vertical-align: top;
+}
+.author {
+font-size: 1.2em;
+text-align: center;
+}
+@media only screen and (min-width: 480px) {
+body {
+font-size: 14px;
+}
+}
+@media only screen and (min-width: 768px) {
+body {
+font-size: 16px;
+}
+}
+@media print {
+* {
+background: transparent !important;
+color: black !important;
+filter: none !important;
+-ms-filter: none !important;
+}
+body {
+font-size: 12pt;
+max-width: 100%;
+}
+a, a:visited {
+text-decoration: underline;
+}
+hr {
+height: 1px;
+border: 0;
+border-bottom: 1px solid black;
+}
+a[href]:after {
+content: " (" attr(href) ")";
+}
+abbr[title]:after {
+content: " (" attr(title) ")";
+}
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+content: "";
+}
+pre, blockquote {
+border: 1px solid #999;
+padding-right: 1em;
+page-break-inside: avoid;
+}
+tr, img {
+page-break-inside: avoid;
+}
+img {
+max-width: 100% !important;
+}
+@page :left {
+margin: 15mm 20mm 15mm 10mm;
+}
+@page :right {
+margin: 15mm 10mm 15mm 20mm;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3 {
+page-break-after: avoid;
+}
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">DSS Extensions — Repositories</h1>
+</header>
+<p>This is a collection of links to repositories that either use one of
+the projects under DSS Extensions, or list them as working alternatives.
+<a href="https://dss-extensions.org/citations.html">Follow here</a> for
+a list of papers that reference DSS Extensions.</p>
+<p>No extensive curation has been done. Licenses, state of development,
+maturity and support vary. When in doubt, please contact the authors of
+each repository.</p>
+<p>The table is sorted by URL, that automatically groups by
+author/organization.</p>
+<p><em><a href="https://github.com/dss-extensions/dss-extensions">Please
+feel free to open an issue or PR</a> if you wish to
+include/update/exclude your repository link or paper.</em></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Link</th>
+<th style="text-align: left;">Title/description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/4everyng/FLISR">4everyng/FLISR</a></td>
+<td style="text-align: left;">FLISR: Fault isolation and restoration
+functions with OpenDSS data import</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/birkaransachdev/hunting-sims">birkaransachdev/hunting-sims</a></td>
+<td style="text-align: left;">Hunting Simulations using OpenDSS
+code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/christos21/bottom_up">christos21/bottom_up</a></td>
+<td style="text-align: left;">BUMP: Smart Grid Bottom-up Modeling and
+Power-flow Analysis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/csiro-energy-systems/RepresentativeLVNetworks">csiro-energy-systems/RepresentativeLVNetworks</a></td>
+<td style="text-align: left;">Public Release of Julia and Python code
+and data from CSIRO’s Low-Voltage Feeder Taxonomy (LVFT) Study</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/dpinney/omf">dpinney/omf</a></td>
+<td style="text-align: left;">The Open Modeling Framework for smart grid
+cost-benefit analysis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/dsilvafrano/solarcalc">dsilvafrano/solarcalc</a></td>
+<td style="text-align: left;">Python code for 25 year PV economic
+analysis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/dualslash/opendss">dualslash/opendss</a></td>
+<td style="text-align: left;">Docker Interface for OpenDSS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/eepdnaclk/PV_rephasing-smartgrid">eepdnaclk/PV_rephasing-smartgrid</a></td>
+<td style="text-align: left;">PV rephasing research</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/eepdnaclk/state_estimation-smartgrid">eepdnaclk/state_estimation-smartgrid</a></td>
+<td style="text-align: left;">State Estimation work in Smart Grid</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/Energy-MAC/DSSDirectMicrogrid">Energy-MAC/DSSDirectMicrogrid</a></td>
+<td style="text-align: left;">Use OpenDSS to run Power Flow calculations
+in a Microgrid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/felipemarkson/dssdata">felipemarkson/dssdata</a></td>
+<td style="text-align: left;">A python micro-framework for simulation
+and data analysis of electrical distribution systems modeled on
+OpenDSS.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/Fghow55/CosimulationProject">Fghow55/CosimulationProject</a></td>
+<td style="text-align: left;">CosimulationProject: “My summer 2022-23
+research project for the FAN group at the University of Auckland. It’s a
+cosimulation algorithm written in Python that interacts with grid models
+in OpenDSS and Opal-RT.”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/GMLC-TDC/pesgm-2019-helics-tutorial">GMLC-TDC/pesgm-2019-helics-tutorial</a></td>
+<td style="text-align: left;">PESGM 2019 HELICS tutorial</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/GreenEVT/GreenEVT">GreenEVT/GreenEVT</a></td>
+<td style="text-align: left;">Greensboro Electric Vehicle Testbed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/idaholab/Caldera_Grid">idaholab/Caldera_Grid</a></td>
+<td style="text-align: left;">Caldera and OpenDSS co-simulation platform
+using HELICS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/LLNL/gridds">LLNL/gridds</a></td>
+<td style="text-align: left;">GridDS: Data Science Toolkit for Energy
+Grid Data (GridDS)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/mesmo-dev/mesmo">mesmo-dev/mesmo</a></td>
+<td style="text-align: left;">MESMO - Multi-Energy System Modeling and
+Optimization</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/NREL/DG2">NREL/DG2</a></td>
+<td style="text-align: left;">(DG)² is an impact analysis tool</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/NREL/disco">NREL/disco</a></td>
+<td style="text-align: left;">DISCO (Distribution Integration Solution
+Cost Options)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/NREL/ditto">NREL/ditto</a></td>
+<td style="text-align: left;">DiTTo is a Distribution Transformation
+Tool that aims at providing an open source framework to convert various
+distribution systems modeling formats</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/NREL/dss-cosim">NREL/dss-cosim</a></td>
+<td style="text-align: left;">Distribution system co-simulation with
+OpenDSS and DER controls</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/NREL/DSS-SimPy-RL">NREL/DSS-SimPy-RL</a></td>
+<td style="text-align: left;">NREL/DSS-SimPy-RL: This repository is an
+Reinforcement Learning Platform for learning agents to control
+cyber-physical Power Distribution Systems resiliently. The cyber
+environment in based on SimPy Discrete Event Simulator, while the
+distribution system is backened by Open-DSS.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/NREL/EMeRGE">NREL/EMeRGE</a></td>
+<td style="text-align: left;">Modern tool for exploring and performing
+DER impact assessment for power distribution networks.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/NREL/erad">NREL/erad</a></td>
+<td style="text-align: left;">Graph based python tool for computing
+equitable resilience</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/NREL/EVOLVE">NREL/EVOLVE</a></td>
+<td style="text-align: left;">Evolution of Net Load Variation from
+Emerging Technologies (EVOLVE)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/NREL/mpc4clr">NREL/mpc4clr</a></td>
+<td style="text-align: left;">MPC4CLR is a Julia- and Python-based
+software package for the application of model predictive control (MPC)
+for critical load restoration (CLR) in power distribution systems</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/NREL/OpenDSS-wrapper">NREL/OpenDSS-wrapper</a></td>
+<td style="text-align: left;">Distribution system simulation python
+wrapper that connects OpenDSSDirect.py with a co-simulation
+framework</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/NREL/PowerGridworld">NREL/PowerGridworld</a></td>
+<td style="text-align: left;">PowerGridworld: A Framework for
+Multi-Agent Reinforcement Learning in Power Systems</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/NREL/PyDSS">NREL/PyDSS</a></td>
+<td style="text-align: left;">PyDSS is a high level python interface for
+OpenDSS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/openEDI/sgidal-example">openEDI/sgidal-example</a></td>
+<td style="text-align: left;">This example shows how to use the GADAL
+(Grid Algorithms and Data Analytics Library) api to manage simulations.
+We also use it as a testing ground for the testing the combination of
+feeders, state estimation, and distributed OPF.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/Paralelopipet/RL_VVC_dataset">Paralelopipet/RL_VVC_dataset</a></td>
+<td style="text-align: left;">A Reinforcement Learning-based Volt-VAR
+Control Dataset</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/patsec/ot-sim">patsec/ot-sim</a></td>
+<td style="text-align: left;">OT-sim is a set of modules that run
+simulated OT devices in VMs or containers. It allows researchers to
+represent a physical system, at scale, in a co-simulation environment
+for specific or system-wide testing and evaluation without impacting a
+real-world system. Over time, our goal is to include additional protocol
+support and hardware-in-the-loop capability.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/siemens/powergym">siemens/powergym</a></td>
+<td style="text-align: left;">PowerGym is a Gym-like environment for
+Volt-Var control in power distribution systems.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/sonercandas/fledge">sonercandas/fledge</a></td>
+<td style="text-align: left;">FLEDGE - Flexible Distribution Grid
+Demonstrator</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/supsi-dacd-isaac/krangpower">supsi-dacd-isaac/krangpower</a></td>
+<td style="text-align: left;">krangpower: Distribution System Simulator
+based on OpenDSS and OpenDSSDirect.py. Modern Syntax, DataFrames, Pint,
+Networkx, Algorithmic Agents.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/sustainable-computing/co_sim_platform">sustainable-computing/co_sim_platform</a></td>
+<td style="text-align: left;">Maestro is a smart grid co-simulation
+platform built on top of Mosaik</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/sustainable-computing/deadline-aware-fair-scheduling">sustainable-computing/deadline-aware-fair-scheduling</a></td>
+<td style="text-align: left;">A Deadline-Aware, Incentive-Compatible and
+Proportionally-Fair Mechanism for EV Charging in Distribution Grids</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/tamu-engineering-research/OpenGridGym">tamu-engineering-research/OpenGridGym</a></td>
+<td style="text-align: left;">OpenGridGym is an Open-Source AI-friendly
+toolkit for distribution market simulation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-0-dss_python">Team-Nando/Tutorial-DERHostingCapacity-0-dss_python</a></td>
+<td style="text-align: left;">Tutorial on DER Hosting Capacity - Part 0:
+Using dss_python</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-1-AdvancedTools_LV">Team-Nando/Tutorial-DERHostingCapacity-1-AdvancedTools_LV</a></td>
+<td style="text-align: left;">Tutorial on DER Hosting Capacity - Part 1:
+Advanced Tools for the Analysis of Three-Phase Unbalanced LV
+Networks</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-2-TimeSeries_LV">Team-Nando/Tutorial-DERHostingCapacity-2-TimeSeries_LV</a></td>
+<td style="text-align: left;">Tutorial on DER Hosting Capacity - Part 2:
+Time-Series Analysis of Three-Phase Unbalanced LV Networks</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/typhoon-hil/opendss-typhoon-hil-interface">typhoon-hil/opendss-typhoon-hil-interface</a></td>
+<td style="text-align: left;">OpenDSS to Typhoon interface library</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/urbanopt/urbanopt-ditto-reader">urbanopt/urbanopt-ditto-reader</a></td>
+<td style="text-align: left;">Enhancement of URBANopt GeoJSON that can
+be consumed by DiTTo reader</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/Zecao/ExecutorOpenDssBr">Zecao/ExecutorOpenDssBr</a></td>
+<td style="text-align: left;">A C#(Visual Studio) OpenDSS customization
+to calculate the power flow of brazilian feeders created from
+GeoPerdasANEEL database</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
