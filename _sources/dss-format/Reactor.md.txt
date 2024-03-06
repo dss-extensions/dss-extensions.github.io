@@ -1,0 +1,183 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Reactor
+
+(
+    Circuit Element,
+    PD Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of first bus. Examples:<br>bus1=busname<br>bus1=busname.1.2.3<br><br>Bus2 property will default to this bus, node 0, unless previously specified. Only Bus1 need be specified for a Yg shunt reactor.
+*   - 2
+    - `Bus2`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of 2nd bus. Defaults to all phases connected to first bus, node 0, (Shunt Wye Connection) except when Bus2 is specifically defined.<br><br>Not necessary to specify for delta (LL) connection
+*   - 3
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of phases.
+*   - 4
+    - `kvar`
+    - real
+    - 
+    - kvar
+    - Total kvar, all phases.  Evenly divided among phases. Only determines X. Specify R separately
+*   - 5
+    - `kV`
+    - real
+    - 
+    - kV
+    - For 2, 3-phase, kV phase-phase. Otherwise specify actual coil rating.
+*   - 6
+    - `Conn`
+    - string<br>*(from enum. [](#enum-connection))*
+    - Wye
+    - 
+    - ={wye | delta |LN |LL}  Default is wye, which is equivalent to LN. If Delta, then only one terminal.
+*   - 7
+    - `RMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - 
+    - Resistance matrix, lower triangle, ohms at base frequency. Order of the matrix is the number of phases. Mutually exclusive to specifying parameters by kvar or X.
+*   - 8
+    - `XMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - 
+    - Reactance matrix, lower triangle, ohms at base frequency. Order of the matrix is the number of phases. Mutually exclusive to specifying parameters by kvar or X.
+*   - 9
+    - `Parallel`
+    - boolean
+    - False
+    - 
+    - Indicates whether Rmatrix and Xmatrix are to be considered in parallel. Default is series. For other models, specify R and Rp.
+*   - 10
+    - `R`
+    - real
+    - 
+    - Ω
+    - Resistance (in series with reactance), each phase, ohms. This property applies to REACTOR specified by either kvar or X. See also help on Z.<br>***Redundant with Z***
+*   - 11
+    - `X`
+    - real
+    - 
+    - Ω
+    - Reactance, each phase, ohms at base frequency. See also help on Z and LmH properties.<br>***Redundant with Z***
+*   - 12
+    - `Rp`
+    - real
+    - 
+    - Ω
+    - Resistance in parallel with R and X (the entire branch). Assumed infinite if not specified.
+*   - 13
+    - `Z1`
+    - complex
+    - 
+    - Ω
+    - Positive-sequence impedance, ohms, as a 2-element array representing a complex number. Example: <br><br>Z1=[1, 2]  ! represents 1 + j2 <br><br>If defined, Z1, Z2, and Z0 are used to define the impedance matrix of the REACTOR. Z1 MUST BE DEFINED TO USE THIS OPTION FOR DEFINING THE MATRIX.<br><br>Side Effect: Sets Z2 and Z0 to same values unless they were previously defined.
+*   - 14
+    - `Z2`
+    - complex
+    - 
+    - Ω
+    - Negative-sequence impedance, ohms, as a 2-element array representing a complex number. Example: <br><br>Z2=[1, 2]  ! represents 1 + j2 <br><br>Used to define the impedance matrix of the REACTOR if Z1 is also specified. <br><br>Note: Z2 defaults to Z1 if it is not specifically defined. If Z2 is not equal to Z1, the impedance matrix is asymmetrical.
+*   - 15
+    - `Z0`
+    - complex
+    - 
+    - Ω
+    - Zer0-sequence impedance, ohms, as a 2-element array representing a complex number. Example: <br><br>Z0=[3, 4]  ! represents 3 + j4 <br><br>Used to define the impedance matrix of the REACTOR if Z1 is also specified. <br><br>Note: Z0 defaults to Z1 if it is not specifically defined. 
+*   - 16
+    - `Z`
+    - complex
+    - 
+    - Ω
+    - Alternative way of defining R and X properties. Enter a 2-element array representing R +jX in ohms. Example:<br><br>Z=[5  10]   ! equivalent to R=5  X=10 
+*   - 17
+    - `RCurve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Name of XYCurve object, previously defined, describing per-unit variation of phase resistance, R, vs. frequency. Applies to resistance specified by R or Z property. If actual values are not known, R often increases by approximately the square root of frequency.
+*   - 18
+    - `LCurve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Name of XYCurve object, previously defined, describing per-unit variation of phase inductance, L=X/w, vs. frequency. Applies to reactance specified by X, LmH, Z, or kvar property.L generally decreases somewhat with frequency above the base frequency, approaching a limit at a few kHz.
+*   - 19
+    - `LmH`
+    - real
+    - 
+    - mH
+    - Inductance, mH. Alternate way to define the reactance, X, property.<br>***Redundant with X***
+*   - 20
+    - `NormAmps`
+    - real
+    - 
+    - A
+    - Normal rated current. Defaults to per-phase rated current when reactor is specified with rated power and voltage.
+*   - 21
+    - `EmergAmps`
+    - real
+    - 
+    - A
+    - Maximum or emerg current. Defaults to 135% of per-phase rated current when reactor is specified with rated power and voltage.
+*   - 22
+    - `FaultRate`
+    - real
+    - 0.001
+    - 
+    - Reactor.faultrate
+*   - 23
+    - `pctPerm`
+    - real
+    - 100.0
+    - 
+    - Percent of failures that become permanent.
+*   - 24
+    - `Repair`
+    - real
+    - 3.0
+    - 
+    - Hours to repair.
+*   - 25
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 26
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 27
+    - `Like`
+    - string<br>*([Reactor](#Reactor) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

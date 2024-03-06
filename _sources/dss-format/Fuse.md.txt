@@ -1,0 +1,126 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Fuse
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `MonitoredObj`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Full object name of the circuit element, typically a line, transformer, load, or generator, to which the Fuse is connected. This is the "monitored" element. There is no default; must be specified.
+*   - 2
+    - `MonitoredTerm`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the Fuse is connected. 1 or 2, typically.
+*   - 3
+    - `SwitchedObj`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Name of circuit element switch that the Fuse controls. Specify the full object name. Defaults to the same as the Monitored element. This is the "controlled" element.
+*   - 4
+    - `SwitchedTerm`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the controlled element in which the switch is controlled by the Fuse. 1 or 2, typically.  Default is 1.  Assumes all phases of the element have a fuse of this type.
+*   - 5
+    - `FuseCurve`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - tlink
+    - 
+    - Name of the TCC Curve object that determines the fuse blowing.  Must have been previously defined as a TCC_Curve object. Default is "Tlink". Multiplying the current values in the curve by the "RatedCurrent" value gives the actual current.
+*   - 6
+    - `RatedCurrent`
+    - real
+    - 1.0
+    - 
+    - Multiplier or actual phase amps for the phase TCC curve.
+*   - 7
+    - `Delay`
+    - real
+    - 0.0
+    - s
+    - Fixed delay time added to Fuse blowing time determined from the TCC curve. Used to represent fuse clearing time or any other delay.
+*   - 8
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-fuseaction), action)*
+    - 
+    - 
+    - DEPRECATED. See "State" property.
+*   - 9
+    - `Normal`
+    - array of strings<br>*(from enum. [State](#enum-fusestate))*
+    - 
+    - 
+    - ARRAY of strings {Open | Closed} representing the Normal state of the fuse in each phase of the controlled element. The fuse reverts to this state for reset, change of mode, etc. Defaults to "State" if not specifically declared.
+*   - 10
+    - `State`
+    - array of strings<br>*(from enum. [State](#enum-fusestate))*
+    - [closed, closed, closed]
+    - 
+    - ARRAY of strings {Open | Closed} representing the Actual state of the fuse in each phase of the controlled element. Upon setting, immediately forces state of fuse(s). Simulates manual control on Fuse. Defaults to Closed for all phases.
+*   - 11
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 12
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 13
+    - `Like`
+    - string<br>*([Fuse](#Fuse) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-fuseaction)=
+### Fuse: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `close`
+*   - `open`
+:::
+
+
+(enum-fusestate)=
+### Fuse: State
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `closed`
+*   - `open`
+:::
+
+

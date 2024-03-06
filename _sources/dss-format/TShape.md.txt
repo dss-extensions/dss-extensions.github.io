@@ -1,0 +1,113 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# TShape
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NPts`
+    - integer
+    - 
+    - 
+    - Max number of points to expect in temperature shape vectors. This gets reset to the number of Temperature values found if less than specified.
+*   - 2
+    - `Interval`
+    - real
+    - 
+    - 
+    - Time interval for fixed interval data, hrs. Default = 1. If Interval = 0 then time data (in hours) may be at irregular intervals and time value must be specified using either the Hour property or input files. Then values are interpolated when Interval=0, but not for fixed interval data.  <br><br>See also "sinterval" and "minterval".
+*   - 3
+    - `Temp`
+    - array of reals
+    - 
+    - 
+    - Array of temperature values.  Units should be compatible with the object using the data. You can also use the syntax: <br>Temp = (file=filename)     !for text file one value per line<br>Temp = (dblfile=filename)  !for packed file of doubles<br>Temp = (sngfile=filename)  !for packed file of singles <br><br>Note: this property will reset Npts if the  number of values in the files are fewer.
+*   - 4
+    - `Hour`
+    - array of reals
+    - 
+    - 
+    - Array of hour values. Only necessary to define this property for variable interval data. If the data are fixed interval, do not use this property. You can also use the syntax: <br>hour = (file=filename)     !for text file one value per line<br>hour = (dblfile=filename)  !for packed file of doubles<br>hour = (sngfile=filename)  !for packed file of singles 
+*   - 5
+    - `Mean`
+    - real
+    - 
+    - 
+    - Mean of the temperature curve values.  This is computed on demand the first time a value is needed.  However, you may set it to another value independently. Used for Monte Carlo load simulations.
+*   - 6
+    - `StdDev`
+    - real
+    - 
+    - 
+    - Standard deviation of the temperatures.  This is computed on demand the first time a value is needed.  However, you may set it to another value independently.Is overwritten if you subsequently read in a curve<br><br>Used for Monte Carlo load simulations.
+*   - 7
+    - `CSVFile`
+    - string
+    - 
+    - 
+    - Switch input of  temperature curve data to a csv file containing (hour, Temp) points, or simply (Temp) values for fixed time interval data, one per line. NOTE: This action may reset the number of points to a lower value.
+*   - 8
+    - `SngFile`
+    - string
+    - 
+    - 
+    - Switch input of  temperature curve data to a binary file of singles containing (hour, Temp) points, or simply (Temp) values for fixed time interval data, packed one after another. NOTE: This action may reset the number of points to a lower value.
+*   - 9
+    - `DblFile`
+    - string
+    - 
+    - 
+    - Switch input of  temperature curve data to a binary file of doubles containing (hour, Temp) points, or simply (Temp) values for fixed time interval data, packed one after another. NOTE: This action may reset the number of points to a lower value.
+*   - 10
+    - `SInterval`
+    - real
+    - 
+    - 
+    - Specify fixed interval in SECONDS. Alternate way to specify Interval property.<br>***Redundant with Interval***
+*   - 11
+    - `MInterval`
+    - real
+    - 
+    - 
+    - Specify fixed interval in MINUTES. Alternate way to specify Interval property.<br>***Redundant with Interval***
+*   - 12
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-tshapeaction), action)*
+    - 
+    - 
+    - {DblSave | SngSave} After defining temperature curve data... Setting action=DblSave or SngSave will cause the present "Temp" values to be written to either a packed file of double or single. The filename is the Tshape name. 
+*   - 13
+    - `Like`
+    - string<br>*([TShape](#TShape) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-tshapeaction)=
+### TShape: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `DblSave`
+*   - `SngSave`
+:::
+
+

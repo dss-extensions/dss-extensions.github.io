@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>XfmrCode &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dss-format/XfmrCode';</script>
+    <link rel="icon" href="../_static/dssx.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Meter Elements" href="toc_me.html" />
+    <link rel="prev" title="XYcurve" href="XYcurve.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../dss_language.html">DSS Language</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Options.html">General Options</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="toc_general.html">General Objects</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_control.html">Control Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Recloser.html">Recloser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RegControl.html">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pce.html">PC Elements</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Storage.html">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../classic_api.html">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_apis.html">Python APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multithreading.html">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../docs.html" class="nav-link">Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    
+    
+    <li class="breadcrumb-item"><a href="toc_general.html" class="nav-link">General Objects</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">XfmrCode</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="xfmrcode">
+<h1>XfmrCode<a class="headerlink" href="#xfmrcode" title="Link to this heading">#</a></h1>
+<p>(
+General
+)</p>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Phases</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>3</p></td>
+<td></td>
+<td><p>Number of phases this transformer.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Windings</span></code></p></td>
+<td><p>integer</p></td>
+<td></td>
+<td></td>
+<td><p>Number of windings, this transformers. (Also is the number of terminals) Default is 2. This property triggers memory allocation for the Transformer and will cause other properties to revert to default values.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Wdg</span></code></p></td>
+<td><p>integer</p></td>
+<td></td>
+<td></td>
+<td><p>Set this = to the number of the winding you wish to define.  Then set the values for this winding.  Repeat for each winding.  Alternatively, use the array collections (buses, kvas, etc.) to define the windings.  Note: reactances are BETWEEN pairs of windings; they are not the property of a single winding.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Conn</span></code></p></td>
+<td><p>string<br><em>(from enum. <a class="reference internal" href="Enumerations.html#enum-connection"><span class="std std-ref">Connection</span></a>, on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Connection of this winding. Default is “wye” with the neutral solidly grounded.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kV</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td><p>kV</p></td>
+<td><p>For 2-or 3-phase, enter phase-phase kV rating.  Otherwise, kV rating of the actual winding</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kVA</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Base kVA rating of the winding. Side effect: forces change of max normal and emerg kva ratings.If 2-winding transformer, forces other winding to same value. When winding 1 is defined, all other windings are defaulted to the same rating and the first two winding resistances are defaulted to the %loadloss value.</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Tap</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Per unit tap that this winding is normally on.</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%R</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Percent resistance this winding.  (half of total for a 2-winding).</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RNeut</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td><p>Ω</p></td>
+<td><p>Neutral resistance of wye (star)-connected winding in actual ohms. If entered as a negative value, the neutral is assumed to be open, or floating.</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XNeut</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td><p>Ω</p></td>
+<td><p>Neutral reactance of wye(star)-connected winding in actual ohms. May be positive or negative.</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Conns</span></code></p></td>
+<td><p>array of strings<br><em>(from enum. <a class="reference internal" href="Enumerations.html#enum-connection"><span class="std std-ref">Connection</span></a>)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify all the Winding connections at once using an array. Example:<br><br>New Transformer.T1 buses=“Hibus, lowbus”<br>~ conns=(delta, wye)<br><em><strong>Redundant with Conn</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kVs</span></code></p></td>
+<td><p>array of reals</p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify the kV ratings of all windings at once using an array. Example:<br><br>New Transformer.T1 buses=“Hibus, lowbus” <br>~ conns=(delta, wye)<br>~ kvs=(115, 12.47)<br><br>See kV= property for voltage rules.<br><em><strong>Redundant with kV</strong></em></p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kVAs</span></code></p></td>
+<td><p>array of reals</p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify the kVA ratings of all windings at once using an array.<br><em><strong>Redundant with kVA</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Taps</span></code></p></td>
+<td><p>array of reals</p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify the normal p.u. tap of all windings at once using an array.<br><em><strong>Redundant with Tap</strong></em></p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XHL</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify the percent reactance, H-L (winding 1 to winding 2).  Use for 2- or 3-winding transformers. On the kva base of winding 1.<br><em><strong>Redundant with X12</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XHT</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify the percent reactance, H-T (winding 1 to winding 3).  Use for 3-winding transformers only. On the kVA base of winding 1.<br><em><strong>Redundant with X13</strong></em></p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XLT</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify the percent reactance, L-T (winding 2 to winding 3).  Use for 3-winding transformers only. On the kVA base of winding 1.<br><em><strong>Redundant with X23</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">XSCArray</span></code></p></td>
+<td><p>array of reals</p></td>
+<td></td>
+<td></td>
+<td><p>Use this to specify the percent reactance between all pairs of windings as an array. All values are on the kVA base of winding 1.  The order of the values is as follows:<br><br>(x12 13 14… 23 24.. 34 ..)  <br><br>There will be n(n-1)/2 values, where n=number of windings.</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Thermal</span></code></p></td>
+<td><p>real</p></td>
+<td><p>2.0</p></td>
+<td><p>hour</p></td>
+<td><p>Thermal time constant of the transformer. Typically about 2.<br><em><strong>Not used</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">n</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td><p>n Exponent for thermal properties in IEEE C57.  Typically 0.8.<br><em><strong>Not used</strong></em></p></td>
+</tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">m</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td><p>m Exponent for thermal properties in IEEE C57.  Typically 0.9 - 1.0<br><em><strong>Not used</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FLRise</span></code></p></td>
+<td><p>real</p></td>
+<td><p>65.0</p></td>
+<td><p>°C</p></td>
+<td><p>Temperature rise for full load.<br><em><strong>Not used</strong></em></p></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HSRise</span></code></p></td>
+<td><p>real</p></td>
+<td><p>15.0</p></td>
+<td><p>°C</p></td>
+<td><p>Hot spot temperature rise.<br><em><strong>Not used</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%LoadLoss</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Percent load loss at full load. The %R of the High and Low windings (1 and 2) are adjusted to agree at rated kVA loading.</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%NoLoadLoss</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Percent no load losses at rated excitation voltage. Default is 0. Converts to a resistance in parallel with the magnetizing impedance in each winding.</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NormHkVA</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td><p>kVA</p></td>
+<td><p>Normal maximum kVA rating of H winding (winding 1).  Usually 100% - 110% of maximum nameplate rating, depending on load shape. Defaults to 110% of kVA rating of Winding 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EmergHkVA</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td><p>kVA</p></td>
+<td><p>Emergency (contingency)  kVA rating of H winding (winding 1).  Usually 140% - 150% of maximum nameplate rating, depending on load shape. Defaults to 150% of kVA rating of Winding 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>28</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MaxTap</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Max per unit tap for the active winding.</p></td>
+</tr>
+<tr class="row-even"><td><p>29</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MinTap</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Min per unit tap for the active winding.</p></td>
+</tr>
+<tr class="row-odd"><td><p>30</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NumTaps</span></code></p></td>
+<td><p>integer<br><br><em>(on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Total number of taps between min and max tap.  Default is 32.</p></td>
+</tr>
+<tr class="row-even"><td><p>31</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%IMag</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Percent magnetizing current. Magnetizing branch is in parallel with windings in each phase. Also, see “ppm_antifloat”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ppm_Antifloat</span></code></p></td>
+<td><p>real</p></td>
+<td><p>1.0</p></td>
+<td></td>
+<td><p>Default=1 ppm.  Parts per million of transformer winding VA rating connected to ground to protect against accidentally floating a winding without a reference. If positive then the effect is adding a very large reactance to ground.  If negative, then a capacitor.</p></td>
+</tr>
+<tr class="row-even"><td><p>33</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%Rs</span></code></p></td>
+<td><p>array of reals</p></td>
+<td></td>
+<td></td>
+<td><p>Use this property to specify all the winding %resistances using an array. Example:<br><br>New Transformer.T1 buses=“Hibus, lowbus” ~ %Rs=(0.2  0.3)<br><em><strong>Redundant with %R</strong></em></p></td>
+</tr>
+<tr class="row-odd"><td><p>34</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">X12</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Alternative to XHL for specifying the percent reactance from winding 1 to winding 2.  Use for 2- or 3-winding transformers. Percent on the kVA base of winding 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>35</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">X13</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Alternative to XHT for specifying the percent reactance from winding 1 to winding 3.  Use for 3-winding transformers only. Percent on the kVA base of winding 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>36</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">X23</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Alternative to XLT for specifying the percent reactance from winding 2 to winding 3.Use for 3-winding transformers only. Percent on the kVA base of winding 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>37</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RDCOhms</span></code></p></td>
+<td><p>real<br><em>(on array)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Winding dc resistance in OHMS. Useful for GIC analysis. From transformer test report. Defaults to 85% of %R property</p></td>
+</tr>
+<tr class="row-odd"><td><p>38</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Seasons</span></code></p></td>
+<td><p>integer</p></td>
+<td></td>
+<td></td>
+<td><p>Defines the number of ratings to be defined for the transformer, to be used only when defining seasonal ratings using the “Ratings” property.</p></td>
+</tr>
+<tr class="row-even"><td><p>39</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ratings</span></code></p></td>
+<td><p>array of reals</p></td>
+<td><p>[600.0]</p></td>
+<td></td>
+<td><p>An array of ratings to be used when the seasonal ratings flag is True. It can be used to insert<br>multiple ratings to change during a QSTS simulation to evaluate different ratings in transformers.</p></td>
+</tr>
+<tr class="row-odd"><td><p>40</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Like</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="#"><span class="doc std std-doc">XfmrCode</span></a> name)</em><br><span class="fg-warning">deprecated</span></p></td>
+<td></td>
+<td></td>
+<td><p>Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  …</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="XYcurve.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">XYcurve</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="toc_me.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Meter Elements</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

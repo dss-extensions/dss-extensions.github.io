@@ -1,0 +1,123 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# ExpControl
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `PVSystemList`
+    - array of strings
+    - 
+    - 
+    - Array list of PVSystems to be controlled.<br><br>If not specified, all PVSystems in the circuit are assumed to be controlled by this ExpControl.
+*   - 2
+    - `VReg`
+    - real
+    - 1.0
+    - 
+    - Per-unit voltage at which reactive power is zero.<br><br>This may dynamically self-adjust when VregTau > 0, limited by VregMin and VregMax.If input as 0, Vreg will be initialized from a snapshot solution with no inverter Q.The equilibrium point of reactive power is also affected by Qbias
+*   - 3
+    - `Slope`
+    - real
+    - 50.0
+    - 
+    - Per-unit reactive power injection / per-unit voltage deviation from Vreg.<br><br>Unlike InvControl, base reactive power is constant at the inverter kva rating.
+*   - 4
+    - `VRegTau`
+    - real
+    - 1200.0
+    - s
+    - Time constant for adaptive Vreg.<br><br>When the control injects or absorbs reactive power due to a voltage deviation from the Q=0 crossing of the volt-var curve, the Q=0 crossing will move toward the actual terminal voltage with this time constant. Over time, the effect is to gradually bring inverter reactive power to zero as the grid voltage changes due to non-solar effects. If zero, then Vreg stays fixed. IEEE1547-2018 requires adjustability from 300s to 5000s
+*   - 5
+    - `QBias`
+    - real
+    - 0.0
+    - 
+    - Equilibrium per-unit reactive power when V=Vreg; defaults to 0.<br><br>Enter > 0 for lagging (capacitive) bias, < 0 for leading (inductive) bias.
+*   - 6
+    - `VRegMin`
+    - real
+    - 0.95
+    - 
+    - Lower limit on adaptive Vreg; defaults to 0.95 per-unit
+*   - 7
+    - `VRegMax`
+    - real
+    - 1.05
+    - 
+    - Upper limit on adaptive Vreg; defaults to 1.05 per-unit
+*   - 8
+    - `QMaxLead`
+    - real
+    - 0.44
+    - 
+    - Limit on leading (inductive) reactive power injection, in per-unit of base kva; defaults to 0.44.For Category A inverters per P1547/D7, set this value to 0.25.<br><br>Regardless of QmaxLead, the reactive power injection is still limited by dynamic headroom when actual real power output exceeds 0%
+*   - 9
+    - `QMaxLag`
+    - real
+    - 0.44
+    - 
+    - Limit on lagging (capacitive) reactive power injection, in per-unit of base kva; defaults to 0.44.<br><br>For Category A inverters per P1547/D7, set this value to 0.25.Regardless of QmaxLag, the reactive power injection is still limited by dynamic headroom when actual real power output exceeds 0%
+*   - 10
+    - `EventLog`
+    - boolean
+    - False
+    - 
+    - Log control actions to Eventlog.
+*   - 11
+    - `DeltaQ_Factor`
+    - real
+    - 0.7
+    - 
+    - Convergence parameter; Defaults to 0.7. <br><br>Sets the maximum change (in per unit) from the prior var output level to the desired var output level during each control iteration. If numerical instability is noticed in solutions such as var sign changing from one control iteration to the next and voltages oscillating between two values with some separation, this is an indication of numerical instability (use the EventLog to diagnose). If the maximum control iterations are exceeded, and no numerical instability is seen in the EventLog of via monitors, then try increasing the value of this parameter to reduce the number of control iterations needed to achieve the control criteria, and move to the power flow solution.
+*   - 12
+    - `PreferQ`
+    - boolean
+    - False
+    - 
+    - Curtails real power output as needed to meet the reactive power requirement. IEEE1547-2018 requires Yes, but the default is No for backward compatibility of OpenDSS models.
+*   - 13
+    - `TResponse`
+    - real
+    - 0.0
+    - 
+    - Open-loop response time for changes in Q.<br><br>The value of Q reaches 90% of the target change within Tresponse, which corresponds to a low-pass filter having tau = Tresponse / 2.3026. The behavior is similar to LPFTAU in InvControl, but here the response time is input instead of the time constant. IEEE1547-2018 default is 10s for Category A and 5s for Category B, adjustable from 1s to 90s for both categories. However, the default is 0 for backward compatibility of OpenDSS models.
+*   - 14
+    - `DERList`
+    - array of strings
+    - 
+    - 
+    - Alternative to PVSystemList for CIM export and import.<br><br>However, storage is not actually implemented yet. Use fully qualified PVSystem names.
+*   - 15
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 16
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 17
+    - `Like`
+    - string<br>*([ExpControl](#ExpControl) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

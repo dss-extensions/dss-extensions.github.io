@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Commands &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dss-format/Commands';</script>
+    <link rel="icon" href="../_static/dssx.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="General Options" href="Options.html" />
+    <link rel="prev" title="General Enumerations" href="Enumerations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../dss_language.html">DSS Language</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Options.html">General Options</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_general.html">General Objects</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_control.html">Control Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Recloser.html">Recloser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RegControl.html">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pce.html">PC Elements</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Storage.html">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../classic_api.html">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_apis.html">Python APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multithreading.html">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../docs.html" class="nav-link">Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../dss_language.html" class="nav-link">DSS Language</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Commands</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="commands">
+<h1>Commands<a class="headerlink" href="#commands" title="Link to this heading">#</a></h1>
+<p>DSS commands as implemented in AltDSS/DSS C-API implementation of the OpenDSS engine. All are available in OpenDSS, but there are some omissions like OpenDSS-GIS commands (either closed-source or not publicly available).</p>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td><p>Comment.  Command line is ignored.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">?</span></code></p></td>
+<td><p>Inquiry for property value.  Result is put into GlobalResult and can be seen in the Result Window. Specify the full property name.<br><br>Example: ? Line.Line1.R1<br><br>Note you can set this property merely by saying:<br>Line.line1.r1=.058</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_DoControlActions</span></code></p></td>
+<td><p>For step control of solution process: Pops control actions off the control queue according to the present control mode rules. Dispatches control actions to proper control element “DoPendingAction” handlers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_InitSnap</span></code></p></td>
+<td><p>For step control of solution process: Initialize iteration counters, etc. that normally occurs at the start of a snapshot solution process.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_SampleControls</span></code></p></td>
+<td><p>For step control of solution process: Sample the control elements, which push control action requests onto the control queue.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_ShowControlQueue</span></code></p></td>
+<td><p>For step control of solution process: Show the present control queue contents.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_SolveDirect</span></code></p></td>
+<td><p>For step control of solution process: Invoke direct solution function in DSS. Non-iterative solution of Y matrix and active sources only.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_SolveNoControl</span></code></p></td>
+<td><p>For step control of solution process: Solves the circuit in present state but does not check for control actions.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_SolvePFlow</span></code></p></td>
+<td><p>For step control of solution process: Invoke iterative power flow solution function of DSS directly.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Abort</span></code></p></td>
+<td><p>Aborts all the simulations running</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">About</span></code></p></td>
+<td><p>Display “About Box”.  (Result string set to Version string.)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AddBusMarker</span></code></p></td>
+<td><p>Add a marker to a bus in a circuit plot. Markers must be added before issuing the Plot command. Effect is persistent until circuit is cleared. See also ClearBusMarkers command. Example: <br><br>ClearBusMarkers    !…Clears any previous bus markers<br>AddBusMarker Bus=Mybusname code=5 color=Red size=3<br><br>You can use any of the standard color names  or RGB numbers. See Help on C1 property in Plot command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AlignFile</span></code></p></td>
+<td><p>Alignfile [file=]filename.  Aligns DSS script files in columns for easier reading.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Allocateloads</span></code></p></td>
+<td><p>Estimates the allocation factors for loads that are defined using the XFKVA property. Requires that energymeter objects be defined with the PEAKCURRENT property set. Loads that are not in the zone of an energymeter cannot be allocated.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AllPCEatBus</span></code></p></td>
+<td><p>Brings back the names of all PCE connected to the bus specified in the argument.<br>The command goes as follows:<br><br>AllPCEatBus myBus<br><br>Where “myBus” is the name of the bus of interest</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AllPDEatBus</span></code></p></td>
+<td><p>Brings back the names of all PDE connected to the bus specified in the argument.<br>The command goes as follows:<br><br>AllPDEatBus myBus<br><br>Where “myBus” is the name of the bus of interest</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BatchEdit</span></code></p></td>
+<td><p>Batch edit objects in the same class. Example: BatchEdit Load..* duty=duty_shape<br>In place of the object name, supply a PERL regular expression. .* matches all names.<br>The subsequent parameter string is applied to each object selected.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BuildY</span></code></p></td>
+<td><p>Forces rebuild of Y matrix upon next Solve command regardless of need. The usual reason for doing this would be to reset the matrix for another load level when using LoadModel=PowerFlow (the default) when the system is difficult to solve when the load is far from its base value.  Works by invalidating the Y primitive matrices for all the Power Conversion elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Buscoords</span></code></p></td>
+<td><p>Define x,y coordinates for buses.  Execute after Solve or MakeBusList command is executed so that bus lists are defined.Reads coordinates from a CSV file with records of the form: busname, x, y.<br><br>Example: BusCoords [file=]xxxx.csv</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CalcIncMatrix</span></code></p></td>
+<td><p>Calculates the incidence matrix of the Active Circuit</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CalcIncMatrix_O</span></code></p></td>
+<td><p>Calculates the incidence matrix of the Active Circuit. However, in this case the matrix will be calculated considering its hierarchical order,listing the buses starting from the substation to the farthest load in the model</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CalcLaplacian</span></code></p></td>
+<td><p>Calculate the laplacian matrix using the incidence matrix previously calculated. Before calling this command the incidence matrix needs to be calculated using calcincmatrix/calcincmatrix_o.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Calcvoltagebases</span></code></p></td>
+<td><p>Calculates voltage base for buses based on voltage bases defined with Set voltagebases=… command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Capacity</span></code></p></td>
+<td><p>Find the maximum load the active circuit can serve in the PRESENT YEAR. Uses the EnergyMeter objects with the registers set with the SET UEREGS= (..) command for the AutoAdd functions.  Syntax (defaults shown):<br><br>capacity [start=]0.9 [increment=]0.005<br><br>Returns the metered kW (load + losses - generation) and per unit load multiplier for the loading level at which something in the system reports an overload or undervoltage. If no violations, then it returns the metered kW for peak load for the year (1.0 multiplier). Aborts and returns 0 if no energymeters.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CD</span></code></p></td>
+<td><p>Change default directory to specified directory<br><br>CD dirname<br>On OpenDSS, this actually changes the current working directory of the whole hosting process.<br>For DSS-Extensions, there is an option to track the directory internally, while avoiding process-wide changes. This is required to allow running multiple instances of the DSS engine in the same process while keeping a consistent state. This option is currently disabled, but it will be enabled in a future version.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Cktlosses</span></code></p></td>
+<td><p>Returns the total losses for the active circuit in the Result string in kW, kvar.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Classes</span></code></p></td>
+<td><p>List of intrinsic DSS Classes. Returns comma-separated list in Result variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Cleanup</span></code></p></td>
+<td><p>Force execution of the end-of-time-step cleanup functions that samples/saves meters and updates selected state variables such as storage level</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Clear</span></code></p></td>
+<td><p>Clear all circuits currently in memory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ClearAll</span></code></p></td>
+<td><p>Clears all the circuits and all the actors, after this instruction there will be only 1 actor (actor 1) and will be the active actor</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ClearBusMarkers</span></code></p></td>
+<td><p>Clear all bus markers created with the AddBusMarker command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Clone</span></code></p></td>
+<td><p>Clones the active circuit. This command creates as many copies of the active circuit as indicated in the argument if the number of requested clones does not overpasses the number of local CPUs. The form of this command is clone X whereX is the number of clones to be created</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Close</span></code></p></td>
+<td><p>Opposite of the Open command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CloseDI</span></code></p></td>
+<td><p>Close all DI files … useful at end of yearly solution where DI files are left open. (Reset and Set Year=nnn will also close the DI files)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">COMHelp</span></code></p></td>
+<td><p>Shows the documentation file for the COM interface.This file provides guidance on the properties and methods included in the COM interface as well as examples and tips. Use this file to learn more about the COM interface and its different interfaces or just as a reference guide.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Comparecases</span></code></p></td>
+<td><p>[Case1=]casename [case2=]casename [register=](register number) [meter=]{Totals* | SystemMeter | metername}. <br>Compares yearly simulations of two specified cases with respect to the quantity in the designated register from the designated meter file. Defaults: Register=9 meter=Totals.  Example:<br><br>Comparecases base pvgens 10</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Compile</span></code></p></td>
+<td><p>Reads the designated file name containing DSS commands and processes them as if they were entered directly into the command line. The file is said to be “compiled.” Similar to “redirect” except changes the default directory to the path of the specified file.<br><br>Syntax:<br>Compile filename<br><br><strong>Note</strong>: on DSS-Extensions, we recommend using relative paths for <code class="docutils literal notranslate"><span class="pre">Redirect</span></code> and <code class="docutils literal notranslate"><span class="pre">Compile</span></code>, when possible. This is especially useful when running scripts from ZIP archives.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Connect</span></code></p></td>
+<td><p>Request to create a TCP/IP socket to communicate data with external modules. This function requires the host address and TCP port to connect. <strong>Not supported on DSS-Extensions</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Currents</span></code></p></td>
+<td><p>Returns the currents for each conductor of ALL terminals of the active circuit element in the Result string. (See Select command.)Returned as comma-separated magnitude and angle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CvrtLoadshapes</span></code></p></td>
+<td><p>Convert all Loadshapes presently loaded into either files of single or files of double. Usually files of singles are adequate precision for loadshapes.  Syntax:<br><br>cvrtloadshapes type=sng  (this is the default)<br>cvrtloadshapes type=dbl<br><br>A DSS script for loading the loadshapes from the created files is produced and displayed in the default editor.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DI_plot</span></code></p></td>
+<td><p>[case=]casename [year=]yr [registers=](reg1, reg2,…)  [peak=]y/n  [meter=]metername<br>Plots demand interval (DI) results from yearly simulation cases.  Plots selected registers from selected meter file (default = DI_Totals.csv).  Peak defaults to NO.  If YES, only daily peak of specified registers is plotted. Example:<br><br> DI_Plot basecase year=5 registers=(9,11) no</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Disable</span></code></p></td>
+<td><p>Disables a circuit element or entire class.  Example:<br>Disable load.loadxxx<br>Disable generator.*  (Disables all generators)<br><br>The item remains defined, but is not included in the solution.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Disconnect</span></code></p></td>
+<td><p>Request to terminate a TCP/IP socket. This function requires the host address and TCP port to disconnect. <strong>Not supported on DSS-Extensions</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Distribute</span></code></p></td>
+<td><p>kw=nn how={Proportional* | Uniform |Random | Skip} skip=nn PF=nn file=filename MW=nn What=[Generator*|Load]<br><br>Creates a DSS script file to distribute Generator or Load objects on the system in the manner specified by “how”.<br>kW = total generation to be distributed (default=1000) <br>how= process name as indicated (default=proportional to load)<br>skip = no. of buses to skip for “How=Skip” (default=1)<br>PF = power factor for new generators (default=1.0)<br>file = name of file to save (default=distgenerators.dss or distloads.dss)<br>MW = alternate way to specify kW (default = 1)<br>What = what type of device to add, Generator (default) or Load</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DOScmd</span></code></p></td>
+<td><p>Do a DOS command. Sends the command “cmd … “ to Windows. Execute the “cmd /?” command in a DOS window to see the options. To do a DOS command and automatically exit, do <br><br>DOScmd /c …command string …<br><br>To keep the DOS window open, use /k switch.<br><strong>Note</strong>: DOScmd is deprecated and disabled by default on DSS-Extensions. Remember to enable it through the <code class="docutils literal notranslate"><span class="pre">AllowDOSCmd</span></code> API before using on scripts.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Dump</span></code></p></td>
+<td><p>Display the properties of either a specific DSS object or a complete dump on all variables in the problem (Warning! Could be very large!). Brings up the default text editor with the text file written by this command.<br> Syntax: dump [class.obj] [debug]<br> Examples:<br><br> Dump line.line1 <br> Dump solution  (dumps all solution vars) <br> Dump commands  (dumps all commands to a text file) <br> Dump transformer.*  (dumps all transformers)<br> Dump ALLOCationfactors  (load allocation factors)<br> Dump Buslist    (bus name hash list)<br> Dump Devicelist    (Device name hash list)<br> Dump      (dumps all objects in circuit)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Edit</span></code></p></td>
+<td><p>Edit an object. The object is selected and it then becomes the active object.<br><br>Note that Edit is the default command.  You many change a property value simply by giving the full property name and the new value, for example:<br><br>line.line1.r1=.04<br>vsource.source.kvll=230</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Enable</span></code></p></td>
+<td><p>Enables a circuit element or entire class.  Example:<br>Enable load.loadxxx<br>Enable generator.*  (enables all generators)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Estimate</span></code></p></td>
+<td><p>Execute state estimator on present circuit given present sensor values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Export</span></code></p></td>
+<td><p>Export various solution values to CSV (or XML) files for import into other programs. Creates a new file except for Energymeter and Generator objects, for which the results for each device of this class are APPENDED to the CSV File. You may export to a specific file by specifying the file name as the LAST parameter on the line. For example:<br><br>  Export Voltage Myvoltagefile.csv<br><br>Otherwise, the default file names shown in the Export help are used. For Energymeter and Generator, specifying the switch “/multiple” (or /m) for the file name will cause a separate file to be written for each meter or generator. The default is for a single file containing all elements.<br><br>May be abreviated Export V, Export C, etc.  Default is “V” for voltages. If Set ShowExport=Yes, the output file will be automatically displayed in the default editor. Otherwise, you must open the file separately. The name appears in the Result window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ExportOverloads</span></code></p></td>
+<td><p>Exports the overloads report with the content available at the moment of the call. It only affects the overloads report for the active actor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ExportVViolations</span></code></p></td>
+<td><p>Exports the voltage violations1 report with the content available at the moment of the call. It only affects the voltage violations report for the active actor.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Fileedit</span></code></p></td>
+<td><p>Edit specified file in default text file editor (see Set Editor= option).<br><br>Fileedit EXP_METERS.csv (brings up the meters export file)<br><br>“FileEdit” may be abbreviated to a unique character string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FinishTimeStep</span></code></p></td>
+<td><p>Do Cleanup, sample monitors, and increment time.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Formedit</span></code></p></td>
+<td><p>FormEdit [class.object].  Brings up form editor on active DSS object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Get</span></code></p></td>
+<td><p>Returns DSS property values set using the Set command. Result is returned in Result property of the Text interface. <br><br>VBA Example:<br><br>DSSText.Command = “Get mode”<br>Answer = DSSText.Result<br><br>Multiple properties may be requested on one get.  The results are appended and the individual values separated by commas.<br><br>See help on Set command for property names.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GISCoords</span></code></p></td>
+<td><p>Define x,y coordinates for buses using real GIS Latitude and Longitude values (decimal numbers).  Similar to BusCoords command. Execute after Solve command or MakeBusList command is executed so that bus lists are defined.Reads coordinates from a CSV file with records of the form: busname, Latitude, Longitude.<br><br>Example: GISCoords [file=]xxxx.csv<br><br>Note: For using only if OpenDSS-GIS is locally installed. <strong>Not supported (no-op) on DSS-Extensions</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Help</span></code></p></td>
+<td><p>Gives this display.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Init</span></code></p></td>
+<td><p>This command forces reinitialization of the solution for the next Solve command. To minimize iterations, most solutions start with the previous solution unless there has been a circuit change.  However, if the previous solution is bad, it may be necessary to re-initialize.  In most cases, a re-initiallization results in a zero-load power flow solution with only the series power delivery elements considered.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Interpolate</span></code></p></td>
+<td><p>{All | MeterName}  Default is “All”. Interpolates coordinates for missing bus coordinates in meter zone</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LatLongCoords</span></code></p></td>
+<td><p>Define x,y coordinates for buses using Latitude and Longitude values (decimal numbers).  Similar to BusCoords command. Execute after Solve command or MakeBusList command is executed so that bus lists are defined.Reads coordinates from a CSV file with records of the form: busname, Latitude, Longitude.<br><br>Example: LatLongCoords [file=]xxxx.csv<br><br>Note: Longitude is mapped to x coordinate and Latitude is mapped to y coordinate.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Losses</span></code></p></td>
+<td><p>Returns the total losses for the active circuit element (see Select command) in the Result string in kW, kvar.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">M</span></code></p></td>
+<td><p>Continuation of editing on the active object. An abbreviation for More</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MakeBusList</span></code></p></td>
+<td><p>Updates the buslist, if needed, using the currently enabled circuit elements.  (This happens automatically for Solve command.) See ReprocessBuses</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MakePosSeq</span></code></p></td>
+<td><p>Attempts to convert present circuit model to a positive sequence equivalent. It is recommended to Save the circuit after this and edit the saved version to correct possible misinterpretations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">More</span></code></p></td>
+<td><p>Continuation of editing on the active object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">New</span></code></p></td>
+<td><p>Create a new object within the DSS. Object becomes the active object<br>Example: New Line.line1 …</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NewActor</span></code></p></td>
+<td><p>This command creates a new actor (OpenDSS Instance) and sets the new actor as the active actor. There can be only 1 circuit per actor. The NewActor command will increment the variable NumOfActors; however, if the number of actors is the same as the number of available CPUs the new actor will not be created generating an error message. This instruction will deliver the ID of the active actor. This command does not requires a precedent command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Next</span></code></p></td>
+<td><p>{Year | Hour | t}  Increments year, hour, or time as specified.  If “t” is specified, then increments time by current step size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NodeDiff</span></code></p></td>
+<td><p>Global result is set to voltage difference, volts and degrees, (Node1 - Node2) between any two nodes. Syntax:<br><br>   NodeDiff Node1=MyBus.1 Node2=MyOtherBus.1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NodeList</span></code></p></td>
+<td><p>[Circuit element name] (Optional) Returns a list of node numbers for all conductors of all terminals of the active circuit element in the Result window or interface.If the optional circuit element name is supplied, the program makes it the active element. Usage:<br><br>NodeList<br>NodeList Line.Myline</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Obfuscate</span></code></p></td>
+<td><p>Change Bus and circuit element names to generic values to remove identifying names. Generally, you will follow this command immediately by a “Save Circuit Dir=MyDirName” command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Open</span></code></p></td>
+<td><p>Opens the specified terminal and conductor of the specified circuit element. If the conductor is not specified, all phase conductors of the terminal are opened.<br><br>Examples:<br>Open line.line1 2 <br>(opens all phases of terminal 2)<br><br>Open line.line1 2 3<br>(opens the 3rd conductor of terminal 2)<br><br>As a side effect, the bus of affected terminal is activated.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Panel</span></code></p></td>
+<td><p>Displays main control panel window.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Phaselosses</span></code></p></td>
+<td><p>Returns the losses for the active circuit element (see Select command) for each PHASE in the Result string in comma-separated kW, kvar pairs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Plot</span></code></p></td>
+<td><p>Plots circuits and results in a variety of manners.  See separate Plot command help.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Powers</span></code></p></td>
+<td><p>Returns the powers (complex) going into each conductors of ALL terminals of the active circuit element in the Result string. (See Select command.)Returned as comma-separated kW and kvar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Pstcalc</span></code></p></td>
+<td><p>Pst calculation. PstCalc Npts=nnn Voltages=[array] dt=nnn freq=nn lamp=120 or 230.<br>Set Npts to a big enough value to hold the incoming voltage array. <br>dt = time increment in seconds. default is 1<br>freq = base frequency in Hz 50 or 60. Default is default base frequency<br>Lamp= 120 for North America; 230 for Europe. Default is 120<br><br>PSTCalc Npts=1900 V=[file=MyCSVFile.csv, Col=3, Header=y] dt=1 freq=60 lamp=120</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">puvoltages</span></code></p></td>
+<td><p>Just like the Voltages command, except the voltages are in per unit if the kVbase at the bus is defined.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Quit</span></code></p></td>
+<td><p>Shuts down DSS unless this is the DLL version.  Then it does nothing;  DLL parent is responsible for shutting down the DLL.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Reconductor</span></code></p></td>
+<td><p>Reconductor a line section. Must be in an EnergyMeter zone. <br>Syntax: Reconductor Line1=… Line2=… {LineCode= | Geometry = } EditString=“…” NPhases=#<br>Line1 and Line2 may be given in any order. All lines in the path between the two are redefined with either the LineCode or Geometry (not both). You may also add an optional string the alter any other line properties. The edit string should be enclosed in quotes or parentheses or brackets.<br>Nphases is an optional filter on the number of phases in line segments to change.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Redirect</span></code></p></td>
+<td><p>Reads the designated file name containing DSS commands and processes them as if they were entered directly into the command line. Similar to “Compile”, but leaves current directory where it was when Redirect command is invoked.Can temporarily change to subdirectories if nested Redirect commands require.<br><br>ex:  redirect filename<br><br><strong>Note</strong>: on DSS-Extensions, we recommend using relative paths for <code class="docutils literal notranslate"><span class="pre">Redirect</span></code> and <code class="docutils literal notranslate"><span class="pre">Compile</span></code>, when possible. This is especially useful when running scripts from ZIP archives.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Reduce</span></code></p></td>
+<td><p>{All | MeterName}  Default is “All”.  Reduce the circuit according to reduction options. See “Set ReduceOptions” and “Set Keeplist” options.Energymeter objects actually perform the reduction.  “All” causes all meters to reduce their zones.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Refine_BusLevels</span></code></p></td>
+<td><p>This function takes the bus levels array and traces all the possible paths considering the longest paths from the substation to the farthest branches within the circuit. Then, the new paths are filled with 0 to complement the original levels proposed by the calcincmatrix_o command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RelCalc</span></code></p></td>
+<td><p>[restore=Y/N]Perform reliability calcs: Failure rates and number of interruptions. <br><br>Optional parameter:<br><br>If restore=y automatic restoration of unfaulted section is assumed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Remove</span></code></p></td>
+<td><p>{ElementName=} [KeepLoad=Y*/N] [EditString=“…”] Remove (disable) all branches downline from the PDelement named by “ElementName” property. Circuit must have an Energymeter on this branch. If KeepLoad=Y (default) a new Load element is defined and kW, kvar set to present power flow solution for the first element eliminated. The EditString is applied to each new Load element defined. <br>If KeepLoad=N, all downline elements are disabled. Examples: <br><br>Remove Line.Lin3021<br>Remove Line.L22 Editstring=”Daily=Dailycurve Duty=SolarShape<br>Remove Line.L333 KeepLoad=No</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Rephase</span></code></p></td>
+<td><p>Generates a script to change the phase designation of all lines downstream from a start in line. Useful for such things as moving a single-phase lateral from one phase to another and keep the phase designation consistent for reporting functions that need it to be (not required for simply solving). <br><br>StartLine=… PhaseDesignation=“…”  EditString=“…” ScriptFileName=… StopAtTransformers=Y/N/T/F<br><br>Enclose the PhaseDesignation in quotes since it contains periods (dots).<br>You may add and optional EditString to edit any other line properties.<br><br>Rephase StartLine=Line.L100  PhaseDesignation=“.2”  EditString=“phases=1” ScriptFile=Myphasechangefile.dss  Stop=No</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ReprocessBuses</span></code></p></td>
+<td><p>Forces reprocessing of bus definitions whether there has been a change or not. Use for rebuilding meter zone lists when a line length changes, for example or some other event that would not normally trigger an update to the bus list.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Reset</span></code></p></td>
+<td><p>{MOnitors | MEters | Faults | Controls | Eventlog | Keeplist |(no argument) } Resets all Monitors, Energymeters, etc. If no argument specified, resets all options listed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Rotate</span></code></p></td>
+<td><p>Usage: Rotate [angle=]nnn.  Rotate circuit plotting coordinates by specified angle (degrees).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sample</span></code></p></td>
+<td><p>Force all monitors and meters to take a sample for the most recent solution. Keep in mind that meters will perform integration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Save</span></code></p></td>
+<td><p>{Save [class=]{Meters | Circuit | Voltages | (classname)} [file=]filename [dir=]directory <br><br>Default class = Meters, which saves the present values in both monitors and energy meters in the active circuit. <br><br>“Save Circuit” saves the present enabled circuit elements to the specified subdirectory in standard DSS form with a Master.dss file and separate files for each class of data. <br><br>If Dir= not specified a unique name based on the circuit name is created automatically. <br><br>If Dir= is specified, any existing files are overwritten. <br><br>“Save Voltages” saves the present solution in a simple CSV format in a file called DSS_SavedVoltages. Used for VDIFF command.<br><br>Any class can be saved to a file.  If no filename specified, the classname is used.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Select</span></code></p></td>
+<td><p>Selects an element and makes it the active element.  You can also specify the active terminal (default = 1).<br><br>Syntax:<br>Select [element=]elementname  [terminal=]terminalnumber <br><br>Example:<br>Select Line.Line1 <br>~ R1=.1<br>(continue editing)<br><br>Select Line.Line1 2 <br>Voltages  (returns voltages at terminal 2 in Result)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Seqcurrents</span></code></p></td>
+<td><p>Returns the sequence currents into all terminals of the active circuit element (see Select command) in Result string.  Returned as comma-separated magnitude only values.Order of returned values: 0, 1, 2  (for each terminal).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Seqpowers</span></code></p></td>
+<td><p>Returns the sequence powers into all terminals of the active circuit element (see Select command) in Result string.  Returned as comma-separated kw, kvar pairs.Order of returned values: 0, 1, 2  (for each terminal).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Seqvoltages</span></code></p></td>
+<td><p>Returns the sequence voltages at all terminals of the active circuit element (see Select command) in Result string.  Returned as comma-separated magnitude only values.Order of returned values: 0, 1, 2  (for each terminal).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Set</span></code></p></td>
+<td><p>Used to set various DSS solution modes and options.  You may also set the options with the Solve command. See “Options” for help.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SetBusXY</span></code></p></td>
+<td><p>Bus=…  X=…  Y=… Set the X, Y coordinates for a single bus. Prerequisite: Bus must exist as a result of a Solve, CalcVoltageBases, or MakeBusList command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SetkVBase</span></code></p></td>
+<td><p>Command to explicitly set the base voltage for a bus. Bus must be previously defined. Parameters in order are:<br>Bus = {bus name}<br>kVLL = (line-to-line base kV)<br>kVLN = (line-to-neutral base kV)<br><br>kV base is normally given in line-to-line kV (phase-phase). However, it may also be specified by line-to-neutral kV.<br>The following examples are equivalent:<br><br>setkvbase Bus=B9654 kVLL=13.2<br>setkvbase B9654 13.2<br>setkvbase B9654 kvln=7.62</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SetLoadAndGenKV</span></code></p></td>
+<td><p>Set load and generator object kv to agree with the bus they are connected to using the bus voltage base and connection type.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Show</span></code></p></td>
+<td><p>Writes selected results to a text file and brings up the default text editor (see Set Editor=….) with the file for you to browse.<br><br>See separate help on Show command. <br><br>Default is “show voltages LN Seq”.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Solve</span></code></p></td>
+<td><p>Perform the solution of the present solution mode. You can set any option that you can set with the Set command (see Set). The Solve command is virtually synonymous with the Set command except that a solution is performed after the options are processed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SolveAll</span></code></p></td>
+<td><p>Solves all the circuits (Actors) loaded into memory by the user</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Summary</span></code></p></td>
+<td><p>Returns a power flow summary of the most recent solution in the global result string.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TOP</span></code></p></td>
+<td><p>[class=]{Loadshape | Tshape | Monitor  } [object=]{ALL (Loadshapes only) | objectname}. Send specified object to TOP.  Loadshapes and TShapes must be hourly fixed interval.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TotalPowers</span></code></p></td>
+<td><p>Returns the total powers (complex) at ALL terminals of the active circuit element in the Result string. (See Select command.)Returned as comma-separated kW and kvar.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Totals</span></code></p></td>
+<td><p>Totals all EnergyMeter objects in the circuit and reports register totals in the result string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UpdateStorage</span></code></p></td>
+<td><p>Update Storage elements based on present solution and time interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Userclasses</span></code></p></td>
+<td><p>List of user-defined DSS Classes. Returns comma-separated list in Result variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Uuids</span></code></p></td>
+<td><p>Read UUIDs (v4) for class names and other CIM objects. Tab or comma-delimited file with full object name (or key) and UUID. Side effect is to start a new UUID list for the Export CIM100 command; the UUID list is freed after the Export UUIDs command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">var</span></code></p></td>
+<td><p>Define and view script variables.  Variable names begin with “&#64;”<br><br>Usage:<br><br>var &#64;varname1=values  &#64;varname2=value2    …<br>var &#64;varname1  (shows the value of &#64;varname1)<br>var            (displays all variables and values)<br><br>Example of using a variable:<br><br>FileEdit &#64;LastFile</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Variable</span></code></p></td>
+<td><p>[name=] MyVariableName  [Index=] IndexofMyVariable <br><br>Returns the value of the specified state variable of the active circuit element, if a PCelement. Returns the value as a string in the Result window or the Text.Result interface if using one of the APIs. <br><br>You may specify the variable by name or by its index. You can determine the index using the VarNames command. If any part of the request is invalid, the Result is null.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Varnames</span></code></p></td>
+<td><p>Returns variable names for active element if PC element. Otherwise, returns null.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VarValues</span></code></p></td>
+<td><p>Returns variable values for active element if PC element. Otherwise, returns null.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Vdiff</span></code></p></td>
+<td><p>Displays the difference between the present solution and the last on saved using the SAVE VOLTAGES command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Visualize</span></code></p></td>
+<td><p>[What=] one of {Currents* | Voltages | Powers} [element=]full_element_name  (class.name). Shows the selected quantity for selected element on a multiphase line drawing in phasor values.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Voltages</span></code></p></td>
+<td><p>Returns the voltages for the ACTIVE BUS in the Result string. For setting the active Bus, use the Select command or the Set Bus= option. Returned as magnitude and angle quantities, comma separated, one set per conductor of the terminal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Wait</span></code></p></td>
+<td><p>Pauses the scripting thread until all the active actors are Ready to receive new commands (have finished all their tasks and are ready to receive new simulation orders).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">YearlyCurves</span></code></p></td>
+<td><p>[cases=](case1, case2, …) [registers=](reg1, reg2, …)  [meter=]{Totals* | SystemMeter | metername}Plots yearly curves for specified cases and registers. <br>Default: meter=Totals. Example: <br><br>yearlycurves cases=(basecase, pvgens) registers=9</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ysc</span></code></p></td>
+<td><p>Returns full Ysc matrix for the ACTIVE BUS in comma-separated complex number form G + jB.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Zsc</span></code></p></td>
+<td><p>Returns full Zsc matrix for the ACTIVE BUS in comma-separated complex number form.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Zsc012</span></code></p></td>
+<td><p>Returns symmetrical component short circuit impedances Z0, Z1, and Z2 for the ACTIVE 3-PHASE BUS. Determined from Zsc matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Zsc10</span></code></p></td>
+<td><p>Returns symmetrical component impedances, Z1, Z0 for the ACTIVE BUS in comma-separated R+jX form.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ZscRefresh</span></code></p></td>
+<td><p>Refreshes Zsc matrix for the ACTIVE BUS.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td><p>Continuation of editing on the active object. An abbreviation.<br><br>Example:<br>New Line.Line1 Bus1=aaa  bus2=bbb<br>~ R1=.058<br>~ X1=.1121</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Enumerations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">General Enumerations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Options.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">General Options</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

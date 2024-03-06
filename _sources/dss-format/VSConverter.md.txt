@@ -1,0 +1,177 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# VSConverter
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Phases`
+    - integer
+    - 4
+    - 
+    - Number of AC plus DC conductors. AC phases numbered before DC conductors.
+*   - 2
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of converter bus, containing both AC and DC conductors. Bus2 is always ground.
+*   - 3
+    - `kVAC`
+    - real
+    - 1.0
+    - 
+    - Nominal AC line-neutral voltage in kV. Must be specified > 0.
+*   - 4
+    - `kVDC`
+    - real
+    - 1.0
+    - 
+    - Nominal DC voltage in kV. Must be specified > 0.
+*   - 5
+    - `kW`
+    - real
+    - 1.0
+    - 
+    - Nominal converter power in kW. Must be specified > 0.
+*   - 6
+    - `NDC`
+    - integer
+    - 1
+    - 
+    - Number of DC conductors. DC conductors numbered after AC phases.
+*   - 7
+    - `RAC`
+    - real
+    - 0.0
+    - Ω
+    - AC resistance for the converter transformer, plus any series reactors.<br>Must be 0 for Vac control mode.
+*   - 8
+    - `XAC`
+    - real
+    - 0.0
+    - Ω
+    - AC reactance for the converter transformer, plus any series reactors.<br>Must be 0 for Vac control mode. Must be >0 for PacVac, PacQac or VacVdc control mode.
+*   - 9
+    - `M0`
+    - real
+    - 0.5
+    - 
+    - Fixed or initial value of the modulation index.
+*   - 10
+    - `d0`
+    - real
+    - 0.0
+    - 
+    - Fixed or initial value of the power angle in degrees.
+*   - 11
+    - `MMin`
+    - real
+    - 0.1
+    - 
+    - Minimum value of modulation index.
+*   - 12
+    - `MMax`
+    - real
+    - 0.9
+    - 
+    - Maximum value of modulation index.
+*   - 13
+    - `IACMax`
+    - real
+    - 2.0
+    - 
+    - Maximum value of AC line current, per-unit of nominal.
+*   - 14
+    - `IDCMax`
+    - real
+    - 2.0
+    - 
+    - Maximum value of DC current, per-unit of nominal.
+*   - 15
+    - `VACRef`
+    - real
+    - 0.0
+    - 
+    - Reference AC line-to-neutral voltage, RMS Volts.<br>Applies to PacVac and VdcVac control modes, influencing m.
+*   - 16
+    - `PACRef`
+    - real
+    - 0.0
+    - 
+    - Reference total AC real power, Watts.<br>Applies to PacVac and PacQac control modes, influencing d.
+*   - 17
+    - `QACRef`
+    - real
+    - 0.0
+    - 
+    - Reference total AC reactive power, Vars.<br>Applies to PacQac and VdcQac control modes, influencing m.
+*   - 18
+    - `VDCRef`
+    - real
+    - 0.0
+    - 
+    - Reference DC voltage, Volts.<br>Applies to VdcVac control mode, influencing d.
+*   - 19
+    - `VSCMode`
+    - string<br>*(from enum. [Control Mode](#enum-vsconvertercontrol-mode))*
+    - Fixed
+    - 
+    - Control Mode
+*   - 20
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - default
+    - 
+    - Name of harmonic spectrum for this device.
+*   - 21
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 22
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 23
+    - `Like`
+    - string<br>*([VSConverter](#VSConverter) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-vsconvertercontrol-mode)=
+### VSConverter: Control Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Fixed`
+*   - `PacVac`
+*   - `PacQac`
+*   - `VdcVac`
+*   - `VdcQac`
+:::
+
+

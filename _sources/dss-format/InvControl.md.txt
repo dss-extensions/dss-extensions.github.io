@@ -1,0 +1,342 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# InvControl
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `DERList`
+    - array of strings
+    - 
+    - 
+    - Array list of PVSystem and/or Storage elements to be controlled. If not specified, all PVSystem and Storage in the circuit are assumed to be controlled by this control. <br><br>No capability of hierarchical control between two controls for a single element is implemented at this time.
+*   - 2
+    - `Mode`
+    - string<br>*(from enum. [Control Mode](#enum-invcontrolcontrol-mode))*
+    - 
+    - 
+    - Smart inverter function in which the InvControl will control the PC elements specified in DERList, according to the options below:<br><br>Must be one of: {VOLTVAR | VOLTWATT | DYNAMICREACCURR | WATTPF | WATTVAR | GFM} <br>if the user desires to use modes simultaneously, then set the CombiMode property. Setting the Mode to any valid value disables combination mode.<br><br>In volt-var mode. This mode attempts to CONTROL the vars, according to one or two volt-var curves, depending on the monitored voltages, present active power output, and the capabilities of the PVSystem/Storage. <br><br>In volt-watt mode. This mode attempts to LIMIT the watts, according to one defined volt-watt curve, depending on the monitored voltages and the capabilities of the PVSystem/Storage. <br><br>In dynamic reactive current mode. This mode attempts to increasingly counter deviations by CONTROLLING vars, depending on the monitored voltages, present active power output, and the capabilities of the of the PVSystem/Storage.<br><br>In watt-pf mode. This mode attempts to CONTROL the vars, according to a watt-pf curve, depending on the present active power output, and the capabilities of the PVSystem/Storage. <br><br>In watt-var mode. This mode attempts to CONTROL the vars, according to a watt-var curve, depending on the present active power output, and the capabilities of the PVSystem/Storage. <br><br>In GFM mode this control will trigger the GFM control routine for the DERs within the DERList. The GFM actiosn will only take place if the pointed DERs are in GFM mode. The controller parameters are locally setup at the DER.<br><br><br>NO DEFAULT
+*   - 3
+    - `CombiMode`
+    - string<br>*(from enum. [Combi Mode](#enum-invcontrolcombi-mode))*
+    - 
+    - 
+    - Combination of smart inverter functions in which the InvControl will control the PC elements in DERList, according to the options below: <br><br>Must be a combination of the following: {VV_VW | VV_DRC}. Default is to not set this property, in which case the single control mode in Mode is active.  <br><br>In combined VV_VW mode, both volt-var and volt-watt control modes are active simultaneously.  See help individually for volt-var mode and volt-watt mode in Mode property.<br>Note that the PVSystem/Storage will attempt to achieve both the volt-watt and volt-var set-points based on the capabilities of the inverter in the PVSystem/Storage (kVA rating, etc), any limits set on maximum active power,<br><br>In combined VV_DRC, both the volt-var and the dynamic reactive current modes are simultaneously active.
+*   - 4
+    - `VVC_Curve1`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Required for VOLTVAR mode. <br><br>Name of the XYCurve object containing the volt-var curve. The positive values of the y-axis of the volt-var curve represent values in pu of the provided base reactive power. The negative values of the y-axis are values in pu of the absorbed base reactive power. <br>Provided and absorbed base reactive power values are defined in the RefReactivePower property<br><br>Units for the x-axis are per-unit voltage, which may be in per unit of the rated voltage for the PVSystem/Storage, or may be in per unit of the average voltage at the terminals over a user-defined number of prior solutions. 
+*   - 5
+    - `Hysteresis_Offset`
+    - real
+    - 0.0
+    - 
+    - Required for VOLTVAR mode.<br><br>for the times when the terminal voltage is decreasing, this is the off-set in per-unit voltage of a curve whose shape is the same as vvc_curve. It is offset by a certain negative value of per-unit voltage, which is defined by the base quantity for the x-axis of the volt-var curve (see help for voltage_curvex_ref)<br><br>if the PVSystem/Storage terminal voltage has been increasing, and has not changed directions, utilize vvc_curve1 for the volt-var response. <br><br>if the PVSystem/Storage terminal voltage has been increasing and changes directions and begins to decrease, then move from utilizing vvc_curve1 to a volt-var curve of the same shape, but offset by a certain per-unit voltage value. <br><br>Maintain the same per-unit available var output level (unless head-room has changed due to change in active power or kva rating of PVSystem/Storage).  Per-unit var values remain the same for this internally constructed second curve (hysteresis curve). <br><br>if the terminal voltage has been decreasing and changes directions and begins to increase , then move from utilizing the offset curve, back to the vvc_curve1 for volt-var response, but stay at the same per-unit available vars output level.
+*   - 6
+    - `Voltage_CurveX_Ref`
+    - string<br>*(from enum. [Voltage Curve X Ref](#enum-invcontrolvoltage-curve-x-ref))*
+    - Rated
+    - 
+    - Required for VOLTVAR and VOLTWATT modes, and defaults to rated.  Possible values are: {rated|avg|ravg}.  <br><br>Defines whether the x-axis values (voltage in per unit) for vvc_curve1 and the volt-watt curve corresponds to:<br><br>rated. The rated voltage for the PVSystem/Storage object (1.0 in the volt-var curve equals rated voltage).<br><br>avg. The average terminal voltage recorded over a certain number of prior power-flow solutions.<br>with the avg setting, 1.0 per unit on the x-axis of the volt-var curve(s) corresponds to the average voltage.<br>from a certain number of prior intervals.  See avgwindowlen parameter.<br><br>ravg. Same as avg, with the exception that the avgerage terminal voltage is divided by the rated voltage.
+*   - 7
+    - `AvgWindowLen`
+    - integer
+    - 1
+    - 
+    - Required for VOLTVAR mode and VOLTWATT mode, and defaults to 0 seconds (0s). <br><br>Sets the length of the averaging window over which the average PVSystem/Storage terminal voltage is calculated. <br><br>Units are indicated by appending s, m, or h to the integer value. <br><br>The averaging window will calculate the average PVSystem/Storage terminal voltage over the specified period of time, up to and including the last power flow solution. <br><br>Note, if the solution stepsize is larger than the window length, then the voltage will be assumed to have been constant over the time-frame specified by the window length.
+*   - 8
+    - `VoltWatt_Curve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Required for VOLTWATT mode. <br><br>Name of the XYCurve object containing the volt-watt curve. <br><br>Units for the x-axis are per-unit voltage, which may be in per unit of the rated voltage for the PVSystem/Storage, or may be in per unit of the average voltage at the terminals over a user-defined number of prior solutions. <br><br>Units for the y-axis are either in one of the options described in the VoltwattYAxis property. 
+*   - 9
+    - `DbVMin`
+    - real
+    - 0.95
+    - 
+    - Required for the dynamic reactive current mode (DYNAMICREACCURR), and defaults to 0.95 per-unit voltage (referenced to the PVSystem/Storage object rated voltage or a windowed average value). <br><br>This parameter is the minimum voltage that defines the voltage dead-band within which no reactive power is allowed to be generated. 
+*   - 10
+    - `DbVMax`
+    - real
+    - 1.05
+    - 
+    - Required for the dynamic reactive current mode (DYNAMICREACCURR), and defaults to 1.05 per-unit voltage (referenced to the PVSystem object rated voltage or a windowed average value). <br><br>This parameter is the maximum voltage that defines the voltage dead-band within which no reactive power is allowed to be generated. 
+*   - 11
+    - `ArGraLowV`
+    - real
+    - 0.1
+    - 
+    - Required for the dynamic reactive current mode (DYNAMICREACCURR), and defaults to 0.1  <br><br>This is a gradient, expressed in unit-less terms of %/%, to establish the ratio by which percentage capacitive reactive power production is increased as the  percent delta-voltage decreases below DbVMin. <br><br>Percent delta-voltage is defined as the present PVSystem/Storage terminal voltage minus the moving average voltage, expressed as a percentage of the rated voltage for the PVSystem/Storage object. <br><br>Note, the moving average voltage for the dynamic reactive current mode is different than the moving average voltage for the volt-watt and volt-var modes.
+*   - 12
+    - `ArGraHiV`
+    - real
+    - 0.1
+    - 
+    - Required for the dynamic reactive current mode (DYNAMICREACCURR), and defaults to 0.1  <br><br>This is a gradient, expressed in unit-less terms of %/%, to establish the ratio by which percentage inductive reactive power production is increased as the  percent delta-voltage decreases above DbVMax. <br><br>Percent delta-voltage is defined as the present PVSystem/Storage terminal voltage minus the moving average voltage, expressed as a percentage of the rated voltage for the PVSystem/Storage object. <br><br>Note, the moving average voltage for the dynamic reactive current mode is different than the mmoving average voltage for the volt-watt and volt-var modes.
+*   - 13
+    - `DynReacAvgWindowLen`
+    - integer
+    - 1
+    - 
+    - Required for the dynamic reactive current mode (DYNAMICREACCURR), and defaults to 1 seconds (1s). do not use a value smaller than 1.0 <br><br>Sets the length of the averaging window over which the average PVSystem/Storage terminal voltage is calculated for the dynamic reactive current mode. <br><br>Units are indicated by appending s, m, or h to the integer value. <br><br>Typically this will be a shorter averaging window than the volt-var and volt-watt averaging window.<br><br>The averaging window will calculate the average PVSystem/Storage terminal voltage over the specified period of time, up to and including the last power flow solution.  Note, if the solution stepsize is larger than the window length, then the voltage will be assumed to have been constant over the time-frame specified by the window length.
+*   - 14
+    - `DeltaQ_Factor`
+    - real
+    - -1.0
+    - 
+    - Required for the VOLTVAR and DYNAMICREACCURR modes.  Defaults to -1.0. <br><br>Defining -1.0, OpenDSS takes care internally of delta_Q itself. It tries to improve convergence as well as speed up process<br><br>Sets the maximum change (in per unit) from the prior var output level to the desired var output level during each control iteration. <br><br><br>if numerical instability is noticed in solutions such as var sign changing from one control iteration to the next and voltages oscillating between two values with some separation, this is an indication of numerical instability (use the EventLog to diagnose). <br><br>if the maximum control iterations are exceeded, and no numerical instability is seen in the EventLog of via monitors, then try increasing the value of this parameter to reduce the number of control iterations needed to achieve the control criteria, and move to the power flow solution. <br><br>When operating the controller using exponential control model (see CtrlModel), this parameter represents the sampling time gain of the controller, which is used for accelrating the controller response in terms of control iterations required.
+*   - 15
+    - `VoltageChangeTolerance`
+    - real
+    - 0.0
+    - 
+    - Defaults to 0.0001 per-unit voltage.  This parameter should only be modified by advanced users of the InvControl.  <br><br>Tolerance in pu of the control loop convergence associated to the monitored voltage in pu. This value is compared with the difference of the monitored voltage in pu of the current and previous control iterations of the control loop<br><br>This voltage tolerance value plus the var/watt tolerance value (VarChangeTolerance/ActivePChangeTolerance) determine, together, when to stop control iterations by the InvControl. <br><br>If an InvControl is controlling more than one PVSystem/Storage, each PVSystem/Storage has this quantity calculated independently, and so an individual PVSystem/Storage may reach the tolerance within different numbers of control iterations.
+*   - 16
+    - `VarChangeTolerance`
+    - real
+    - 0.025
+    - 
+    - Required for VOLTVAR and DYNAMICREACCURR modes.  Defaults to 0.025 per unit of the base provided or absorbed reactive power described in the RefReactivePower property This parameter should only be modified by advanced users of the InvControl. <br><br>Tolerance in pu of the convergence of the control loop associated with reactive power. For the same control iteration, this value is compared to the difference, as an absolute value (without sign), between the desired reactive power value in pu and the output reactive power in pu of the controlled element.<br><br>This reactive power tolerance value plus the voltage tolerance value (VoltageChangeTolerance) determine, together, when to stop control iterations by the InvControl.  <br><br>If an InvControl is controlling more than one PVSystem/Storage, each PVSystem/Storage has this quantity calculated independently, and so an individual PVSystem/Storage may reach the tolerance within different numbers of control iterations.
+*   - 17
+    - `VoltWattYAxis`
+    - string<br>*(from enum. [Volt-Watt Y-Axis](#enum-invcontrolvolt-watt-y-axis))*
+    - PMPPPU
+    - 
+    - Required for VOLTWATT mode.<br><br>Units for the y-axis of the volt-watt curve while in volt-watt mode. <br><br>When set to PMPPPU. The y-axis corresponds to the value in pu of Pmpp property of the PVSystem. <br><br>When set to PAVAILABLEPU. The y-axis corresponds to the value in pu of the available active power of the PVSystem. <br><br>When set to PCTPMPPPU. The y-axis corresponds to the value in pu of the power Pmpp multiplied by 1/100 of the %Pmpp property of the PVSystem.<br><br>When set to KVARATINGPU. The y-axis corresponds to the value in pu of the kVA property of the PVSystem.
+*   - 18
+    - `RateOfChangeMode`
+    - string<br>*(from enum. [Rate-of-change Mode](#enum-invcontrolrate-of-change-mode))*
+    - Inactive
+    - 
+    - Required for VOLTWATT and VOLTVAR mode.<br><br>Auxiliary option that aims to limit the changes of the desired reactive power and the active power limit between time steps, the alternatives are listed below: <br><br>INACTIVE. It indicates there is no limit on rate of change imposed for either active or reactive power output. <br><br>LPF. A low-pass RC filter is applied to the desired reactive power and/or the active power limit to determine the output power as a function of a time constant defined in the LPFTau property. <br><br>RISEFALL. A rise and fall limit in the change of active and/or reactive power expressed in terms of pu power per second, defined in the RiseFallLimit, is applied to the desired reactive power and/or the active power limit. 
+*   - 19
+    - `LPFTau`
+    - real
+    - 0.001
+    - s
+    - Not required. Defaults to 0 seconds. <br><br>Filter time constant of the LPF option of the RateofChangeMode property. The time constant will cause the low-pass filter to achieve 95% of the target value in 3 time constants.
+*   - 20
+    - `RiseFallLimit`
+    - real
+    - 0.001
+    - 
+    - Not required.  Defaults to no limit (-1). Must be -1 (no limit) or a positive value.  <br><br>Limit in power in pu per second used by the RISEFALL option of the RateofChangeMode property.The base value for this ramp is defined in the RefReactivePower property and/or in VoltwattYAxis.
+*   - 21
+    - `DeltaP_Factor`
+    - real
+    - -1.0
+    - 
+    - Required for the VOLTWATT modes.  Defaults to -1.0. <br><br>Defining -1.0, OpenDSS takes care internally of delta_P itself. It tries to improve convergence as well as speed up process<br><br>Defining between 0.05 and 1.0, it sets the maximum change (in unit of the y-axis) from the prior active power output level to the desired active power output level during each control iteration. <br><br><br>If numerical instability is noticed in solutions such as active power changing substantially from one control iteration to the next and/or voltages oscillating between two values with some separation, this is an indication of numerical instability (use the EventLog to diagnose). <br><br>If the maximum control iterations are exceeded, and no numerical instability is seen in the EventLog of via monitors, then try increasing the value of this parameter to reduce the number of control iterations needed to achieve the control criteria, and move to the power flow solution.
+*   - 22
+    - `EventLog`
+    - boolean
+    - False
+    - 
+    - Log control actions to Eventlog.
+*   - 23
+    - `RefReactivePower`
+    - string<br>*(from enum. [Reactive Power Reference](#enum-invcontrolreactive-power-reference))*
+    - VARAVAL
+    - 
+    - Required for any mode that has VOLTVAR, DYNAMICREACCURR and WATTVAR. Defaults to VARAVAL.<br><br>Defines the base reactive power for both the provided and absorbed reactive power, according to one of the following options: <br><br>VARAVAL. The base values for the provided and absorbed reactive power are equal to the available reactive power.<br><br>VARMAX: The base values of the provided and absorbed reactive power are equal to the value defined in the kvarMax and kvarMaxAbs properties, respectively.
+*   - 24
+    - `ActivePChangeTolerance`
+    - real
+    - 0.01
+    - 
+    - Required for VOLTWATT. Default is 0.01<br><br>Tolerance in pu of the convergence of the control loop associated with active power. For the same control iteration, this value is compared to the difference between the active power limit in pu resulted from the convergence process and the one resulted from the volt-watt function.<br><br>This reactive power tolerance value plus the voltage tolerance value (VoltageChangeTolerance) determine, together, when to stop control iterations by the InvControl.  <br><br>If an InvControl is controlling more than one PVSystem/Storage, each PVSystem/Storage has this quantity calculated independently, and so an individual PVSystem/Storage may reach the tolerance within different numbers of control iterations.
+*   - 25
+    - `MonVoltageCalc`
+    - string<br>*(from enum. [](#enum-monitored-phase))*
+    - avg
+    - 
+    - Number of the phase being monitored or one of {AVG | MAX | MIN} for all phases. Default=AVG. 
+*   - 26
+    - `MonBus`
+    - array of strings
+    - 
+    - 
+    - Name of monitored bus used by the voltage-dependent control modes. Default is bus of the controlled PVSystem/Storage or Storage.
+*   - 27
+    - `MonBusesVBase`
+    - array of reals
+    - 
+    - 
+    - Array list of rated voltages of the buses and their nodes presented in the monBus property. This list may have different line-to-line and/or line-to-ground voltages.
+*   - 28
+    - `VoltWattCH_Curve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Required for VOLTWATT mode for Storage element in CHARGING state. <br><br>The name of an XYCurve object that describes the variation in active power output (in per unit of maximum active power output for the Storage). <br><br>Units for the x-axis are per-unit voltage, which may be in per unit of the rated voltage for the Storage, or may be in per unit of the average voltage at the terminals over a user-defined number of prior solutions. <br><br>Units for the y-axis are either in: (1) per unit of maximum active power output capability of the Storage, or (2) maximum available active power output capability (defined by the parameter: VoltwattYAxis), corresponding to the terminal voltage (x-axis value in per unit). <br><br>No default -- must be specified for VOLTWATT mode for Storage element in CHARGING state.
+*   - 29
+    - `WattPF_Curve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Required for WATTPF mode.<br><br>Name of the XYCurve object containing the watt-pf curve.<br>The positive values of the y-axis are positive power factor values. The negative values of the the y-axis are negative power factor values. When positive, the output reactive power has the same direction of the output active power, and when negative, it has the opposite direction.<br>Units for the x-axis are per-unit output active power, and the base active power is the Pmpp for PVSystem and kWrated for Storage.<br><br>The y-axis represents the power factor and the reference is power factor equal to 0. <br><br>For example, if the user wants to define the following XY coordinates: (0, 0.9); (0.2, 0.9); (0.5, -0.9); (1, -0.9).<br>Try to plot them considering the y-axis reference equal to unity power factor.<br><br>The user needs to translate this curve into a plot in which the y-axis reference is equal to 0 power factor.It means that two new XY coordinates need to be included, in this case they are: (0.35, 1); (0.35, -1).<br>Try to plot them considering the y-axis reference equal to 0 power factor.<br>The discontinuity in 0.35pu is not a problem since var is zero for either power factor equal to 1 or -1.
+*   - 30
+    - `WattVar_Curve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Required for WATTVAR mode. <br><br>Name of the XYCurve object containing the watt-var curve. The positive values of the y-axis of the watt-var curve represent values in pu of the provided base reactive power. The negative values of the y-axis are values in pu of the absorbed base reactive power. <br>Provided and absorbed base reactive power values are defined in the RefReactivePower property.<br><br>Units for the x-axis are per-unit output active power, and the base active power is the Pmpp for PVSystem and kWrated for Storage.
+*   - 31
+    - `VV_RefReactivePower`
+    - [deprecated/removed]{.fg-warning}
+    - 
+    - 
+    - Deprecated, use RefReactivePower instead.
+*   - 32
+    - `PVSystemList`
+    - array of strings
+    - 
+    - 
+    - Deprecated, use DERList instead.<br>***Redundant with DERList***
+*   - 33
+    - `VSetPoint`
+    - real
+    - 1.0
+    - 
+    - Required for Active Voltage Regulation (AVR).
+*   - 34
+    - `ControlModel`
+    - integer<br>*(from enum. [Control Model](#enum-invcontrolcontrol-model))*
+    - 0
+    - 
+    - Integer defining the method for moving across the control curve. It can be one of the following:<br><br>0 = Linear mode (default)<br>1 = Exponential<br><br>Use this property for better tunning your controller and improve the controller response in terms of control iterations needed to reach the target.<br>This property alters the meaning of deltaQ_factor and deltaP_factor properties according to its value (Check help). The method can also be combined with the controller tolerance for improving performance.
+*   - 35
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 36
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 37
+    - `Like`
+    - string<br>*([InvControl](#InvControl) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-invcontrolcombi-mode)=
+### InvControl: Combi Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `VV_VW`
+*   - `VV_DRC`
+:::
+
+
+(enum-invcontrolcontrol-mode)=
+### InvControl: Control Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Voltvar`
+*   - `VoltWatt`
+*   - `DynamicReaccurr`
+*   - `WattPF`
+*   - `Wattvar`
+*   - `AVR`
+*   - `GFM`
+:::
+
+
+(enum-invcontrolcontrol-model)=
+### InvControl: Control Model
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+    - Description
+*   - `0`
+    - Linear
+*   - `1`
+    - Exponential
+:::
+
+
+(enum-invcontrolrate-of-change-mode)=
+### InvControl: Rate-of-change Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Inactive`
+*   - `LPF`
+*   - `RiseFall`
+:::
+
+
+(enum-invcontrolreactive-power-reference)=
+### InvControl: Reactive Power Reference
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `VARAVAL`
+*   - `VARMAX`
+:::
+
+
+(enum-invcontrolvolt-watt-y-axis)=
+### InvControl: Volt-Watt Y-Axis
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `PAvailablePU`
+*   - `PMPPPU`
+*   - `PctPMPPPU`
+*   - `KVARatingPU`
+:::
+
+
+(enum-invcontrolvoltage-curve-x-ref)=
+### InvControl: Voltage Curve X Ref
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Rated`
+*   - `Avg`
+*   - `RAvg`
+:::
+
+

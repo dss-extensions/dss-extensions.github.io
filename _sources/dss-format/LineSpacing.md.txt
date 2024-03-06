@@ -1,0 +1,56 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# LineSpacing
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NConds`
+    - integer
+    - 
+    - 
+    - Number of wires in this geometry. Triggers memory allocations. Define first!
+*   - 2
+    - `NPhases`
+    - integer
+    - 3
+    - 
+    - Number of retained phase conductors. If less than the number of wires, list the retained phase coordinates first.
+*   - 3
+    - `X`
+    - array of reals
+    - [0.0, 0.0, 0.0]
+    - 
+    - Array of wire X coordinates.
+*   - 4
+    - `H`
+    - array of reals
+    - [0.0, 0.0, 0.0]
+    - 
+    - Array of wire Heights.
+*   - 5
+    - `Units`
+    - string<br>*(from enum. [](#enum-length-unit))*
+    - ft
+    - 
+    - Units for x and h. Initial default is "ft", but defaults to last unit defined
+*   - 6
+    - `Like`
+    - string<br>*([LineSpacing](#LineSpacing) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

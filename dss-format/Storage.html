@@ -1,0 +1,1084 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Storage &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dss-format/Storage';</script>
+    <link rel="icon" href="../_static/dssx.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="UPFC" href="UPFC.html" />
+    <link rel="prev" title="PVSystem" href="PVSystem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../dss_language.html">DSS Language</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Options.html">General Options</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_general.html">General Objects</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_control.html">Control Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Recloser.html">Recloser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RegControl.html">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="toc_pce.html">PC Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../classic_api.html">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_apis.html">Python APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multithreading.html">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../docs.html" class="nav-link">Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    
+    
+    <li class="breadcrumb-item"><a href="toc_pce.html" class="nav-link">PC Elements</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Storage</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="storage">
+<h1>Storage<a class="headerlink" href="#storage" title="Link to this heading">#</a></h1>
+<p>(
+Circuit Element,
+PC Element
+)</p>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Phases</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>3</p></td>
+<td></td>
+<td><p>Number of Phases, this Storage element.  Power is evenly divided among phases.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Bus1</span></code></p></td>
+<td><p>string<br><em>(bus def.)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Bus to which the Storage element is connected.  May include specific node specification.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kV</span></code></p></td>
+<td><p>real</p></td>
+<td><p>12.47</p></td>
+<td><p>kV</p></td>
+<td><p>Nominal rated (1.0 per unit) voltage, kV, for Storage element. For 2- and 3-phase Storage elements, specify phase-phase kV. Otherwise, specify actual kV across each branch of the Storage element. <br><br>If wye (star), specify phase-neutral kV. <br><br>If delta or phase-phase connected, specify phase-phase kV.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Conn</span></code></p></td>
+<td><p>string<br><em>(from enum. <a class="reference internal" href="Enumerations.html#enum-connection"><span class="std std-ref">Connection</span></a>)</em></p></td>
+<td><p>Wye</p></td>
+<td></td>
+<td><p>={wye|LN|delta|LL}.  Default is wye.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kW</span></code></p></td>
+<td><p>real</p></td>
+<td><p>-0.25</p></td>
+<td><p>kW</p></td>
+<td><p>Get/set the requested kW value. Final kW is subjected to the inverter ratings. A positive value denotes power coming OUT of the element, which is the opposite of a Load element. A negative value indicates the Storage element is in Charging state. This value is modified internally depending on the dispatch mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kvar</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td><p>kvar</p></td>
+<td><p>Get/set the requested kvar value. Final kvar is subjected to the inverter ratings. Sets inverter to operate in constant kvar mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PF</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Get/set the requested PF value. Final PF is subjected to the inverter ratings. Sets inverter to operate in constant PF mode. Nominally, the power factor for discharging (acting as a generator). Default is 1.0. <br><br>Enter negative for leading power factor (when kW and kvar have opposite signs.)<br><br>A positive power factor signifies kw and kvar at the same direction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kVA</span></code></p></td>
+<td><p>real</p></td>
+<td><p>25.0</p></td>
+<td><p>kVA</p></td>
+<td><p>Indicates the inverter nameplate capability (in kVA). Used as the base for Dynamics mode and Harmonics mode values.</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%CutIn</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Cut-in power as a percentage of inverter kVA rating. It is the minimum DC power necessary to turn the inverter ON when it is OFF. Must be greater than or equal to %CutOut. Defaults to 2 for PVSystems and 0 for Storage elements which means that the inverter state will be always ON for this element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%CutOut</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Cut-out power as a percentage of inverter kVA rating. It is the minimum DC power necessary to keep the inverter ON. Must be less than or equal to %CutIn. Defaults to 0, which means that, once ON, the inverter state will be always ON for this element.</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EffCurve</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="XYcurve.html"><span class="doc std std-doc">XYcurve</span></a> name)</em></p></td>
+<td></td>
+<td></td>
+<td><p>An XYCurve object, previously defined, that describes the PER UNIT efficiency vs PER UNIT of rated kVA for the inverter. Power at the AC side of the inverter is discounted by the multiplier obtained from this curve.</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VarFollowInverter</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>A false value indicates that the reactive power generation/absorption does not respect the inverter status. When set to True, the reactive power generation/absorption will cease when the inverter status is off, due to DC kW dropping below %CutOut.  The reactive power generation/absorption will begin again when the DC kW is above %CutIn.  When set to False, the Storage will generate/absorb reactive power regardless of the status of the inverter.</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kvarMax</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Indicates the maximum reactive power GENERATION (un-signed numerical variable in kvar) for the inverter. Defaults to kVA rating of the inverter.</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kvarMaxAbs</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Indicates the maximum reactive power ABSORPTION (un-signed numerical variable in kvar) for the inverter. Defaults to kvarMax.</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">WattPriority</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Set inverter to watt priority instead of the default var priority.</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PFPriority</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>If set to true, priority is given to power factor and WattPriority is neglected. It works only if operating in either constant PF or constant kvar modes. Defaults to False.</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%PMinNoVars</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Minimum active power as percentage of kWrated under which there is no vars production/absorption. Defaults to 0 (disabled).</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%PMinkvarMax</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Minimum active power as percentage of kWrated that allows the inverter to produce/absorb reactive power up to its maximum reactive power, which can be either kvarMax or kvarMaxAbs, depending on the current operation quadrant. Defaults to 0 (disabled).</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kWRated</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td><p>kW</p></td>
+<td><p>kW rating of power output. Base for Loadshapes when DispMode=Follow. Sets kVA property if it has not been specified yet. Defaults to 25.</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%kWRated</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Upper limit on active power as a percentage of kWrated. Defaults to 100 (disabled).</p></td>
+</tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kWhRated</span></code></p></td>
+<td><p>real</p></td>
+<td><p>50.0</p></td>
+<td><p>kWh</p></td>
+<td><p>Rated Storage capacity in kWh.</p></td>
+</tr>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kWhStored</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td><p>kWh</p></td>
+<td><p>Present amount of energy stored, kWh. Default is same as kWhrated.</p></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%Stored</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Present amount of energy stored, % of rated kWh.</p></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%Reserve</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Percentage of rated kWh Storage capacity to be held in reserve for normal operation.<br>This is treated as the minimum energy discharge level unless there is an emergency. For emergency operation set this property lower. Cannot be less than zero.</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">State</span></code></p></td>
+<td><p>string<br><em>(from enum. <a class="reference internal" href="#enum-storagestate">State</a>)</em></p></td>
+<td><p>Idling</p></td>
+<td></td>
+<td><p>{IDLING | CHARGING | DISCHARGING}  Get/Set present operational state. In DISCHARGING mode, the Storage element acts as a generator and the kW property is positive. The element continues discharging at the scheduled output power level until the Storage reaches the reserve value. Then the state reverts to IDLING. In the CHARGING state, the Storage element behaves like a Load and the kW property is negative. The element continues to charge until the max Storage kWh is reached and then switches to IDLING state. In IDLING state, the element draws the idling losses plus the associated inverter losses.</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%Discharge</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Discharge rate (output power) in percentage of rated kW.</p></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%Charge</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Charging rate (input power) in percentage of rated kW.</p></td>
+</tr>
+<tr class="row-odd"><td><p>28</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%EffCharge</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Percentage efficiency for CHARGING the Storage element.</p></td>
+</tr>
+<tr class="row-even"><td><p>29</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%EffDischarge</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Percentage efficiency for DISCHARGING the Storage element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>30</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%IdlingkW</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Percentage of rated kW consumed by idling losses.</p></td>
+</tr>
+<tr class="row-even"><td><p>31</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%Idlingkvar</span></code></p></td>
+<td><p><span class="fg-warning">deprecated/removed</span></p></td>
+<td></td>
+<td></td>
+<td><p>Deprecated.</p></td>
+</tr>
+<tr class="row-odd"><td><p>32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%R</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Equivalent percentage internal resistance, ohms. Placed in series with internal voltage source for harmonics and dynamics modes. Use a combination of %IdlingkW, %EffCharge and %EffDischarge to account for losses in power flow modes.</p></td>
+</tr>
+<tr class="row-even"><td><p>33</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%X</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>Equivalent percentage internal reactance, ohms. Placed in series with internal voltage source for harmonics and dynamics modes. (Limits fault current to 2 pu.</p></td>
+</tr>
+<tr class="row-odd"><td><p>34</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Model</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>Integer code (default=1) for the model to be used for power output variation with voltage. Valid values are:<br><br>1:Storage element injects/absorbs a CONSTANT power.<br>2:Storage element is modeled as a CONSTANT IMPEDANCE.<br>3:Compute load injection from User-written Model.</p></td>
+</tr>
+<tr class="row-even"><td><p>35</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VMinpu</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.9</p></td>
+<td></td>
+<td><p>Default = 0.90.  Minimum per unit voltage for which the Model is assumed to apply. Below this value, the load model reverts to a constant impedance model.</p></td>
+</tr>
+<tr class="row-odd"><td><p>36</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VMaxpu</span></code></p></td>
+<td><p>real</p></td>
+<td><p>1.1</p></td>
+<td></td>
+<td><p>Default = 1.10.  Maximum per unit voltage for which the Model is assumed to apply. Above this value, the load model reverts to a constant impedance model.</p></td>
+</tr>
+<tr class="row-even"><td><p>37</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Balanced</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Force balanced current only for 3-phase Storage. Forces zero- and negative-sequence to zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>38</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LimitCurrent</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Limits current magnitude to Vminpu value for both 1-phase and 3-phase Storage similar to Generator Model 7. For 3-phase, limits the positive-sequence current but not the negative-sequence.</p></td>
+</tr>
+<tr class="row-even"><td><p>39</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Yearly</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="LoadShape.html"><span class="doc std std-doc">LoadShape</span></a> name)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Dispatch shape to use for yearly simulations.  Must be previously defined as a Loadshape object. If this is not specified, the Daily dispatch shape, if any, is repeated during Yearly solution modes. In the default dispatch mode, the Storage element uses this loadshape to trigger State changes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>40</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Daily</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="LoadShape.html"><span class="doc std std-doc">LoadShape</span></a> name)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Dispatch shape to use for daily simulations.  Must be previously defined as a Loadshape object of 24 hrs, typically.  In the default dispatch mode, the Storage element uses this loadshape to trigger State changes.</p></td>
+</tr>
+<tr class="row-even"><td><p>41</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Duty</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="LoadShape.html"><span class="doc std std-doc">LoadShape</span></a> name)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Load shape to use for duty cycle dispatch simulations such as for solar ramp rate studies. Must be previously defined as a Loadshape object. <br><br>Typically would have time intervals of 1-5 seconds. <br><br>Designate the number of points to solve using the Set Number=xxxx command. If there are fewer points in the actual shape, the shape is assumed to repeat.</p></td>
+</tr>
+<tr class="row-odd"><td><p>42</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DispMode</span></code></p></td>
+<td><p>string<br><em>(from enum. <a class="reference internal" href="#enum-storagedispatch-mode">Dispatch Mode</a>)</em></p></td>
+<td><p>Default</p></td>
+<td></td>
+<td><p>{DEFAULT | FOLLOW | EXTERNAL | LOADLEVEL | PRICE } Default = “DEFAULT”. Dispatch mode. <br><br>In DEFAULT mode, Storage element state is triggered to discharge or charge at the specified rate by the loadshape curve corresponding to the solution mode. <br><br>In FOLLOW mode the kW output of the Storage element follows the active loadshape multiplier until Storage is either exhausted or full. The element discharges for positive values and charges for negative values.  The loadshape is based on rated kW. <br><br>In EXTERNAL mode, Storage element state is controlled by an external Storagecontroller. This mode is automatically set if this Storage element is included in the element list of a StorageController element. <br><br>For the other two dispatch modes, the Storage element state is controlled by either the global default Loadlevel value or the price level.</p></td>
+</tr>
+<tr class="row-even"><td><p>43</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DischargeTrigger</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>Dispatch trigger value for discharging the Storage. <br>If = 0 the Storage element state is changed by the State command or by a StorageController object. <br>If ≠ 0  the Storage element state is set to DISCHARGING when this trigger level is EXCEEDED by either the specified Loadshape curve value or the price signal or global Loadlevel value, depending on dispatch mode. See State property.</p></td>
+</tr>
+<tr class="row-odd"><td><p>44</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ChargeTrigger</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>Dispatch trigger value for charging the Storage. <br><br>If = 0 the Storage element state is changed by the State command or StorageController object.  <br><br>If ≠ 0  the Storage element state is set to CHARGING when this trigger level is GREATER than either the specified Loadshape curve value or the price signal or global Loadlevel value, depending on dispatch mode. See State property.</p></td>
+</tr>
+<tr class="row-even"><td><p>45</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TimeChargeTrig</span></code></p></td>
+<td><p>real</p></td>
+<td><p>2.0</p></td>
+<td><p>hour (0-24)</p></td>
+<td><p>Time of day in fractional hours (0230 = 2.5) at which Storage element will automatically go into charge state. Enter a negative time value to disable this feature.</p></td>
+</tr>
+<tr class="row-odd"><td><p>46</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Class</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>An arbitrary integer number representing the class of Storage element so that Storage values may be segregated by class.</p></td>
+</tr>
+<tr class="row-even"><td><p>47</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DynaDLL</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td></td>
+<td><p>Name of DLL containing user-written dynamics model, which computes the terminal currents for Dynamics-mode simulations, overriding the default model.  Set to “none” to negate previous setting. This DLL has a simpler interface than the UserModel DLL and is only used for Dynamics mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>48</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DynaData</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td></td>
+<td><p>String (in quotes or parentheses if necessary) that gets passed to the user-written dynamics model Edit function for defining the data required for that model.</p></td>
+</tr>
+<tr class="row-even"><td><p>49</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UserModel</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td></td>
+<td><p>Name of DLL containing user-written model, which computes the terminal currents for both power flow and dynamics, overriding the default model.  Set to “none” to negate previous setting.</p></td>
+</tr>
+<tr class="row-odd"><td><p>50</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UserData</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td></td>
+<td><p>String (in quotes or parentheses) that gets passed to user-written model for defining the data required for that model.</p></td>
+</tr>
+<tr class="row-even"><td><p>51</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DebugTrace</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Turn this on to capture the progress of the Storage model for each iteration.  Creates a separate file for each Storage element named “Storage_name.csv”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>52</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kVDC</span></code></p></td>
+<td><p>real</p></td>
+<td><p>8.0</p></td>
+<td><p>kV</p></td>
+<td><p>Indicates the rated voltage (kV) at the input of the inverter while the storage is discharging. The value is normally greater or equal to the kV base of the Storage device. It is used for dynamics simulation ONLY.</p></td>
+</tr>
+<tr class="row-even"><td><p>53</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Kp</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.01</p></td>
+<td></td>
+<td><p>It is the proportional gain for the PI controller within the inverter. Use it to modify the controller response in dynamics simulation mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p>54</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PITol</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>It is the tolerance (%) for the closed loop controller of the inverter. For dynamics simulation mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>55</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SafeVoltage</span></code></p></td>
+<td><p>real</p></td>
+<td><p>80.0</p></td>
+<td></td>
+<td><p>Indicates the voltage level (%) respect to the base voltage level for which the Inverter will operate. If this threshold is violated, the Inverter will enter safe mode (OFF). For dynamic simulation. By default is 80%.</p></td>
+</tr>
+<tr class="row-odd"><td><p>56</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SafeMode</span></code></p></td>
+<td><p>boolean</p></td>
+<td></td>
+<td></td>
+<td><p>(Read only) Indicates whether the inverter entered (Yes) or not (No) into Safe Mode.</p></td>
+</tr>
+<tr class="row-even"><td><p>57</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DynamicEq</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="DynamicExp.html"><span class="doc std std-doc">DynamicExp</span></a> name)</em></p></td>
+<td></td>
+<td></td>
+<td><p>The name of the dynamic equation (DynamicExp) that will be used for defining the dynamic behavior of the generator. If not defined, the generator dynamics will follow the built-in dynamic equation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>58</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DynOut</span></code></p></td>
+<td><p>array of strings</p></td>
+<td></td>
+<td></td>
+<td><p>The name of the variables within the Dynamic equation that will be used to govern the Storage dynamics. This Storage model requires 1 output from the dynamic equation:<br><br>    1. Current.<br><br>The output variables need to be defined in the same order.</p></td>
+</tr>
+<tr class="row-even"><td><p>59</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ControlMode</span></code></p></td>
+<td><p>string<br><em>(from enum. <a class="reference internal" href="Enumerations.html#enum-inverter-control-mode"><span class="std std-ref">Inverter Control Mode</span></a>)</em></p></td>
+<td><p>GFL</p></td>
+<td></td>
+<td><p>Defines the control mode for the inverter. By default it is GFL (Grid Following Inverter). Use GFM (Grid Forming Inverter) for energizing islanded microgrids, but, if the device is connected to the grid, it is highly recommended to use GFL.<br><br>GFM control mode disables any control action set by the InvControl device.</p></td>
+</tr>
+<tr class="row-odd"><td><p>60</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AmpLimit</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>The current limiter per phase for the IBR when operating in GFM mode. This limit is imposed to prevent the IBR to enter into Safe Mode when reaching the IBR power ratings.<br>Once the IBR reaches this value, it remains there without moving into Safe Mode. This value needs to be set lower than the IBR Amps rating.</p></td>
+</tr>
+<tr class="row-even"><td><p>61</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AmpLimitGain</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.8</p></td>
+<td></td>
+<td><p>Use it for fine tunning the current limiter when active, by default is 0.8, it has to be a value between 0.1 and 1. This value allows users to fine tune the IBRs current limiter to match with the user requirements.</p></td>
+</tr>
+<tr class="row-odd"><td><p>62</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Spectrum</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="Spectrum.html"><span class="doc std std-doc">Spectrum</span></a> name)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Name of harmonic voltage or current spectrum for this Storage element. Current injection is assumed for inverter.</p></td>
+</tr>
+<tr class="row-even"><td><p>63</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BaseFreq</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td><p>Hz</p></td>
+<td><p>Base Frequency for ratings.</p></td>
+</tr>
+<tr class="row-odd"><td><p>64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Enabled</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td></td>
+<td><p>Indicates whether this element is enabled.</p></td>
+</tr>
+<tr class="row-even"><td><p>65</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Like</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="#"><span class="doc std std-doc">Storage</span></a> name)</em><br><span class="fg-warning">deprecated</span></p></td>
+<td></td>
+<td></td>
+<td><p>Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  …</p></td>
+</tr>
+</tbody>
+</table>
+<section id="enumerations">
+<h2>Enumerations<a class="headerlink" href="#enumerations" title="Link to this heading">#</a></h2>
+<section id="storage-dispatch-mode">
+<span id="enum-storagedispatch-mode"></span><h3>Storage: Dispatch Mode<a class="headerlink" href="#storage-dispatch-mode" title="Link to this heading">#</a></h3>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Default</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LoadLevel</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Price</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">External</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Follow</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="storage-state">
+<span id="enum-storagestate"></span><h3>Storage: State<a class="headerlink" href="#storage-state" title="Link to this heading">#</a></h3>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Charging</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Idling</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Discharging</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="PVSystem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PVSystem</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="UPFC.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">UPFC</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

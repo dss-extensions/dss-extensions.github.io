@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Multiple engines and multithreading &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'multithreading';</script>
+    <link rel="icon" href="_static/dssx.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Licenses" href="licenses.html" />
+    <link rel="prev" title="OpenDSS: Python APIs" href="python_apis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="dss_language.html">DSS Language</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Options.html">General Options</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_general.html">General Objects</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_control.html">Control Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Recloser.html">Recloser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/RegControl.html">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_pce.html">PC Elements</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Storage.html">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classic_api.html">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_apis.html">Python APIs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="docs.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Multiple...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="multiple-engines-and-multithreading">
+<h1>Multiple engines and multithreading<a class="headerlink" href="#multiple-engines-and-multithreading" title="Link to this heading">#</a></h1>
+<p><em>DSS-Extensions: Multiple DSS engines and multithreading aspects</em></p>
+<p>Since AltDSS/DSS C-API v0.12 (July 2022), many of the projects under DSS-Extensions allow users to run custom multithreaded code. This is enabled by a different implementation of the DSS engine in AltDSS/DSS C-API compared to the official OpenDSS distribution. This document tries to highlight some of the aspects that are different.</p>
+<p>Overall, the adopted architecture allows more usage scenarios beyond the original actor approach from OpenDSS v8+, and has a tested, multi-platform implementation.</p>
+<section id="history">
+<h2>History<a class="headerlink" href="#history" title="Link to this heading">#</a></h2>
+<p>For a few years, OpenDSS was distributed/developed in two branches:</p>
+<ul class="simple">
+<li><p><strong>Version 7.x</strong>: The original version, without explicit parallel-machine support.</p></li>
+<li><p><strong>Version 8.x+</strong>: Introduces a parallel-machine (<strong>PM</strong>) architecture, based on actors.</p></li>
+</ul>
+<p>When our base project AltDSS/DSS C-API was first published, it supported on Version 7.x, which was the main stable branch at the time.</p>
+<p>Soon after the first release of DSS C-API, <a class="reference external" href="https://sourceforge.net/p/electricdss/discussion/861976/thread/525c13df/#b043">initial support for the PM version was added</a>, including Python integration.</p>
+<p>Just like the two versions were maintained in the official OpenDSS, DSS C-API followed with two different binaries for a few years.</p>
+<p>The main OpenDSS followed with v8+, dropping releases for the v7 codebase by version 9.0, released on June 2020. In AltDSS/DSS C-API, another alternative was investigated, published later as the main branch in July 2022. In the meantime, support for the code derived from the official PM variation was dropped to simplify maintenance.</p>
+</section>
+<section id="architecture-of-opendss-v7-vs-v8">
+<h2>Architecture of OpenDSS v7 vs. v8+<a class="headerlink" href="#architecture-of-opendss-v7-vs-v8" title="Link to this heading">#</a></h2>
+<p>Both OpenDSS variations is based on a classic paradigm of using global variables to track state. There are two main aspects that differ between these two variants.</p>
+<p>The first aspect can be seen in <code class="docutils literal notranslate"><span class="pre">DSSGlobals.pas</span></code>. Version 8+ uses arrays for each class instance or value that used to be a single item. Some snippets for comparison:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference external" href="https://sourceforge.net/p/electricdss/code/3723/tree/trunk/Version7/Source/Common/DSSGlobals.pas">OpenDSS Version 7</a></div>
+<div class="highlight-pascal notranslate"><div class="highlight"><pre><span></span><span class="n">ActiveCircuit</span><span class="w">   </span><span class="o">:</span><span class="n">TDSSCircuit</span><span class="o">;</span>
+<span class="n">ActiveDSSClass</span><span class="w">  </span><span class="o">:</span><span class="n">TDSSClass</span><span class="o">;</span>
+<span class="n">LastClassReferenced</span><span class="o">:</span><span class="kt">Integer</span><span class="o">;</span><span class="w">  </span><span class="c1">// index of class of last thing edited</span>
+<span class="n">ActiveDSSObject</span><span class="w"> </span><span class="o">:</span><span class="n">TDSSObject</span><span class="o">;</span>
+<span class="c1">// ...</span>
+<span class="c1">// Some commonly used classes   so we can find them easily</span>
+<span class="n">LoadShapeClass</span><span class="w">     </span><span class="o">:</span><span class="n">TLoadShape</span><span class="o">;</span>
+<span class="n">TShapeClass</span><span class="w">        </span><span class="o">:</span><span class="n">TTshape</span><span class="o">;</span>
+<span class="n">PriceShapeClass</span><span class="w">    </span><span class="o">:</span><span class="n">TPriceShape</span><span class="o">;</span>
+<span class="n">XYCurveClass</span><span class="w">       </span><span class="o">:</span><span class="n">TXYCurve</span><span class="o">;</span>
+<span class="n">GrowthShapeClass</span><span class="w">   </span><span class="o">:</span><span class="n">TGrowthShape</span><span class="o">;</span>
+<span class="n">SpectrumClass</span><span class="w">      </span><span class="o">:</span><span class="n">TSpectrum</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference external" href="https://sourceforge.net/p/electricdss/code/3723/tree/trunk/Version8/Source/Common/DSSGlobals.pas">OpenDSS Version 8+</a></div>
+<div class="highlight-pascal notranslate"><div class="highlight"><pre><span></span><span class="n">ActiveCircuit</span><span class="w">   </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TDSSCircuit</span><span class="o">;</span>
+<span class="n">ActiveDSSClass</span><span class="w">  </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TDSSClass</span><span class="o">;</span>
+<span class="n">LastClassReferenced</span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="kt">Integer</span><span class="o">;</span><span class="w">  </span><span class="c1">// index of class of last thing edited</span>
+<span class="n">ActiveDSSObject</span><span class="w"> </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TDSSObject</span><span class="o">;</span>
+<span class="c1">// ...</span>
+<span class="c1">// Some commonly used classes   so we can find them easily</span>
+<span class="n">LoadShapeClass</span><span class="w">     </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TLoadShape</span><span class="o">;</span>
+<span class="n">TShapeClass</span><span class="w">        </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TTshape</span><span class="o">;</span>
+<span class="n">PriceShapeClass</span><span class="w">    </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TPriceShape</span><span class="o">;</span>
+<span class="n">XYCurveClass</span><span class="w">       </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TXYCurve</span><span class="o">;</span>
+<span class="n">GrowthShapeClass</span><span class="w">   </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TGrowthShape</span><span class="o">;</span>
+<span class="n">SpectrumClass</span><span class="w">      </span><span class="o">:</span><span class="k">Array</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">TSpectrum</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The second aspect is how the arrays are used. The codebase for version 7 is simpler since it just refers to the global values directly. Version 8+ needs some way to know which item in the array it should use. There are two main ways this happens. The first one is the introduction of the <code class="docutils literal notranslate"><span class="pre">ActorID</span></code> function argument in a lot of places. For example, here’s the <code class="docutils literal notranslate"><span class="pre">TVsourceObj</span></code> class:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference external" href="https://sourceforge.net/p/electricdss/code/3723/tree/trunk/Version7/Source/PCElements/VSource.pas">OpenDSS Version 7</a></div>
+<div class="highlight-pascal notranslate"><div class="highlight"><pre><span></span><span class="k">Procedure</span><span class="w"> </span><span class="nf">RecalcElementData</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+<span class="k">Procedure</span><span class="w"> </span><span class="nf">CalcYPrim</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+
+<span class="k">Function</span><span class="w">  </span><span class="nf">InjCurrents</span><span class="o">:</span><span class="kt">Integer</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+<span class="k">Procedure</span><span class="w"> </span><span class="nf">GetInjCurrents</span><span class="p">(</span><span class="n">Curr</span><span class="o">:</span><span class="n">pComplexArray</span><span class="p">)</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+<span class="k">Procedure</span><span class="w"> </span><span class="nf">GetCurrents</span><span class="p">(</span><span class="n">Curr</span><span class="o">:</span><span class="w"> </span><span class="n">pComplexArray</span><span class="p">)</span><span class="o">;</span><span class="kp">Override</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference external" href="https://sourceforge.net/p/electricdss/code/3723/tree/trunk/Version8/Source/PCElements/VSource.pas">OpenDSS Version 8+</a></div>
+<div class="highlight-pascal notranslate"><div class="highlight"><pre><span></span><span class="k">Procedure</span><span class="w"> </span><span class="nf">RecalcElementData</span><span class="p">(</span><span class="n">ActorID</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+<span class="k">Procedure</span><span class="w"> </span><span class="nf">CalcYPrim</span><span class="p">(</span><span class="n">ActorID</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+
+<span class="k">Function</span><span class="w">  </span><span class="nf">InjCurrents</span><span class="p">(</span><span class="n">ActorID</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="o">:</span><span class="kt">Integer</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+<span class="k">Procedure</span><span class="w"> </span><span class="nf">GetInjCurrents</span><span class="p">(</span><span class="n">Curr</span><span class="o">:</span><span class="n">pComplexArray</span><span class="o">;</span><span class="w"> </span><span class="n">ActorID</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="o">;</span><span class="w"> </span><span class="kp">Override</span><span class="o">;</span>
+<span class="k">Procedure</span><span class="w"> </span><span class="nf">GetCurrents</span><span class="p">(</span><span class="n">Curr</span><span class="o">:</span><span class="w"> </span><span class="n">pComplexArray</span><span class="o">;</span><span class="w"> </span><span class="n">ActorID</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">Integer</span><span class="p">)</span><span class="o">;</span><span class="kp">Override</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The second way that the array index is selected is via the <code class="docutils literal notranslate"><span class="pre">ActiveActor</span></code> global variable. Still in <code class="docutils literal notranslate"><span class="pre">VSource.pas</span></code>:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference external" href="https://sourceforge.net/p/electricdss/code/3723/tree/trunk/Version7/Source/PCElements/VSource.pas">OpenDSS Version 7</a></div>
+<div class="highlight-pascal notranslate"><div class="highlight"><pre><span></span><span class="k">Function</span><span class="w"> </span><span class="nc">TVsource</span><span class="o">.</span><span class="nf">NewObject</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ObjName</span><span class="o">:</span><span class="k">String</span><span class="p">)</span><span class="o">:</span><span class="kt">Integer</span><span class="o">;</span>
+<span class="k">Begin</span>
+<span class="w">    </span><span class="c1">// Make a new voltage source and add it to Vsource class list</span>
+<span class="w">    </span><span class="k">With</span><span class="w"> </span><span class="n">ActiveCircuit</span><span class="w"> </span><span class="k">Do</span>
+<span class="w">    </span><span class="k">Begin</span>
+<span class="w">      </span><span class="n">ActiveCktElement</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">TVsourceObj</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="k">Self</span><span class="o">,</span><span class="w"> </span><span class="n">ObjName</span><span class="p">)</span><span class="o">;</span>
+<span class="w">      </span><span class="bp">Result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">AddObjectToList</span><span class="p">(</span><span class="n">ActiveDSSObject</span><span class="p">)</span><span class="o">;</span>
+<span class="w">    </span><span class="k">End</span><span class="o">;</span>
+<span class="k">End</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<a class="reference external" href="https://sourceforge.net/p/electricdss/code/3723/tree/trunk/Version8/Source/PCElements/VSource.pas">OpenDSS Version 8+</a></div>
+<div class="highlight-pascal notranslate"><div class="highlight"><pre><span></span><span class="k">Function</span><span class="w"> </span><span class="nc">TVsource</span><span class="o">.</span><span class="nf">NewObject</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ObjName</span><span class="o">:</span><span class="k">String</span><span class="p">)</span><span class="o">:</span><span class="kt">Integer</span><span class="o">;</span>
+<span class="k">Begin</span>
+<span class="w">    </span><span class="c1">// Make a new voltage source and add it to Vsource class list</span>
+<span class="w">    </span><span class="k">With</span><span class="w"> </span><span class="n">ActiveCircuit</span><span class="p">[</span><span class="n">ActiveActor</span><span class="p">]</span><span class="w"> </span><span class="k">Do</span>
+<span class="w">    </span><span class="k">Begin</span>
+<span class="w">      </span><span class="n">ActiveCktElement</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">TVsourceObj</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="k">Self</span><span class="o">,</span><span class="w"> </span><span class="n">ObjName</span><span class="p">)</span><span class="o">;</span>
+<span class="w">      </span><span class="bp">Result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">AddObjectToList</span><span class="p">(</span><span class="n">ActiveDSSObject</span><span class="p">[</span><span class="n">ActiveActor</span><span class="p">])</span><span class="o">;</span>
+<span class="w">    </span><span class="k">End</span><span class="o">;</span>
+<span class="k">End</span><span class="o">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This global <code class="docutils literal notranslate"><span class="pre">ActiveActor</span></code> is mostly what limits what the engine can do, since it can only have one actor active at one, in the current implementation. As a consequence, some operations must not be run in parallel.</p>
+<p>The global structures being arrays and requiring the index to be used for each of them can lead to some repetition in the code. For example, an excerpt from <a class="reference external" href="https://sourceforge.net/p/electricdss/code/3723/tree/trunk/Version8/Source/Common/Solution.pas#l1640"><code class="docutils literal notranslate"><span class="pre">Solution.pas</span></code></a>:</p>
+<div class="highlight-pascal notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">DevClassIndex</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">ClassNames</span><span class="p">[</span><span class="n">ActorID</span><span class="p">]</span><span class="o">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#39;reactor&#39;</span><span class="p">)</span><span class="o">;</span>
+<span class="w">    </span><span class="n">LastClassReferenced</span><span class="p">[</span><span class="n">ActorID</span><span class="p">]</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">DevClassIndex</span><span class="o">;</span>
+<span class="w">    </span><span class="n">ActiveDSSClass</span><span class="p">[</span><span class="n">ActorID</span><span class="p">]</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">DSSClassList</span><span class="p">[</span><span class="n">ActorID</span><span class="p">]</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="n">LastClassReferenced</span><span class="p">[</span><span class="n">ActorID</span><span class="p">])</span><span class="o">;</span>
+<span class="w">    </span><span class="n">elem</span><span class="w">        </span><span class="o">:=</span><span class="w"> </span><span class="n">ActiveDSSClass</span><span class="p">[</span><span class="n">ActorID</span><span class="p">]</span><span class="o">.</span><span class="n">First</span><span class="o">;</span>
+</pre></div>
+</div>
+<section id="parallel-machine-implementation">
+<h3>Parallel-machine implementation<a class="headerlink" href="#parallel-machine-implementation" title="Link to this heading">#</a></h3>
+<p>In v8+, the <a class="reference external" href="https://en.wikipedia.org/wiki/Actor_model">actor model</a> is used to allow multithreaded code. As seen in the previous code snippets, the global array indices represent an actor index <code class="docutils literal notranslate"><span class="pre">ActorID</span></code> or <code class="docutils literal notranslate"><span class="pre">ActiveActor</span></code>. Each actor thread (<code class="docutils literal notranslate"><span class="pre">TSolver</span></code>) is created with a matching <code class="docutils literal notranslate"><span class="pre">ActorID</span></code>. The thread starts loop waiting commands to run for the circuit associated with this <code class="docutils literal notranslate"><span class="pre">ActorID</span></code>. The commands are mostly solution algorithms, some solution state manipulation, or thread termination.</p>
+<p>Past versions used to set the priority of the process to realtime, while also setting thread priorities high. Current versions, as of February 2024, do not set the process priority anymore.</p>
+</section>
+</section>
+<section id="architecture-of-altdss-dss-c-api-dsscontext">
+<h2>Architecture of AltDSS/DSS C-API: DSSContext<a class="headerlink" href="#architecture-of-altdss-dss-c-api-dsscontext" title="Link to this heading">#</a></h2>
+<p>It is important to note that the decision to follow another architecture on DSS-Extensions was based on multiple reasons.</p>
+<p>One of the main reasons was that maintaining and debugging multithreaded code with a different compiler (EPRI’s OpenDSS uses Delphi, DSS-Extensions use Free Pascal), in multiple operating systems, is challenging.</p>
+<p>A second reason was that the DSS C-API codebase has been slowly refactored, with the end goal of porting/switching at once to another programming language (C++), so some aspects have been handled since 2018, little by little. It made sense to invest time into a more common approach when migrating older, single-threaded codebases to allow multithreading: introduce the encapsulation of the global variables into a dedicated context. This context is then propagated in most functions of the classic API.</p>
+<p>What happened:</p>
+<ul class="simple">
+<li><p>The version 8+ code previously maintained in DSS C-API was dropped.</p></li>
+<li><p>The codebases from version 7 and version 8+ were carefully compared to find potential issues (a few were found and reported).</p></li>
+<li><p>Most of the global variables where encapsulated in a new <code class="docutils literal notranslate"><span class="pre">TDSSContext</span></code> class.</p></li>
+<li><p>Most classes now receive the DSS Context as the first parameter.</p></li>
+<li><p>A few helper functions, properties, and helper classes were created to minimize the code changes. For example, some classes expose a function <code class="docutils literal notranslate"><span class="pre">ActiveCircuit</span></code> that returns <code class="docutils literal notranslate"><span class="pre">DSSContext.ActiveCircuit</span></code>.</p></li>
+<li><p>A global variable <code class="docutils literal notranslate"><span class="pre">DSSPrime</span></code> was introduced to represent the default DSS Context, which is the DSS engine that is created by default when the library is loaded. This is required for backwards compatibility.</p></li>
+<li><p>The API code was updated to use <code class="docutils literal notranslate"><span class="pre">DSSPrime</span></code> anywhere the engine was used.</p></li>
+<li><p>Finally, a script automatically duplicates the API code, creating new versions that take the DSS Context as a pointer parameter. For example, <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">Loads_Get_kW(void)</span></code> is derived into <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">ctx_Loads_Get_kW(const</span> <span class="pre">void*</span> <span class="pre">ctx)</span></code>. Both the C headers and the Pascal code is handled.</p></li>
+</ul>
+<p>Couple of side notes:</p>
+<ul class="simple">
+<li><p>Although not significant, it was noticed that the DSSContext implementation was slightly faster than the previous version due to memory locality differences.</p></li>
+<li><p>AltDSS/DSS C-API is also slowly moving away from concepts like <code class="docutils literal notranslate"><span class="pre">ActiveCircuit</span></code>; instead, the circuit is either passed explicitly or directly associated. This is a work-in-progress migration that should clean the code a bit more.</p></li>
+</ul>
+<section id="id1">
+<h3>Parallel-machine implementation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>The PM implementation follows the general concepts of the official OpenDSS implementation, using the actor model. The main difference is that instead of relying on an <code class="docutils literal notranslate"><span class="pre">ActorID</span></code> integer index, the actor thread (also <code class="docutils literal notranslate"><span class="pre">TSolver</span></code> in DSS C-API) gets a <code class="docutils literal notranslate"><span class="pre">TDSSContext</span></code> instance. There are a couple of locks to avoid issues noticed when running on platforms besides Windows.</p>
+<p>While the official implementation sets thread priority, it is not set on DSS C-API.</p>
+<p>Overall, this implementation is quite compatible with the official version, exposing the same API to the user.</p>
+</section>
+</section>
+<section id="linux-specific-notes">
+<h2>Linux-specific notes<a class="headerlink" href="#linux-specific-notes" title="Link to this heading">#</a></h2>
+<p>To achieve safe multithreading on Linux and macOS, there were a lot of small tweaks, and a big one: the memory allocator is now the system (C) allocator, instead of the default Free Pascal internal allocator.</p>
+<p>Unfortunately, the default allocator on many Linux distributions does not work great for OpenDSS workloads.</p>
+<p>To achieve better performance in general, both for single- and multithreading, we recommend ensuring that a good allocator is used. We have tested a bunch of allocators and recommend the following two:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://jemalloc.net/">jemalloc</a></p></li>
+<li><p><a class="reference external" href="https://github.com/microsoft/mimalloc">mimalloc</a></p></li>
+</ul>
+<p>Other allocators (e.g <a class="reference external" href="https://google.github.io/tcmalloc/">tcmalloc</a>) also have good performance, but these two dominated the benchmarks. In doubt, be sure to test for your use-case, ideally with a real-life scenario.</p>
+<p>We recommend reading a little about those before using them, but you can use <code class="docutils literal notranslate"><span class="pre">LD_PRELOAD</span></code> to apply the allocator to the whole program. For example, if you’d like to run a Python script, appending the command with the target allocator library is enough:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/lib64/libmimalloc.so<span class="w"> </span>python<span class="w"> </span>my_script.py
+</pre></div>
+</div>
+<p>You can also use allocator-specific options — check the documentation to see what’s available. For example, when using jemalloc, it’s also good to use background threads:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MALLOC_CONF=background_thread:true LD_PRELOAD=/usr/lib64/libjemalloc.so python my_script.py
+</pre></div>
+</div>
+<p>Note that the path <code class="docutils literal notranslate"><span class="pre">/usr/lib64</span></code> varies according to the Linux distribution. Some may use just <code class="docutils literal notranslate"><span class="pre">/usr/lib</span></code>. Both jemalloc and mimalloc are also available in conda-forge, for example, so users do not require administrator/root permissions to use them.</p>
+<p>Effectively, using these allocators brings a lot more performance for DSS C-API 0.12+ than DSS C-API 0.10 or earlier with the internal allocator, even on single-threaded processes.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python_apis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">OpenDSS: Python APIs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="licenses.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Licenses</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

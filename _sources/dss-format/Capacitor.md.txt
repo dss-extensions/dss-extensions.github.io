@@ -1,0 +1,147 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Capacitor
+
+(
+    Circuit Element,
+    PD Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of first bus of 2-terminal capacitor. Examples:<br>bus1=busname<br>bus1=busname.1.2.3<br><br>If only one bus specified, Bus2 will default to this bus, Node 0, and the capacitor will be a Yg shunt bank.
+*   - 2
+    - `Bus2`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of 2nd bus. Defaults to all phases connected to first bus, node 0, (Shunt Wye Connection) except when Bus2 explicitly specified. <br><br>Not necessary to specify for delta (LL) connection.
+*   - 3
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of phases.
+*   - 4
+    - `kvar`
+    - array of reals
+    - 
+    - 
+    - Total kvar, if one step, or ARRAY of kvar ratings for each step.  Evenly divided among phases. See rules for NUMSTEPS.
+*   - 5
+    - `kV`
+    - real
+    - 
+    - kV
+    - For 2, 3-phase, kV phase-phase. Otherwise specify actual can rating.
+*   - 6
+    - `Conn`
+    - string<br>*(from enum. [](#enum-connection))*
+    - Wye
+    - 
+    - ={wye | delta |LN |LL}  Default is wye, which is equivalent to LN
+*   - 7
+    - `CMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - μF
+    - Nodal cap. matrix, lower triangle, of the following form:<br><br>cmatrix="c11 | -c21 c22 | -c31 -c32 c33"<br><br>All steps are assumed the same if this property is used.
+*   - 8
+    - `Cuf`
+    - array of reals
+    - 
+    - μF
+    - ARRAY of Capacitance, each phase, for each step.<br>See Rules for NumSteps.
+*   - 9
+    - `R`
+    - array of reals
+    - [0.0]
+    - 
+    - ARRAY of series resistance in each phase (line), ohms.
+*   - 10
+    - `XL`
+    - array of reals
+    - [0.0]
+    - 
+    - ARRAY of series inductive reactance(s) in each phase (line) for filter, ohms at base frequency. Use this OR "h" property to define filter.
+*   - 11
+    - `Harm`
+    - array of reals
+    - [0.0]
+    - 
+    - ARRAY of harmonics to which each step is tuned. Zero is interpreted as meaning zero reactance (no filter). Default is zero.
+*   - 12
+    - `NumSteps`
+    - integer
+    - 
+    - 
+    - Number of steps in this capacitor bank. Forces reallocation of the capacitance, reactor, and states array.  Rules: If this property was previously =1, the value in the kvar property is divided equally among the steps. The kvar property does not need to be reset if that is accurate.  If the Cuf or Cmatrix property was used previously, all steps are set to the value of the first step. The states property is set to all steps on. All filter steps are set to the same harmonic. If this property was previously >1, the arrays are reallocated, but no values are altered. You must SUBSEQUENTLY assign all array properties.
+*   - 13
+    - `States`
+    - array of integers
+    - [1]
+    - 
+    - ARRAY of integers {1|0} states representing the state of each step (on|off). Defaults to 1 when reallocated (on). Capcontrol will modify this array as it turns steps on or off.
+*   - 14
+    - `NormAmps`
+    - real
+    - 75.005
+    - 
+    - Normal rated current. Defaults to 180% of per-phase rated current.
+*   - 15
+    - `EmergAmps`
+    - real
+    - 100.006
+    - 
+    - Maximum or emerg current. Defaults to 180% of per-phase rated current.
+*   - 16
+    - `FaultRate`
+    - real
+    - 0.001
+    - 
+    - Capacitor.faultrate
+*   - 17
+    - `pctPerm`
+    - real
+    - 100.0
+    - 
+    - Percent of failures that become permanent.
+*   - 18
+    - `Repair`
+    - real
+    - 3.0
+    - 
+    - Hours to repair.
+*   - 19
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 20
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 21
+    - `Like`
+    - string<br>*([Capacitor](#Capacitor) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

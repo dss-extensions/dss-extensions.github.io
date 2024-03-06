@@ -1,0 +1,22 @@
+
+
+(general-objects)=
+# General Objects
+```{toctree}
+:maxdepth: 2
+CNData.md
+DynamicExp.md
+GrowthShape.md
+LineCode.md
+LineGeometry.md
+LineSpacing.md
+LoadShape.md
+PriceShape.md
+Spectrum.md
+TCC_Curve.md
+TSData.md
+TShape.md
+WireData.md
+XYcurve.md
+XfmrCode.md
+```

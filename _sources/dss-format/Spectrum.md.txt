@@ -1,0 +1,56 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Spectrum
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NumHarm`
+    - integer
+    - 
+    - 
+    - Number of frequencies in this spectrum. (See CSVFile)
+*   - 2
+    - `Harmonic`
+    - array of reals
+    - 
+    - 
+    - Array of harmonic values. You can also use the syntax<br>harmonic = (file=filename)     !for text file one value per line<br>harmonic = (dblfile=filename)  !for packed file of doubles<br>harmonic = (sngfile=filename)  !for packed file of singles 
+*   - 3
+    - `%Mag`
+    - array of reals
+    - 
+    - 
+    - Array of magnitude values, assumed to be in PERCENT. You can also use the syntax<br>%mag = (file=filename)     !for text file one value per line<br>%mag = (dblfile=filename)  !for packed file of doubles<br>%mag = (sngfile=filename)  !for packed file of singles 
+*   - 4
+    - `Angle`
+    - array of reals
+    - 
+    - 
+    - Array of phase angle values, degrees.You can also use the syntax<br>angle = (file=filename)     !for text file one value per line<br>angle = (dblfile=filename)  !for packed file of doubles<br>angle = (sngfile=filename)  !for packed file of singles 
+*   - 5
+    - `CSVFile`
+    - string
+    - 
+    - 
+    - File of spectrum points with (harmonic, magnitude-percent, angle-degrees) values, one set of 3 per line, in CSV format. If fewer than NUMHARM frequencies found in the file, NUMHARM is set to the smaller value.
+*   - 6
+    - `Like`
+    - string<br>*([Spectrum](#Spectrum) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

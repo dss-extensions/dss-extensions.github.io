@@ -1,0 +1,123 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Fault
+
+(
+    Circuit Element,
+    PD Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of first bus. Examples:<br><br>bus1=busname<br>bus1=busname.1.2.3<br><br>Bus2 automatically defaults to busname.0.0.0 unless it was previously defined. 
+*   - 2
+    - `Bus2`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of 2nd bus of the 2-terminal Fault object. Defaults to all phases connected to first bus, node 0, if not specified. (Shunt Wye Connection to ground reference)<br><br>That is, the Fault defaults to a ground fault unless otherwise specified.
+*   - 3
+    - `Phases`
+    - integer
+    - 1
+    - 
+    - Number of Phases.
+*   - 4
+    - `R`
+    - real
+    - 
+    - Ω
+    - Resistance for each phase. Assumed to be Mean value if gaussian random mode.Max value if uniform mode.  A Fault is actually a series resistance that defaults to a wye connection to ground on the second terminal.  You may reconnect the 2nd terminal to achieve whatever connection.  Use the Gmatrix property to specify an arbitrary conductance matrix.
+*   - 5
+    - `%StdDev`
+    - real
+    - 
+    - 
+    - Percent standard deviation in resistance to assume for Monte Carlo fault (MF) solution mode for GAUSSIAN distribution. Default is 0 (no variation from mean).
+*   - 6
+    - `GMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - 
+    - Use this to specify a nodal conductance (G) matrix to represent some arbitrary resistance network. Specify in lower triangle form as usual for DSS matrices.
+*   - 7
+    - `OnTime`
+    - real
+    - 0.0
+    - s
+    - Time at which the fault is established for time varying simulations. Default is 0 s, on at the beginning of the simulation.
+*   - 8
+    - `Temporary`
+    - boolean
+    - False
+    - 
+    - Designate whether the fault is temporary.  For Time-varying simulations, the fault will be removed if the current through the fault drops below the MINAMPS criteria.
+*   - 9
+    - `MinAmps`
+    - real
+    - 5.0
+    - A
+    - Minimum current that can sustain a temporary fault.
+*   - 10
+    - `NormAmps`
+    - real
+    - 
+    - 
+    - Normal rated current.
+*   - 11
+    - `EmergAmps`
+    - real
+    - 
+    - 
+    - Maximum or emergency current rating.
+*   - 12
+    - `FaultRate`
+    - real
+    - 0.0
+    - 
+    - Fault.faultrate
+*   - 13
+    - `pctPerm`
+    - real
+    - 100.0
+    - 
+    - Percent of failures that become permanent.
+*   - 14
+    - `Repair`
+    - real
+    - 0.0
+    - 
+    - Hours to repair.
+*   - 15
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 16
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 17
+    - `Like`
+    - string<br>*([Fault](#Fault) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

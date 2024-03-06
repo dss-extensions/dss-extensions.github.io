@@ -1,0 +1,791 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="Description of the OpenDSS scripting language and data format for the DSS components, as seen in the implementation from DSS-Extensions (AltDSS/DSS C-API). " lang="en" name="description" xml:lang="en" />
+
+    <title>DSS Language &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dss_language';</script>
+    <link rel="icon" href="_static/dssx.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="General Enumerations" href="dss-format/Enumerations.html" />
+    <link rel="prev" title="Documentation" href="docs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">DSS Language</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Options.html">General Options</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_general.html">General Objects</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_control.html">Control Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Recloser.html">Recloser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/RegControl.html">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_pce.html">PC Elements</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Storage.html">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="classic_api.html">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_apis.html">Python APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multithreading.html">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="docs.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">DSS Language</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dss-language">
+<h1>DSS Language<a class="headerlink" href="#dss-language" title="Link to this heading">#</a></h1>
+<p><em>OpenDSS Commands and Properties, DSS scripts.</em></p>
+<p>This section of the documentation contains some notes about the DSS scripting language and tables generated from the commands, options and properties for the DSS components at script level, as exposed in the DSS-Extensions version of the OpenDSS engine. One could consider this a complement to <a class="reference external" href="https://opendss.epri.com/opendss_documentation.html">EPRI’s OpenDSS documentation</a>. The usual disclaimer that DSS-Extensions is not supported by EPRI applies, as well as the reminder that we try to keep the core of the engine very compatible.</p>
+<p>A separate document will be developed in the future to detail <strong>API</strong> functions and general usage recommendations for the projects under DSS-Extensions. At the moment, there are various documentation pages linked on the main site and some subproject sites.</p>
+<p>Since the extensive majority of properties and elements are compatible, this document can be useful when using either the official OpenDSS implementation or the DSS-Extensions version (DSS C-API engine), consumed through the several <a class="reference external" href="https://dss-extensions.org/projects">DSS-Extensions projects</a> (in Python, Julia, MATLAB, C#, Go, Rust or C++), or through the COM API of the official OpenDSS. If you are using the official OpenDSS, when in doubt check the <a class="reference external" href="https://opendss.epri.com/opendss_documentation.html">official documentation</a> and/or <a class="reference external" href="https://sourceforge.net/p/electricdss/code/HEAD/tree/">source code</a>.</p>
+<p>As a final note, keep in mind that not all commands are implemented in the DSS-Extensions engine, and interactive commands like plots are missing (on purpose) or disabled by default. The Python packages can use the <a class="reference external" href="https://dss-extensions.org/DSS-Python/examples/Plotting">work-in-progress plotting backend from DSS-Python</a> that can be enabled at runtime. For other use cases, we recommend using EPRI’s OpenDSS distribution.</p>
+<p><strong>Is this just a dump of the OpenDSS help?</strong> <em><strong>No.</strong></em> This is generated from the internal schema, currently being consolidated in <a class="reference external" href="https://github.com/dss-extensions/AltDSS-Schema">AltDSS-Schema</a> for JSON Schema, and it’s the result of a lot of work done specifically on the internals of the AltDSS/DSS C-API library. The help/description text was also edited and adapted, which more changes planned to be integrated in the future.</p>
+<p>Of special note, the <a class="reference external" href="https://dss-extensions.org/AltDSS-Python/">AltDSS</a> package in Python has implementations for the enumerations listed here and can be used to complement both OpenDSSDirect.py and DSS-Python. Integration for further programming languages is planned as a future step.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The tables were complemented with a selection of units and default values, based on the work done for the AltDSS-Schema project. Some default values were hidden to avoid confusion, especially for “on array” values that are represented internally as arrays.</p>
+</div>
+<section id="brief-notes">
+<h2>Brief notes<a class="headerlink" href="#brief-notes" title="Link to this heading">#</a></h2>
+<p>The DSS language supports various commands for manipulating the system, including creation of the circuit elements, powerflow solution, and exporting results (mostly in CSV and text files). In general, most of OpenDSS is case insensitive, including the commands. Beware though that when using DSS-Extensions on case-sensitive filesystems, the file names and paths will respect this aspect of the system.</p>
+<p>Some commands have some special handling of the text parameters. The <code class="docutils literal notranslate"><span class="pre">new</span></code> and <code class="docutils literal notranslate"><span class="pre">edit</span></code> commands, though, mostly follow the same standard and are the most important part for creating new circuits from scratch. A typical <code class="docutils literal notranslate"><span class="pre">new</span></code> command would look like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>New Component.new_name a=10 b=20 d=30
+</pre></div>
+</div>
+<p>From that:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Component</span></code> would be one of the DSS classes listed here. Some non-circuit classes allow creation before a circuit is created, but most require a circuit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">d</span></code> are the names of the properties being edited.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">20</span></code>, and <code class="docutils literal notranslate"><span class="pre">30</span></code> are the values being associated to the properties <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">d</span></code>, respectively.</p></li>
+</ul>
+<p>Assuming the index of each property is…</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code>: 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code>: 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c</span></code>: 3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d</span></code>: 4</p></li>
+</ul>
+<p>…one could omit the properties that follow the natural sequence, like below. This is not recommended in all scenarios though (read more bellow).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>New Component.new_name 10 20 d=30
+</pre></div>
+</div>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">~</span></code> (or <code class="docutils literal notranslate"><span class="pre">MORE</span></code>) command to continue editing in multiple lines:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>New Component.new_name a=10 
+~ b=20
+~ d=30
+</pre></div>
+</div>
+<p>One can also add comments with <code class="docutils literal notranslate"><span class="pre">!</span></code> or <code class="docutils literal notranslate"><span class="pre">//</span></code>, e.g. this would comment the whole statement:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>! New Component.new_name a=10 b=20 d=30
+</pre></div>
+</div>
+<p>And this would add a comment on a single line:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>New Component.new_name a=10  
+~ b=20 ! some comment about b
+~ d=30 
+</pre></div>
+</div>
+<p>For easier post-processing, if ever required, it is sometimes useful to prepend with some info, especially when converting from other circuit formats:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>! new_name comes from DB xyz, original id 1234
+New Component.new_name a=10 b=20 d=30
+</pre></div>
+</div>
+<p>Since various properties have side-effects, the order the properties are provided is important. Notably, most sizing properties (like <code class="docutils literal notranslate"><span class="pre">phases</span></code>, <code class="docutils literal notranslate"><span class="pre">nphases</span></code>, <code class="docutils literal notranslate"><span class="pre">nconds</span></code>) allocate memory for the arrays of some elements.</p>
+<p>For more, check the official OpenDSS documentation that comes with the software installation and <a class="reference external" href="https://opendss.epri.com/CircuitModelConcept.html">https://opendss.epri.com/CircuitModelConcept.html</a> — please note that note all examples follow the recommendations below. That is, please do not blindly follow every example without at least some critical thinking.</p>
+<p>For scripts and other examples from the official OpenDSS, DSS-Extensions keeps a separate repo already prepared for multi-platform usage at <a class="github reference external" href="https://github.com/dss-extensions/electricdss-tst">dss-extensions/electricdss-tst</a></p>
+</section>
+<section id="recommendations">
+<h2>Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading">#</a></h2>
+<p>These are mostly targeting users of large scale circuits, which typically are created using some kind of automation. Some are good to follow even on small scripts that need to endure changes in OpenDSS.</p>
+<ul class="simple">
+<li><p><strong>Always name each property.</strong> For <code class="docutils literal notranslate"><span class="pre">.dss</span></code> files that need to be reused year later or with different OpenDSS versions in general. OpenDSS may introduce new properties in the middle of the list of properties, potentially breaking old scripts which don’t include the names of the properties. Besides that, it’s also good for humans to be able to quickly grasp the contents of the files without having to resort to the list of properties.</p>
+<ul>
+<li><p>If, on the other hand, your scripts are generated on the fly and you can ensure the correct order to respect the index of the properties, there is no harm and it’s probably incrementally faster.</p></li>
+</ul>
+</li>
+<li><p><strong>Avoid short forms.</strong> Like the lack of property names, this may also be affected by future changes in OpenDSS, introducing subtle issues that may be hard to spot. From the readability perspective, overusing short forms is also bad.</p></li>
+<li><p><strong>Use a consistent formatting standard.</strong> Although most extra whitespace is ignored and OpenDSS allows multiple field and element separators, it’s better to use a single standard.</p></li>
+<li><p><strong>Don’t overuse <code class="docutils literal notranslate"><span class="pre">~</span></code> (<code class="docutils literal notranslate"><span class="pre">MORE</span></code>).</strong> Each line starts and closes an edit cycle. When closing the edit cycle, OpenDSS may update some internal properties (internally <code class="docutils literal notranslate"><span class="pre">RecalcElementData</span></code>)</p></li>
+<li><p><strong>Avoid block comments.</strong> Since there are very few good text-formatters with syntax highlighting for OpenDSS, block comments can be sometimes hard to spot.</p></li>
+<li><p><strong>Avoid inline RPN in large circuits.</strong> For circuits exported from other sources, it is better to avoid using inline RPN math. For scripts written directly in OpenDSS, RPN math makes perfect sense to avoid manually calculating some values, but when exporting circuits or using APIs such as DSS-Extensions and the official COM API, it’s better to precalculate the values in the hosting language (e.g. C#, Python, Julia, MATLAB, etc.), since most are more than capable of handling math.</p></li>
+</ul>
+</section>
+<section id="conventions-of-this-site">
+<h2>Conventions of this site<a class="headerlink" href="#conventions-of-this-site" title="Link to this heading">#</a></h2>
+<p>The property types are roughly defined in the table below.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property type</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>boolean</p></td>
+<td class="text-left"><p>Boolean values can be <code class="docutils literal notranslate"><span class="pre">yes</span></code>, <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">no</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code>. Short forms allowed.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>integer</p></td>
+<td class="text-left"><p>Integer value. Many properties require positive values.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>real</p></td>
+<td class="text-left"><p>Real number, internally represent as floating-point numbers (almost all are <code class="docutils literal notranslate"><span class="pre">float64</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>string</p></td>
+<td class="text-left"><p>General text; remember to enclose in quoting separators if it contains whitespace or other separators.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>string (from enum.)</p></td>
+<td class="text-left"><p>A string that must match the allowed enumerated values. Short forms are allowed (but discouraged). The allowed values are documented in a separated table.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>string (bus def.)</p></td>
+<td class="text-left"><p>A bus definition. It may be just the bus name, or more typically the bus followed by the nodes of the specific connection like <code class="docutils literal notranslate"><span class="pre">busxyz.1.2.4</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>complex</p></td>
+<td class="text-left"><p>Complex number, passed an array of two real numbers, e.g. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">2i</span></code> can be written as <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span></code> and other variations.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>array of …</p></td>
+<td class="text-left"><p>lists of the primary types above, like <code class="docutils literal notranslate"><span class="pre">[1,2,3]</span></code>, <code class="docutils literal notranslate"><span class="pre">[1</span> <span class="pre">2</span> <span class="pre">3]</span></code>, <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></code>, etc. For arrays of reals that represent matrices, check the description for some special behavior.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Some items are marked:</p>
+<ul class="simple">
+<li><p><strong>deprecated</strong>: either have been removed or can still be used but are discouraged due to known limitations. Notably, the <code class="docutils literal notranslate"><span class="pre">like</span></code> property doesn’t copy all properties for some classes, and some properties were removed in the transition from OpenDSS 8.x to 9.0.</p></li>
+<li><p><strong>action</strong>: may manipulate the data from the object being edited. Some are not typically used as data input, but are used during simulations to manipulate state.</p></li>
+<li><p><strong>redundant</strong>: OpenDSS has multiple ways of defining the same data. Some properties are trivially derived from others. For example, <code class="docutils literal notranslate"><span class="pre">Generator</span></code> exposes both <code class="docutils literal notranslate"><span class="pre">MVA</span></code> and <code class="docutils literal notranslate"><span class="pre">kVA</span></code>, which change just the unit in which the rating of the generator is provided.</p></li>
+<li><p><strong>on array</strong>: Items are marked “on array” to quickly remind the user that the value references an array value, indexed by another property, notably in <code class="docutils literal notranslate"><span class="pre">LineGeometry</span></code> (<code class="docutils literal notranslate"><span class="pre">cond</span></code>) and <code class="docutils literal notranslate"><span class="pre">Transformer</span></code> (<code class="docutils literal notranslate"><span class="pre">wdg</span></code>).</p></li>
+</ul>
+<section id="circuit-elements">
+<span id="id1"></span><h3>Circuit Elements<a class="headerlink" href="#circuit-elements" title="Link to this heading">#</a></h3>
+<p>Circuit elements (“CktElements”) are objects associated to the circuit, i.e. any non-general object:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="dss-format/toc_pde.html#pd-elements"><span class="std std-ref">PD Elements</span></a></p></li>
+<li><p><a class="reference internal" href="dss-format/toc_pce.html#pc-elements"><span class="std std-ref">PC Elements</span></a></p></li>
+<li><p><a class="reference internal" href="dss-format/toc_me.html#meter-elements"><span class="std std-ref">Meter Elements</span></a></p></li>
+<li><p><a class="reference internal" href="dss-format/toc_control.html#control-elements"><span class="std std-ref">Control Elements</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="dss-reference">
+<h2>DSS Reference<a class="headerlink" href="#dss-reference" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/Enumerations.html">General Enumerations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#autoadd-device-type">AutoAdd Device Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#circuit-model">Circuit Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#connection">Connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#control-mode">Control Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#core-type">Core Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#earth-model">Earth Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#inverter-control-mode">Inverter Control Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#length-unit">Length Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#line-type">Line Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#load-shape-class">Load Shape Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#load-solution-model">Load Solution Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#monitored-phase">Monitored Phase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#phase-sequence">Phase Sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#plot-profile-phases">Plot: Profile Phases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#random-type">Random Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#reduction-strategy">Reduction Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#scan-type">Scan Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#sequence-type">Sequence Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#solution-algorithm">Solution Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#solution-mode">Solution Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html#visualize-quantity">Visualize: Quantity</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/Commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/Options.html">General Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/toc_general.html">General Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/CNData.html">CNData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/LineCode.html">LineCode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/LoadShape.html">LoadShape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/PriceShape.html">PriceShape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Spectrum.html">Spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/TSData.html">TSData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/TShape.html">TShape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/WireData.html">WireData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/XYcurve.html">XYcurve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/toc_me.html">Meter Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Monitor.html">Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/toc_control.html">Control Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/CapControl.html">CapControl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/ExpControl.html">ExpControl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Fuse.html">Fuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/InvControl.html">InvControl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Recloser.html">Recloser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/RegControl.html">RegControl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Relay.html">Relay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/StorageController.html">StorageController</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/SwtControl.html">SwtControl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/toc_pde.html">PD Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Capacitor.html">Capacitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Fault.html">Fault</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Line.html">Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Reactor.html">Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dss-format/toc_pce.html">PC Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/GICLine.html">GICLine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/GICsource.html">GICsource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Generator.html">Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/IndMach012.html">IndMach012</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Isource.html">Isource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Load.html">Load</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/PVSystem.html">PVSystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Storage.html">Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/UPFC.html">UPFC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/VCCS.html">VCCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/VSConverter.html">VSConverter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="docs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="dss-format/Enumerations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">General Enumerations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

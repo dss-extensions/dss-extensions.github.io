@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RegControl &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dss-format/RegControl';</script>
+    <link rel="icon" href="../_static/dssx.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Relay" href="Relay.html" />
+    <link rel="prev" title="Recloser" href="Recloser.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../dss_language.html">DSS Language</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Options.html">General Options</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_general.html">General Objects</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="toc_control.html">Control Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Recloser.html">Recloser</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pce.html">PC Elements</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Storage.html">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../classic_api.html">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_apis.html">Python APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multithreading.html">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../docs.html" class="nav-link">Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><i class="fa-solid fa-ellipsis"></i></li>
+    
+    
+    <li class="breadcrumb-item"><a href="toc_control.html" class="nav-link">Control Elements</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">RegControl</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="regcontrol">
+<h1>RegControl<a class="headerlink" href="#regcontrol" title="Link to this heading">#</a></h1>
+<p>(
+Circuit Element,
+Control Element
+)</p>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Transformer</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="Transformer.html"><span class="doc std std-doc">Transformer</span></a> or <a class="reference internal" href="AutoTrans.html"><span class="doc std std-doc">AutoTrans</span></a> name)</em></p></td>
+<td></td>
+<td></td>
+<td><p>Name of Transformer or AutoTrans element to which the RegControl is connected. Do not specify the full object name; “Transformer” or “AutoTrans” is assumed for the object class.  Example:<br><br>Transformer=Xfmr1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Winding</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>Number of the winding of the transformer element that the RegControl is monitoring. 1 or 2, typically.  Side Effect: Sets TAPWINDING property to the same winding.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VReg</span></code></p></td>
+<td><p>real</p></td>
+<td><p>120.0</p></td>
+<td><p>V</p></td>
+<td><p>Voltage regulator setting for the winding being controlled.  Multiplying this value times the ptratio should yield the voltage across the WINDING of the controlled transformer.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Band</span></code></p></td>
+<td><p>real</p></td>
+<td><p>3.0</p></td>
+<td></td>
+<td><p>Bandwidth in VOLTS for the controlled bus (see help for ptratio property).</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PTRatio</span></code></p></td>
+<td><p>real</p></td>
+<td><p>60.0</p></td>
+<td></td>
+<td><p>Ratio of the PT that converts the controlled winding voltage to the regulator control voltage. If the winding is Wye, the line-to-neutral voltage is used.  Else, the line-to-line voltage is used. SIDE EFFECT: Also sets RemotePTRatio property.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CTPrim</span></code></p></td>
+<td><p>real</p></td>
+<td><p>300.0</p></td>
+<td><p>A</p></td>
+<td><p>Rating of the primary CT rating for which the line amps convert to control rated amps. The typical default secondary ampere rating is 0.2 Amps (check with manufacturer specs). Current at which the LDC voltages match the R and X settings.</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">R</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>R setting on the line drop compensator in the regulator, expressed in VOLTS.</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">X</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>X setting on the line drop compensator in the regulator, expressed in VOLTS.</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Bus</span></code></p></td>
+<td><p>string</p></td>
+<td></td>
+<td></td>
+<td><p>Name of a bus (busname.nodename) in the system to use as the controlled bus instead of the bus to which the transformer winding is connected or the R and X line drop compensator settings.  Do not specify this value if you wish to use the line drop compensator settings.  Default is null string. Assumes the base voltage for this bus is the same as the transformer winding base specified above. Note: This bus (1-phase) WILL BE CREATED by the regulator control upon SOLVE if not defined by some other device. You can specify the node of the bus you wish to sample (defaults to 1). If specified, the RegControl is redefined as a 1-phase device since only one voltage is used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Delay</span></code></p></td>
+<td><p>real</p></td>
+<td><p>15.0</p></td>
+<td><p>s</p></td>
+<td><p>Time delay from when the voltage goes out of band to when the tap changing begins. This is used to determine which regulator control will act first. You may specify any floating point number to achieve a model of whatever condition is necessary.</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Reversible</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Indicates whether or not the regulator can be switched to regulate in the reverse direction. Typically applies only to line regulators and not to LTC on a substation transformer.</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RevVReg</span></code></p></td>
+<td><p>real</p></td>
+<td><p>120.0</p></td>
+<td></td>
+<td><p>Voltage setting in volts for operation in the reverse direction.</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RevBand</span></code></p></td>
+<td><p>real</p></td>
+<td><p>3.0</p></td>
+<td></td>
+<td><p>Bandwidth for operating in the reverse direction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RevR</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>R line drop compensator setting for reverse direction.</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RevX</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>X line drop compensator setting for reverse direction.</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TapDelay</span></code></p></td>
+<td><p>real</p></td>
+<td><p>2.0</p></td>
+<td><p>s</p></td>
+<td><p>Delay between tap changes. This is how long it takes between changes after the first change.</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DebugTrace</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Turn this on to capture the progress of the regulator model for each control iteration.  Creates a separate file for each RegControl named “REG_name.csv”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MaxTapChange</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>16</p></td>
+<td></td>
+<td><p>Maximum allowable tap change per control iteration in STATIC control mode.<br><br>Set this to 1 to better approximate actual control action. <br><br>Set this to 0 to fix the tap in the current position.</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InverseTime</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>The time delay is adjusted inversely proportional to the amount the voltage is outside the band down to 10%.</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TapWinding</span></code></p></td>
+<td><p>integer</p></td>
+<td></td>
+<td></td>
+<td><p>Winding containing the actual taps, if different than the WINDING property. Defaults to the same winding as specified by the WINDING property.</p></td>
+</tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VLimit</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td><p>V</p></td>
+<td><p>Voltage Limit for bus to which regulated winding is connected (e.g. first customer). Set to a value greater then zero to activate this function.</p></td>
+</tr>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PTPhase</span></code></p></td>
+<td><p>string<br><em>(from enum. <a class="reference internal" href="#enum-regcontrolphase-selection">Phase Selection</a>)</em></p></td>
+<td><p>1</p></td>
+<td></td>
+<td><p>For multi-phase transformers, the number of the phase being monitored or one of { MAX | MIN} for all phases. Must be less than or equal to the number of phases. Ignored for regulated bus.</p></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RevThreshold</span></code></p></td>
+<td><p>real</p></td>
+<td><p>100.0</p></td>
+<td><p>kW</p></td>
+<td><p>kW reverse power threshold for reversing the direction of the regulator.</p></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RevDelay</span></code></p></td>
+<td><p>real</p></td>
+<td><p>60.0</p></td>
+<td><p>s</p></td>
+<td><p>Time Delay for executing the reversing action once the threshold for reversing has been exceeded.</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RevNeutral</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Set this to Yes if you want the regulator to go to neutral in the reverse direction or in cogen operation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">EventLog</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>Log control actions to Eventlog.</p></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RemotePTRatio</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td></td>
+<td><p>When regulating a bus (the Bus= property is set), the PT ratio required to convert actual voltage at the remote bus to control voltage. Is initialized to PTratio property. Set this property after setting PTratio.</p></td>
+</tr>
+<tr class="row-odd"><td><p>28</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TapNum</span></code></p></td>
+<td><p>integer</p></td>
+<td><p>0</p></td>
+<td></td>
+<td><p>An integer number indicating the tap position that the controlled transformer winding tap position is currently at, or is being set to.  If being set, and the value is outside the range of the transformer min or max tap, then set to the min or max tap position as appropriate. Default is 0</p></td>
+</tr>
+<tr class="row-even"><td><p>29</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Reset</span></code></p></td>
+<td><p>boolean<br><em>(action)</em></p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>If Yes, forces Reset of this RegControl.</p></td>
+</tr>
+<tr class="row-odd"><td><p>30</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LDC_Z</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>Z value for Beckwith LDC_Z control option. Volts adjustment at rated control current.</p></td>
+</tr>
+<tr class="row-even"><td><p>31</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Rev_Z</span></code></p></td>
+<td><p>real</p></td>
+<td><p>0.0</p></td>
+<td></td>
+<td><p>Reverse Z value for Beckwith LDC_Z control option.</p></td>
+</tr>
+<tr class="row-odd"><td><p>32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Cogen</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>False</p></td>
+<td></td>
+<td><p>The Cogen feature is activated. Continues looking forward if power reverses, but switches to reverse-mode LDC, vreg and band values.</p></td>
+</tr>
+<tr class="row-even"><td><p>33</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BaseFreq</span></code></p></td>
+<td><p>real</p></td>
+<td></td>
+<td><p>Hz</p></td>
+<td><p>Base Frequency for ratings.</p></td>
+</tr>
+<tr class="row-odd"><td><p>34</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Enabled</span></code></p></td>
+<td><p>boolean</p></td>
+<td><p>True</p></td>
+<td></td>
+<td><p>Indicates whether this element is enabled.</p></td>
+</tr>
+<tr class="row-even"><td><p>35</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Like</span></code></p></td>
+<td><p>string<br><em>(<a class="reference internal" href="#"><span class="doc std std-doc">RegControl</span></a> name)</em><br><span class="fg-warning">deprecated</span></p></td>
+<td></td>
+<td></td>
+<td><p>Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  …</p></td>
+</tr>
+</tbody>
+</table>
+<section id="enumerations">
+<h2>Enumerations<a class="headerlink" href="#enumerations" title="Link to this heading">#</a></h2>
+<section id="regcontrol-phase-selection">
+<span id="enum-regcontrolphase-selection"></span><h3>RegControl: Phase Selection<a class="headerlink" href="#regcontrol-phase-selection" title="Link to this heading">#</a></h3>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">min</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>This is a “hybrid” enumeration.</strong> The related input properties accepts the values listed in this table and integer numbers greater than 1.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Recloser.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Recloser</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Relay.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Relay</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

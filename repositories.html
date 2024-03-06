@@ -1,551 +1,656 @@
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>DSS Extensions — Repositories</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
-  <style type="text/css">
-html {
-font-size: 100%;
-overflow-y: scroll;
--webkit-text-size-adjust: 100%;
--ms-text-size-adjust: 100%;
-}
-body {
-color: #444;
-font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-font-size: 12px;
-line-height: 1.7;
-padding: 1em;
-margin: auto;
-max-width: 1600px;
-background: #fefefe;
-}
-a {
-color: #0645ad;
-text-decoration: none;
-}
-a:visited {
-color: #0b0080;
-}
-a:hover {
-color: #06e;
-}
-a:active {
-color: #faa700;
-}
-a:focus {
-outline: thin dotted;
-}
-*::-moz-selection {
-background: rgba(255, 255, 0, 0.3);
-color: #000;
-}
-*::selection {
-background: rgba(255, 255, 0, 0.3);
-color: #000;
-}
-a::-moz-selection {
-background: rgba(255, 255, 0, 0.3);
-color: #0645ad;
-}
-a::selection {
-background: rgba(255, 255, 0, 0.3);
-color: #0645ad;
-}
-p {
-margin: 1em 0;
-}
-img {
-max-width: 100%;
-}
-h1, h2, h3, h4, h5, h6 {
-color: #111;
-line-height: 125%;
-margin-top: 2em;
-font-weight: normal;
-}
-h4, h5, h6 {
-font-weight: bold;
-}
-h1 {
-font-size: 2.5em;
-}
-h2 {
-font-size: 2em;
-}
-h3 {
-font-size: 1.5em;
-}
-h4 {
-font-size: 1.2em;
-}
-h5 {
-font-size: 1em;
-}
-h6 {
-font-size: 0.9em;
-}
-blockquote {
-color: #666666;
-margin: 0;
-padding-left: 3em;
-border-left: 0.5em #EEE solid;
-}
-hr {
-display: block;
-height: 2px;
-border: 0;
-border-top: 1px solid #aaa;
-border-bottom: 1px solid #eee;
-margin: 1em 0;
-padding: 0;
-}
-pre, code, kbd, samp {
-color: #000;
-font-family: monospace, monospace;
-_font-family: 'courier new', monospace;
-font-size: 0.98em;
-}
-pre {
-white-space: pre;
-white-space: pre-wrap;
-word-wrap: break-word;
-}
-b, strong {
-font-weight: bold;
-}
-dfn {
-font-style: italic;
-}
-ins {
-background: #ff9;
-color: #000;
-text-decoration: none;
-}
-mark {
-background: #ff0;
-color: #000;
-font-style: italic;
-font-weight: bold;
-}
-sub, sup {
-font-size: 75%;
-line-height: 0;
-position: relative;
-vertical-align: baseline;
-}
-sup {
-top: -0.5em;
-}
-sub {
-bottom: -0.25em;
-}
-ul, ol {
-margin: 1em 0;
-padding: 0 0 0 2em;
-}
-li p:last-child {
-margin-bottom: 0;
-}
-ul ul, ol ol {
-margin: .3em 0;
-}
-dl {
-margin-bottom: 1em;
-}
-dt {
-font-weight: bold;
-margin-bottom: .8em;
-}
-dd {
-margin: 0 0 .8em 2em;
-}
-dd:last-child {
-margin-bottom: 0;
-}
-img {
-border: 0;
--ms-interpolation-mode: bicubic;
-vertical-align: middle;
-}
-figure {
-display: block;
-text-align: center;
-margin: 1em 0;
-}
-figure img {
-border: none;
-margin: 0 auto;
-}
-figcaption {
-font-size: 0.8em;
-font-style: italic;
-margin: 0 0 .8em;
-}
-table {
-margin-bottom: 2em;
-border-bottom: 1px solid #ddd;
-border-right: 1px solid #ddd;
-border-spacing: 0;
-border-collapse: collapse;
-margin-right: auto;
-margin-left: auto;
-}
-table th {
-padding: .2em 1em;
-background-color: #eee;
-border-top: 1px solid #ddd;
-border-left: 1px solid #ddd;
-}
-table td {
-padding: .2em 1em;
-border-top: 1px solid #ddd;
-border-left: 1px solid #ddd;
-vertical-align: top;
-}
-.author {
-font-size: 1.2em;
-text-align: center;
-}
-@media only screen and (min-width: 480px) {
-body {
-font-size: 14px;
-}
-}
-@media only screen and (min-width: 768px) {
-body {
-font-size: 16px;
-}
-}
-@media print {
-* {
-background: transparent !important;
-color: black !important;
-filter: none !important;
--ms-filter: none !important;
-}
-body {
-font-size: 12pt;
-max-width: 100%;
-}
-a, a:visited {
-text-decoration: underline;
-}
-hr {
-height: 1px;
-border: 0;
-border-bottom: 1px solid black;
-}
-a[href]:after {
-content: " (" attr(href) ")";
-}
-abbr[title]:after {
-content: " (" attr(title) ")";
-}
-.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
-content: "";
-}
-pre, blockquote {
-border: 1px solid #999;
-padding-right: 1em;
-page-break-inside: avoid;
-}
-tr, img {
-page-break-inside: avoid;
-}
-img {
-max-width: 100% !important;
-}
-@page :left {
-margin: 15mm 20mm 15mm 10mm;
-}
-@page :right {
-margin: 15mm 10mm 15mm 20mm;
-}
-p, h2, h3 {
-orphans: 3;
-widows: 3;
-}
-h2, h3 {
-page-break-after: avoid;
-}
-}
-</style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-<header id="title-block-header">
-<h1 class="title">DSS Extensions — Repositories</h1>
-</header>
-<p>This is a collection of links to repositories that either use one of
-the projects under DSS Extensions, or list them as working alternatives.
-<a href="https://dss-extensions.org/citations.html">Follow here</a> for
-a list of papers that reference DSS Extensions.</p>
-<p>No extensive curation has been done. Licenses, state of development,
-maturity and support vary. When in doubt, please contact the authors of
-each repository.</p>
-<p>The table is sorted by URL, that automatically groups by
-author/organization.</p>
-<p><em><a href="https://github.com/dss-extensions/dss-extensions">Please
-feel free to open an issue or PR</a> if you wish to
-include/update/exclude your repository link or paper.</em></p>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 66%" />
-</colgroup>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Third-Party Repositories &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'repositories';</script>
+    <link rel="icon" href="_static/dssx.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Publications" href="publications.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="citations.html" class="nav-link">Citations</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Third-Party...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="third-party-repositories">
+<h1>Third-Party Repositories<a class="headerlink" href="#third-party-repositories" title="Link to this heading">#</a></h1>
+<p>This is a collection of links to repositories that either use one of the projects under DSS-Extensions, or list them as working alternatives. <a class="reference external" href="https://dss-extensions.org/citations.html">Follow here</a> for a list of papers that reference DSS-Extensions.</p>
+<p>GitHub also lists some of the repositories directly as dependents, including other repositories not listed here:</p>
+<ul class="simple">
+<li><p><a class="github reference external" href="https://github.com/dss-extensions/DSS-Python/network/dependents">dss-extensions/DSS-Python</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/dss-extensions/OpenDSSDirect.py/network/dependents">dss-extensions/OpenDSSDirect.py</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/dss-extensions/dss_sharp/network/dependents">dss-extensions/dss_sharp</a></p></li>
+</ul>
+<p>No curation has been done. Licenses, state of development, maturity and support vary. When in doubt, please contact the authors of each repository.</p>
+<p>The table is sorted by URL, that automatically groups by author/organization.</p>
+<p><em><a class="reference external" href="https://github.com/dss-extensions/dss-extensions">Please feel free to open an issue or PR</a> if you wish to include/update/exclude your repository link or paper.</em></p>
+<table class="table">
 <thead>
-<tr class="header">
-<th style="text-align: left;">Link</th>
-<th style="text-align: left;">Title/description</th>
+<tr class="row-odd"><th class="head text-left"><p>Link</p></th>
+<th class="head text-left"><p>Title/description</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/4everyng/FLISR">4everyng/FLISR</a></td>
-<td style="text-align: left;">FLISR: Fault isolation and restoration
-functions with OpenDSS data import</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/4everyng/FLISR">4everyng/FLISR</a></p></td>
+<td class="text-left"><p>FLISR: Fault isolation and restoration functions with OpenDSS data import</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/birkaransachdev/hunting-sims">birkaransachdev/hunting-sims</a></td>
-<td style="text-align: left;">Hunting Simulations using OpenDSS
-code</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/Abhijeet1990/Dss_SimPy_RL">Abhijeet1990/Dss_SimPy_RL</a></p></td>
+<td class="text-left"><p>Open-DSS and SimPy based Cyber-Physical RL environment</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/christos21/bottom_up">christos21/bottom_up</a></td>
-<td style="text-align: left;">BUMP: Smart Grid Bottom-up Modeling and
-Power-flow Analysis</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/birkaransachdev/hunting-sims">birkaransachdev/hunting-sims</a></p></td>
+<td class="text-left"><p>Hunting Simulations using OpenDSS code</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/csiro-energy-systems/RepresentativeLVNetworks">csiro-energy-systems/RepresentativeLVNetworks</a></td>
-<td style="text-align: left;">Public Release of Julia and Python code
-and data from CSIRO’s Low-Voltage Feeder Taxonomy (LVFT) Study</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/caltech-netlab/acnportal-experiments/">caltech-netlab/acnportal-experiments</a></p></td>
+<td class="text-left"><p>Case studies to demonstrate the use of ACN-Sim.</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/dpinney/omf">dpinney/omf</a></td>
-<td style="text-align: left;">The Open Modeling Framework for smart grid
-cost-benefit analysis</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/christos21/bottom_up">christos21/bottom_up</a></p></td>
+<td class="text-left"><p>BUMP: Smart Grid Bottom-up Modeling and Power-flow Analysis</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/dsilvafrano/solarcalc">dsilvafrano/solarcalc</a></td>
-<td style="text-align: left;">Python code for 25 year PV economic
-analysis</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/csiro-energy-systems/RepresentativeLVNetworks">csiro-energy-systems/RepresentativeLVNetworks</a></p></td>
+<td class="text-left"><p>Public Release of Julia and Python code and data from CSIRO’s Low-Voltage Feeder Taxonomy (LVFT) Study</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/dualslash/opendss">dualslash/opendss</a></td>
-<td style="text-align: left;">Docker Interface for OpenDSS</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/dpinney/omf">dpinney/omf</a></p></td>
+<td class="text-left"><p>The Open Modeling Framework for smart grid cost-benefit analysis</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/eepdnaclk/PV_rephasing-smartgrid">eepdnaclk/PV_rephasing-smartgrid</a></td>
-<td style="text-align: left;">PV rephasing research</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/dsilvafrano/solarcalc">dsilvafrano/solarcalc</a></p></td>
+<td class="text-left"><p>Python code for 25 year PV economic analysis</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/eepdnaclk/state_estimation-smartgrid">eepdnaclk/state_estimation-smartgrid</a></td>
-<td style="text-align: left;">State Estimation work in Smart Grid</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/dualslash/opendss">dualslash/opendss</a></p></td>
+<td class="text-left"><p>Docker Interface for OpenDSS</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/Energy-MAC/DSSDirectMicrogrid">Energy-MAC/DSSDirectMicrogrid</a></td>
-<td style="text-align: left;">Use OpenDSS to run Power Flow calculations
-in a Microgrid</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/eepdnaclk/PV_rephasing-smartgrid">eepdnaclk/PV_rephasing-smartgrid</a></p></td>
+<td class="text-left"><p>PV rephasing research</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/felipemarkson/dssdata">felipemarkson/dssdata</a></td>
-<td style="text-align: left;">A python micro-framework for simulation
-and data analysis of electrical distribution systems modeled on
-OpenDSS.</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/eepdnaclk/state_estimation-smartgrid">eepdnaclk/state_estimation-smartgrid</a></p></td>
+<td class="text-left"><p>State Estimation work in Smart Grid</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/Fghow55/CosimulationProject">Fghow55/CosimulationProject</a></td>
-<td style="text-align: left;">CosimulationProject: “My summer 2022-23
-research project for the FAN group at the University of Auckland. It’s a
-cosimulation algorithm written in Python that interacts with grid models
-in OpenDSS and Opal-RT.”</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/Energy-MAC/DSSDirectMicrogrid">Energy-MAC/DSSDirectMicrogrid</a></p></td>
+<td class="text-left"><p>Use OpenDSS to run Power Flow calculations in a Microgrid</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/GMLC-TDC/pesgm-2019-helics-tutorial">GMLC-TDC/pesgm-2019-helics-tutorial</a></td>
-<td style="text-align: left;">PESGM 2019 HELICS tutorial</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/felipemarkson/dssdata">felipemarkson/dssdata</a></p></td>
+<td class="text-left"><p>A python micro-framework for simulation and data analysis of electrical distribution systems modeled on OpenDSS.</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/GreenEVT/GreenEVT">GreenEVT/GreenEVT</a></td>
-<td style="text-align: left;">Greensboro Electric Vehicle Testbed</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/Fghow55/CosimulationProject">Fghow55/CosimulationProject</a></p></td>
+<td class="text-left"><p>CosimulationProject: “My summer 2022-23 research project for the FAN group at the University of Auckland. It’s a cosimulation algorithm written in Python that interacts with grid models in OpenDSS and Opal-RT.”</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/idaholab/Caldera_Grid">idaholab/Caldera_Grid</a></td>
-<td style="text-align: left;">Caldera and OpenDSS co-simulation platform
-using HELICS</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/GMLC-TDC/pesgm-2019-helics-tutorial">GMLC-TDC/pesgm-2019-helics-tutorial</a></p></td>
+<td class="text-left"><p>PESGM 2019 HELICS tutorial</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/LLNL/gridds">LLNL/gridds</a></td>
-<td style="text-align: left;">GridDS: Data Science Toolkit for Energy
-Grid Data (GridDS)</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/GreenEVT/GreenEVT">GreenEVT/GreenEVT</a></p></td>
+<td class="text-left"><p>Greensboro Electric Vehicle Testbed</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/mesmo-dev/mesmo">mesmo-dev/mesmo</a></td>
-<td style="text-align: left;">MESMO - Multi-Energy System Modeling and
-Optimization</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/idaholab/Caldera_Grid">idaholab/Caldera_Grid</a></p></td>
+<td class="text-left"><p>Caldera and OpenDSS co-simulation platform using HELICS</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/NREL/DG2">NREL/DG2</a></td>
-<td style="text-align: left;">(DG)² is an impact analysis tool</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/jochenmadler/DEMS">jochenmadler/DEMS</a></p></td>
+<td class="text-left"><p>Distributed Energy Management (DEMS) simulation framework</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/NREL/disco">NREL/disco</a></td>
-<td style="text-align: left;">DISCO (Distribution Integration Solution
-Cost Options)</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/LLNL/gridds">LLNL/gridds</a></p></td>
+<td class="text-left"><p>GridDS: Data Science Toolkit for Energy Grid Data (GridDS)</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/NREL/ditto">NREL/ditto</a></td>
-<td style="text-align: left;">DiTTo is a Distribution Transformation
-Tool that aims at providing an open source framework to convert various
-distribution systems modeling formats</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/MarioPeraltaA/AMI">MarioPeraltaA/AMI</a></p></td>
+<td class="text-left"><p>Model-Free Hosting Capacity (HC) through Advanced Metering Infrastructure (AMI) in Medium and Low Voltage networks so that a Voltage Sensitivity analysis can be driven, besides comparing results of Voltage-Constrains against a Model-Base algorithm.</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/NREL/dss-cosim">NREL/dss-cosim</a></td>
-<td style="text-align: left;">Distribution system co-simulation with
-OpenDSS and DER controls</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/mesmo-dev/mesmo">mesmo-dev/mesmo</a></p></td>
+<td class="text-left"><p>MESMO - Multi-Energy System Modeling and Optimization</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/NREL/DSS-SimPy-RL">NREL/DSS-SimPy-RL</a></td>
-<td style="text-align: left;">NREL/DSS-SimPy-RL: This repository is an
-Reinforcement Learning Platform for learning agents to control
-cyber-physical Power Distribution Systems resiliently. The cyber
-environment in based on SimPy Discrete Event Simulator, while the
-distribution system is backened by Open-DSS.</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/nb-377/OPF-Tutorial">nb-377/OPF-Tutorial</a></p></td>
+<td class="text-left"><p>Optimal power flow tutorial for islanded and grid connected microgrid using OpenDSS, Pyomo, and IPOPT.</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/NREL/EMeRGE">NREL/EMeRGE</a></td>
-<td style="text-align: left;">Modern tool for exploring and performing
-DER impact assessment for power distribution networks.</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/DG2">NREL/DG2</a></p></td>
+<td class="text-left"><p>(DG)² is an impact analysis tool</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/NREL/erad">NREL/erad</a></td>
-<td style="text-align: left;">Graph based python tool for computing
-equitable resilience</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/disco">NREL/disco</a></p></td>
+<td class="text-left"><p>DISCO (Distribution Integration Solution Cost Options)</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/NREL/EVOLVE">NREL/EVOLVE</a></td>
-<td style="text-align: left;">Evolution of Net Load Variation from
-Emerging Technologies (EVOLVE)</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/ditto">NREL/ditto</a></p></td>
+<td class="text-left"><p>DiTTo is a Distribution Transformation Tool that aims at providing an open source framework to convert various distribution systems modeling formats</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/NREL/mpc4clr">NREL/mpc4clr</a></td>
-<td style="text-align: left;">MPC4CLR is a Julia- and Python-based
-software package for the application of model predictive control (MPC)
-for critical load restoration (CLR) in power distribution systems</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/dss-cosim">NREL/dss-cosim</a></p></td>
+<td class="text-left"><p>Distribution system co-simulation with OpenDSS and DER controls</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/NREL/OpenDSS-wrapper">NREL/OpenDSS-wrapper</a></td>
-<td style="text-align: left;">Distribution system simulation python
-wrapper that connects OpenDSSDirect.py with a co-simulation
-framework</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/DSS-SimPy-RL">NREL/DSS-SimPy-RL</a></p></td>
+<td class="text-left"><p>NREL/DSS-SimPy-RL: This repository is an Reinforcement Learning Platform for learning agents to control cyber-physical Power Distribution Systems resiliently. The cyber environment in based on SimPy Discrete Event Simulator, while the distribution system is backened by Open-DSS.</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/NREL/PowerGridworld">NREL/PowerGridworld</a></td>
-<td style="text-align: left;">PowerGridworld: A Framework for
-Multi-Agent Reinforcement Learning in Power Systems</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/EMeRGE">NREL/EMeRGE</a></p></td>
+<td class="text-left"><p>Modern tool for exploring and performing DER impact assessment for power distribution networks.</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/NREL/PyDSS">NREL/PyDSS</a></td>
-<td style="text-align: left;">PyDSS is a high level python interface for
-OpenDSS</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/erad">NREL/erad</a></p></td>
+<td class="text-left"><p>Graph based python tool for computing equitable resilience</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/openEDI/sgidal-example">openEDI/sgidal-example</a></td>
-<td style="text-align: left;">This example shows how to use the GADAL
-(Grid Algorithms and Data Analytics Library) api to manage simulations.
-We also use it as a testing ground for the testing the combination of
-feeders, state estimation, and distributed OPF.</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/EVOLVE">NREL/EVOLVE</a></p></td>
+<td class="text-left"><p>Evolution of Net Load Variation from Emerging Technologies (EVOLVE)</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/Paralelopipet/RL_VVC_dataset">Paralelopipet/RL_VVC_dataset</a></td>
-<td style="text-align: left;">A Reinforcement Learning-based Volt-VAR
-Control Dataset</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/mpc4clr">NREL/mpc4clr</a></p></td>
+<td class="text-left"><p>MPC4CLR is a Julia- and Python-based software package for the application of model predictive control (MPC) for critical load restoration (CLR) in power distribution systems</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/patsec/ot-sim">patsec/ot-sim</a></td>
-<td style="text-align: left;">OT-sim is a set of modules that run
-simulated OT devices in VMs or containers. It allows researchers to
-represent a physical system, at scale, in a co-simulation environment
-for specific or system-wide testing and evaluation without impacting a
-real-world system. Over time, our goal is to include additional protocol
-support and hardware-in-the-loop capability.</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/OpenDSS-wrapper">NREL/OpenDSS-wrapper</a></p></td>
+<td class="text-left"><p>Distribution system simulation python wrapper that connects OpenDSSDirect.py with a co-simulation framework</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/siemens/powergym">siemens/powergym</a></td>
-<td style="text-align: left;">PowerGym is a Gym-like environment for
-Volt-Var control in power distribution systems.</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/PowerGridworld">NREL/PowerGridworld</a></p></td>
+<td class="text-left"><p>PowerGridworld: A Framework for Multi-Agent Reinforcement Learning in Power Systems</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/sonercandas/fledge">sonercandas/fledge</a></td>
-<td style="text-align: left;">FLEDGE - Flexible Distribution Grid
-Demonstrator</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/PyDSS">NREL/PyDSS</a></p></td>
+<td class="text-left"><p>PyDSS is a high level python interface for OpenDSS</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/supsi-dacd-isaac/krangpower">supsi-dacd-isaac/krangpower</a></td>
-<td style="text-align: left;">krangpower: Distribution System Simulator
-based on OpenDSS and OpenDSSDirect.py. Modern Syntax, DataFrames, Pint,
-Networkx, Algorithmic Agents.</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/NREL/rlc4clr">NREL/rlc4clr</a></p></td>
+<td class="text-left"><p>RLC4CLR: Reinforcement Learning Control for Critical Load Restoration</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/sustainable-computing/co_sim_platform">sustainable-computing/co_sim_platform</a></td>
-<td style="text-align: left;">Maestro is a smart grid co-simulation
-platform built on top of Mosaik</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/openEDI/sgidal-example">openEDI/sgidal-example</a></p></td>
+<td class="text-left"><p>This example shows how to use the GADAL (Grid Algorithms and Data Analytics Library) api to manage simulations. We also use it as a testing ground for the testing the combination of feeders, state estimation, and distributed OPF.</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/sustainable-computing/deadline-aware-fair-scheduling">sustainable-computing/deadline-aware-fair-scheduling</a></td>
-<td style="text-align: left;">A Deadline-Aware, Incentive-Compatible and
-Proportionally-Fair Mechanism for EV Charging in Distribution Grids</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/Paralelopipet/RL_VVC_dataset">Paralelopipet/RL_VVC_dataset</a></p></td>
+<td class="text-left"><p>A Reinforcement Learning-based Volt-VAR Control Dataset</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/tamu-engineering-research/OpenGridGym">tamu-engineering-research/OpenGridGym</a></td>
-<td style="text-align: left;">OpenGridGym is an Open-Source AI-friendly
-toolkit for distribution market simulation</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/patsec/ot-sim">patsec/ot-sim</a></p></td>
+<td class="text-left"><p>OT-sim is a set of modules that run simulated OT devices in VMs or containers. It allows researchers to represent a physical system, at scale, in a co-simulation environment for specific or system-wide testing and evaluation without impacting a real-world system. Over time, our goal is to include additional protocol support and hardware-in-the-loop capability.</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-0-dss_python">Team-Nando/Tutorial-DERHostingCapacity-0-dss_python</a></td>
-<td style="text-align: left;">Tutorial on DER Hosting Capacity - Part 0:
-Using dss_python</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/siemens/powergym">siemens/powergym</a></p></td>
+<td class="text-left"><p>PowerGym is a Gym-like environment for Volt-Var control in power distribution systems.</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-1-AdvancedTools_LV">Team-Nando/Tutorial-DERHostingCapacity-1-AdvancedTools_LV</a></td>
-<td style="text-align: left;">Tutorial on DER Hosting Capacity - Part 1:
-Advanced Tools for the Analysis of Three-Phase Unbalanced LV
-Networks</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/sonercandas/fledge">sonercandas/fledge</a></p></td>
+<td class="text-left"><p>FLEDGE - Flexible Distribution Grid Demonstrator</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-2-TimeSeries_LV">Team-Nando/Tutorial-DERHostingCapacity-2-TimeSeries_LV</a></td>
-<td style="text-align: left;">Tutorial on DER Hosting Capacity - Part 2:
-Time-Series Analysis of Three-Phase Unbalanced LV Networks</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/supsi-dacd-isaac/krangpower">supsi-dacd-isaac/krangpower</a></p></td>
+<td class="text-left"><p>krangpower: Distribution System Simulator based on OpenDSS and OpenDSSDirect.py. Modern Syntax, DataFrames, Pint, Networkx, Algorithmic Agents.</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/typhoon-hil/opendss-typhoon-hil-interface">typhoon-hil/opendss-typhoon-hil-interface</a></td>
-<td style="text-align: left;">OpenDSS to Typhoon interface library</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/sustainable-computing/co_sim_platform">sustainable-computing/co_sim_platform</a></p></td>
+<td class="text-left"><p>Maestro is a smart grid co-simulation platform built on top of Mosaik</p></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://github.com/urbanopt/urbanopt-ditto-reader">urbanopt/urbanopt-ditto-reader</a></td>
-<td style="text-align: left;">Enhancement of URBANopt GeoJSON that can
-be consumed by DiTTo reader</td>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/sustainable-computing/deadline-aware-fair-scheduling">sustainable-computing/deadline-aware-fair-scheduling</a></p></td>
+<td class="text-left"><p>A Deadline-Aware, Incentive-Compatible and Proportionally-Fair Mechanism for EV Charging in Distribution Grids</p></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://github.com/Zecao/ExecutorOpenDssBr">Zecao/ExecutorOpenDssBr</a></td>
-<td style="text-align: left;">A C#(Visual Studio) OpenDSS customization
-to calculate the power flow of brazilian feeders created from
-GeoPerdasANEEL database</td>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/tamu-engineering-research/OpenGridGym">tamu-engineering-research/OpenGridGym</a></p></td>
+<td class="text-left"><p>OpenGridGym is an Open-Source AI-friendly toolkit for distribution market simulation</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-0-dss_python">Team-Nando/Tutorial-DERHostingCapacity-0-dss_python</a></p></td>
+<td class="text-left"><p>Tutorial on DER Hosting Capacity - Part 0: Using dss_python</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-1-AdvancedTools_LV">Team-Nando/Tutorial-DERHostingCapacity-1-AdvancedTools_LV</a></p></td>
+<td class="text-left"><p>Tutorial on DER Hosting Capacity - Part 1: Advanced Tools for the Analysis of Three-Phase Unbalanced LV Networks</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/Team-Nando/Tutorial-DERHostingCapacity-2-TimeSeries_LV">Team-Nando/Tutorial-DERHostingCapacity-2-TimeSeries_LV</a></p></td>
+<td class="text-left"><p>Tutorial on DER Hosting Capacity - Part 2: Time-Series Analysis of Three-Phase Unbalanced LV Networks</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/typhoon-hil/opendss-typhoon-hil-interface">typhoon-hil/opendss-typhoon-hil-interface</a></p></td>
+<td class="text-left"><p>OpenDSS to Typhoon interface library</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><a class="github reference external" href="https://github.com/urbanopt/urbanopt-ditto-reader">urbanopt/urbanopt-ditto-reader</a></p></td>
+<td class="text-left"><p>Enhancement of URBANopt GeoJSON that can be consumed by DiTTo reader</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><a class="github reference external" href="https://github.com/Zecao/ExecutorOpenDssBr">Zecao/ExecutorOpenDssBr</a></p></td>
+<td class="text-left"><p>A C#(Visual Studio) OpenDSS customization to calculate the power flow of brazilian feeders created from GeoPerdasANEEL database</p></td>
 </tr>
 </tbody>
 </table>
-</body>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="publications.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Publications</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/repositories.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
 </html>

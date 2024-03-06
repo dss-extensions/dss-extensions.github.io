@@ -1,0 +1,77 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# DynamicExp
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NVariables`
+    - integer
+    - 0
+    - 
+    - (Int) Number of state variables to be considered in the differential equation.
+*   - 2
+    - `VarNames`
+    - array of strings
+    - 
+    - 
+    - ([String]) Array of strings with the names of the state variables.
+*   - 3
+    - `Var`
+    - string
+    - 
+    - 
+    - (String) Activates the state variable using the given name.
+*   - 4
+    - `VarIdx`
+    - integer
+    - 
+    - 
+    - (Int) read-only, returns the index of the active state variable.
+*   - 5
+    - `Expression`
+    - string
+    - 
+    - 
+    - It is the differential expression using OpenDSS RPN syntax. The expression must be contained within brackets in case of having multiple equations, for example:<br><br>expression="[w dt = 1 M / (P_m D*w - P_e -) *]"
+*   - 6
+    - `Domain`
+    - string<br>*(from enum. [Domain](#enum-dynamicexpdomain))*
+    - Time
+    - 
+    - It is the domain for which the equation is defined, it can be one of [time*, dq]. By deafult, dynamic epxressions are defined in the time domain.
+*   - 7
+    - `Like`
+    - string<br>*([DynamicExp](#DynamicExp) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-dynamicexpdomain)=
+### DynamicExp: Domain
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Time`
+*   - `dq`
+:::
+
+

@@ -1,0 +1,212 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Recloser
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `MonitoredObj`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Full object name of the circuit element, typically a line, transformer, load, or generator, to which the Recloser's PT and/or CT are connected. This is the "monitored" element. There is no default; must be specified.
+*   - 2
+    - `MonitoredTerm`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the Recloser is connected. 1 or 2, typically.
+*   - 3
+    - `SwitchedObj`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Name of circuit element switch that the Recloser controls. Specify the full object name. Defaults to the same as the Monitored element. This is the "controlled" element.
+*   - 4
+    - `SwitchedTerm`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the controlled element in which the switch is controlled by the Recloser. 1 or 2, typically.  Default is 1.
+*   - 5
+    - `NumFast`
+    - integer
+    - 1
+    - 
+    - Number of Fast (fuse saving) operations. (See "Shots")
+*   - 6
+    - `PhaseFast`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - a
+    - 
+    - Name of the TCC Curve object that determines the Phase Fast trip.  Must have been previously defined as a TCC_Curve object. Default is "A". Multiplying the current values in the curve by the "phasetrip" value gives the actual current.
+*   - 7
+    - `PhaseDelayed`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - d
+    - 
+    - Name of the TCC Curve object that determines the Phase Delayed trip.  Must have been previously defined as a TCC_Curve object. Default is "D".Multiplying the current values in the curve by the "phasetrip" value gives the actual current.
+*   - 8
+    - `GroundFast`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - 
+    - 
+    - Name of the TCC Curve object that determines the Ground Fast trip.  Must have been previously defined as a TCC_Curve object. Default is none (ignored). Multiplying the current values in the curve by the "groundtrip" value gives the actual current.
+*   - 9
+    - `GroundDelayed`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - 
+    - 
+    - Name of the TCC Curve object that determines the Ground Delayed trip.  Must have been previously defined as a TCC_Curve object. Default is none (ignored).Multiplying the current values in the curve by the "groundtrip" value gives the actual current.
+*   - 10
+    - `PhaseTrip`
+    - real
+    - 1.0
+    - 
+    - Multiplier or actual phase amps for the phase TCC curve.
+*   - 11
+    - `GroundTrip`
+    - real
+    - 1.0
+    - 
+    - Multiplier or actual ground amps (3I0) for the ground TCC curve.
+*   - 12
+    - `PhaseInst`
+    - real
+    - 0.0
+    - 
+    - Actual amps for instantaneous phase trip which is assumed to happen in 0.01 sec + Delay Time. Default is 0.0, which signifies no inst trip. 
+*   - 13
+    - `GroundInst`
+    - real
+    - 0.0
+    - 
+    - Actual amps for instantaneous ground trip which is assumed to happen in 0.01 sec + Delay Time. Default is 0.0, which signifies no inst trip.
+*   - 14
+    - `Reset`
+    - real
+    - 15.0
+    - s
+    - Reset time for Recloser.
+*   - 15
+    - `Shots`
+    - integer
+    - 4
+    - 
+    - Total Number of fast and delayed shots to lockout.  Default is 4. This is one more than the number of reclose intervals.
+*   - 16
+    - `RecloseIntervals`
+    - array of reals
+    - [0.5, 2.0, 2.0]
+    - 
+    - Array of reclose intervals.  Default for Recloser is (0.5, 2.0, 2.0) seconds. A locked out Recloser must be closed manually (action=close).
+*   - 17
+    - `Delay`
+    - real
+    - 0.0
+    - s
+    - Fixed delay time added to Recloser trip time. Used to represent breaker time or any other delay.
+*   - 18
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-recloseraction))*
+    - 
+    - 
+    - DEPRECATED. See "State" property<br>***Redundant with State***
+*   - 19
+    - `TDPhFast`
+    - real
+    - 1.0
+    - 
+    - Time dial for Phase Fast trip curve. Multiplier on time axis of specified curve.
+*   - 20
+    - `TDGrFast`
+    - real
+    - 1.0
+    - 
+    - Time dial for Ground Fast trip curve. Multiplier on time axis of specified curve.
+*   - 21
+    - `TDPhDelayed`
+    - real
+    - 1.0
+    - 
+    - Time dial for Phase Delayed trip curve. Multiplier on time axis of specified curve.
+*   - 22
+    - `TDGrDelayed`
+    - real
+    - 1.0
+    - 
+    - Time dial for Ground Delayed trip curve. Multiplier on time axis of specified curve.
+*   - 23
+    - `Normal`
+    - string<br>*(from enum. [State](#enum-recloserstate))*
+    - closed
+    - 
+    - Normal state of the recloser. The recloser reverts to this state for reset, change of mode, etc. Defaults to "State" if not specifically declared.
+*   - 24
+    - `State`
+    - string<br>*(from enum. [State](#enum-recloserstate))*
+    - closed
+    - 
+    - Actual state of the recloser. Upon setting, immediately forces state of the recloser, overriding the Recloser control. Simulates manual control on recloser. Defaults to Closed. "Open" causes the controlled element to open and lock out. "Closed" causes the controlled element to close and the recloser to reset to its first operation.
+*   - 25
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 26
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 27
+    - `Like`
+    - string<br>*([Recloser](#Recloser) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-recloseraction)=
+### Recloser: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `close`
+*   - `open`
+*   - `trip`
+:::
+
+
+(enum-recloserstate)=
+### Recloser: State
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `closed`
+*   - `open`
+*   - `trip`
+:::
+
+

@@ -1,0 +1,249 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Line
+
+(
+    Circuit Element,
+    PD Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which first terminal is connected.<br>Example:<br>bus1=busname   (assumes all terminals connected in normal phase order)<br>bus1=busname.3.1.2.0 (specify terminal to node connections explicitly)
+*   - 2
+    - `Bus2`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which 2nd terminal is connected.
+*   - 3
+    - `LineCode`
+    - string<br>*([LineCode](#LineCode) name)*
+    - 
+    - 
+    - Name of linecode object describing line impedances.<br>If you use a line code, you do not need to specify the impedances here. The line code must have been PREVIOUSLY defined. The values specified last will prevail over those specified earlier (left-to-right sequence of properties).  You can subsequently change the number of phases if symmetrical component quantities are specified.If no line code or impedance data are specified, the line object defaults to 336 MCM ACSR on 4 ft spacing.
+*   - 4
+    - `Length`
+    - real
+    - 
+    - 
+    - Length of line. If units do not match the impedance data, specify "units" property. 
+*   - 5
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of phases, this line.
+*   - 6
+    - `R1`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Positive-sequence Resistance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. See also Rmatrix.
+*   - 7
+    - `X1`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Positive-sequence Reactance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition.  See also Xmatrix
+*   - 8
+    - `R0`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Zero-sequence Resistance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition.
+*   - 9
+    - `X0`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Zero-sequence Reactance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition.
+*   - 10
+    - `C1`
+    - real
+    - 
+    - nF/[length_unit]
+    - Positive-sequence capacitance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. See also Cmatrix and B1.
+*   - 11
+    - `C0`
+    - real
+    - 
+    - nF/[length_unit]
+    - Zero-sequence capacitance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition.See also B0.
+*   - 12
+    - `RMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - Ω/[length_unit]
+    - Resistance matrix, lower triangle. Order of the matrix is the number of phases. May be used to specify the impedance of any line configuration. Using any of Rmatrix, Xmatrix, Cmatrix forces program to use the matrix values for line impedance definition. For balanced line models, you may use the standard symmetrical component data definition instead.
+*   - 13
+    - `XMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - Ω/[length_unit]
+    - Reactance matrix, lower triangle. Order of the matrix is the number of phases. May be used to specify the impedance of any line configuration. Using any of Rmatrix, Xmatrix, Cmatrix forces program to use the matrix values for line impedance definition.  For balanced line models, you may use the standard symmetrical component data definition instead.
+*   - 14
+    - `CMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - nF/[length_unit]
+    - Nodal Capacitance matrix, lower triangle. Order of the matrix is the number of phases. May be used to specify the shunt capacitance of any line configuration. Using any of Rmatrix, Xmatrix, Cmatrix forces program to use the matrix values for line impedance definition.  For balanced line models, you may use the standard symmetrical component data definition instead.
+*   - 15
+    - `Switch`
+    - boolean
+    - False
+    - 
+    - Designates this line as a switch for graphics and algorithmic purposes. <br>SIDE EFFECT: Sets r1 = 1.0; x1 = 1.0; r0 = 1.0; x0 = 1.0; c1 = 1.1 ; c0 = 1.0;  length = 0.001; You must reset if you want something different.
+*   - 16
+    - `Rg`
+    - real
+    - 0.018
+    - Ω/[length_unit]
+    - Carson earth return resistance per unit length used to compute impedance values at base frequency. Default is 0.01805 = 60 Hz value in ohms per kft (matches default line impedances). This value is required for harmonic solutions if you wish to adjust the earth return impedances for frequency. If not, set both Rg and Xg = 0.
+*   - 17
+    - `Xg`
+    - real
+    - 0.155
+    - Ω/[length_unit]
+    - Carson earth return reactance per unit length used to compute impedance values at base frequency.  For making better frequency adjustments. Default is 0.155081 = 60 Hz value in ohms per kft (matches default line impedances). This value is required for harmonic solutions if you wish to adjust the earth return impedances for frequency. If not, set both Rg and Xg = 0.
+*   - 18
+    - `rho`
+    - real
+    - 100.0
+    - Ωm
+    - Earth resistivity used to compute earth correction factor. Overrides Line geometry definition if specified.
+*   - 19
+    - `Geometry`
+    - string<br>*([LineGeometry](#LineGeometry) name)*
+    - 
+    - 
+    - Geometry code for LineGeometry Object. Supersedes any previous definition of line impedance. Line constants are computed for each frequency change or rho change. CAUTION: may alter number of phases. You cannot subsequently change the number of phases unless you change how the line impedance is defined.
+*   - 20
+    - `Units`
+    - string<br>*(from enum. [](#enum-length-unit))*
+    - none
+    - 
+    - Length Units. Default is None - assumes length units match impedance units.
+*   - 21
+    - `Spacing`
+    - string<br>*([LineSpacing](#LineSpacing) name)*
+    - 
+    - 
+    - Reference to a LineSpacing for use in a line constants calculation.<br>Must be used in conjunction with the Wires property.<br>Specify this before the wires property.
+*   - 22
+    - `Wires`
+    - array of strings<br>*([WireData](#WireData) names)*
+    - 
+    - 
+    - Array of WireData names for use in an overhead line constants calculation.<br>Must be used in conjunction with the Spacing property.<br>Specify the Spacing first, and "ncond" wires.<br>May also be used to specify bare neutrals with cables, using "ncond-nphase" wires.
+*   - 23
+    - `EarthModel`
+    - string<br>*(from enum. [](#enum-earth-model))*
+    - Deri
+    - 
+    - One of {Carson | FullCarson | Deri}. Default is the global value established with the Set EarthModel command. See the Options Help on EarthModel option. This is used to override the global value for this line. This option applies only when the "geometry" property is used.
+*   - 24
+    - `CNCables`
+    - array of strings<br>*([CNData](#CNData) names)*
+    - 
+    - 
+    - Array of CNData names for use in a cable constants calculation.<br>Must be used in conjunction with the Spacing property.<br>Specify the Spacing first, using "nphases" cncables.<br>You may later specify "nconds-nphases" wires for separate neutrals<br>***Redundant with Wires***
+*   - 25
+    - `TSCables`
+    - array of strings<br>*([TSData](#TSData) names)*
+    - 
+    - 
+    - Array of TSData names for use in a cable constants calculation.<br>Must be used in conjunction with the Spacing property.<br>Specify the Spacing first, using "nphases" tscables.<br>You may later specify "nconds-nphases" wires for separate neutrals<br>***Redundant with Wires***
+*   - 26
+    - `B1`
+    - real
+    - 
+    - μS/[length_unit]
+    - Alternate way to specify C1. MicroS per unit length<br>***Redundant with C1***
+*   - 27
+    - `B0`
+    - real
+    - 
+    - μS/[length_unit]
+    - Alternate way to specify C0. MicroS per unit length<br>***Redundant with C0***
+*   - 28
+    - `Seasons`
+    - integer
+    - 
+    - 
+    - Defines the number of ratings to be defined for the wire, to be used only when defining seasonal ratings using the "Ratings" property.
+*   - 29
+    - `Ratings`
+    - array of reals
+    - [400.0]
+    - 
+    - An array of ratings to be used when the seasonal ratings flag is True. It can be used to insert<br>multiple ratings to change during a QSTS simulation to evaluate different ratings in lines.
+*   - 30
+    - `LineType`
+    - string<br>*(from enum. [Type](#enum-line-type))*
+    - oh
+    - 
+    - Code designating the type of line.<br>OpenDSS currently does not use this internally. For whatever purpose the user defines.
+*   - 31
+    - `NormAmps`
+    - real
+    - 400.0
+    - 
+    - Normal rated current.
+*   - 32
+    - `EmergAmps`
+    - real
+    - 600.0
+    - 
+    - Maximum or emergency current rating.
+*   - 33
+    - `FaultRate`
+    - real
+    - 0.1
+    - 
+    - Failure rate PER UNIT LENGTH per year. Length must be same units as LENGTH property. Default is 0.1 fault per unit length per year.
+*   - 34
+    - `pctPerm`
+    - real
+    - 20.0
+    - 
+    - Percent of failures that become permanent.
+*   - 35
+    - `Repair`
+    - real
+    - 3.0
+    - 
+    - Hours to repair.
+*   - 36
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 37
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 38
+    - `Like`
+    - string<br>*([Line](#Line) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

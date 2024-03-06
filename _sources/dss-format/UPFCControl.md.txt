@@ -1,0 +1,45 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# UPFCControl
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `UPFCList`
+    - array of strings
+    - 
+    - 
+    - The list of all the UPFC devices to be controlled by this controller, If left empty, this control will apply for all UPFCs in the model.
+*   - 2
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 3
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 4
+    - `Like`
+    - string<br>*([UPFCControl](#UPFCControl) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

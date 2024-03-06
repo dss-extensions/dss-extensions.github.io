@@ -1,0 +1,247 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# RegControl
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Transformer`
+    - string<br>*([Transformer](#Transformer) or [AutoTrans](#AutoTrans) name)*
+    - 
+    - 
+    - Name of Transformer or AutoTrans element to which the RegControl is connected. Do not specify the full object name; "Transformer" or "AutoTrans" is assumed for the object class.  Example:<br><br>Transformer=Xfmr1
+*   - 2
+    - `Winding`
+    - integer
+    - 1
+    - 
+    - Number of the winding of the transformer element that the RegControl is monitoring. 1 or 2, typically.  Side Effect: Sets TAPWINDING property to the same winding.
+*   - 3
+    - `VReg`
+    - real
+    - 120.0
+    - V
+    - Voltage regulator setting for the winding being controlled.  Multiplying this value times the ptratio should yield the voltage across the WINDING of the controlled transformer.
+*   - 4
+    - `Band`
+    - real
+    - 3.0
+    - 
+    - Bandwidth in VOLTS for the controlled bus (see help for ptratio property).
+*   - 5
+    - `PTRatio`
+    - real
+    - 60.0
+    - 
+    - Ratio of the PT that converts the controlled winding voltage to the regulator control voltage. If the winding is Wye, the line-to-neutral voltage is used.  Else, the line-to-line voltage is used. SIDE EFFECT: Also sets RemotePTRatio property.
+*   - 6
+    - `CTPrim`
+    - real
+    - 300.0
+    - A
+    - Rating of the primary CT rating for which the line amps convert to control rated amps. The typical default secondary ampere rating is 0.2 Amps (check with manufacturer specs). Current at which the LDC voltages match the R and X settings.
+*   - 7
+    - `R`
+    - real
+    - 0.0
+    - 
+    - R setting on the line drop compensator in the regulator, expressed in VOLTS.
+*   - 8
+    - `X`
+    - real
+    - 0.0
+    - 
+    - X setting on the line drop compensator in the regulator, expressed in VOLTS.
+*   - 9
+    - `Bus`
+    - string
+    - 
+    - 
+    - Name of a bus (busname.nodename) in the system to use as the controlled bus instead of the bus to which the transformer winding is connected or the R and X line drop compensator settings.  Do not specify this value if you wish to use the line drop compensator settings.  Default is null string. Assumes the base voltage for this bus is the same as the transformer winding base specified above. Note: This bus (1-phase) WILL BE CREATED by the regulator control upon SOLVE if not defined by some other device. You can specify the node of the bus you wish to sample (defaults to 1). If specified, the RegControl is redefined as a 1-phase device since only one voltage is used.
+*   - 10
+    - `Delay`
+    - real
+    - 15.0
+    - s
+    - Time delay from when the voltage goes out of band to when the tap changing begins. This is used to determine which regulator control will act first. You may specify any floating point number to achieve a model of whatever condition is necessary.
+*   - 11
+    - `Reversible`
+    - boolean
+    - False
+    - 
+    - Indicates whether or not the regulator can be switched to regulate in the reverse direction. Typically applies only to line regulators and not to LTC on a substation transformer.
+*   - 12
+    - `RevVReg`
+    - real
+    - 120.0
+    - 
+    - Voltage setting in volts for operation in the reverse direction.
+*   - 13
+    - `RevBand`
+    - real
+    - 3.0
+    - 
+    - Bandwidth for operating in the reverse direction.
+*   - 14
+    - `RevR`
+    - real
+    - 0.0
+    - 
+    - R line drop compensator setting for reverse direction.
+*   - 15
+    - `RevX`
+    - real
+    - 0.0
+    - 
+    - X line drop compensator setting for reverse direction.
+*   - 16
+    - `TapDelay`
+    - real
+    - 2.0
+    - s
+    - Delay between tap changes. This is how long it takes between changes after the first change.
+*   - 17
+    - `DebugTrace`
+    - boolean
+    - False
+    - 
+    - Turn this on to capture the progress of the regulator model for each control iteration.  Creates a separate file for each RegControl named "REG_name.csv".
+*   - 18
+    - `MaxTapChange`
+    - integer
+    - 16
+    - 
+    - Maximum allowable tap change per control iteration in STATIC control mode.<br><br>Set this to 1 to better approximate actual control action. <br><br>Set this to 0 to fix the tap in the current position.
+*   - 19
+    - `InverseTime`
+    - boolean
+    - False
+    - 
+    - The time delay is adjusted inversely proportional to the amount the voltage is outside the band down to 10%.
+*   - 20
+    - `TapWinding`
+    - integer
+    - 
+    - 
+    - Winding containing the actual taps, if different than the WINDING property. Defaults to the same winding as specified by the WINDING property.
+*   - 21
+    - `VLimit`
+    - real
+    - 0.0
+    - V
+    - Voltage Limit for bus to which regulated winding is connected (e.g. first customer). Set to a value greater then zero to activate this function.
+*   - 22
+    - `PTPhase`
+    - string<br>*(from enum. [Phase Selection](#enum-regcontrolphase-selection))*
+    - 1
+    - 
+    - For multi-phase transformers, the number of the phase being monitored or one of { MAX | MIN} for all phases. Must be less than or equal to the number of phases. Ignored for regulated bus.
+*   - 23
+    - `RevThreshold`
+    - real
+    - 100.0
+    - kW
+    - kW reverse power threshold for reversing the direction of the regulator.
+*   - 24
+    - `RevDelay`
+    - real
+    - 60.0
+    - s
+    - Time Delay for executing the reversing action once the threshold for reversing has been exceeded.
+*   - 25
+    - `RevNeutral`
+    - boolean
+    - False
+    - 
+    - Set this to Yes if you want the regulator to go to neutral in the reverse direction or in cogen operation.
+*   - 26
+    - `EventLog`
+    - boolean
+    - False
+    - 
+    - Log control actions to Eventlog.
+*   - 27
+    - `RemotePTRatio`
+    - real
+    - 
+    - 
+    - When regulating a bus (the Bus= property is set), the PT ratio required to convert actual voltage at the remote bus to control voltage. Is initialized to PTratio property. Set this property after setting PTratio.
+*   - 28
+    - `TapNum`
+    - integer
+    - 0
+    - 
+    - An integer number indicating the tap position that the controlled transformer winding tap position is currently at, or is being set to.  If being set, and the value is outside the range of the transformer min or max tap, then set to the min or max tap position as appropriate. Default is 0
+*   - 29
+    - `Reset`
+    - boolean<br>*(action)*
+    - False
+    - 
+    - If Yes, forces Reset of this RegControl.
+*   - 30
+    - `LDC_Z`
+    - real
+    - 0.0
+    - 
+    - Z value for Beckwith LDC_Z control option. Volts adjustment at rated control current.
+*   - 31
+    - `Rev_Z`
+    - real
+    - 0.0
+    - 
+    - Reverse Z value for Beckwith LDC_Z control option.
+*   - 32
+    - `Cogen`
+    - boolean
+    - False
+    - 
+    - The Cogen feature is activated. Continues looking forward if power reverses, but switches to reverse-mode LDC, vreg and band values.
+*   - 33
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 34
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 35
+    - `Like`
+    - string<br>*([RegControl](#RegControl) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-regcontrolphase-selection)=
+### RegControl: Phase Selection
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `min`
+*   - `max`
+:::
+
+**This is a "hybrid" enumeration.** The related input properties accepts the values listed in this table and integer numbers greater than 1.
+

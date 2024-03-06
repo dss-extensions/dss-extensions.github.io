@@ -1,0 +1,188 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# LineCode
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NPhases`
+    - integer
+    - 3
+    - 
+    - Number of phases in the line this line code data represents.  Setting this property reinitializes the line code.  Impedance matrix is reset for default symmetrical component.
+*   - 2
+    - `R1`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Positive-sequence Resistance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. See also Rmatrix.
+*   - 3
+    - `X1`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Positive-sequence Reactance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. See also Xmatrix
+*   - 4
+    - `R0`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Zero-sequence Resistance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition.
+*   - 5
+    - `X0`
+    - real
+    - 
+    - Ω/[length_unit]
+    - Zero-sequence Reactance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition.
+*   - 6
+    - `C1`
+    - real
+    - 
+    - nF/[length_unit]
+    - Positive-sequence capacitance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. See also Cmatrix and B1.
+*   - 7
+    - `C0`
+    - real
+    - 
+    - nF/[length_unit]
+    - Zero-sequence capacitance. Setting any of R1, R0, X1, X0, C1, C0 forces the program to use the symmetrical component line definition. See also B0.
+*   - 8
+    - `Units`
+    - string<br>*(from enum. [](#enum-length-unit))*
+    - none
+    - 
+    - One of (ohms per ...). Assumes units agree with length units given in Line object.
+*   - 9
+    - `RMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - Ω/[length_unit]
+    - Resistance matrix, lower triangle. Order of the matrix is the number of phases. May be used to specify the impedance of any line configuration.  For balanced line models, you may use the standard symmetrical component data definition instead.
+*   - 10
+    - `XMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - Ω/[length_unit]
+    - Reactance matrix, lower triangle. Order of the matrix is the number of phases. May be used to specify the impedance of any line configuration.  For balanced line models, you may use the standard symmetrical component data definition instead.
+*   - 11
+    - `CMatrix`
+    - array of reals<br>*(symmetric matrix)*
+    - 
+    - nF/[length_unit]
+    - Nodal Capacitance matrix, lower triangle. Order of the matrix is the number of phases. May be used to specify the shunt capacitance of any line configuration.  For balanced line models, you may use the standard symmetrical component data definition instead.
+*   - 12
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Frequency at which impedances are specified.
+*   - 13
+    - `NormAmps`
+    - real
+    - 400.0
+    - 
+    - Normal ampere limit on line.  This is the so-called Planning Limit. It may also be the value above which load will have to be dropped in a contingency.  Usually about 75% - 80% of the emergency (one-hour) rating.
+*   - 14
+    - `EmergAmps`
+    - real
+    - 600.0
+    - 
+    - Emergency ampere limit on line (usually one-hour rating).
+*   - 15
+    - `FaultRate`
+    - real
+    - 0.1
+    - 
+    - Number of faults per unit length per year.
+*   - 16
+    - `PctPerm`
+    - real
+    - 20.0
+    - 
+    - Percentage of the faults that become permanent.
+*   - 17
+    - `Repair`
+    - real
+    - 0.0
+    - 
+    - Hours to repair.
+*   - 18
+    - `Kron`
+    - boolean<br>*(action)*
+    - False
+    - 
+    - Perform Kron reduction on the impedance matrix after it is formed, reducing order by 1. Eliminates the conductor designated by the "Neutral=" property. Do this after the R, X, and C matrices are defined. Ignored for symmetrical components. May be issued more than once to eliminate more than one conductor by resetting the Neutral property after the previous invoking of this property. Generally, you do not want to do a Kron reduction on the matrix if you intend to solve at a frequency other than the base frequency and exploit the Rg and Xg values.
+*   - 19
+    - `Rg`
+    - real
+    - 0.018
+    - Ω/[length_unit]
+    - Carson earth return resistance per unit length used to compute impedance values at base frequency.  For making better frequency adjustments. Default is 0.01805 = 60 Hz value in ohms per kft (matches default line impedances). This value is required for harmonic solutions if you wish to adjust the earth return impedances for frequency. If not, set both Rg and Xg = 0.
+*   - 20
+    - `Xg`
+    - real
+    - 0.155
+    - Ω/[length_unit]
+    - Carson earth return reactance per unit length used to compute impedance values at base frequency.  For making better frequency adjustments. Default value is 0.155081 = 60 Hz value in ohms per kft (matches default line impedances). This value is required for harmonic solutions if you wish to adjust the earth return impedances for frequency. If not, set both Rg and Xg = 0.
+*   - 21
+    - `rho`
+    - real
+    - 100.0
+    - Ωm
+    - Earth resistivity used to compute earth correction factor.
+*   - 22
+    - `Neutral`
+    - integer
+    - 3
+    - 
+    - Designates which conductor is the "neutral" conductor that will be eliminated by Kron reduction. Default is the last conductor (nphases value). After Kron reduction is set to 0. Subsequent issuing of Kron=Yes will not do anything until this property is set to a legal value. Applies only to LineCodes defined by R, X, and C matrix.
+*   - 23
+    - `B1`
+    - real
+    - 
+    - μS/[length_unit]
+    - Alternate way to specify C1.<br>***Redundant with C1***
+*   - 24
+    - `B0`
+    - real
+    - 
+    - μS/[length_unit]
+    - Alternate way to specify C0.<br>***Redundant with C0***
+*   - 25
+    - `Seasons`
+    - integer
+    - 
+    - 
+    - Defines the number of ratings to be defined for the wire, to be used only when defining seasonal ratings using the "Ratings" property.
+*   - 26
+    - `Ratings`
+    - array of reals
+    - [400.0]
+    - 
+    - An array of ratings to be used when the seasonal ratings flag is True. It can be used to insert<br>multiple ratings to change during a QSTS simulation to evaluate different ratings in lines.
+*   - 27
+    - `LineType`
+    - string<br>*(from enum. [](#enum-line-type))*
+    - oh
+    - 
+    - Code designating the type of line.<br>OpenDSS currently does not use this internally. For whatever purpose the user defines.
+*   - 28
+    - `Like`
+    - string<br>*([LineCode](#LineCode) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>General Options &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'dss-format/Options';</script>
+    <link rel="icon" href="../_static/dssx.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="General Objects" href="toc_general.html" />
+    <link rel="prev" title="Commands" href="Commands.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../dss_language.html">DSS Language</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Commands.html">Commands</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">General Options</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_general.html">General Objects</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_control.html">Control Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Recloser.html">Recloser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RegControl.html">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="toc_pce.html">PC Elements</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Storage.html">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../classic_api.html">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_apis.html">Python APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multithreading.html">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../docs.html" class="nav-link">Documentation</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../dss_language.html" class="nav-link">DSS Language</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">General Options</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="general-options">
+<h1>General Options<a class="headerlink" href="#general-options" title="Link to this heading">#</a></h1>
+<p>General DSS options as implemented in AltDSS/DSS C-API implementation of the OpenDSS engine. All are available in OpenDSS.</p>
+<table class="table table-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%growth</span></code></p></td>
+<td><p>Set default annual growth rate, percent, for loads with no growth curve specified. Default is 2.5.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%mean</span></code></p></td>
+<td><p>Percent mean to use for global load multiplier. Default is 65%.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%Normal</span></code></p></td>
+<td><p>Sets the Normal rating of all lines to a specified percent of the emergency rating.  Note: This action takes place immediately. Only the in-memory value is changed for the duration of the run.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">%stddev</span></code></p></td>
+<td><p>Percent Standard deviation to use for global load multiplier. Default is 9%.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ActiveActor</span></code></p></td>
+<td><p>Gets/Sets the number of the active actor, if the value is * (set active actor=*), the commands send after this instruction will be applied to all the actors.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ActorProgress</span></code></p></td>
+<td><p>Gets progress (%) for all the actors when performing a task</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Addtype</span></code></p></td>
+<td><p>{Generator | Capacitor} Default is Generator. Type of device for AutoAdd Mode.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Algorithm</span></code></p></td>
+<td><p>{Normal | Newton}  Solution algorithm type.  Normal is a fixed point iteration that is a little quicker than the Newton iteration.  Normal is adequate for most radial distribution circuits.  Newton is more robust for circuits that are difficult to solve.Diakoptics is used for accelerating the simulation using multicore computers</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Allocationfactors</span></code></p></td>
+<td><p>Sets the connected kVA allocation factors for all loads in the active circuit to the value given.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Allowduplicates</span></code></p></td>
+<td><p>Flag to indicate if it is OK to have devices of same name in the same class. If No, then a New command is treated as an Edit command. If Yes, then a New command will always result in a device being added.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Autobuslist</span></code></p></td>
+<td><p>Array of bus names to include in AutoAdd searches. Or, you can specify a text file holding the names, one to a line, by using the syntax (file=filename) instead of the actual array elements. Default is null, which results in the program using either the buses in the EnergyMeter object zones or, if no EnergyMeters, all the buses, which can make for lengthy solution times. <br><br>Examples:<br><br>Set autobuslist=(bus1, bus2, bus3, … )<br>Set autobuslist=(file=buslist.txt)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Basefrequency</span></code></p></td>
+<td><p>Default = 60. Set the fundamental frequency for harmonic solution and the default base frequency for all impedance quantities. Side effect: also changes the value of the solution frequency. Saved as default for next circuit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Bus</span></code></p></td>
+<td><p>Set Active Bus by name.  Can also be done with Select and SetkVBase commands and the “Set Terminal=”  option. The bus connected to the active terminal becomes the active bus. See Zsc and Zsc012 commands.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CapkVAR</span></code></p></td>
+<td><p>Size of capacitor, kVAR, to automatically add to system.  Default is 600.0.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CapMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 – see Users Manual) for Capacitors. Default is 38.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CapMarkerSize</span></code></p></td>
+<td><p>Size of Capacitor marker. Default is 3.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Casename</span></code></p></td>
+<td><p>Name of case for yearly simulations with demand interval data. Becomes the name of the subdirectory under which all the year data are stored. Default = circuit name <br><br>Side Effect: Sets the prefix for output files</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Cfactors</span></code></p></td>
+<td><p>Sets the CFactors for for all loads in the active circuit to the value given.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">circuit</span></code></p></td>
+<td><p>Set the active circuit by name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Cktmodel</span></code></p></td>
+<td><p>{Multiphase | Positive}  Default = Multiphase.  Designates whether circuit model is to interpreted as a normal multi-phase model or a positive-sequence only model</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></td>
+<td><p>Synonym for Type=. (See above)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ConcatenateReports</span></code></p></td>
+<td><p>Activates/Deactivates the option for concatenate the reports generated by the existing actors, if Yes, every time the user calls a show/export monitor command the report will include the data generated by all the actors, otherwise the report will containThe data generated by the active actor</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Controlmode</span></code></p></td>
+<td><p>{OFF | STATIC |EVENT | TIME}  Default is “STATIC”.  Control mode for the solution. Set to OFF to prevent controls from changing.<br>STATIC = Time does not advance.  Control actions are executed in order of shortest time to act until all actions are cleared from the control queue.  Use this mode for power flow solutions which may require several regulator tap changes per solution.<br><br>EVENT = solution is event driven.  Only the control actions nearest in time are executed and the time is advanced automatically to the time of the event. <br><br>TIME = solution is time driven.  Control actions are executed when the time for the pending action is reached or surpassed.<br><br>Controls may reset and may choose not to act when it comes their time. <br>Use TIME mode when modeling a control externally to the DSS and a solution mode such as DAILY or DUTYCYCLE that advances time, or set the time (hour and sec) explicitly from the external program.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CPU</span></code></p></td>
+<td><p>(default -1)Gets/Sets the CPU to be used by the active actor. If negative (-1) means that the actor affinity is to all the CPUs and will be executed in the<br>first available CPU and will be reallocated into another CPU dynamically if the operating system requires it. By setting a CPU number for an actor will force<br>the actor to be executed only on the specific CPU.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Daisysize</span></code></p></td>
+<td><p>Default is 1.0. Relative size (a multiplier applied to default size) of daisy circles on daisy plot.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Datapath</span></code></p></td>
+<td><p>Set the data path for files written or read by the DSS.<br>Defaults to the user documents folder.<br>If the DataPath is not writable, output files will be written to the user application data folder.<br>May be Null.  Executes a CHDIR to this path if non-null.<br>Does not require a circuit defined.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DefaultBaseFrequency</span></code></p></td>
+<td><p>Set Default Base Frequency, Hz. Side effect: Sets solution Frequency and default Circuit Base Frequency. This value is saved when the DSS closes down.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Defaultdaily</span></code></p></td>
+<td><p>Default daily load shape name. Default value is “default”, which is a 24-hour curve defined when the DSS is started.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Defaultyearly</span></code></p></td>
+<td><p>Default yearly load shape name. Default value is “default”, which is a 24-hour curve defined when the DSS is started.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DemandInterval</span></code></p></td>
+<td><p>Set for keeping demand interval data for daily, yearly, etc, simulations. Side Effect:  Resets all meters!!!</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DIVerbose</span></code></p></td>
+<td><p>Set to True if you wish a separate demand interval (DI) file written for each meter.  Otherwise, only the totalizing meters are written.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DSSVisualizationTool</span></code></p></td>
+<td><p>Executive.dssvisualizationtool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EarthModel</span></code></p></td>
+<td><p>One of {Carson | FullCarson | Deri*}.  Default is Deri, which isa  fit to the Full Carson that works well into high frequencies. “Carson” is the simplified Carson method that is typically used for 50/60 Hz power flow programs. Applies only to Line objects that use LineGeometry objects to compute impedances.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">editor</span></code></p></td>
+<td><p>Set the command string required to start up the editor preferred by the user. Does not require a circuit defined.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">element</span></code></p></td>
+<td><p>Sets the active DSS element by name. You can use the complete object spec (class.name) or just the name.  if full name is specifed, class becomes the active class, also.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">emergvmaxpu</span></code></p></td>
+<td><p>Maximum permissible per unit voltage for emergency (contingency) conditions. Default is 1.08.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">emergvminpu</span></code></p></td>
+<td><p>Minimum permissible per unit voltage for emergency (contingency) conditions. Default is 0.90.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EventLogDefault</span></code></p></td>
+<td><p>Sets/gets the default for the eventlog. After changing this flags the model needs to be recompiled to take effect.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">frequency</span></code></p></td>
+<td><p>Sets the frequency for the solution of the active circuit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FuseMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 see Users Manual) for Fuse elements. Default is 25.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FuseMarkerSize</span></code></p></td>
+<td><p>Size of Fuse marker. Default is 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Genkw</span></code></p></td>
+<td><p>Size of generator, kW, to automatically add to system. Default is 1000.0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Genmult</span></code></p></td>
+<td><p>Global multiplier for the kW output of every generator in the circuit. Default is 1.0. Applies to all but Autoadd solution modes. Ignored for generators designated as Status=Fixed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Genpf</span></code></p></td>
+<td><p>Power factor of generator to assume for automatic addition. Default is 1.0.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p>Alternate name for time step size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Harmonics</span></code></p></td>
+<td><p>{ALL | (list of harmonics) }  Default = ALL. Array of harmonics for which to perform a solution in Harmonics mode. If ALL, then solution is performed for all harmonics defined in spectra currently being used. Otherwise, specify a more limited list such as: <br><br>   Set Harmonics=(1 5 7 11 13)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hour</span></code></p></td>
+<td><p>Sets the hour used for the start time of the solution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">KeepList</span></code></p></td>
+<td><p>Array of bus names to keep when performing circuit reductions. You can specify a text file holding the names, one to a line, by using the syntax (file=filename) instead of the actual array elements. Command is cumulative (reset keeplist first). Reduction algorithm may keep other buses automatically. <br><br>Examples:<br><br>Reset Keeplist (sets all buses to FALSE (no keep))<br>Set KeepList=(bus1, bus2, bus3, … )<br>Set KeepList=(file=buslist.txt)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KeepLoad</span></code></p></td>
+<td><p>Keeploads = Y/N option for ReduceOption Laterals option</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LDCurve</span></code></p></td>
+<td><p>Set Load-Duration Curve. Global load multiplier is defined by this curve for LD1 and LD2 solution modes. Default is Nil.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LineTypes</span></code></p></td>
+<td><p>Executive.linetypes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Loadmodel</span></code></p></td>
+<td><p>{Powerflow | Admittance} depending on the type of solution you wish to perform. If admittance, a non-iterative, direct solution is done with all loads and generators modeled by their equivalent admittance.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Loadmult</span></code></p></td>
+<td><p>Global load multiplier for this circuit.  Does not affect loads designated to be “fixed”.  All other base kW values are multiplied by this number. Defaults to 1.0 when the circuit is created. As with other values, it always stays at the last value to which it was set until changed again.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LoadShapeClass</span></code></p></td>
+<td><p>={Daily | Yearly | Duty | None*} Default loadshape class to use for mode=time and mode=dynamic simulations. Loads and generators, etc., will follow this shape as time is advanced. Default value is None. That is, Load will not vary with time.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Log</span></code></p></td>
+<td><p>Significant solution events are added to the Event Log, primarily for debugging.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LongLineCorrection</span></code></p></td>
+<td><p>Executive.longlinecorrection</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Lossregs</span></code></p></td>
+<td><p>Which EnergyMeter register(s) to use for Losses in AutoAdd Mode. May be one or more registers.  if more than one, register values are summed together. Array of integer values &gt; 0.  Defaults to 13 (for Zone kWh Losses). <br><br>for a list of EnergyMeter register numbers, do the “Show Meters” command after defining a circuit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Lossweight</span></code></p></td>
+<td><p>Weighting factor for Losses in AutoAdd functions.  Defaults to 1.0.<br><br>Autoadd mode minimizes<br><br>(Lossweight * Losses + UEweight * UE). <br><br>If you wish to ignore Losses, set to 0. This applies only when there are EnergyMeter objects. Otherwise, AutoAdd mode minimizes total system losses.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MarkCapacitors</span></code></p></td>
+<td><p>Mark Capacitor locations with a symbol. See CapMarkerCode.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Markercode</span></code></p></td>
+<td><p>Number code for node marker on circuit plots. Number from 0 to 47. Default is 16 (open circle). 24 is solid circle. Try other values for other symbols. See also Nodewidth</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MarkFuses</span></code></p></td>
+<td><p>Mark Fuse locations with a symbol. See FuseMarkerCode and FuseMarkerSize.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MarkPVSystems</span></code></p></td>
+<td><p>Mark PVSystem locations with a symbol. See PVMarkerCode and PVMarkerSize.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MarkReclosers</span></code></p></td>
+<td><p>Mark Recloser locations with a symbol. See RecloserMarkerCode and RecloserMarkerSize.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MarkRegulators</span></code></p></td>
+<td><p>Mark Regulator locations with a symbol. See RegMarkerCode.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MarkRelays</span></code></p></td>
+<td><p>Mark Relay locations with a symbol. See RelayMarkerCode and RelayMarkerSize.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MarkStorage</span></code></p></td>
+<td><p>Mark Storage locations with a symbol. See StoreMarkerCode and StoreMarkerSize.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Markswitches</span></code></p></td>
+<td><p>Mark lines that are switches or are isolated with a symbol. See SwitchMarkerCode.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Marktransformers</span></code></p></td>
+<td><p>Mark transformer locations with a symbol. See TransMarkerCode. The coordinate of one of the buses for winding 1 or 2 must be defined for the symbol to show</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Maxcontroliter</span></code></p></td>
+<td><p>Max control iterations per solution.  Default is 10.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">maxiterations</span></code></p></td>
+<td><p>Sets the maximum allowable iterations for power flow solutions. Default is 15.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MinIterations</span></code></p></td>
+<td><p>Minimum number of iterations required for a solution. Default is 2.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mode</span></code></p></td>
+<td><p>Set the solution Mode: One of<br>  Snapshot,<br>  Daily,<br>  Yearly (follow Yearly curve),<br>  DIrect,<br>  DUtycycle,<br>  Time, ( see LoadShapeClass option)<br>  DYnamic,  ( see LoadShapeClass option)<br>  Harmonic,<br>  HarmonicT,  (sequential Harmonic Mode)<br>  M1 (Monte Carlo 1),<br>  M2 (Monte Carlo 2),<br>  M3 (Monte Carlo 3),<br>  Faultstudy,<br>  MF (monte carlo fault study)<br>  Peakday,<br>  LD1 (load-duration 1)<br>  LD2 (load-duration 2)<br>  AutoAdd (see AddType)<br>  YearlyVQ (Yearly Vector Quantization)<br>  DutyVQ (Duty Vector Quantization)<br><br>Side effect: setting the Mode property resets all monitors and energy meters. It also resets the time step, etc. to defaults for each mode.  After the initial reset, the user must explicitly reset the monitors and/or meters until another Set Mode= command.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NeglectLoadY</span></code></p></td>
+<td><p>For Harmonic solution, neglect the Load shunt admittance branch that can siphon off some of the Load injection current. <br><br>If YES, the current injected from the LOAD at harmonic frequencies will be nearly ideal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Nodewidth</span></code></p></td>
+<td><p>Width of node marker. Default=1. See MarkerCode</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">normvmaxpu</span></code></p></td>
+<td><p>Maximum permissible per unit voltage for normal conditions. Default is 1.05.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">normvminpu</span></code></p></td>
+<td><p>Minimum permissible per unit voltage for normal conditions. Default is 0.95.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NumActors</span></code></p></td>
+<td><p>Delivers the number of Actors created by the user, 1 is the default</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Numallociterations</span></code></p></td>
+<td><p>Default is 2. Maximum number of iterations for load allocations for each time the AllocateLoads or Estimate command is given.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NUMANodes</span></code></p></td>
+<td><p>Delivers the number of Non-uniform memory access nodes (NUMA Nodes) available on the machine (read Only). This information is vital when working with processor clusters (HPC). It will help you know the number of processors in the cluster</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">number</span></code></p></td>
+<td><p>Number of solutions or time steps to perform for each Solve command. Defaults for selected modes: <br><br>Daily = 24<br>Yearly = 8760<br>Duty = 100</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NumCores</span></code></p></td>
+<td><p>Delivers the number of physical processors (Cores) available on the computer. If your computers processor has less than 64 cores, this number should be equal to the half of the available CPUs, otherwise the number should  be the same (Read Only)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NumCPUs</span></code></p></td>
+<td><p>Delivers the number of threads (CPUs) available on the machine (read Only)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p>Synonym for Element=. (See above)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Overloadreport</span></code></p></td>
+<td><p>For yearly solution mode, sets overload reporting on/off. DemandInterval must be set to true for this to have effect.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Parallel</span></code></p></td>
+<td><p>Activates/Deactivates the parallel machine in OpenDSS, if deactivated OpenDSS will behave sequentially</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Pricecurve</span></code></p></td>
+<td><p>Sets the PRICESHAPE object to use to obtain for price signal. Default is none (null string). If none, price signal either remains constant or is set by an external process using Set Price= option. Curve is defined as a PRICESHAPE  in actual values (not normalized) and should be defined to correspond to the type of analysis being performed (daily, yearly, etc.).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Pricesignal</span></code></p></td>
+<td><p>Sets the present price signal ($/MWh) for the circuit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ProcessTime</span></code></p></td>
+<td><p>The time in microseconds to execute the solve process in the most recent time step or solution (read only)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PVMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 see Users Manual) for PVSystems and PVSystem. Default is 15.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PVMarkerSize</span></code></p></td>
+<td><p>Size of PVsystem and PVSystem markers. Default is 1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QueryLog</span></code></p></td>
+<td><p>When set to TRUE/YES, clears the query log file and thereafter appends the time-stamped Result string contents to the log file after a query command, ?.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">random</span></code></p></td>
+<td><p>One of [Uniform | Gaussian | Lognormal | None ] for Monte Carlo Variables.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RecloserMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 see Users Manual) for Recloser elements. Default is 17. (color=Lime)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RecloserMarkerSize</span></code></p></td>
+<td><p>Size of Recloser marker. Default is 5.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Recorder</span></code></p></td>
+<td><p>Opens DSSRecorder.dss in DSS install folder and enables recording of all commands that come through the text command interface. Closed by either setting to NO/FALSE or exiting the program. When closed by this command, the file name can be found in the Result. Does not require a circuit defined.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ReduceOption</span></code></p></td>
+<td><p>{ Default or [null] | Shortlines [Zmag=nnn] | MergeParallel | BreakLoops | Switches | Ends | Laterals}  Strategy for reducing feeders. Default is to eliminate all dangling end buses and buses without load, caps, or taps. <br>“Shortlines [Zmag=0.02]” merges short branches with impedance less than Zmag (default = 0.02 ohms) <br>“MergeParallel” merges lines that have been found to be in parallel <br>“Breakloops” disables one of the lines at the head of a loop. <br>“Ends” eliminates dangling ends only.<br>“Switches” merges switches with downline lines and eliminates dangling switches.<br>“Laterals [Keepload=Yes*/No]” uses the Remove command to eliminate 1-phase laterals and optionally lump the load back to the 2- or 3-phase feeder (default behavior). <br><br>Marking buses with “Keeplist” will prevent their elimination.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RegistryUpdate</span></code></p></td>
+<td><p>Update Windows Registry values upon exiting.  You might want to turn this off if you temporarily change fonts or DefaultBaseFrequency, for example.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RegMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 see Users Manual) for Regulators. Default is 17. (red)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RegMarkerSize</span></code></p></td>
+<td><p>Size of Regulator marker. Default is 5.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RelayMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 see Users Manual) for Relay elements. Default is 17. (Color=Lime)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RelayMarkerSize</span></code></p></td>
+<td><p>Size of Relay marker. Default is 5.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SampleEnergyMeters</span></code></p></td>
+<td><p>Overrides default value for sampling EnergyMeter objects at the end of the solution loop. Normally Time and Duty modes do not automatically sample EnergyMeters whereas Daily, Yearly, M1, M2, M3, LD1 and LD2 modes do. Use this Option to turn sampling on or off</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SeasonRating</span></code></p></td>
+<td><p>Enables/disables the seasonal selection of the rating for determining if an element is overloaded. When enabled, the energy meter will look for the rating (NormAmps) using the SeasonSignal  to evaluate if the PDElement is overloaded</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SeasonSignal</span></code></p></td>
+<td><p>It is the name of the XY curve defining the ratings seasonal change for the PDElements in the model when performing QSTS simulations. The seasonal ratings need to be defined at the PDElement or at the general object definition such as linecodes, lineGeometry, etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sec</span></code></p></td>
+<td><p>Sets the seconds from the hour for the start time of the solution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ShowExport</span></code></p></td>
+<td><p>If True will automatically show the results of an Export Command after it is written.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ShowReports</span></code></p></td>
+<td><p>Executive.showreports</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">stepsize</span></code></p></td>
+<td><p>Sets the time step size for the active circuit.  Default units are s. May also be specified in minutes or hours by appending “m” or “h” to the value. For example:<br><br>   stepsize=.25h <br>  stepsize=15m<br>  stepsize=900s</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">StepTime</span></code></p></td>
+<td><p>Process time + meter sampling time in microseconds for most recent time step - (read only)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">StoreMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 see Users Manual) for Storage elements. Default is 9.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">StoreMarkerSize</span></code></p></td>
+<td><p>Size of Storage marker. Default is 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Switchmarkercode</span></code></p></td>
+<td><p>Numeric marker code for lines with switches or are isolated from the circuit. Default is 4. See markswitches option.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Terminal</span></code></p></td>
+<td><p>Set the active terminal of the active circuit element. May also be done with Select command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></td>
+<td><p>Specify the solution start time as an array:<br>time=(hour, secs)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tolerance</span></code></p></td>
+<td><p>Sets the solution tolerance.  Default is 0.0001.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TotalTime</span></code></p></td>
+<td><p>The accumulated time in microseconds to solve the circuit since the last reset. Set this value to reset the accumulator.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Tracecontrol</span></code></p></td>
+<td><p>Set to YES to trace the actions taken in the control queue.  Creates a file named TRACE_CONTROLQUEUE.csv in the default directory. The names of all circuit elements taking an action are logged.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TransMarkerCode</span></code></p></td>
+<td><p>Numeric marker code (0..47 see Users Manual) for transformers. Default is 35. See markstransformers option.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TransMarkerSize</span></code></p></td>
+<td><p>Size of transformer marker. Default is 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Trapezoidal</span></code></p></td>
+<td><p>Default is false. Specifies whether to use trapezoidal integration for accumulating energy meter registers. Applies to EnergyMeter and Generator objects.  Default method simply multiplies the present value of the registers times the width of the interval (Euler). Trapezoidal is more accurate when there are sharp changes in a load shape or unequal intervals. Trapezoidal is automatically used for some load-duration curve simulations where the interval size varies considerably. Keep in mind that for Trapezoidal, you have to solve one more point than the number of intervals. That is, to do a Daily simulation on a 24-hr load shape, you would set Number=25 to force a solution at the first point again to establish the last (24th) interval.<br><br>Note: Set Mode= resets Trapezoidal to No/False. Set this to True AFTER setting the Mode option.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>Sets the active DSS class type.  Same as Class=…</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UEregs</span></code></p></td>
+<td><p>Which EnergyMeter register(s) to use for UE in AutoAdd Mode. May be one or more registers.  if more than one, register values are summed together. Array of integer values &gt; 0.  Defaults to 11 (for Load EEN). <br><br>for a list of EnergyMeter register numbers, do the “Show Meters” command after defining a circuit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">UEweight</span></code></p></td>
+<td><p>Weighting factor for UE/EEN in AutoAdd functions.  Defaults to 1.0.<br><br>Autoadd mode minimizes<br><br>(Lossweight * Losses + UEweight * UE). <br><br>If you wish to ignore UE, set to 0. This applies only when there are EnergyMeter objects. Otherwise, AutoAdd mode minimizes total system losses.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Voltagebases</span></code></p></td>
+<td><p>Define legal bus voltage bases for this circuit.  Enter an array of the legal voltage bases, in phase-to-phase voltages, for example:<br><br>set voltagebases=“.208, .480, 12.47, 24.9, 34.5, 115.0, 230.0” <br><br>When the CalcVoltageBases command is issued, a snapshot solution is performed with no load injections and the bus base voltage is set to the nearest legal voltage base. The defaults are as shown in the example above.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Voltexceptionreport</span></code></p></td>
+<td><p>For yearly solution mode, sets voltage exception reporting on/off. DemandInterval must be set to true for this to have effect.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">year</span></code></p></td>
+<td><p>Sets the Year (integer number) to be used for the solution. for certain solution types, this determines the growth multiplier.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Zmag</span></code></p></td>
+<td><p>Sets the Zmag option (in Ohms) for ReduceOption Shortlines option. Lines have less line mode impedance are reduced.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Zonelock</span></code></p></td>
+<td><p>If false, then meter zones are recomputed each time there is a change in the circuit. If true, then meter zones are not recomputed unless they have not yet been computed. Meter zones are normally recomputed on Solve command following a circuit change.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Commands.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Commands</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="toc_general.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">General Objects</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

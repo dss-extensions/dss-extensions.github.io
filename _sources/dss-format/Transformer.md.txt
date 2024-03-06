@@ -1,0 +1,363 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Transformer
+
+(
+    Circuit Element,
+    PD Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of phases this transformer.
+*   - 2
+    - `Windings`
+    - integer
+    - 
+    - 
+    - Number of windings, this transformers. (Also is the number of terminals) This property triggers memory allocation for the Transformer and will cause other properties to revert to default values.
+*   - 3
+    - `Wdg`
+    - integer
+    - 
+    - 
+    - Set this = to the number of the winding you wish to define.  Then set the values for this winding.  Repeat for each winding.  Alternatively, use the array collections (buses, kVAs, etc.) to define the windings.  Note: reactances are BETWEEN pairs of windings; they are not the property of a single winding.
+*   - 4
+    - `Bus`
+    - string<br>*(bus def., on array)*
+    - 
+    - 
+    - Bus connection spec for this winding.
+*   - 5
+    - `Conn`
+    - string<br>*(from enum. [](#enum-connection), on array)*
+    - 
+    - 
+    - Connection of this winding. Default is "wye" with the neutral solidly grounded. 
+*   - 6
+    - `kV`
+    - real<br>*(on array)*
+    - 
+    - kV
+    - For 2-or 3-phase, enter phase-phase kV rating.  Otherwise, kV rating of the actual winding
+*   - 7
+    - `kVA`
+    - real<br>*(on array)*
+    - 
+    - 
+    - Base kVA rating of the winding. Side effect: forces change of max normal and emergency kVA ratings.If 2-winding transformer, forces other winding to same value. When winding 1 is defined, all other windings are defaulted to the same rating and the first two winding resistances are defaulted to the %loadloss value.
+*   - 8
+    - `Tap`
+    - real<br>*(on array)*
+    - 
+    - 
+    - Per unit tap that this winding is on.
+*   - 9
+    - `%R`
+    - real<br>*(on array)*
+    - 
+    - 
+    - Percent resistance this winding.  (half of total for a 2-winding).
+*   - 10
+    - `RNeut`
+    - real<br>*(on array)*
+    - 
+    - Ω
+    - Neutral resistance of wye (star)-connected winding in actual ohms. If entered as a negative value, the neutral is assumed to be open, or floating. To solidly ground the neutral, connect the neutral conductor to Node 0 in the Bus property spec for this winding. For example: Bus=MyBusName.1.2.3.0, which is generally the default connection.
+*   - 11
+    - `XNeut`
+    - real<br>*(on array)*
+    - 
+    - Ω
+    - Neutral reactance of wye(star)-connected winding in actual ohms. May be positive or negative.
+*   - 12
+    - `Buses`
+    - array of strings<br>*(bus defs., on array)*
+    - 
+    - 
+    - Use this to specify all the bus connections at once using an array. Example:<br><br>New Transformer.T1 buses="Hibus, lowbus"<br>***Redundant with Bus***
+*   - 13
+    - `Conns`
+    - array of strings<br>*(from enum. [](#enum-connection))*
+    - 
+    - 
+    - Use this to specify all the Winding connections at once using an array. Example:<br><br>New Transformer.T1 buses="Hibus, lowbus" ~ conns=(delta, wye)<br>***Redundant with Conn***
+*   - 14
+    - `kVs`
+    - array of reals
+    - 
+    - kV
+    - Use this to specify the kV ratings of all windings at once using an array. Example:<br><br>New Transformer.T1 buses="Hibus, lowbus" <br>~ conns=(delta, wye)<br>~ kvs=(115, 12.47)<br><br>See kV= property for voltage rules.<br>***Redundant with kV***
+*   - 15
+    - `kVAs`
+    - array of reals
+    - 
+    - 
+    - Use this to specify the kVA ratings of all windings at once using an array.<br>***Redundant with kVA***
+*   - 16
+    - `Taps`
+    - array of reals
+    - 
+    - 
+    - Use this to specify the p.u. tap of all windings at once using an array.<br>***Redundant with Tap***
+*   - 17
+    - `XHL`
+    - real
+    - 
+    - 
+    - Use this to specify the percent reactance, H-L (winding 1 to winding 2).  Use for 2- or 3-winding transformers. On the kVA base of winding 1. See also X12.<br>***Redundant with X12***
+*   - 18
+    - `XHT`
+    - real
+    - 
+    - 
+    - Use this to specify the percent reactance, H-T (winding 1 to winding 3).  Use for 3-winding transformers only. On the kVA base of winding 1. See also X13.<br>***Redundant with X13***
+*   - 19
+    - `XLT`
+    - real
+    - 
+    - 
+    - Use this to specify the percent reactance, L-T (winding 2 to winding 3).  Use for 3-winding transformers only. On the kVA base of winding 1.  See also X23.<br>***Redundant with X23***
+*   - 20
+    - `XSCArray`
+    - array of reals
+    - 
+    - 
+    - Use this to specify the percent reactance between all pairs of windings as an array. All values are on the kVA base of winding 1.  The order of the values is as follows:<br><br>(x12 13 14... 23 24.. 34 ..)  <br><br>There will be n(n-1)/2 values, where n=number of windings.
+*   - 21
+    - `Thermal`
+    - real
+    - 2.0
+    - hour
+    - Thermal time constant of the transformer. Typically about 2.<br>***Not used***
+*   - 22
+    - `n`
+    - real
+    - 0.8
+    - 
+    - n Exponent for thermal properties in IEEE C57.  Typically 0.8.<br>***Not used***
+*   - 23
+    - `m`
+    - real
+    - 0.8
+    - 
+    - m Exponent for thermal properties in IEEE C57.  Typically 0.9 - 1.0<br>***Not used***
+*   - 24
+    - `FLRise`
+    - real
+    - 65.0
+    - °C
+    - Temperature rise for full load.<br>***Not used***
+*   - 25
+    - `HSRise`
+    - real
+    - 15.0
+    - °C
+    - Hot spot temperature rise.<br>***Not used***
+*   - 26
+    - `%LoadLoss`
+    - real
+    - 
+    - 
+    - Percent load loss at full load. The %R of the High and Low windings (1 and 2) are adjusted to agree at rated kVA loading.
+*   - 27
+    - `%NoLoadLoss`
+    - real
+    - 
+    - 
+    - Percent no load losses at rated excitation voltage. Default is 0. Converts to a resistance in parallel with the magnetizing impedance in each winding.
+*   - 28
+    - `NormHkVA`
+    - real
+    - 
+    - kVA
+    - Normal maximum kVA rating of H winding (winding 1).  Usually 100% - 110% of maximum nameplate rating, depending on load shape. Defaults to 110% of kVA rating of Winding 1.
+*   - 29
+    - `EmergHkVA`
+    - real
+    - 
+    - kVA
+    - Emergency (contingency)  kVA rating of H winding (winding 1).  Usually 140% - 150% of maximum nameplate rating, depending on load shape. Defaults to 150% of kVA rating of Winding 1.
+*   - 30
+    - `Sub`
+    - boolean
+    - False
+    - 
+    - Designates whether this transformer is to be considered a substation.Default is No.
+*   - 31
+    - `MaxTap`
+    - real<br>*(on array)*
+    - 
+    - 
+    - Max per unit tap for the active winding.
+*   - 32
+    - `MinTap`
+    - real<br>*(on array)*
+    - 
+    - 
+    - Min per unit tap for the active winding.
+*   - 33
+    - `NumTaps`
+    - integer<br><br>*(on array)*
+    - 
+    - 
+    - Total number of taps between min and max tap.  Default is 32 (16 raise and 16 lower taps about the neutral position). The neutral position is not counted.
+*   - 34
+    - `SubName`
+    - string
+    - 
+    - 
+    - Substation Name. Optional. Default is null. If specified, printed on plots
+*   - 35
+    - `%IMag`
+    - real
+    - 
+    - 
+    - Percent magnetizing current. Magnetizing branch is in parallel with windings in each phase. Also, see "ppm_antifloat".
+*   - 36
+    - `ppm_Antifloat`
+    - real
+    - 1.0
+    - 
+    - Default=1 ppm.  Parts per million of transformer winding VA rating connected to ground to protect against accidentally floating a winding without a reference. If positive then the effect is adding a very large reactance to ground.  If negative, then a capacitor.
+*   - 37
+    - `%Rs`
+    - array of reals
+    - 
+    - 
+    - Use this property to specify all the winding %resistances using an array. Example:<br><br>New Transformer.T1 buses="Hibus, lowbus" ~ %Rs=(0.2  0.3)<br>***Redundant with %R***
+*   - 38
+    - `Bank`
+    - string
+    - 
+    - 
+    - Name of the bank this transformer is part of, for CIM, MultiSpeak, and other interfaces.
+*   - 39
+    - `XfmrCode`
+    - string<br>*([XfmrCode](#XfmrCode) name)*
+    - 
+    - 
+    - Name of a library entry for transformer properties. The named XfmrCode must already be defined.
+*   - 40
+    - `XRConst`
+    - boolean
+    - False
+    - 
+    - Signifies whether or not the X/R is assumed constant for harmonic studies.
+*   - 41
+    - `X12`
+    - real
+    - 
+    - 
+    - Alternative to XHL for specifying the percent reactance from winding 1 to winding 2.  Use for 2- or 3-winding transformers. Percent on the kVA base of winding 1. 
+*   - 42
+    - `X13`
+    - real
+    - 
+    - 
+    - Alternative to XHT for specifying the percent reactance from winding 1 to winding 3.  Use for 3-winding transformers only. Percent on the kVA base of winding 1. 
+*   - 43
+    - `X23`
+    - real
+    - 
+    - 
+    - Alternative to XLT for specifying the percent reactance from winding 2 to winding 3.Use for 3-winding transformers only. Percent on the kVA base of winding 1.  
+*   - 44
+    - `LeadLag`
+    - string<br>*(from enum. [](#enum-phase-sequence))*
+    - Lag
+    - 
+    - {Lead | Lag (default) | ANSI (default) | Euro } Designation in mixed Delta-wye connections the relationship between HV to LV winding. Default is ANSI 30 deg lag, e.g., Dy1 of Yd1 vector group. To get typical European Dy11 connection, specify either "lead" or "Euro"
+*   - 45
+    - `WdgCurrents`
+    - string<br>**(read-only)**
+    - 
+    - 
+    - (Read only) Makes winding currents available via return on query (? Transformer.TX.WdgCurrents). Order: Phase 1, Wdg 1, Wdg 2, ..., Phase 2 ...<br><br>WARNING: If the transformer has open terminal(s), results may be wrong, i.e. avoid using this in those situations. For more information, see https://github.com/dss-extensions/dss-extensions/issues/24
+*   - 46
+    - `Core`
+    - string<br>*(from enum. [](#enum-core-type))*
+    - shell
+    - 
+    - Core Type. Used for GIC analysis
+*   - 47
+    - `RDCOhms`
+    - real<br>*(on array)*
+    - 
+    - 
+    - Winding dc resistance in OHMS. Useful for GIC analysis. From transformer test report. Defaults to 85% of %R property
+*   - 48
+    - `Seasons`
+    - integer
+    - 
+    - 
+    - Defines the number of ratings to be defined for the transformer, to be used only when defining seasonal ratings using the "Ratings" property.
+*   - 49
+    - `Ratings`
+    - array of reals
+    - [1100.0]
+    - 
+    - An array of ratings to be used when the seasonal ratings flag is True. It can be used to insert<br>multiple ratings to change during a QSTS simulation to evaluate different ratings in transformers. Is given in kVA
+*   - 50
+    - `NormAmps`
+    - real
+    - 
+    - 
+    - Normal rated current.
+*   - 51
+    - `EmergAmps`
+    - real
+    - 
+    - 
+    - Maximum or emergency current rating.
+*   - 52
+    - `FaultRate`
+    - real
+    - 0.007
+    - 
+    - Transformer.faultrate
+*   - 53
+    - `pctPerm`
+    - real
+    - 0.0
+    - 
+    - Percent of failures that become permanent.
+*   - 54
+    - `Repair`
+    - real
+    - 0.0
+    - 
+    - Hours to repair.
+*   - 55
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 56
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 57
+    - `Like`
+    - string<br>*([Transformer](#Transformer) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

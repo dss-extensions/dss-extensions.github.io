@@ -1,0 +1,1345 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>OpenDSS COM/classic APIs &#8212; DSS-Extensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=52c96e70" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'classic_api';</script>
+    <link rel="icon" href="_static/dssx.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OpenDSS: Python APIs" href="python_apis.html" />
+    <link rel="prev" title="Vsource" href="dss-format/Vsource.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dssx.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/dssx.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">DSS-Extensions</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="projects.html">
+                        Projects
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="faq.html">
+                        FAQ
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="docs.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="citations.html">
+                        Citations
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/dss-extensions/" title="DSS-Extensions Org. on GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">DSS-Extensions Org. on GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links" aria-label="Section Navigation">
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">General documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="dss_language.html">DSS Language</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Enumerations.html">General Enumerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dss-format/Options.html">General Options</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_general.html">General Objects</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/CNData.html">CNData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/DynamicExp.html">DynamicExp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GrowthShape.html">GrowthShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineCode.html">LineCode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineGeometry.html">LineGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LineSpacing.html">LineSpacing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/LoadShape.html">LoadShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/PriceShape.html">PriceShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Spectrum.html">Spectrum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TCC_Curve.html">TCC_Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TSData.html">TSData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/TShape.html">TShape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/WireData.html">WireData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/XYcurve.html">XYcurve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/XfmrCode.html">XfmrCode</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_me.html">Meter Elements</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/EnergyMeter.html">EnergyMeter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Monitor.html">Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Sensor.html">Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_control.html">Control Elements</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/CapControl.html">CapControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/ESPVLControl.html">ESPVLControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/ExpControl.html">ExpControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Fuse.html">Fuse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GenDispatcher.html">GenDispatcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/InvControl.html">InvControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Recloser.html">Recloser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/RegControl.html">RegControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Relay.html">Relay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/StorageController.html">StorageController</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/SwtControl.html">SwtControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/UPFCControl.html">UPFCControl</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_pde.html">PD Elements</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/AutoTrans.html">AutoTrans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Capacitor.html">Capacitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Fault.html">Fault</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICTransformer.html">GICTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Line.html">Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Reactor.html">Reactor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Transformer.html">Transformer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dss-format/toc_pce.html">PC Elements</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICLine.html">GICLine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/GICsource.html">GICsource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Generator.html">Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/IndMach012.html">IndMach012</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Isource.html">Isource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Load.html">Load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/PVSystem.html">PVSystem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Storage.html">Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/UPFC.html">UPFC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/VCCS.html">VCCS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/VSConverter.html">VSConverter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dss-format/Vsource.html">Vsource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Classic API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_apis.html">Python APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multithreading.html">Multithreading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">Licenses</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="docs.html" class="nav-link">Documentation</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">OpenDSS...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="opendss-com-classic-apis">
+<h1>OpenDSS COM/classic APIs<a class="headerlink" href="#opendss-com-classic-apis" title="Link to this heading">#</a></h1>
+<p><em>Main concepts of the classic OpenDSS APIs</em></p>
+<p>This document is intended to expose some concepts that are typically overlook by many users when using the classic OpenDSS API.</p>
+<p>Traditionally, all OpenDSS interfaces and bindings use the same concepts of interaction with the DSS engine. That includes most of the projects developed under DSS-Extensions,</p>
+<p>On DSS-Extensions, an alternative API is being developed to complement and/or provide a difference experience. Currently, the main results are represented in the <a class="reference external" href="https://dss-extensions.org/AltDSS-Python/">AltDSS-Python</a> project.</p>
+<p>To avoid generating confusion, we will use the term “classic API” to indicate a set of APIs that follow the concepts developed in the official OpenDSS COM implementation, and “Alt” or alternative API for whatever is being developed in AltDSS-Python and similar projects, such as <code class="docutils literal notranslate"><span class="pre">dss.hpp</span></code>.</p>
+<p>OpenDSS has models for many electric components and controllers, plus general data classes. Besides those, there are several interfaces to interact with specific aspects of the engine. The <a class="reference external" href="https://opendss.epri.com/opendss_documentation.html">official documentation</a> and other training material usually covers those in detail.</p>
+<section id="api-hierarchy">
+<h2>API Hierarchy<a class="headerlink" href="#api-hierarchy" title="Link to this heading">#</a></h2>
+<p>The API tree as seen from walking from the main interface class <code class="docutils literal notranslate"><span class="pre">IDSS</span></code>, which is exposed from <code class="docutils literal notranslate"><span class="pre">OpenDSSengine.DSS</span></code> in the COM interface, is as follows.</p>
+<p>For EPRI’s OpenDSS implementation, the API materialize in the <code class="docutils literal notranslate"><span class="pre">OpenDSSengine.DSS</span></code> COM object exposes the OpenDSS engine, which is a global singleton in the engine side. That means that the same engine is exposed even if you create another COM object. On DSS-Extensions, the default instance is also created by default for compatibility with the global singleton, but users can create multiple engines by using the <code class="docutils literal notranslate"><span class="pre">dss.NewContext()</span></code> method.</p>
+<p>Items marked with “API Extension” are not present in the COM API, but available as extras on DSS-Extensions.</p>
+<ul class="simple">
+<li><p>dss (<code class="docutils literal notranslate"><span class="pre">IDSS</span></code>)</p>
+<ul>
+<li><p>(dss.)ActiveClass (<code class="docutils literal notranslate"><span class="pre">IActiveClass</span></code>): Manipulate DSS classes directly. For example, if a class doesn’t have a dedicated API, this can be used to access the element properties. This is the same as “dss.ActiveCircuit.ActiveClass”.</p></li>
+<li><p>(dss.)DSSProgress (<code class="docutils literal notranslate"><span class="pre">IDSSProgress</span></code>): Manipulate the progress status, GUI etc. <em>Using this is uncommon.</em> Not fully supported on DSS-Extensions without custom callbacks.</p></li>
+<li><p>(dss.)DSSim_Coms (<code class="docutils literal notranslate"><span class="pre">IDSSimComs</span></code>): Using this is uncommon. Also exposed as “dss.ActiveCircuit.DSSim_Coms”.</p></li>
+<li><p>(dss.)Error (<code class="docutils literal notranslate"><span class="pre">IError</span></code>): The error interface lists error numbers and descriptions. On the official OpenDSS, users need to check this manually if <code class="docutils literal notranslate"><span class="pre">AllowForms</span></code> is disabled. On DSS-Extensions, most errors are directly mapped to errors or exceptions, depending on the programming language.</p></li>
+<li><p>(dss.)Events (<code class="docutils literal notranslate"><span class="pre">IDSSEvents</span></code>): The event interface allows using event callbacks that are triggered in certain points of the solution process. <em>Using this is uncommon.</em></p></li>
+<li><p>(dss.)Executive (<code class="docutils literal notranslate"><span class="pre">IDSS_Executive</span></code>): Lists the available commands and options, help strings. Allow manipulating options. <em>Using this is uncommon.</em></p></li>
+<li><p>(dss.)Parser (<code class="docutils literal notranslate"><span class="pre">IParser</span></code>): Parsing utilities. Using this is uncommon.</p></li>
+<li><p>(dss.)Text (<code class="docutils literal notranslate"><span class="pre">IText</span></code>): Pass DSS commands and get results from the DSS engine.</p></li>
+<li><p>(dss.)ZIP (<code class="docutils literal notranslate"><span class="pre">IZIP</span></code>) (<strong>API Extension</strong>): Allow loading circuits from ZIP files, without extracting files to the disk.</p></li>
+<li><p>(dss.)ActiveCircuit (<code class="docutils literal notranslate"><span class="pre">ICircuit</span></code>): this is effectively the same as <code class="docutils literal notranslate"><span class="pre">Circuits</span></code> (omitted). Contains many properties and methods to access the circuit state, plus the interfaces below.</p>
+<ul>
+<li><p><em><strong>General engine and circuit operations</strong></em></p></li>
+<li><p>(dss.ActiveCircuit.)CtrlQueue (<code class="docutils literal notranslate"><span class="pre">ICtrlQueue</span></code>): Inspect or manipulate the control event queue.</p></li>
+<li><p>(dss.ActiveCircuit.)Parallel (<code class="docutils literal notranslate"><span class="pre">IParallel</span></code>): OpenDSS Parallel-machine features. <em>Using this is uncommon.</em> On DSS-Extensions, prefer native multithreading couple with <code class="docutils literal notranslate"><span class="pre">dss.NewContext()</span></code> instead.</p></li>
+<li><p>(dss.ActiveCircuit.)ReduceCkt (<code class="docutils literal notranslate"><span class="pre">IReduceCkt</span></code>): Circuit reduction operations.</p></li>
+<li><p>(dss.ActiveCircuit.)Topology (<code class="docutils literal notranslate"><span class="pre">ITopology</span></code>): Get general information like loops and isolated elements; iterate over the circuit graph. Requires an EnergyMeter.</p></li>
+<li><p>(dss.ActiveCircuit.)Settings (<code class="docutils literal notranslate"><span class="pre">ISettings</span></code>): Exposes some of the settings for the circuit, some for the whole engine. Some more options/settings are also directly in the main <code class="docutils literal notranslate"><span class="pre">IDSS</span></code> class.</p></li>
+<li><p>(dss.ActiveCircuit.)Solution (<code class="docutils literal notranslate"><span class="pre">ISolution</span></code>): Solution manipulation, including settings and general state.</p></li>
+<li><p><em><strong>Bus operations</strong></em></p></li>
+<li><p>(dss.ActiveCircuit.)ActiveBus (<code class="docutils literal notranslate"><span class="pre">IBus</span></code>): Manipulate a specific bus. This is effectively the same as <code class="docutils literal notranslate"><span class="pre">Buses</span></code> (omitted).</p></li>
+<li><p><em><strong>Base element operations</strong></em></p></li>
+<li><p>(dss.ActiveCircuit.)ActiveCktElement (<code class="docutils literal notranslate"><span class="pre">ICktElement</span></code>): This is effectively the same as <code class="docutils literal notranslate"><span class="pre">ActiveElement</span></code> and <code class="docutils literal notranslate"><span class="pre">CktElements</span></code> (omitted).</p>
+<ul>
+<li><p>(dss.ActiveCircuit.ActiveCktElement.)Properties (<code class="docutils literal notranslate"><span class="pre">IDSSProperty</span></code>): Manipulate the DSS properties of the active element.</p></li>
+</ul>
+</li>
+<li><p>(dss.ActiveCircuit.)ActiveClass (<code class="docutils literal notranslate"><span class="pre">IActiveClass</span></code>): Same as “dss.ActiveClass”.</p></li>
+<li><p>(dss.ActiveCircuit.)ActiveDSSElement (<code class="docutils literal notranslate"><span class="pre">IDSSElement</span></code>)</p>
+<ul>
+<li><p>(dss.ActiveCircuit.ActiveDSSElement.)Properties (<code class="docutils literal notranslate"><span class="pre">IDSSProperty</span></code>)</p></li>
+</ul>
+</li>
+<li><p>(dss.ActiveCircuit.)PDElements (<code class="docutils literal notranslate"><span class="pre">IPDElements</span></code>)</p></li>
+<li><p><em><strong>Dedicated interfaces for specific elements</strong></em></p></li>
+<li><p>(dss.ActiveCircuit.)CNData (<code class="docutils literal notranslate"><span class="pre">ICNData</span></code>) (<strong>API Extension</strong>)</p></li>
+<li><p>(dss.ActiveCircuit.)CapControls (<code class="docutils literal notranslate"><span class="pre">ICapControls</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Capacitors (<code class="docutils literal notranslate"><span class="pre">ICapacitors</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Fuses (<code class="docutils literal notranslate"><span class="pre">IFuses</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)GICSources (<code class="docutils literal notranslate"><span class="pre">IGICSources</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Generators (<code class="docutils literal notranslate"><span class="pre">IGenerators</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Isources (<code class="docutils literal notranslate"><span class="pre">IISources</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)LineCodes (<code class="docutils literal notranslate"><span class="pre">ILineCodes</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)LineGeometries (<code class="docutils literal notranslate"><span class="pre">ILineGeometries</span></code>) (<strong>API Extension</strong>)</p></li>
+<li><p>(dss.ActiveCircuit.)LineSpacings (<code class="docutils literal notranslate"><span class="pre">ILineSpacings</span></code>) (<strong>API Extension</strong>)</p></li>
+<li><p>(dss.ActiveCircuit.)Lines (<code class="docutils literal notranslate"><span class="pre">ILines</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)LoadShapes (<code class="docutils literal notranslate"><span class="pre">ILoadShapes</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Loads (<code class="docutils literal notranslate"><span class="pre">ILoads</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Meters (<code class="docutils literal notranslate"><span class="pre">IMeters</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Monitors (<code class="docutils literal notranslate"><span class="pre">IMonitors</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)PVSystems (<code class="docutils literal notranslate"><span class="pre">IPVSystems</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Reactors (<code class="docutils literal notranslate"><span class="pre">IReactors</span></code>) (<strong>API Extension</strong>)</p></li>
+<li><p>(dss.ActiveCircuit.)Reclosers (<code class="docutils literal notranslate"><span class="pre">IReclosers</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)RegControls (<code class="docutils literal notranslate"><span class="pre">IRegControls</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Relays (<code class="docutils literal notranslate"><span class="pre">IRelays</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Sensors (<code class="docutils literal notranslate"><span class="pre">ISensors</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Storages (<code class="docutils literal notranslate"><span class="pre">IStorages</span></code>) (<strong>API Extension</strong>)</p></li>
+<li><p>(dss.ActiveCircuit.)SwtControls (<code class="docutils literal notranslate"><span class="pre">ISwtControls</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)TSData (<code class="docutils literal notranslate"><span class="pre">ITSData</span></code>) (<strong>API Extension</strong>)</p></li>
+<li><p>(dss.ActiveCircuit.)Transformers (<code class="docutils literal notranslate"><span class="pre">ITransformers</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)Vsources (<code class="docutils literal notranslate"><span class="pre">IVsources</span></code>)</p></li>
+<li><p>(dss.ActiveCircuit.)WireData (<code class="docutils literal notranslate"><span class="pre">IWireData</span></code>) (<strong>API Extension</strong>)</p></li>
+<li><p>(dss.ActiveCircuit.)XYCurves (<code class="docutils literal notranslate"><span class="pre">IXYCurves</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><em>The projects <a class="reference external" href="https://dss-extensions.org/OpenDSSDirect.jl/">OpenDSSDirect.jl</a> and <a class="reference external" href="https://dss-extensions.org/OpenDSSDirect.py/">OpenDSSDirect.py</a> follow a slightly different organization (see also <a class="reference external" href="https://dss-extensions.org/python_apis">Python APIs</a>), but the concepts listed below still apply.</em></p>
+</section>
+<section id="general-layout">
+<h2>General layout<a class="headerlink" href="#general-layout" title="Link to this heading">#</a></h2>
+<p>Internally, OpenDSS uses object-oriented concepts and, in the API, different classes in the inheritance tree are exposed by different interface classes.</p>
+<p>For a more complete view of the classes, as implemented in AltDSS/DSS C-API, see <a class="reference download internal" download="" href="_downloads/75e3dc2d0031fbf8bae78d076a3e10ee/GVClasses.svg"><span class="xref download myst">this class diagram</span></a>, generated from the Pascal code.</p>
+<p>A simplified diagram for the Load object follows. In the actual source code, there is <code class="docutils literal notranslate"><span class="pre">TLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">TLoadObj</span></code>. The first one is the container/manager class, while the second is the actual individual object.</p>
+<center>
+<div class="mermaid">
+            classDiagram
+  TDSSObject &lt;|-- TDSSCktElement
+  TDSSCktElement &lt;|-- TPCElement
+  TPCElement &lt;|-- TLoadObj
+        </div></center><p>In the classic API, there is no direct inheritance, instead the components of the class hierarchy are exposed as separate interfaces. That is, the <code class="docutils literal notranslate"><span class="pre">ILoads</span></code> interface (exposed as <code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads</span></code>) does not expose inherited methods and properties from the base interfaces and, consequently, a user could be required to use multiple interfaces in order to access all required properties or methods.</p>
+<p>Referring to hierarchy listed in the previous section, for loads one could use:</p>
+<ul class="simple">
+<li><p>(dss.ActiveCircuit.)Loads (<code class="docutils literal notranslate"><span class="pre">ILoads</span></code>): Exposes load-specific data and state, somewhat equivalent to the <code class="docutils literal notranslate"><span class="pre">TLoadObj</span></code> in the class diagram, but <code class="docutils literal notranslate"><span class="pre">ILoads</span></code> mixes elements from multiple classes.</p></li>
+<li><p>(dss.ActiveCircuit.)ActiveCktElement (<code class="docutils literal notranslate"><span class="pre">ICktElement</span></code>): This would be equivalent to <code class="docutils literal notranslate"><span class="pre">TDSSCktElement</span></code> in the diagram.</p></li>
+<li><p>(dss.ActiveCircuit.)ActiveDSSElement (<code class="docutils literal notranslate"><span class="pre">IDSSElement</span></code>): This would be equivalent to <code class="docutils literal notranslate"><span class="pre">TDSSObject</span></code> in the diagram.</p></li>
+</ul>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">TPCElement</span></code> is not exposed in a dedicated interface, but there is (dss.ActiveCircuit.)PDElements for <code class="docutils literal notranslate"><span class="pre">TPDElement</span></code>.</p>
+</section>
+<section id="the-active-paradigm">
+<h2>The “Active…” paradigm<a class="headerlink" href="#the-active-paradigm" title="Link to this heading">#</a></h2>
+<p><strong>What is activation?</strong> In the context of OpenDSS, activation usually means select a certain object for manipulation at certain collections. The paradigm is used both in the classic API and in the internal code of OpenDSS, although the implementation on DSS-Extensions has been slowly moving away from that concept for the internal code.</p>
+<p>One important aspect to consider is that each class with a dedicated tracks an active object, and activating one object from the dedicated interfaces also activates it in the parent interfaces.</p>
+<p><strong>There is one exception.</strong> The Lines API, as implemented in EPRI’s OpenDSS distribution, does not track the lines by itself. Instead, it relies on the more general “ActiveCktElement”. Unfortunately, any operation that changes the active circuit element then results in the Lines interface losing track of the current line. This was changed on DSS-Extensions to make the Lines API work like the other APIs, but there is a compatibility flag that could be used if required.</p>
+<p>For example, activating a Load by name (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.Name</span> <span class="pre">=</span> <span class="pre">&quot;target_load_name&quot;</span></code>), iteration (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.First</span></code>, <code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.Next</span></code>) or index (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.idx</span> <span class="pre">=</span> <span class="pre">a_valid_integer_index</span></code>) would through the Loads interface:</p>
+<ul class="simple">
+<li><p>Sets the target as the active load in the Loads interface.</p></li>
+<li><p><strong>Does not</strong> set “ActiveDSSClass” to the Load class.</p></li>
+<li><p>Sets the target as the active circuit element (“ActiveCktElement”).</p></li>
+<li><p>Sets the target as the active DSS object (“ActiveDSSElement”).</p></li>
+</ul>
+<p><strong>But</strong> activating a Load from a more general interface does not activate it on all interfaces.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.SetActiveElement(&quot;Load.target_load_name&quot;)</span></code> or the <code class="docutils literal notranslate"><span class="pre">Select</span></code> DSS command (<code class="docutils literal notranslate"><span class="pre">dss.Text.Command</span> <span class="pre">=</span> <span class="pre">&quot;Select</span> <span class="pre">Load.target_load_name&quot;</span></code>):</p>
+<ul class="simple">
+<li><p><strong>Does not</strong> set the target as the active load in the Loads interface.</p></li>
+<li><p>Sets “ActiveDSSClass” to the Load class.</p></li>
+<li><p>Sets the target as the active circuit element (“ActiveCktElement”).</p></li>
+<li><p>Sets the target as the active DSS object (“ActiveDSSElement”).</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">SetActiveElement</span></code> is specific to circuit elements, other general elements like LoadShape and Spectrum objects cannot be used with it. The <code class="docutils literal notranslate"><span class="pre">Select</span></code> DSS command, on the other hand, can be used with any DSS object.</p>
+<p>If “ActiveDSSClass” is set to the Load class, activating an element (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.ActiveClass.Name</span> <span class="pre">=</span> <span class="pre">&quot;target_load_name&quot;</span></code>):</p>
+<ul class="simple">
+<li><p><strong>Does not</strong> set the target as the active load in the Loads interface.</p></li>
+<li><p>The “ActiveDSSClass” is kept as the Load class.</p></li>
+<li><p>Sets the target as the active circuit element (“ActiveCktElement”).</p></li>
+<li><p>Sets the target as the active DSS object (“ActiveDSSElement”).</p></li>
+</ul>
+<p>Important takeaways:</p>
+<ul class="simple">
+<li><p>Only when activating the element through the dedicated interfaces activates it there.</p></li>
+<li><p>Most ways to activate elements sets “ActiveCktElement” and “ActiveDSSElement”. A user can only interact with element at a time through the more general interfaces.</p></li>
+<li><p>With the exception of Lines in EPRI’s official OpenDSS, one can safely use the dedicated interfaces to access some of the data/state. For example, it is safe to use the Loads interface and the Transformers interface in succession without reactivating the elements.</p></li>
+<li><p>The PDElements interface uses the current ActiveCktElement, so anything that changes that will affect the PDElements interface too.</p></li>
+<li><p>Other DSS commands can iterate through the internal collections and can change the active elements to point to something else.</p></li>
+</ul>
+<p>Since what is activated changes depending on the method used, if the object has a dedicated collection interface, it is recommended that users activate the object through this interface. Sometimes it also useful to activate the collection class using <code class="docutils literal notranslate"><span class="pre">dss.Circuit.SetActiveClass(&quot;load&quot;)</span></code> or equivalent to complement it, especially for classes that do not expose all relevant properties.</p>
+<p>The “ActiveDSSClass” interface does not track the active element as a dedicated reference. Instead, it uses the current “ActiveDSSObject”, which can lead to some ill-defined scenarios. For example, it the “Capacitor” class is set active and then a Load is activated, the “ActiveClassName” can still be help as “Capacitor”, but the element name return from “ActiveDSSClass.Name” is the Load name. See the code snippets for an example.</p>
+<section id="buses">
+<h3>Buses<a class="headerlink" href="#buses" title="Link to this heading">#</a></h3>
+<p>Like the DSS objects, only a single bus can be activated and references cannot be help since the bus interfaces always reference to the active bus.</p>
+</section>
+<section id="code-snippets">
+<h3>Code snippets<a class="headerlink" href="#code-snippets" title="Link to this heading">#</a></h3>
+<p>Here are some code snippets in Python for illustration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you wish to use comtypes and the official COM DLL, uncomment this block and comment the others in this cell.</span>
+<span class="c1"># import comtypes.client</span>
+<span class="c1"># dss = comtypes.client.CreateObject(&quot;OpenDSSengine.DSS&quot;)</span>
+
+<span class="c1"># If you wish to use win32com and the official COM DLL, uncomment this block and comment the others in this cell.</span>
+<span class="c1"># import win32com.client</span>
+<span class="c1"># dss = win32com.client.gencache.EnsureDispatch(&quot;OpenDSSengine.DSS&quot;)</span>
+
+<span class="c1"># If you wish to use DSS-Python, uncomment this block and comment the others in this cell.</span>
+<span class="kn">from</span> <span class="nn">dss</span> <span class="kn">import</span> <span class="n">dss</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the examples</span>
+<span class="kn">from</span> <span class="nn">dss.examples</span> <span class="kn">import</span> <span class="n">download_repo_snapshot</span>
+<span class="n">BASE_PATH</span> <span class="o">=</span> <span class="n">download_repo_snapshot</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">repo_name</span><span class="o">=</span><span class="s1">&#39;electricdss-tst&#39;</span><span class="p">,</span> <span class="n">use_version</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CIRCUIT_DSS</span> <span class="o">=</span> <span class="n">BASE_PATH</span> <span class="o">/</span> <span class="s1">&#39;Version8/Distrib/EPRITestCircuits/ckt24/master_ckt24.dss&#39;</span>
+<span class="k">assert</span> <span class="n">CIRCUIT_DSS</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Command</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;redirect &#39;</span><span class="si">{</span><span class="n">CIRCUIT_DSS</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s create a function to print what’s active:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">Name</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">ActiveClass</span><span class="o">.</span><span class="n">ActiveClassName</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">ActiveClass</span><span class="o">.</span><span class="n">Name</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">ActiveDSSElement</span><span class="o">.</span><span class="n">Name</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">ActiveCktElement</span><span class="o">.</span><span class="n">Name</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">ActiveBus</span><span class="o">.</span><span class="n">Name</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Initially, the last element that was created is kept active:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;other_feeders&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;EnergyMeter&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;fdr_05410&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;EnergyMeter.fdr_05410&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;EnergyMeter.fdr_05410&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s activate something else:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span>  <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">First</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;other_feeders&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;EnergyMeter&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;cap_g2100pl6500&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;Capacitor.cap_g2100pl6500&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;Capacitor.cap_g2100pl6500&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Activating the first capacitor, we can see that the previous active load is kept, but the ActiveCktElement has changed.</p>
+<p>Let’s also activate the Capacitor class:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">SetActiveClass</span><span class="p">(</span><span class="s2">&quot;Capacitor&quot;</span><span class="p">)</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;other_feeders&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;Capacitor&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;cap_g2100pl6500&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;Capacitor.cap_g2100pl6500&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;Capacitor.cap_g2100pl6500&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use this <code class="docutils literal notranslate"><span class="pre">clear_active</span></code> function to make the effects unambiguous:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clear_active</span><span class="p">(</span><span class="n">dss</span><span class="p">):</span>
+    <span class="n">_</span>  <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Capacitors</span><span class="o">.</span><span class="n">First</span>
+    <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">SetActiveClass</span><span class="p">(</span><span class="s2">&quot;Capacitor&quot;</span><span class="p">)</span>
+    <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="s1">&#39;other_feeders&#39;</span>
+    <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">SetActiveBusi</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s activate one of the loads.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">AllNames</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;278071200&#39;, &#39;559661200&#39;, &#39;928661200&#39;, &#39;931661200&#39;, &#39;475882200&#39;, &#39;710035200&#39;, &#39;942206200&#39;, &#39;306450100&#39;, &#39;804302100&#39;, &#39;805302100&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using either <code class="docutils literal notranslate"><span class="pre">SetActiveElement</span></code> or <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">Load.{target_name}</span></code> leave the previous Load active in the dedicated interface. If users are not aware of this, they can inspect the incorrect object through the Loads interface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clear_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span> <span class="c1"># just to make the effects more obvious, not used in real life</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">SetActiveElement</span><span class="p">(</span><span class="s1">&#39;Load.805302100&#39;</span><span class="p">)</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;other_feeders&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;Load&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clear_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span> <span class="c1"># just to make the effects more obvious, not used in real life</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Command</span> <span class="o">=</span> <span class="s1">&#39;select Load.805302100&#39;</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;other_feeders&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;Load&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;g2000sk5500_n274137_sec_3&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clear_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span> <span class="c1"># just to make the effects more obvious, not used in real life</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">SetActiveClass</span><span class="p">(</span><span class="s2">&quot;Load&quot;</span><span class="p">)</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">ActiveClass</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;805302100&quot;</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;other_feeders&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;Load&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>And using the dedicated interface:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clear_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span> <span class="c1"># just to make the effects more obvious, not used in real life</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;805302100&quot;</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;Capacitor&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, using both the dedicated interface and the ActiveClass interface, everything is set to the target object. Unless they are using all the related interfaces, users don’t need to do this (there is an overhead), but they should be aware of the behavior.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clear_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span> <span class="c1"># just to make the effects more obvious, not used in real life</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;805302100&quot;</span>
+<span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">SetActiveClass</span><span class="p">(</span><span class="s2">&quot;Load&quot;</span><span class="p">)</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;Load&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;Load.805302100&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some commands will iterate over the elements and change the active elements:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dss</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Command</span> <span class="o">=</span> <span class="s1">&#39;export yprim&#39;</span>
+<span class="n">print_active</span><span class="p">(</span><span class="n">dss</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dss.ActiveCircuit.Loads.Name=&#39;805302100&#39;
+dss.ActiveCircuit.ActiveClass.ActiveClassName=&#39;Load&#39;
+dss.ActiveCircuit.ActiveClass.Name=&#39;fdr_05410&#39;
+dss.ActiveCircuit.ActiveDSSElement.Name=&#39;EnergyMeter.fdr_05410&#39;
+dss.ActiveCircuit.ActiveCktElement.Name=&#39;EnergyMeter.fdr_05410&#39;
+dss.ActiveCircuit.ActiveBus.Name=&#39;sourcebus&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="performance">
+<h3>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h3>
+<p>Although the previous examples use names for activating objects, it is recommended to activate by index whenever possible, since it is faster, especially on DSS-Extensions. Rerun the cell below on your machine to get an idea, but beware that the performance profile may change on high CPU loads. When in doubt, experiment with some variations on scenarios closer to actual workloads.</p>
+<p>After a circuit is populated, the indices are stable and can be cached. The performance profile for activating elements by name might get better in future releases of both DSS-Extensions engine (AltDSS/DSS C-API) and the official OpenDSS distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Loads</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span>
+<span class="n">SetActiveElement</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">SetActiveElement</span>
+<span class="n">CktElements</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">CktElements</span>
+<span class="n">Text</span> <span class="o">=</span> <span class="n">dss</span><span class="o">.</span><span class="n">Text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Loads.Name = &quot;805302100&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>403 ns ± 1.57 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Loads</span><span class="o">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">Loads</span><span class="o">.</span><span class="n">idx</span><span class="p">,</span> <span class="n">SetActiveElement</span><span class="p">(</span><span class="s2">&quot;Load.805302100&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;805302100&#39;, 10, 6079)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Loads.idx = 10
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>158 ns ± 4.89 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CktElements(6079)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 ns ± 0.722 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> SetActiveElement(&quot;Load.805302100&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>482 ns ± 1.89 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Text.Command = &quot;select Load.805302100&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.35 µs ± 23.8 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="caching-indices">
+<h4>Caching indices<a class="headerlink" href="#caching-indices" title="Link to this heading">#</a></h4>
+<p>Here’s an example of caching in Python:</p>
+<ul class="simple">
+<li><p>Create simple dicts mapping the names to the indices</p></li>
+<li><p>Use those to map names to indices</p></li>
+<li><p>Use the indices in the API</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">cename_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">NumCktElements</span><span class="p">),</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">AllElementNames</span><span class="p">)}</span>
+<span class="n">loadname_to_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">Count</span><span class="p">),</span> <span class="n">dss</span><span class="o">.</span><span class="n">ActiveCircuit</span><span class="o">.</span><span class="n">Loads</span><span class="o">.</span><span class="n">AllNames</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.94 ms, sys: 95 µs, total: 5.04 ms
+Wall time: 4.76 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CktElements(cename_to_idx[&#39;Load.805302100&#39;])
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>229 ns ± 5.27 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Loads.idx = loadname_to_idx[&#39;805302100&#39;]
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>170 ns ± 3.02 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Comparing the runtime numbers, one can notice that activating using <code class="docutils literal notranslate"><span class="pre">Loads.idx</span></code> using the index from the dict is a lot faster than using the names directly.</p>
+<p>There are many reasons for that, including:</p>
+<ul class="simple">
+<li><p>String are the most compute-intensive types to pass through the API, involving potential encoding conversions, copies, etc.</p></li>
+<li><p>Python dicts are quite optimized.</p></li>
+<li><p>Python string can cache hashes.</p></li>
+</ul>
+<p>Again, testing in a real script is important in order to decide if this kind of mechanism is worth the extra code.</p>
+</section>
+</section>
+</section>
+<section id="alternative-api">
+<h2>Alternative API<a class="headerlink" href="#alternative-api" title="Link to this heading">#</a></h2>
+<p>As noted in the introduction, an alternative API is being developed on
+on DSS-Extensions to complement and/or provide a difference experience. Currently, the main results are represented in the <a class="reference external" href="https://dss-extensions.org/AltDSS-Python/">AltDSS-Python</a> project (check the link for more information).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run &quot;pip install altdss&quot; if you don&#39;t have it installed.</span>
+<span class="kn">from</span> <span class="nn">altdss</span> <span class="kn">import</span> <span class="n">altdss</span>
+<span class="n">altdss</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    redirect &#39;</span><span class="si">{</span><span class="n">CIRCUIT_DSS</span><span class="si">}</span><span class="s2">&#39;</span>
+<span class="s2">    solve mode=snapshot</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s grab a load:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">load</span> <span class="o">=</span> <span class="n">altdss</span><span class="o">.</span><span class="n">Load</span><span class="p">[</span><span class="s1">&#39;805302100&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this reference, we don’t need to worry about what is the active element as in the classic API.</p>
+<p>Moreover, the alternative API tries to encapsulate all relevant methods in this object, reproducing some aspects of the internal OpenDSS class hierarchy, as shown in the diagram in the section “General layout”.</p>
+<p>Here, we can see that the Load type incorporates both a <code class="docutils literal notranslate"><span class="pre">CircuitElementMixin</span></code> and a <code class="docutils literal notranslate"><span class="pre">PCElementMixin</span></code>, besides base <code class="docutils literal notranslate"><span class="pre">DSSObj</span></code> and the actual <code class="docutils literal notranslate"><span class="pre">Load</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span class="n">inspect</span><span class="o">.</span><span class="n">getmro</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">load</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(altdss.Load.Load,
+ altdss.DSSObj.DSSObj,
+ dss._cffi_api_util.Base,
+ altdss.CircuitElement.CircuitElementMixin,
+ altdss.PCElement.PCElementMixin,
+ object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>One can access the common methods:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">load</span><span class="o">.</span><span class="n">Voltages</span><span class="p">(),</span> <span class="n">load</span><span class="o">.</span><span class="n">Currents</span><span class="p">(),</span> <span class="n">load</span><span class="o">.</span><span class="n">MaxCurrent</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">load</span><span class="o">.</span><span class="n">Powers</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-227.06921598-89.7899522j,    0.         +0.j       ]),
+ array([-21.73555919-3.70169494j,  21.73555919+3.70169494j]),
+ 22.048516476228425,
+ array([5.2678514+1.11109385j, 0.       +0.j        ]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Interact with all DSS properties specific to the loads:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">load</span><span class="o">.</span><span class="n">Conn</span><span class="p">,</span> <span class="n">load</span><span class="o">.</span><span class="n">Spectrum</span><span class="p">,</span> <span class="n">load</span><span class="o">.</span><span class="n">Bus1</span><span class="p">,</span> <span class="n">load</span><span class="o">.</span><span class="n">kW</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Connection.wye: 0&gt;,
+ &lt;Spectrum.defaultload&gt;,
+ &#39;g2000sk5500_n274137_sec_3.2&#39;,
+ 5.195630864681321)
+</pre></div>
+</div>
+</div>
+</div>
+<p>And use the API Extensions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">load</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Name&#39;: &#39;805302100&#39;,
+ &#39;Phases&#39;: 1,
+ &#39;kV&#39;: 0.24,
+ &#39;Bus1&#39;: &#39;g2000sk5500_n274137_sec_3.2&#39;,
+ &#39;Status&#39;: &#39;Variable&#39;,
+ &#39;Model&#39;: 4,
+ &#39;CVRWatts&#39;: 0.8,
+ &#39;CVRVars&#39;: 3.0,
+ &#39;Conn&#39;: &#39;wye&#39;,
+ &#39;VMinpu&#39;: 0.7,
+ &#39;Yearly&#39;: &#39;ls_phaseb&#39;,
+ &#39;AllocationFactor&#39;: 1.6463,
+ &#39;XfkVA&#39;: 3.22035118,
+ &#39;PF&#39;: 0.98}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although using names are still valid as an option in many parts of the Alt API, objects can also be manipulated directly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is just the name of the associated spectrum object as string</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">load</span><span class="o">.</span><span class="n">Spectrum_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>defaultload
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is the actual object</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">Spectrum</span>
+<span class="n">spec</span><span class="o">.</span><span class="n">Harmonic</span><span class="p">,</span> <span class="n">spec</span><span class="o">.</span><span class="n">Angle</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([ 1.,  3.,  5.,  7.,  9., 11., 13.]),
+ array([  0., 180., 180., 180., 180., 180., 180.]))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">load</span><span class="o">.</span><span class="n">Daily</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span>
+<span class="n">load</span><span class="o">.</span><span class="n">Daily</span><span class="o">.</span><span class="n">PMult</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.677  , 0.6256 , 0.6087 , 0.5833 , 0.58028, 0.6025 , 0.657  ,
+       0.7477 , 0.832  , 0.88   , 0.94   , 0.989  , 0.985  , 0.98   ,
+       0.9898 , 0.999  , 1.     , 0.958  , 0.936  , 0.913  , 0.876  ,
+       0.876  , 0.828  , 0.756  ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, this Alt API allows manipulating batches of objects and other features:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loads_3ph</span> <span class="o">=</span> <span class="n">altdss</span><span class="o">.</span><span class="n">Load</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">Phases</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">loads_3ph</span><span class="o">.</span><span class="n">Phases</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+       3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], dtype=int32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loads_3ph</span><span class="o">.</span><span class="n">Powers</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.47390882e-01+3.20781834e-02j 1.47458379e-01+3.21332307e-02j
+ 1.47771846e-01+3.23898394e-02j ... 7.76960599e+03+9.88751954e+02j
+ 7.76960408e+03+9.88739143e+02j 0.00000000e+00+0.00000000e+00j]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>The classic API implements the “active object” paradigm, requiring some attention to avoid using the wrong data, especially when multiple objects are involved.</p>
+<p>The time profile of some activation-related methods and functions may be important for performance critical code.</p>
+<p>On DSS-Extensions, an alternative API is being developed to provide a different experience, perhaps complementary since it exposes all DSS objects and can be used together with the classic API, as shown in DSS-Python and OpenDSSDirect.py.</p>
+<p>The classic API will be supported on DSS-Extensions as long as required, either to allow better compatibility with EPRI’s OpenDSS, or to allow long-term support of existing third-party software that depend on this API.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dss-format/Vsource.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Vsource</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="python_apis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">OpenDSS: Python APIs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-hierarchy">API Hierarchy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-layout">General layout</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-active-paradigm">The “Active…” paradigm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buses">Buses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-snippets">Code snippets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-indices">Caching indices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-api">Alternative API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/classic_api.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2018-2024 DSS-Extensions contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

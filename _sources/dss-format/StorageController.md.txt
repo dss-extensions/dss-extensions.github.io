@@ -1,0 +1,295 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# StorageController
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Element`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Full object name of the circuit element, typically a line or transformer, which the control is monitoring. There is no default; Must be specified.In "Local" control mode, is the name of the load that will be managed by the storage device, which should be installed at the same bus.
+*   - 2
+    - `Terminal`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the StorageController control is connected. 1 or 2, typically.  Default is 1. Make sure to select the proper direction on the power for the respective dispatch mode.
+*   - 3
+    - `MonPhase`
+    - string<br>*(from enum. [](#enum-monitored-phase))*
+    - max
+    - 
+    - Number of the phase being monitored or one of {AVG | MAX | MIN} for all phases. Default=MAX. Must be less than the number of phases. Used in PeakShave, Follow, Support and I-PeakShave discharging modes and in PeakShaveLow, I-PeakShaveLow charging modes. For modes based on active power measurements, the value used by the control is the monitored one multiplied by the number of phases of the monitored element.
+*   - 4
+    - `kWTarget`
+    - real
+    - 8000.0
+    - 
+    - kW/kamps target for Discharging. The Storage element fleet is dispatched to try to hold the power/current in band at least until the Storage is depleted. The selection of power or current depends on the Discharge mode (PeakShave->kW, I-PeakShave->kamps).
+*   - 5
+    - `kWTargetLow`
+    - real
+    - 4000.0
+    - 
+    - kW/kamps target for Charging. The Storage element fleet is dispatched to try to hold the power/current in band at least until the Storage is fully charged. The selection of power or current depends on the charge mode (PeakShavelow->kW, I-PeakShavelow->kamps).
+*   - 6
+    - `%kWBand`
+    - real
+    - 
+    - 
+    - Bandwidth (% of Target kW/kamps) of the dead band around the kW/kamps target value. Default is 2% (+/-1%).No dispatch changes are attempted if the power in the monitored terminal stays within this band.
+*   - 7
+    - `kWBand`
+    - real
+    - 
+    - 
+    - Alternative way of specifying the bandwidth. (kW/kamps) of the dead band around the kW/kamps target value. Default is 2% of kWTarget (+/-1%).No dispatch changes are attempted if the power in the monitored terminal stays within this band.<br>***Redundant with %kWBand***
+*   - 8
+    - `%kWBandLow`
+    - real
+    - 
+    - 
+    - Bandwidth (% of kWTargetLow) of the dead band around the kW/kamps low target value. Default is 2% (+/-1%).No charging is attempted if the power in the monitored terminal stays within this band.
+*   - 9
+    - `kWBandLow`
+    - real
+    - 
+    - 
+    - Alternative way of specifying the bandwidth. (kW/kamps) of the dead band around the kW/kamps low target value. Default is 2% of kWTargetLow (+/-1%).No charging is attempted if the power in the monitored terminal stays within this band.<br>***Redundant with %kWBandLow***
+*   - 10
+    - `ElementList`
+    - array of strings
+    - 
+    - 
+    - Array list of Storage elements to be controlled.  If not specified, all Storage elements in the circuit not presently dispatched by another controller are assumed dispatched by this controller.
+*   - 11
+    - `Weights`
+    - array of reals
+    - 
+    - 
+    - Array of proportional weights corresponding to each Storage element in the ElementList. The needed kW or kvar to get back to center band is dispatched to each Storage element according to these weights. Default is to set all weights to 1.0.
+*   - 12
+    - `ModeDischarge`
+    - string<br>*(from enum. [Discharge Mode](#enum-storagecontrollerdischarge-mode))*
+    - Peakshave
+    - 
+    - Mode of operation for the DISCHARGE FUNCTION of this controller. <br><br>In PeakShave mode (Default), the control attempts to discharge Storage to keep power in the monitored element below the kWTarget. <br><br>In Follow mode, the control is triggered by time and resets the kWTarget value to the present monitored element power. It then attempts to discharge Storage to keep power in the monitored element below the new kWTarget. See TimeDischargeTrigger.<br><br>In Support mode, the control operates oppositely of PeakShave mode: Storage is discharged to keep kW power output up near the target. <br><br>In Loadshape mode, both charging and discharging precisely follows the per unit loadshape. Storage is discharged when the loadshape value is positive. <br><br>In Time mode, the Storage discharge is turned on at the specified %RatekW at the specified discharge trigger time in fractional hours.<br><br>In Schedule mode, the Tup, TFlat, and Tdn properties specify the up ramp duration, flat duration, and down ramp duration for the schedule. The schedule start time is set by TimeDischargeTrigger and the rate of discharge for the flat part is determined by %RatekW.<br><br>In I-PeakShave mode, the control attempts to discharge Storage to keep current in the monitored element below the target given in k-amps (thousands of amps), when this control mode is active, the property kWTarget will be expressed in k-amps. 
+*   - 13
+    - `ModeCharge`
+    - string<br>*(from enum. [Charge Mode](#enum-storagecontrollercharge-mode))*
+    - Time
+    - 
+    - Mode of operation for the CHARGE FUNCTION of this controller. <br><br>In Loadshape mode, both charging and discharging precisely follows the per unit loadshape. Storage is charged when the loadshape value is negative. <br><br>In Time mode, the Storage charging FUNCTION is triggered at the specified %RateCharge at the specified charge trigger time in fractional hours.<br><br>In PeakShaveLow mode, the charging operation will charge the Storage fleet when the power at a monitored element is below a specified KW target (kWTarget_low). The Storage will charge as much power as necessary to keep the power within the deadband around kWTarget_low.<br><br>In I-PeakShaveLow mode, the charging operation will charge the Storage fleet when the current (Amps) at a monitored element is below a specified amps target (kWTarget_low). The Storage will charge as much power as necessary to keep the amps within the deadband around kWTarget_low. When this control mode is active, the property kWTarget_low will be expressed in k-amps and all the other parameters will be adjusted to match the amps (current) control criteria.
+*   - 14
+    - `TimeDischargeTrigger`
+    - real
+    - -1.0
+    - 
+    - Default time of day (hr) for initiating Discharging of the fleet. During Follow or Time mode discharging is triggered at a fixed time each day at this hour. If Follow mode, Storage will be discharged to attempt to hold the load at or below the power level at the time of triggering. In Time mode, the discharge is based on the %RatekW property value. Set this to a negative value to ignore. Default is 12.0 for Follow mode; otherwise it is -1 (ignored). 
+*   - 15
+    - `TimeChargeTrigger`
+    - real
+    - 2.0
+    - 
+    - Default time of day (hr) for initiating charging in Time control mode. Set this to a negative value to ignore. Default is 2.0.  (0200).When this value is >0 the Storage fleet is set to charging at this time regardless of other control criteria to make sure Storage is topped off for the next discharge cycle.
+*   - 16
+    - `%RatekW`
+    - real
+    - 
+    - 
+    - Sets the kW discharge rate in % of rated capacity for each element of the fleet. Applies to TIME control mode, SCHEDULE mode, or anytime discharging is triggered by time.
+*   - 17
+    - `%RateCharge`
+    - real
+    - 
+    - 
+    - Sets the kW charging rate in % of rated capacity for each element of the fleet. Applies to TIME control mode and anytime charging mode is entered due to a time trigger.
+*   - 18
+    - `%Reserve`
+    - real
+    - 
+    - 
+    - Use this property to change the % reserve for each Storage element under control of this controller. This might be used, for example, to allow deeper discharges of Storage or in case of emergency operation to use the remainder of the Storage element.
+*   - 19
+    - `kWhTotal`
+    - real
+    - 
+    - 
+    - (Read only). Total rated kWh energy Storage capacity of Storage elements controlled by this controller.
+*   - 20
+    - `kWTotal`
+    - real
+    - 
+    - 
+    - (Read only). Total rated kW power capacity of Storage elements controlled by this controller.
+*   - 21
+    - `kWhActual`
+    - real
+    - 
+    - 
+    - (Read only). Actual kWh stored of all controlled Storage elements. 
+*   - 22
+    - `kWActual`
+    - real
+    - 
+    - 
+    - (Read only). Actual kW output of all controlled Storage elements. 
+*   - 23
+    - `kWNeed`
+    - real
+    - 
+    - 
+    - (Read only). KW needed to meet target.
+*   - 24
+    - `Yearly`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Dispatch loadshape object, If any, for Yearly solution Mode.
+*   - 25
+    - `Daily`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Dispatch loadshape object, If any, for Daily solution mode.
+*   - 26
+    - `Duty`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Dispatch loadshape object, If any, for Dutycycle solution mode.
+*   - 27
+    - `EventLog`
+    - boolean
+    - False
+    - 
+    - Log control actions to Eventlog.
+*   - 28
+    - `InhibitTime`
+    - integer
+    - 5
+    - hour
+    - Hours (integer) to inhibit Discharging after going into Charge mode.
+*   - 29
+    - `TUp`
+    - real
+    - 0.25
+    - hour
+    - Duration of upramp part for SCHEDULE mode.
+*   - 30
+    - `TFlat`
+    - real
+    - 2.0
+    - hour
+    - Duration of flat part for SCHEDULE mode.
+*   - 31
+    - `TDn`
+    - real
+    - 0.25
+    - hour
+    - Duration of downramp part for SCHEDULE mode.
+*   - 32
+    - `kWThreshold`
+    - real
+    - 
+    - 
+    - Threshold, kW, for Follow mode. kW has to be above this value for the Storage element to be dispatched on. Defaults to 75% of the kWTarget value. Must reset this property after setting kWTarget if you want a different value.
+*   - 33
+    - `DispFactor`
+    - real
+    - 1.0
+    - 
+    - Defaults to 1 (disabled). Set to any value between 0 and 1 to enable this parameter.<br><br>Use this parameter to reduce the amount of power requested by the controller in each control iteration. It can be useful when maximum control iterations are exceeded due to numerical instability such as fleet being set to charging and idling in subsequent control iterations (check the Eventlog). 
+*   - 34
+    - `ResetLevel`
+    - real
+    - 0.8
+    - 
+    - The level of charge required for allowing the storage to discharge again after reaching the reserve storage level. After reaching this level, the storage control  will not allow the storage device to discharge, forcing the storage to charge. Once the storage reaches this level, the storage will be able to discharge again. This value is a number between 0.2 and 1
+*   - 35
+    - `Seasons`
+    - integer
+    - 
+    - 
+    - With this property the user can specify the number of targets to be used by the controller using the list given at "SeasonTargets"/"SeasonTargetsLow", which can be used to dynamically adjust the storage controller during a QSTS simulation. The default value is 1. This property needs to be defined before defining SeasonTargets/SeasonTargetsLow.
+*   - 36
+    - `SeasonTargets`
+    - array of reals
+    - [8000.0]
+    - 
+    - An array of doubles specifying the targets to be used during a QSTS simulation. These targets will take effect only if SeasonRating=true. The number of targets cannot exceed the number of seasons defined at the SeasonSignal.The difference between the targets defined at SeasonTargets and SeasonTargetsLow is that SeasonTargets applies to discharging modes, while SeasonTargetsLow applies to charging modes.
+*   - 37
+    - `SeasonTargetsLow`
+    - array of reals
+    - [4000.0]
+    - 
+    - An array of doubles specifying the targets to be used during a QSTS simulation. These targets will take effect only if SeasonRating=true. The number of targets cannot exceed the number of seasons defined at the SeasonSignal.The difference between the targets defined at SeasonTargets and SeasonTargetsLow is that SeasonTargets applies to discharging modes, while SeasonTargetsLow applies to charging modes.
+*   - 38
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 39
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 40
+    - `Like`
+    - string<br>*([StorageController](#StorageController) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-storagecontrollercharge-mode)=
+### StorageController: Charge Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Loadshape`
+*   - `Time`
+*   - `PeakshaveLow`
+*   - `I-PeakshaveLow`
+:::
+
+
+(enum-storagecontrollerdischarge-mode)=
+### StorageController: Discharge Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Peakshave`
+*   - `Follow`
+*   - `Support`
+*   - `Loadshape`
+*   - `Time`
+*   - `Schedule`
+*   - `I-Peakshave`
+:::
+
+

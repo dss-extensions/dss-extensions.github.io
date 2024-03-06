@@ -1,0 +1,140 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# LineGeometry
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NConds`
+    - integer
+    - 0
+    - 
+    - Number of conductors in this geometry. Triggers memory allocations. Define first!
+*   - 2
+    - `NPhases`
+    - integer
+    - 0
+    - 
+    - Number of phases. All other conductors are considered neutrals and might be reduced out.
+*   - 3
+    - `Cond`
+    - integer
+    - 
+    - 
+    - Set this = number of the conductor you wish to define.
+*   - 4
+    - `Wire`
+    - string<br>*([WireData](#WireData) name)*
+    - 
+    - 
+    - Code from WireData. MUST BE PREVIOUSLY DEFINED. no default.<br>Specifies use of Overhead Line parameter calculation,<br>Unless Tape Shield cable previously assigned to phases, and this wire is a neutral.<br>***Redundant with Wires***
+*   - 5
+    - `X`
+    - real<br>*(on array)*
+    - 
+    - 
+    - x coordinate.
+*   - 6
+    - `H`
+    - real<br>*(on array)*
+    - 
+    - 
+    - Height of conductor.
+*   - 7
+    - `Units`
+    - string<br>*(from enum. [](#enum-length-unit))*
+    - 
+    - 
+    - Units for x and h. Initial default is "ft", but defaults to last unit defined
+*   - 8
+    - `NormAmps`
+    - real
+    - 0.0
+    - 
+    - Normal ampacity, amperes for the line. Defaults to first conductor if not specified.
+*   - 9
+    - `EmergAmps`
+    - real
+    - 0.0
+    - 
+    - Emergency ampacity, amperes. Defaults to first conductor if not specified.
+*   - 10
+    - `Reduce`
+    - boolean
+    - False
+    - 
+    - Reduce to Nphases (Kron Reduction). Reduce out neutrals.
+*   - 11
+    - `Spacing`
+    - string<br>*([LineSpacing](#LineSpacing) name)*
+    - 
+    - 
+    - Reference to a LineSpacing for use in a line constants calculation.<br>Alternative to x, h, and units. MUST BE PREVIOUSLY DEFINED.<br>Must match "nconds" as previously defined for this geometry.<br>Must be used in conjunction with the Wires property.
+*   - 12
+    - `Wires`
+    - array of strings<br>*([WireData](#WireData) names)*
+    - 
+    - 
+    - Array of WireData names for use in a line constants calculation.<br>Alternative to individual wire inputs. ALL MUST BE PREVIOUSLY DEFINED.<br>Must match "nconds" as previously defined for this geometry,<br>unless TSData or CNData were previously assigned to phases, and these wires are neutrals.<br>Must be used in conjunction with the Spacing property.
+*   - 13
+    - `CNCable`
+    - string<br>*([CNData](#CNData) name)*
+    - 
+    - 
+    - Code from CNData. MUST BE PREVIOUSLY DEFINED. no default.<br>Specifies use of Concentric Neutral cable parameter calculation.<br>***Redundant with Wires***
+*   - 14
+    - `TSCable`
+    - string<br>*([TSData](#TSData) name)*
+    - 
+    - 
+    - Code from TSData. MUST BE PREVIOUSLY DEFINED. no default.<br>Specifies use of Tape Shield cable parameter calculation.<br>***Redundant with Wires***
+*   - 15
+    - `CNCables`
+    - array of strings<br>*([CNData](#CNData) names)*
+    - 
+    - 
+    - Array of CNData names for cable parameter calculation.<br>All must be previously defined, and match "nphases" for this geometry.<br>You can later define "nconds-nphases" wires for bare neutral conductors.<br>***Redundant with CNCable***
+*   - 16
+    - `TSCables`
+    - array of strings<br>*([TSData](#TSData) names)*
+    - 
+    - 
+    - Array of TSData names for cable parameter calculation.<br>All must be previously defined, and match "nphases" for this geometry.<br>You can later define "nconds-nphases" wires for bare neutral conductors.<br>***Redundant with TSCable***
+*   - 17
+    - `Seasons`
+    - integer
+    - 
+    - 
+    - Defines the number of ratings to be defined for the wire, to be used only when defining seasonal ratings using the "Ratings" property. Defaults to first conductor if not specified.
+*   - 18
+    - `Ratings`
+    - array of reals
+    - [0.0]
+    - 
+    - An array of ratings to be used when the seasonal ratings flag is True. It can be used to insert<br>multiple ratings to change during a QSTS simulation to evaluate different ratings in lines. Defaults to first conductor if not specified.
+*   - 19
+    - `LineType`
+    - string<br>*(from enum. [](#enum-line-type))*
+    - oh
+    - 
+    - Code designating the type of line.<br>OpenDSS currently does not use this internally. For whatever purpose the user defines.
+*   - 20
+    - `Like`
+    - string<br>*([LineGeometry](#LineGeometry) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

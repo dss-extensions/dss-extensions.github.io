@@ -1,0 +1,111 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Isource
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which source is connected.<br>bus1=busname<br>bus1=busname.1.2.3
+*   - 2
+    - `Amps`
+    - real
+    - 
+    - A
+    - Magnitude of current source, each phase, in Amps.
+*   - 3
+    - `Angle`
+    - real
+    - 0.0
+    - °
+    - Phase angle of first phase: e.g.,Angle=10.3.<br>Phase shift between phases is assumed 120 degrees when number of phases <= 3
+*   - 4
+    - `Frequency`
+    - real
+    - 
+    - Hz
+    - Source frequency.  Defaults to  circuit fundamental frequency.
+*   - 5
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of phases. For 3 or less, phase shift is 120 degrees.
+*   - 6
+    - `ScanType`
+    - string<br>*(from enum. [](#enum-scan-type))*
+    - Positive
+    - 
+    - Maintain specified sequence for harmonic solution. Default is positive sequence. Otherwise, angle between phases rotates with harmonic.
+*   - 7
+    - `Sequence`
+    - string<br>*(from enum. [](#enum-sequence-type))*
+    - Positive
+    - 
+    - Set the phase angles for the specified symmetrical component sequence for non-harmonic solution modes. Default is positive sequence. 
+*   - 8
+    - `Yearly`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for the per-unit current for YEARLY-mode simulations. Set the Mult property of the LOADSHAPE to the pu curve. Qmult is not used. If UseActual=Yes then the Mult curve should be actual Amp.<br><br>Must be previously defined as a LOADSHAPE object. <br><br>Is set to the Daily load shape when Daily is defined.  The daily load shape is repeated in this case. Set to NONE to reset to no loadshape for Yearly mode. The default is no variation.
+*   - 9
+    - `Daily`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for the per-unit current for DAILY-mode simulations. Set the Mult property of the LOADSHAPE to the pu curve. Qmult is not used. If UseActual=Yes then the Mult curve should be actual A.<br><br>Must be previously defined as a LOADSHAPE object. <br><br>Sets Yearly curve if it is not already defined.   Set to NONE to reset to no loadshape for Yearly mode. The default is no variation.
+*   - 10
+    - `Duty`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for the per-unit current for DUTYCYCLE-mode simulations. Set the Mult property of the LOADSHAPE to the pu curve. Qmult is not used. If UseActual=Yes then the Mult curve should be actual A.<br><br>Must be previously defined as a LOADSHAPE object. <br><br>Defaults to Daily load shape when Daily is defined.   Set to NONE to reset to no loadshape for Yearly mode. The default is no variation.
+*   - 11
+    - `Bus2`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which 2nd terminal is connected.<br>bus2=busname<br>bus2=busname.1.2.3<br><br>Default is Bus1.0.0.0 (grounded-wye connection)
+*   - 12
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - default
+    - 
+    - Harmonic spectrum assumed for this source.
+*   - 13
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 14
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 15
+    - `Like`
+    - string<br>*([Isource](#Isource) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

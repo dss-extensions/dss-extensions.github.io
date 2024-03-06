@@ -1,0 +1,442 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Storage
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of Phases, this Storage element.  Power is evenly divided among phases.
+*   - 2
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Bus to which the Storage element is connected.  May include specific node specification.
+*   - 3
+    - `kV`
+    - real
+    - 12.47
+    - kV
+    - Nominal rated (1.0 per unit) voltage, kV, for Storage element. For 2- and 3-phase Storage elements, specify phase-phase kV. Otherwise, specify actual kV across each branch of the Storage element. <br><br>If wye (star), specify phase-neutral kV. <br><br>If delta or phase-phase connected, specify phase-phase kV.
+*   - 4
+    - `Conn`
+    - string<br>*(from enum. [](#enum-connection))*
+    - Wye
+    - 
+    - ={wye|LN|delta|LL}.  Default is wye.
+*   - 5
+    - `kW`
+    - real
+    - -0.25
+    - kW
+    - Get/set the requested kW value. Final kW is subjected to the inverter ratings. A positive value denotes power coming OUT of the element, which is the opposite of a Load element. A negative value indicates the Storage element is in Charging state. This value is modified internally depending on the dispatch mode.
+*   - 6
+    - `kvar`
+    - real
+    - 
+    - kvar
+    - Get/set the requested kvar value. Final kvar is subjected to the inverter ratings. Sets inverter to operate in constant kvar mode.
+*   - 7
+    - `PF`
+    - real
+    - 
+    - 
+    - Get/set the requested PF value. Final PF is subjected to the inverter ratings. Sets inverter to operate in constant PF mode. Nominally, the power factor for discharging (acting as a generator). Default is 1.0. <br><br>Enter negative for leading power factor (when kW and kvar have opposite signs.)<br><br>A positive power factor signifies kw and kvar at the same direction.
+*   - 8
+    - `kVA`
+    - real
+    - 25.0
+    - kVA
+    - Indicates the inverter nameplate capability (in kVA). Used as the base for Dynamics mode and Harmonics mode values.
+*   - 9
+    - `%CutIn`
+    - real
+    - 
+    - 
+    - Cut-in power as a percentage of inverter kVA rating. It is the minimum DC power necessary to turn the inverter ON when it is OFF. Must be greater than or equal to %CutOut. Defaults to 2 for PVSystems and 0 for Storage elements which means that the inverter state will be always ON for this element.
+*   - 10
+    - `%CutOut`
+    - real
+    - 
+    - 
+    - Cut-out power as a percentage of inverter kVA rating. It is the minimum DC power necessary to keep the inverter ON. Must be less than or equal to %CutIn. Defaults to 0, which means that, once ON, the inverter state will be always ON for this element.
+*   - 11
+    - `EffCurve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - An XYCurve object, previously defined, that describes the PER UNIT efficiency vs PER UNIT of rated kVA for the inverter. Power at the AC side of the inverter is discounted by the multiplier obtained from this curve.
+*   - 12
+    - `VarFollowInverter`
+    - boolean
+    - False
+    - 
+    - A false value indicates that the reactive power generation/absorption does not respect the inverter status. When set to True, the reactive power generation/absorption will cease when the inverter status is off, due to DC kW dropping below %CutOut.  The reactive power generation/absorption will begin again when the DC kW is above %CutIn.  When set to False, the Storage will generate/absorb reactive power regardless of the status of the inverter.
+*   - 13
+    - `kvarMax`
+    - real
+    - 
+    - 
+    - Indicates the maximum reactive power GENERATION (un-signed numerical variable in kvar) for the inverter. Defaults to kVA rating of the inverter.
+*   - 14
+    - `kvarMaxAbs`
+    - real
+    - 
+    - 
+    - Indicates the maximum reactive power ABSORPTION (un-signed numerical variable in kvar) for the inverter. Defaults to kvarMax.
+*   - 15
+    - `WattPriority`
+    - boolean
+    - False
+    - 
+    - Set inverter to watt priority instead of the default var priority.
+*   - 16
+    - `PFPriority`
+    - boolean
+    - False
+    - 
+    - If set to true, priority is given to power factor and WattPriority is neglected. It works only if operating in either constant PF or constant kvar modes. Defaults to False.
+*   - 17
+    - `%PMinNoVars`
+    - real
+    - 
+    - 
+    - Minimum active power as percentage of kWrated under which there is no vars production/absorption. Defaults to 0 (disabled).
+*   - 18
+    - `%PMinkvarMax`
+    - real
+    - 
+    - 
+    - Minimum active power as percentage of kWrated that allows the inverter to produce/absorb reactive power up to its maximum reactive power, which can be either kvarMax or kvarMaxAbs, depending on the current operation quadrant. Defaults to 0 (disabled).
+*   - 19
+    - `kWRated`
+    - real
+    - 
+    - kW
+    - kW rating of power output. Base for Loadshapes when DispMode=Follow. Sets kVA property if it has not been specified yet. Defaults to 25.
+*   - 20
+    - `%kWRated`
+    - real
+    - 
+    - 
+    - Upper limit on active power as a percentage of kWrated. Defaults to 100 (disabled).
+*   - 21
+    - `kWhRated`
+    - real
+    - 50.0
+    - kWh
+    - Rated Storage capacity in kWh.
+*   - 22
+    - `kWhStored`
+    - real
+    - 
+    - kWh
+    - Present amount of energy stored, kWh. Default is same as kWhrated.
+*   - 23
+    - `%Stored`
+    - real
+    - 
+    - 
+    - Present amount of energy stored, % of rated kWh.
+*   - 24
+    - `%Reserve`
+    - real
+    - 
+    - 
+    - Percentage of rated kWh Storage capacity to be held in reserve for normal operation.<br>This is treated as the minimum energy discharge level unless there is an emergency. For emergency operation set this property lower. Cannot be less than zero.
+*   - 25
+    - `State`
+    - string<br>*(from enum. [State](#enum-storagestate))*
+    - Idling
+    - 
+    - {IDLING | CHARGING | DISCHARGING}  Get/Set present operational state. In DISCHARGING mode, the Storage element acts as a generator and the kW property is positive. The element continues discharging at the scheduled output power level until the Storage reaches the reserve value. Then the state reverts to IDLING. In the CHARGING state, the Storage element behaves like a Load and the kW property is negative. The element continues to charge until the max Storage kWh is reached and then switches to IDLING state. In IDLING state, the element draws the idling losses plus the associated inverter losses.
+*   - 26
+    - `%Discharge`
+    - real
+    - 
+    - 
+    - Discharge rate (output power) in percentage of rated kW.
+*   - 27
+    - `%Charge`
+    - real
+    - 
+    - 
+    - Charging rate (input power) in percentage of rated kW.
+*   - 28
+    - `%EffCharge`
+    - real
+    - 
+    - 
+    - Percentage efficiency for CHARGING the Storage element.
+*   - 29
+    - `%EffDischarge`
+    - real
+    - 
+    - 
+    - Percentage efficiency for DISCHARGING the Storage element.
+*   - 30
+    - `%IdlingkW`
+    - real
+    - 
+    - 
+    - Percentage of rated kW consumed by idling losses.
+*   - 31
+    - `%Idlingkvar`
+    - [deprecated/removed]{.fg-warning}
+    - 
+    - 
+    - Deprecated.
+*   - 32
+    - `%R`
+    - real
+    - 
+    - 
+    - Equivalent percentage internal resistance, ohms. Placed in series with internal voltage source for harmonics and dynamics modes. Use a combination of %IdlingkW, %EffCharge and %EffDischarge to account for losses in power flow modes.
+*   - 33
+    - `%X`
+    - real
+    - 
+    - 
+    - Equivalent percentage internal reactance, ohms. Placed in series with internal voltage source for harmonics and dynamics modes. (Limits fault current to 2 pu.
+*   - 34
+    - `Model`
+    - integer
+    - 1
+    - 
+    - Integer code (default=1) for the model to be used for power output variation with voltage. Valid values are:<br><br>1:Storage element injects/absorbs a CONSTANT power.<br>2:Storage element is modeled as a CONSTANT IMPEDANCE.<br>3:Compute load injection from User-written Model.
+*   - 35
+    - `VMinpu`
+    - real
+    - 0.9
+    - 
+    - Default = 0.90.  Minimum per unit voltage for which the Model is assumed to apply. Below this value, the load model reverts to a constant impedance model.
+*   - 36
+    - `VMaxpu`
+    - real
+    - 1.1
+    - 
+    - Default = 1.10.  Maximum per unit voltage for which the Model is assumed to apply. Above this value, the load model reverts to a constant impedance model.
+*   - 37
+    - `Balanced`
+    - boolean
+    - False
+    - 
+    - Force balanced current only for 3-phase Storage. Forces zero- and negative-sequence to zero. 
+*   - 38
+    - `LimitCurrent`
+    - boolean
+    - False
+    - 
+    - Limits current magnitude to Vminpu value for both 1-phase and 3-phase Storage similar to Generator Model 7. For 3-phase, limits the positive-sequence current but not the negative-sequence.
+*   - 39
+    - `Yearly`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Dispatch shape to use for yearly simulations.  Must be previously defined as a Loadshape object. If this is not specified, the Daily dispatch shape, if any, is repeated during Yearly solution modes. In the default dispatch mode, the Storage element uses this loadshape to trigger State changes.
+*   - 40
+    - `Daily`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Dispatch shape to use for daily simulations.  Must be previously defined as a Loadshape object of 24 hrs, typically.  In the default dispatch mode, the Storage element uses this loadshape to trigger State changes.
+*   - 41
+    - `Duty`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Load shape to use for duty cycle dispatch simulations such as for solar ramp rate studies. Must be previously defined as a Loadshape object. <br><br>Typically would have time intervals of 1-5 seconds. <br><br>Designate the number of points to solve using the Set Number=xxxx command. If there are fewer points in the actual shape, the shape is assumed to repeat.
+*   - 42
+    - `DispMode`
+    - string<br>*(from enum. [Dispatch Mode](#enum-storagedispatch-mode))*
+    - Default
+    - 
+    - {DEFAULT | FOLLOW | EXTERNAL | LOADLEVEL | PRICE } Default = "DEFAULT". Dispatch mode. <br><br>In DEFAULT mode, Storage element state is triggered to discharge or charge at the specified rate by the loadshape curve corresponding to the solution mode. <br><br>In FOLLOW mode the kW output of the Storage element follows the active loadshape multiplier until Storage is either exhausted or full. The element discharges for positive values and charges for negative values.  The loadshape is based on rated kW. <br><br>In EXTERNAL mode, Storage element state is controlled by an external Storagecontroller. This mode is automatically set if this Storage element is included in the element list of a StorageController element. <br><br>For the other two dispatch modes, the Storage element state is controlled by either the global default Loadlevel value or the price level. 
+*   - 43
+    - `DischargeTrigger`
+    - real
+    - 0.0
+    - 
+    - Dispatch trigger value for discharging the Storage. <br>If = 0 the Storage element state is changed by the State command or by a StorageController object. <br>If ≠ 0  the Storage element state is set to DISCHARGING when this trigger level is EXCEEDED by either the specified Loadshape curve value or the price signal or global Loadlevel value, depending on dispatch mode. See State property.
+*   - 44
+    - `ChargeTrigger`
+    - real
+    - 0.0
+    - 
+    - Dispatch trigger value for charging the Storage. <br><br>If = 0 the Storage element state is changed by the State command or StorageController object.  <br><br>If ≠ 0  the Storage element state is set to CHARGING when this trigger level is GREATER than either the specified Loadshape curve value or the price signal or global Loadlevel value, depending on dispatch mode. See State property.
+*   - 45
+    - `TimeChargeTrig`
+    - real
+    - 2.0
+    - hour (0-24)
+    - Time of day in fractional hours (0230 = 2.5) at which Storage element will automatically go into charge state. Enter a negative time value to disable this feature.
+*   - 46
+    - `Class`
+    - integer
+    - 1
+    - 
+    - An arbitrary integer number representing the class of Storage element so that Storage values may be segregated by class.
+*   - 47
+    - `DynaDLL`
+    - string
+    - 
+    - 
+    - Name of DLL containing user-written dynamics model, which computes the terminal currents for Dynamics-mode simulations, overriding the default model.  Set to "none" to negate previous setting. This DLL has a simpler interface than the UserModel DLL and is only used for Dynamics mode.
+*   - 48
+    - `DynaData`
+    - string
+    - 
+    - 
+    - String (in quotes or parentheses if necessary) that gets passed to the user-written dynamics model Edit function for defining the data required for that model.
+*   - 49
+    - `UserModel`
+    - string
+    - 
+    - 
+    - Name of DLL containing user-written model, which computes the terminal currents for both power flow and dynamics, overriding the default model.  Set to "none" to negate previous setting.
+*   - 50
+    - `UserData`
+    - string
+    - 
+    - 
+    - String (in quotes or parentheses) that gets passed to user-written model for defining the data required for that model.
+*   - 51
+    - `DebugTrace`
+    - boolean
+    - False
+    - 
+    - Turn this on to capture the progress of the Storage model for each iteration.  Creates a separate file for each Storage element named "Storage_name.csv".
+*   - 52
+    - `kVDC`
+    - real
+    - 8.0
+    - kV
+    - Indicates the rated voltage (kV) at the input of the inverter while the storage is discharging. The value is normally greater or equal to the kV base of the Storage device. It is used for dynamics simulation ONLY.
+*   - 53
+    - `Kp`
+    - real
+    - 0.01
+    - 
+    - It is the proportional gain for the PI controller within the inverter. Use it to modify the controller response in dynamics simulation mode.
+*   - 54
+    - `PITol`
+    - real
+    - 0.0
+    - 
+    - It is the tolerance (%) for the closed loop controller of the inverter. For dynamics simulation mode.
+*   - 55
+    - `SafeVoltage`
+    - real
+    - 80.0
+    - 
+    - Indicates the voltage level (%) respect to the base voltage level for which the Inverter will operate. If this threshold is violated, the Inverter will enter safe mode (OFF). For dynamic simulation. By default is 80%.
+*   - 56
+    - `SafeMode`
+    - boolean
+    - 
+    - 
+    - (Read only) Indicates whether the inverter entered (Yes) or not (No) into Safe Mode.
+*   - 57
+    - `DynamicEq`
+    - string<br>*([DynamicExp](#DynamicExp) name)*
+    - 
+    - 
+    - The name of the dynamic equation (DynamicExp) that will be used for defining the dynamic behavior of the generator. If not defined, the generator dynamics will follow the built-in dynamic equation.
+*   - 58
+    - `DynOut`
+    - array of strings
+    - 
+    - 
+    - The name of the variables within the Dynamic equation that will be used to govern the Storage dynamics. This Storage model requires 1 output from the dynamic equation:<br><br>    1. Current.<br><br>The output variables need to be defined in the same order.
+*   - 59
+    - `ControlMode`
+    - string<br>*(from enum. [](#enum-inverter-control-mode))*
+    - GFL
+    - 
+    - Defines the control mode for the inverter. By default it is GFL (Grid Following Inverter). Use GFM (Grid Forming Inverter) for energizing islanded microgrids, but, if the device is connected to the grid, it is highly recommended to use GFL.<br><br>GFM control mode disables any control action set by the InvControl device.
+*   - 60
+    - `AmpLimit`
+    - real
+    - 
+    - 
+    - The current limiter per phase for the IBR when operating in GFM mode. This limit is imposed to prevent the IBR to enter into Safe Mode when reaching the IBR power ratings.<br>Once the IBR reaches this value, it remains there without moving into Safe Mode. This value needs to be set lower than the IBR Amps rating.
+*   - 61
+    - `AmpLimitGain`
+    - real
+    - 0.8
+    - 
+    - Use it for fine tunning the current limiter when active, by default is 0.8, it has to be a value between 0.1 and 1. This value allows users to fine tune the IBRs current limiter to match with the user requirements.
+*   - 62
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - 
+    - 
+    - Name of harmonic voltage or current spectrum for this Storage element. Current injection is assumed for inverter.
+*   - 63
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 64
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 65
+    - `Like`
+    - string<br>*([Storage](#Storage) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-storagedispatch-mode)=
+### Storage: Dispatch Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Default`
+*   - `LoadLevel`
+*   - `Price`
+*   - `External`
+*   - `Follow`
+:::
+
+
+(enum-storagestate)=
+### Storage: State
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Charging`
+*   - `Idling`
+*   - `Discharging`
+:::
+
+

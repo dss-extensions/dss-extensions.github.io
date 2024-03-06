@@ -1,0 +1,99 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Monitor
+
+(
+    Circuit Element,
+    Meter Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Element`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - Vsource.source
+    - 
+    - Name (Full Object name) of element to which the monitor is connected.
+*   - 2
+    - `Terminal`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the monitor is connected. 1 or 2, typically. For monitoring states, attach monitor to terminal 1.
+*   - 3
+    - `Mode`
+    - integer
+    - 0
+    - 
+    - Bitmask integer designating the values the monitor is to capture: <br>0 = Voltages and currents at designated terminal<br>1 = Powers at designated terminal<br>2 = Tap Position (Transformer Device only)<br>3 = State Variables (PCElements only)<br>4 = Flicker level and severity index (Pst) for voltages. No adders apply.<br>    Flicker level at simulation time step, Pst at 10-minute time step.<br>5 = Solution variables (Iterations, etc).<br>Normally, these would be actual phasor quantities from solution.<br>6 = Capacitor Switching (Capacitors only)<br>7 = Storage state vars (Storage device only)<br>8 = All winding currents (Transformer device only)<br>9 = Losses, watts and var (of monitored device)<br>10 = All Winding voltages (Transformer device only)<br>Normally, these would be actual phasor quantities from solution.<br>11 = All terminal node voltages and line currents of monitored device<br>12 = All terminal node voltages LL and line currents of monitored device<br>Combine mode with adders below to achieve other results for terminal quantities:<br>+16 = Sequence quantities<br>+32 = Magnitude only<br>+64 = Positive sequence only or avg of all phases<br><br>Mix adder to obtain desired results. For example:<br>Mode=112 will save positive sequence voltage and current magnitudes only<br>Mode=48 will save all sequence voltages and currents, but magnitude only.
+*   - 4
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-monitoraction), action)*
+    - 
+    - 
+    - {Clear | Save | Take | Process}<br>(C)lears or (S)aves current buffer.<br>(T)ake action takes a sample.<br>(P)rocesses the data taken so far (e.g. Pst for mode 4).<br><br>Note that monitors are automatically reset (cleared) when the Set Mode= command is issued. Otherwise, the user must explicitly reset all monitors (reset monitors command) or individual monitors with the Clear action.
+*   - 5
+    - `Residual`
+    - boolean
+    - False
+    - 
+    - Include Residual cbannel (sum of all phases) for voltage and current. Does not apply to sequence quantity modes or power modes.
+*   - 6
+    - `VIPolar`
+    - boolean
+    - True
+    - 
+    - Report voltage and current in polar form (Mag/Angle). (default)  Otherwise, it will be real and imaginary.
+*   - 7
+    - `PPolar`
+    - boolean
+    - True
+    - 
+    - Report power in Apparent power, S, in polar form (Mag/Angle).(default)  Otherwise, is P and Q
+*   - 8
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 9
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 10
+    - `Like`
+    - string<br>*([Monitor](#Monitor) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-monitoraction)=
+### Monitor: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Clear`
+*   - `Save`
+*   - `TakeSample`
+*   - `Process`
+*   - `Reset`
+:::
+
+

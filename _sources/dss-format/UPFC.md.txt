@@ -1,0 +1,173 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# UPFC
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which the input terminal (1) is connected.<br>bus1=busname.1.3<br>bus1=busname.1.2.3
+*   - 2
+    - `Bus2`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which the output terminal (2) is connected.<br>bus2=busname.1.2<br>bus2=busname.1.2.3
+*   - 3
+    - `RefkV`
+    - real
+    - 0.24
+    - 
+    - Base Voltage expected at the output of the UPFC<br><br>"refkv=0.24"
+*   - 4
+    - `PF`
+    - real
+    - 1.0
+    - 
+    - Power factor target at the input terminal.
+*   - 5
+    - `Frequency`
+    - real
+    - 
+    - Hz
+    - UPFC working frequency.  Defaults to system default base frequency.
+*   - 6
+    - `Phases`
+    - integer
+    - 1
+    - 
+    - Number of phases.  Defaults to 1 phase (2 terminals, 1 conductor per terminal).
+*   - 7
+    - `Xs`
+    - real
+    - 0.754
+    - 
+    - Reactance of the series transformer of the UPFC, ohms (default=0.7540 ... 2 mH)
+*   - 8
+    - `Tol1`
+    - real
+    - 0.02
+    - 
+    - Tolerance in pu for the series PI controller<br>Tol1=0.02 is the format used to define 2% tolerance (Default=2%)
+*   - 9
+    - `Mode`
+    - integer<br>*(from enum. [Mode](#enum-upfcmode))*
+    - 1
+    - 
+    - Integer used to define the control mode of the UPFC: <br><br>0 = Off, <br>1 = Voltage regulator, <br>2 = Phase angle regulator, <br>3 = Dual mode<br>4 = It is a control mode where the user can set two different set points to create a secure GAP, these references must be defined in the parameters RefkV and RefkV2. The only restriction when setting these values is that RefkV must be higher than RefkV2. <br>5 = In this mode the user can define the same GAP using two set points as in control mode 4. The only difference between mode 5 and mode 4 is that in mode 5, the UPFC controller performs dual control actions just as in control mode 3
+*   - 10
+    - `VpqMax`
+    - real
+    - 24.0
+    - 
+    - Maximum voltage (in volts) delivered by the series voltage source (Default = 24 V)
+*   - 11
+    - `LossCurve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Name of the XYCurve for describing the losses behavior as a function of the voltage at the input of the UPFC
+*   - 12
+    - `VHLimit`
+    - real
+    - 300.0
+    - 
+    - High limit for the voltage at the input of the UPFC, if the voltage is above this value the UPFC turns off. This value is specified in Volts (default 300 V)
+*   - 13
+    - `VLLimit`
+    - real
+    - 125.0
+    - 
+    - low limit for the voltage at the input of the UPFC, if voltage is below this value the UPFC turns off. This value is specified in Volts (default 125 V)
+*   - 14
+    - `CLimit`
+    - real
+    - 265.0
+    - 
+    - Current Limit for the UPFC, if the current passing through the UPFC is higher than this value the UPFC turns off. This value is specified in Amps (Default 265 A)
+*   - 15
+    - `refkV2`
+    - real
+    - 0.0
+    - 
+    - Base Voltage expected at the output of the UPFC for control modes 4 and 5.<br><br>This reference must be lower than refkv, see control modes 4 and 5 for details
+*   - 16
+    - `kvarLimit`
+    - real
+    - 5.0
+    - kvar
+    - Maximum amount of reactive power that can be absorbed by the UPFC.
+*   - 17
+    - `Element`
+    - string<br>*([PDElement](#pd-elements) name)*
+    - 
+    - 
+    - The name of the PD element monitored when operating with reactive power compensation. Normally, it should be the PD element immediately upstream the UPFC. The element must be defined including the class, e.g. Line.myline.
+*   - 18
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - default
+    - 
+    - Name of harmonic spectrum for this source.
+*   - 19
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 20
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 21
+    - `Like`
+    - string<br>*([UPFC](#UPFC) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-upfcmode)=
+### UPFC: Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+    - Description
+*   - `0`
+    - Off
+*   - `1`
+    - Voltage Regulator
+*   - `2`
+    - Phase Angle Regulator
+*   - `3`
+    - Dual Regulator
+*   - `4`
+    - Double Reference (Voltage)
+*   - `5`
+    - Double Reference (Dual)
+:::
+
+

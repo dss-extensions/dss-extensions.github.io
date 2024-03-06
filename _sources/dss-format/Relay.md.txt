@@ -1,0 +1,387 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Relay
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `MonitoredObj`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Full object name of the circuit element, typically a line, transformer, load, or generator, to which the relay's PT and/or CT are connected. This is the "monitored" element. There is no default; must be specified.
+*   - 2
+    - `MonitoredTerm`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the Relay is connected. 1 or 2, typically.
+*   - 3
+    - `SwitchedObj`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Name of circuit element switch that the Relay controls. Specify the full object name. Defaults to the same as the Monitored element. This is the "controlled" element.
+*   - 4
+    - `SwitchedTerm`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the controlled element in which the switch is controlled by the Relay. 1 or 2, typically.
+*   - 5
+    - `Type`
+    - string<br>*(from enum. [Type](#enum-relaytype))*
+    - Current
+    - 
+    - One of a legal relay type:<br>  Current<br>  Voltage<br>  Reversepower<br>  46 (neg seq current)<br>  47 (neg seq voltage)<br>  Generic (generic over/under relay)<br>  Distance<br>  TD21<br>  DOC (directional overcurrent)<br><br>Default is overcurrent relay (Current) Specify the curve and pickup settings appropriate for each type. Generic relays monitor PC Element Control variables and trip on out of over/under range in definite time.
+*   - 6
+    - `PhaseCurve`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - 
+    - 
+    - Name of the TCC Curve object that determines the phase trip.  Must have been previously defined as a TCC_Curve object. Default is none (ignored). For overcurrent relay, multiplying the current values in the curve by the "phasetrip" value gives the actual current.
+*   - 7
+    - `GroundCurve`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - 
+    - 
+    - Name of the TCC Curve object that determines the ground trip.  Must have been previously defined as a TCC_Curve object. Default is none (ignored).For overcurrent relay, multiplying the current values in the curve by the "groundtrip" valuw gives the actual current.
+*   - 8
+    - `PhaseTrip`
+    - real
+    - 1.0
+    - 
+    - Multiplier or actual phase amps for the phase TCC curve.
+*   - 9
+    - `GroundTrip`
+    - real
+    - 1.0
+    - 
+    - Multiplier or actual ground amps (3I0) for the ground TCC curve.
+*   - 10
+    - `TDPhase`
+    - real
+    - 1.0
+    - 
+    - Time dial for Phase trip curve. Multiplier on time axis of specified curve.
+*   - 11
+    - `TDGround`
+    - real
+    - 1.0
+    - 
+    - Time dial for Ground trip curve. Multiplier on time axis of specified curve.
+*   - 12
+    - `PhaseInst`
+    - real
+    - 0.0
+    - 
+    - Actual amps (Current relay) or kW (reverse power relay) for instantaneous phase trip which is assumed to happen in 0.01 sec + Delay Time. Default is 0.0, which signifies no inst trip. Use this value for specifying the Reverse Power threshold (kW) for reverse power relays.
+*   - 13
+    - `GroundInst`
+    - real
+    - 0.0
+    - A
+    - Actual amps for instantaneous ground trip which is assumed to happen in 0.01 sec + Delay Time. Default is 0, which signifies no inst trip.
+*   - 14
+    - `Reset`
+    - real
+    - 15.0
+    - s
+    - Reset time for relay. If this much time passes between the last pickup event, and the relay has not locked out, the operation counter resets.
+*   - 15
+    - `Shots`
+    - integer
+    - 4
+    - 
+    - Number of shots to lockout. This is one more than the number of reclose intervals.
+*   - 16
+    - `RecloseIntervals`
+    - array of reals
+    - [0.5, 2.0, 2.0]
+    - 
+    - Array of reclose intervals. If none, specify "NONE". Default for overcurrent relay is (0.5, 2.0, 2.0) seconds. Default for a voltage relay is (5.0). In a voltage relay, this is  seconds after restoration of voltage that the reclose occurs. Reverse power relay is one shot to lockout, so this is ignored.  A locked out relay must be closed manually (set action=close).
+*   - 17
+    - `Delay`
+    - real
+    - 
+    - 
+    - Trip time delay (sec) for DEFINITE TIME relays. Default is 0 for current, voltage and DOC relays. If >0 then this value is used instead of curves. Used by Generic, RevPower, 46 and 47 relays. Defaults to 0.1 s for these relays.
+*   - 18
+    - `OvervoltCurve`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - 
+    - 
+    - TCC Curve object to use for overvoltage relay. Curve is assumed to be defined with per unit voltage values. Voltage base should be defined for the relay. Default is none (ignored).
+*   - 19
+    - `UndervoltCurve`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - 
+    - 
+    - TCC Curve object to use for undervoltage relay. Curve is assumed to be defined with per unit voltage values. Voltage base should be defined for the relay. Default is none (ignored).
+*   - 20
+    - `kVBase`
+    - real
+    - 0.0
+    - 
+    - Voltage base (kV) for the relay. Specify line-line for 3 phase devices); line-neutral for 1-phase devices.  Relay assumes the number of phases of the monitored element.  Default is 0.0, which results in assuming the voltage values in the "TCC" curve are specified in actual line-to-neutral volts.
+*   - 21
+    - `47%Pickup`
+    - real
+    - 
+    - 
+    - Percent voltage pickup for 47 relay (Neg seq voltage). Default is 2. Specify also base voltage (kvbase) and delay time value.   
+*   - 22
+    - `46BaseAmps`
+    - real
+    - 
+    - 
+    - Base current, Amps, for 46 relay (neg seq current). Used for establishing pickup and per unit I-squared-t.
+*   - 23
+    - `46%Pickup`
+    - real
+    - 
+    - 
+    - Percent pickup current for 46 relay (neg seq current). Default is 20.  When current exceeds this value × BaseAmps, I-squared-t calc starts.
+*   - 24
+    - `46isqt`
+    - real
+    - 
+    - 
+    - Negative Sequence I-squared-t trip value for 46 relay (neg seq current).  Default is 1 (trips in 1 sec for 1 per unit neg seq current).  Should be 1 to 99.
+*   - 25
+    - `Variable`
+    - string
+    - 
+    - 
+    - Name of variable in PC Elements being monitored.  Only applies to Generic relay.
+*   - 26
+    - `Overtrip`
+    - real
+    - 1.2
+    - 
+    - Trip setting (high value) for Generic relay variable.  Relay trips in definite time if value of variable exceeds this value.
+*   - 27
+    - `Undertrip`
+    - real
+    - 0.8
+    - 
+    - Trip setting (low value) for Generic relay variable.  Relay trips in definite time if value of variable is less than this value.
+*   - 28
+    - `BreakerTime`
+    - real
+    - 0.0
+    - 
+    - Fixed delay time (sec) added to relay time. Designed to represent breaker time or some other delay after a trip decision is made.Use Delay property for setting a fixed trip time delay.Added to trip time of current and voltage relays. Could use in combination with inst trip value to obtain a definite time overcurrent relay.
+*   - 29
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-relayaction))*
+    - 
+    - 
+    - DEPRECATED. See "State" property<br>***Redundant with State***
+*   - 30
+    - `Z1Mag`
+    - real
+    - 0.7
+    - 
+    - Positive sequence reach impedance in primary ohms for Distance and TD21 functions.
+*   - 31
+    - `Z1Ang`
+    - real
+    - 64.0
+    - 
+    - Positive sequence reach impedance angle in degrees for Distance and TD21 functions.
+*   - 32
+    - `Z0Mag`
+    - real
+    - 2.1
+    - 
+    - Zero sequence reach impedance in primary ohms for Distance and TD21 functions.
+*   - 33
+    - `Z0Ang`
+    - real
+    - 68.0
+    - 
+    - Zero sequence reach impedance angle in degrees for Distance and TD21 functions.
+*   - 34
+    - `MPhase`
+    - real
+    - 0.7
+    - 
+    - Phase reach multiplier in per-unit for Distance and TD21 functions.
+*   - 35
+    - `MGround`
+    - real
+    - 0.7
+    - 
+    - Ground reach multiplier in per-unit for Distance and TD21 functions.
+*   - 36
+    - `EventLog`
+    - boolean
+    - False
+    - 
+    - Write trips, reclose and reset events to EventLog.
+*   - 37
+    - `DebugTrace`
+    - boolean
+    - False
+    - 
+    - Write extra details to Eventlog.
+*   - 38
+    - `DistReverse`
+    - boolean
+    - False
+    - 
+    - Reverse direction for distance and td21 types.
+*   - 39
+    - `Normal`
+    - string<br>*(from enum. [State](#enum-relaystate))*
+    - closed
+    - 
+    - {Open | Closed} Normal state of the relay. The relay reverts to this state for reset, change of mode, etc. Defaults to "State" if not specifically declared.
+*   - 40
+    - `State`
+    - string<br>*(from enum. [State](#enum-relaystate))*
+    - closed
+    - 
+    - {Open | Closed} Actual state of the relay. Upon setting, immediately forces state of the relay, overriding the Relay control. Simulates manual control on relay. Defaults to Closed. "Open" causes the controlled element to open and lock out. "Closed" causes the controlled element to close and the relay to reset to its first operation.
+*   - 41
+    - `DOC_TiltAngleLow`
+    - real
+    - 90.0
+    - 
+    - Tilt angle for low-current trip line.
+*   - 42
+    - `DOC_TiltAngleHigh`
+    - real
+    - 90.0
+    - 
+    - Tilt angle for high-current trip line.
+*   - 43
+    - `DOC_TripSettingLow`
+    - real
+    - 0.0
+    - 
+    - Resistive trip setting for low-current line.
+*   - 44
+    - `DOC_TripSettingHigh`
+    - real
+    - -1.0
+    - 
+    - Resistive trip setting for high-current line.  Default is -1 (deactivated). To activate, set a positive value. Must be greater than "DOC_TripSettingLow".
+*   - 45
+    - `DOC_TripSettingMag`
+    - real
+    - -1.0
+    - 
+    - Trip setting for current magnitude (defines a circle in the relay characteristics). Default is -1 (deactivated). To activate, set a positive value.
+*   - 46
+    - `DOC_DelayInner`
+    - real
+    - -1.0
+    - 
+    - Trip time delay (sec) for operation in inner region for DOC relay, defined when "DOC_TripSettingMag" or "DOC_TripSettingHigh" are activate. Default is -1.0 (deactivated), meaning that the relay characteristic is insensitive in the inner region (no trip). Set to 0 for instantaneous trip and >0 for a definite time delay. If "DOC_PhaseCurveInner" is specified, time delay from curve is utilized instead.
+*   - 47
+    - `DOC_PhaseCurveInner`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*
+    - 
+    - 
+    - Name of the TCC Curve object that determines the phase trip for operation in inner region for DOC relay. Must have been previously defined as a TCC_Curve object. Default is none (ignored). Multiplying the current values in the curve by the "DOC_PhaseTripInner" value gives the actual current.
+*   - 48
+    - `DOC_PhaseTripInner`
+    - real
+    - 1.0
+    - 
+    - Multiplier for the "DOC_PhaseCurveInner" TCC curve.
+*   - 49
+    - `DOC_TDPhaseInner`
+    - real
+    - 1.0
+    - 
+    - Time dial for "DOC_PhaseCurveInner" TCC curve. Multiplier on time axis of specified curve.
+*   - 50
+    - `DOC_P1Blocking`
+    - boolean
+    - True
+    - 
+    - Blocking element that impedes relay from tripping if balanced net three-phase active power is in the forward direction (i.e., flowing into the monitored terminal). For a delayed trip, if at any given time the reverse power flow condition stops, the tripping is reset. Default=True.
+*   - 51
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 52
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 53
+    - `Like`
+    - string<br>*([Relay](#Relay) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-relayaction)=
+### Relay: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `close`
+*   - `open`
+*   - `trip`
+:::
+
+
+(enum-relaystate)=
+### Relay: State
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `closed`
+*   - `open`
+*   - `trip`
+:::
+
+
+(enum-relaytype)=
+### Relay: Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Current`
+*   - `Voltage`
+*   - `ReversePower`
+*   - `46`
+*   - `47`
+*   - `Generic`
+*   - `Distance`
+*   - `TD21`
+*   - `DOC`
+:::
+
+

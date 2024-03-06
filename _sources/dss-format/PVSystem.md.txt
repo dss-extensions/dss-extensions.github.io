@@ -1,0 +1,365 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# PVSystem
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of Phases, this PVSystem element.  Power is evenly divided among phases.
+*   - 2
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Bus to which the PVSystem element is connected.  May include specific node specification.
+*   - 3
+    - `kV`
+    - real
+    - 12.47
+    - kV
+    - Nominal rated (1.0 per unit) voltage, kV, for PVSystem element. For 2- and 3-phase PVSystem elements, specify phase-phase kV. Otherwise, specify actual kV across each branch of the PVSystem element. If 1-phase wye (star or LN), specify phase-neutral kV. If 1-phase delta or phase-phase connected, specify phase-phase kV.
+*   - 4
+    - `Irradiance`
+    - real
+    - 1.0
+    - 
+    - Get/set the present irradiance value in kW/sq-m. Used as base value for shape multipliers. Generally entered as peak value for the time period of interest and the yearly, daily, and duty load shape objects are defined as per unit multipliers (just like Loads/Generators).
+*   - 5
+    - `Pmpp`
+    - real
+    - 500.0
+    - 
+    - Get/set the rated max power of the PV array for 1.0 kW/sq-m irradiance and a user-selected array temperature. The P-TCurve should be defined relative to the selected array temperature.
+*   - 6
+    - `%Pmpp`
+    - real
+    - 
+    - 
+    - Upper limit on active power as a percentage of Pmpp.
+*   - 7
+    - `Temperature`
+    - real
+    - 25.0
+    - 
+    - Get/set the present Temperature. Used as fixed value corresponding to PTCurve property. A multiplier is obtained from the Pmpp-Temp curve and applied to the nominal Pmpp from the irradiance to determine the net array output.
+*   - 8
+    - `PF`
+    - real
+    - 
+    - 
+    - Nominally, the power factor for the output power. Setting this property will cause the inverter to operate in constant power factor mode.Enter negative when kW and kvar have opposite signs.<br>A positive power factor signifies that the PVSystem element produces vars <br>as is typical for a generator.  
+*   - 9
+    - `Conn`
+    - string<br>*(from enum. [](#enum-connection))*
+    - Wye
+    - 
+    - ={wye|LN|delta|LL}.  Default is wye.
+*   - 10
+    - `kvar`
+    - real
+    - 
+    - 
+    - Get/set the present kvar value.  Setting this property forces the inverter to operate in constant kvar mode.
+*   - 11
+    - `kVA`
+    - real
+    - 500.0
+    - 
+    - kVA rating of inverter. Used as the base for Dynamics mode and Harmonics mode values.
+*   - 12
+    - `%CutIn`
+    - real
+    - 
+    - 
+    - % cut-in power -- % of kVA rating of inverter. When the inverter is OFF, the power from the array must be greater than this for the inverter to turn on.
+*   - 13
+    - `%CutOut`
+    - real
+    - 
+    - 
+    - % cut-out power -- % of kVA rating of inverter. When the inverter is ON, the inverter turns OFF when the power from the array drops below this value.
+*   - 14
+    - `EffCurve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - An XYCurve object, previously defined, that describes the PER UNIT efficiency vs PER UNIT of rated kVA for the inverter. Inverter output power is discounted by the multiplier obtained from this curve.
+*   - 15
+    - `P-TCurve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - An XYCurve object, previously defined, that describes the PV array PER UNIT Pmpp vs Temperature curve. Temperature units must agree with the Temperature property and the Temperature shapes used for simulations. The Pmpp values are specified in per unit of the Pmpp value for 1 kW/sq-m irradiance. The value for the temperature at which Pmpp is defined should be 1.0. The net array power is determined by the irradiance * Pmpp * f(Temperature)
+*   - 16
+    - `%R`
+    - real
+    - 
+    - 
+    - Equivalent percent internal resistance, ohms. Placed in series with internal voltage source for harmonics and dynamics modes. (Limits fault current to about 2 pu if not current limited -- see LimitCurrent) 
+*   - 17
+    - `%X`
+    - real
+    - 
+    - 
+    - Equivalent percent internal reactance, ohms. Placed in series with internal voltage source for harmonics and dynamics modes.
+*   - 18
+    - `Model`
+    - integer<br>*(from enum. [Model](#enum-pvsystemmodel))*
+    - 1
+    - 
+    - Integer code (default=1) for the model to use for power output variation with voltage. Valid values are:<br><br>1:PVSystem element injects a CONSTANT kW at specified power factor.<br>2:PVSystem element is modeled as a CONSTANT ADMITTANCE.<br>3:Compute load injection from User-written Model.
+*   - 19
+    - `VMinpu`
+    - real
+    - 0.9
+    - 
+    - Minimum per unit voltage for which the Model is assumed to apply. Below this value, the load model reverts to a constant impedance model except for Dynamics model. In Dynamics mode, the current magnitude is limited to the value the power flow would compute for this voltage.
+*   - 20
+    - `VMaxpu`
+    - real
+    - 1.1
+    - 
+    - Maximum per unit voltage for which the Model is assumed to apply. Above this value, the load model reverts to a constant impedance model.
+*   - 21
+    - `Balanced`
+    - boolean
+    - False
+    - 
+    - Force balanced current only for 3-phase PVSystems. Forces zero- and negative-sequence to zero. 
+*   - 22
+    - `LimitCurrent`
+    - boolean
+    - False
+    - 
+    - Limits current magnitude to Vminpu value for both 1-phase and 3-phase PVSystems similar to Generator Model 7. For 3-phase, limits the positive-sequence current but not the negative-sequence.
+*   - 23
+    - `Yearly`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Dispatch shape to use for yearly simulations.  Must be previously defined as a Loadshape object. If this is not specified, the Daily dispatch shape, if any, is repeated during Yearly solution modes. In the default dispatch mode, the PVSystem element uses this loadshape to trigger State changes.
+*   - 24
+    - `Daily`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Dispatch shape to use for daily simulations.  Must be previously defined as a Loadshape object of 24 hrs, typically.  In the default dispatch mode, the PVSystem element uses this loadshape to trigger State changes.
+*   - 25
+    - `Duty`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Load shape to use for duty cycle dispatch simulations such as for solar ramp rate studies. Must be previously defined as a Loadshape object. Typically would have time intervals of 1-5 seconds. Designate the number of points to solve using the Set Number=xxxx command. If there are fewer points in the actual shape, the shape is assumed to repeat.
+*   - 26
+    - `TYearly`
+    - string<br>*([TShape](#TShape) name)*
+    - 
+    - 
+    - Temperature shape to use for yearly simulations.  Must be previously defined as a TShape object. If this is not specified, the Daily dispatch shape, if any, is repeated during Yearly solution modes. The PVSystem element uses this TShape to determine the Pmpp from the Pmpp vs T curve. Units must agree with the Pmpp vs T curve.
+*   - 27
+    - `TDaily`
+    - string<br>*([TShape](#TShape) name)*
+    - 
+    - 
+    - Temperature shape to use for daily simulations.  Must be previously defined as a TShape object of 24 hrs, typically.  The PVSystem element uses this TShape to determine the Pmpp from the Pmpp vs T curve. Units must agree with the Pmpp vs T curve.
+*   - 28
+    - `TDuty`
+    - string<br>*([TShape](#TShape) name)*
+    - 
+    - 
+    - Temperature shape to use for duty cycle dispatch simulations such as for solar ramp rate studies. Must be previously defined as a TShape object. Typically would have time intervals of 1-5 seconds. Designate the number of points to solve using the Set Number=xxxx command. If there are fewer points in the actual shape, the shape is assumed to repeat. The PVSystem model uses this TShape to determine the Pmpp from the Pmpp vs T curve. Units must agree with the Pmpp vs T curve.
+*   - 29
+    - `Class`
+    - integer
+    - 1
+    - 
+    - An arbitrary integer number representing the class of PVSystem element so that PVSystem values may be segregated by class.
+*   - 30
+    - `UserModel`
+    - string
+    - 
+    - 
+    - Name of DLL containing user-written model, which computes the terminal currents for Dynamics studies, overriding the default model.  Set to "none" to negate previous setting.
+*   - 31
+    - `UserData`
+    - string
+    - 
+    - 
+    - String (in quotes or parentheses) that gets passed to user-written model for defining the data required for that model.
+*   - 32
+    - `DebugTrace`
+    - boolean
+    - False
+    - 
+    - Turn this on to capture the progress of the PVSystem model for each iteration.  Creates a separate file for each PVSystem element named "PVSystem_name.csv".
+*   - 33
+    - `VarFollowInverter`
+    - boolean
+    - False
+    - 
+    - Defaults to False which indicates that the reactive power generation/absorption does not respect the inverter status.When set to True, the PVSystem reactive power generation/absorption will cease when the inverter status is off, due to panel kW dropping below %Cutout.  The reactive power generation/absorption will begin again when the panel kW is above %Cutin.  When set to False, the PVSystem will generate/absorb reactive power regardless of the status of the inverter.
+*   - 34
+    - `DutyStart`
+    - real
+    - 0.0
+    - hour
+    - Starting time offset into the duty cycle shape for this PVSystem.
+*   - 35
+    - `WattPriority`
+    - boolean
+    - False
+    - 
+    - Set inverter to watt priority instead of the default var priority
+*   - 36
+    - `PFPriority`
+    - boolean
+    - False
+    - 
+    - Set inverter to operate with PF priority when in constant PF mode. If "Yes", value assigned to "WattPriority" is neglected. If controlled by an InvControl with either Volt-Var or DRC or both functions activated, PF priority is neglected and "WattPriority" is considered. Default = No.
+*   - 37
+    - `%PMinNoVars`
+    - real
+    - 
+    - 
+    - Minimum active power as percentage of Pmpp under which there is no vars production/absorption.
+*   - 38
+    - `%PMinkvarMax`
+    - real
+    - 
+    - 
+    - Minimum active power as percentage of Pmpp that allows the inverter to produce/absorb reactive power up to its kvarMax or kvarMaxAbs.
+*   - 39
+    - `kvarMax`
+    - real
+    - 
+    - 
+    - Indicates the maximum reactive power GENERATION (un-signed numerical variable in kvar) for the inverter (as an un-signed value). Defaults to kVA rating of the inverter.
+*   - 40
+    - `kvarMaxAbs`
+    - real
+    - 
+    - 
+    - Indicates the maximum reactive power ABSORPTION (un-signed numerical variable in kvar) for the inverter (as an un-signed value). Defaults to kVA rating of the inverter.
+*   - 41
+    - `kVDC`
+    - real
+    - 8.0
+    - 
+    - Indicates the rated voltage (kV) at the input of the inverter at the peak of PV energy production. The value is normally greater or equal to the kV base of the PV system. It is used for dynamics simulation ONLY.
+*   - 42
+    - `Kp`
+    - real
+    - 0.01
+    - 
+    - It is the proportional gain for the PI controller within the inverter. Use it to modify the controller response in dynamics simulation mode.
+*   - 43
+    - `PITol`
+    - real
+    - 0.0
+    - 
+    - It is the tolerance (%) for the closed loop controller of the inverter. For dynamics simulation mode.
+*   - 44
+    - `SafeVoltage`
+    - real
+    - 80.0
+    - 
+    - Indicates the voltage level (%) respect to the base voltage level for which the Inverter will operate. If this threshold is violated, the Inverter will enter safe mode (OFF). For dynamic simulation. By default is 80%
+*   - 45
+    - `SafeMode`
+    - boolean
+    - 
+    - 
+    - (Read only) Indicates whether the inverter entered (Yes) or not (No) into Safe Mode.
+*   - 46
+    - `DynamicEq`
+    - string<br>*([DynamicExp](#DynamicExp) name)*
+    - 
+    - 
+    - The name of the dynamic equation (DynamicExp) that will be used for defining the dynamic behavior of the generator. If not defined, the generator dynamics will follow the built-in dynamic equation.
+*   - 47
+    - `DynOut`
+    - array of strings
+    - 
+    - 
+    - The name of the variables within the Dynamic equation that will be used to govern the PVSystem dynamics. This PVsystem model requires 1 output from the dynamic equation:<br><br>    1. Current.<br><br>The output variables need to be defined in the same order.
+*   - 48
+    - `ControlMode`
+    - string<br>*(from enum. [](#enum-inverter-control-mode))*
+    - GFL
+    - 
+    - Defines the control mode for the inverter. By default it is GFL (Grid Following Inverter). Use GFM (Grid Forming Inverter) for energizing islanded microgrids, but, if the device is connected to the grid, it is highly recommended to use GFL.<br><br>GFM control mode disables any control action set by the InvControl device.
+*   - 49
+    - `AmpLimit`
+    - real
+    - 
+    - 
+    - The current limiter per phase for the IBR when operating in GFM mode. This limit is imposed to prevent the IBR to enter into Safe Mode when reaching the IBR power ratings.<br>Once the IBR reaches this value, it remains there without moving into Safe Mode. This value needs to be set lower than the IBR Amps rating.
+*   - 50
+    - `AmpLimitGain`
+    - real
+    - 0.8
+    - 
+    - Use it for fine tunning the current limiter when active, by default is 0.8, it has to be a value between 0.1 and 1. This value allows users to fine tune the IBRs current limiter to match with the user requirements.
+*   - 51
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - 
+    - 
+    - Name of harmonic voltage or current spectrum for this PVSystem element. A harmonic voltage source is assumed for the inverter.
+*   - 52
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 53
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 54
+    - `Like`
+    - string<br>*([PVSystem](#PVSystem) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-pvsystemmodel)=
+### PVSystem: Model
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+    - Description
+*   - `1`
+    - Constant P, PF
+*   - `2`
+    - Constant Y
+*   - `3`
+    - User model
+:::
+
+

@@ -1,0 +1,324 @@
+
+# General Enumerations
+
+These are general enumerations, lists of acceptable values, that can be used in more than one of the data elements. Specific classes may also specify additional enumerations.
+
+(enum-autoadd-device-type)=
+## AutoAdd Device Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Generator`
+*   - `Capacitor`
+:::
+
+
+(enum-circuit-model)=
+## Circuit Model
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Multiphase`
+*   - `Positive`
+:::
+
+
+(enum-connection)=
+## Connection
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `wye`
+*   - `delta`
+*   - `y`
+*   - `ln`
+*   - `ll`
+:::
+
+
+(enum-control-mode)=
+## Control Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Off`
+*   - `Static`
+*   - `Event`
+*   - `Time`
+*   - `MultiRate`
+:::
+
+
+(enum-core-type)=
+## Core Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `shell`
+*   - `1-phase`
+*   - `3-leg`
+*   - `4-leg`
+*   - `5-leg`
+*   - `core-1-phase`
+:::
+
+
+(enum-earth-model)=
+## Earth Model
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Carson`
+*   - `FullCarson`
+*   - `Deri`
+:::
+
+
+(enum-inverter-control-mode)=
+## Inverter Control Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `GFL`
+*   - `GFM`
+:::
+
+
+(enum-length-unit)=
+## Length Unit
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `none`
+*   - `miles`
+*   - `kft`
+*   - `km`
+*   - `meter`
+*   - `ft`
+*   - `in`
+*   - `cm`
+*   - `mm`
+:::
+
+
+(enum-line-type)=
+## Line Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `oh`
+*   - `ug`
+*   - `ug_ts`
+*   - `ug_cn`
+*   - `swt_ldbrk`
+*   - `swt_fuse`
+*   - `swt_sect`
+*   - `swt_rec`
+*   - `swt_disc`
+*   - `swt_brk`
+*   - `swt_elbow`
+*   - `busbar`
+:::
+
+
+(enum-load-shape-class)=
+## Load Shape Class
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `None`
+*   - `Daily`
+*   - `Yearly`
+*   - `Duty`
+:::
+
+
+(enum-load-solution-model)=
+## Load Solution Model
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `PowerFlow`
+*   - `Admittance`
+:::
+
+
+(enum-monitored-phase)=
+## Monitored Phase
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `min`
+*   - `max`
+*   - `avg`
+:::
+
+**This is a "hybrid" enumeration.** The related input properties accepts the values listed in this table and integer numbers greater than 1.
+
+(enum-phase-sequence)=
+## Phase Sequence
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Lag`
+*   - `Lead`
+*   - `ANSI`
+*   - `Euro`
+:::
+
+
+(enum-plotprofile-phases)=
+## Plot: Profile Phases
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Default`
+*   - `All`
+*   - `Primary`
+*   - `LL3Ph`
+*   - `LLAll`
+*   - `LLPrimary`
+:::
+
+**This is a "hybrid" enumeration.** The related input properties accepts the values listed in this table and integer numbers greater than 1.
+
+(enum-random-type)=
+## Random Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `None`
+*   - `Gaussian`
+*   - `Uniform`
+*   - `LogNormal`
+:::
+
+
+(enum-reduction-strategy)=
+## Reduction Strategy
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Default`
+*   - `ShortLines`
+*   - `MergeParallel`
+*   - `BreakLoop`
+*   - `Dangling`
+*   - `Switches`
+*   - `Laterals`
+:::
+
+
+(enum-scan-type)=
+## Scan Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `None`
+*   - `Zero`
+*   - `Positive`
+:::
+
+
+(enum-sequence-type)=
+## Sequence Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Negative`
+*   - `Zero`
+*   - `Positive`
+:::
+
+
+(enum-solution-algorithm)=
+## Solution Algorithm
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Normal`
+*   - `Newton`
+:::
+
+
+(enum-solution-mode)=
+## Solution Mode
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Snapshot`
+*   - `Daily`
+*   - `Yearly`
+*   - `M1`
+*   - `LD1`
+*   - `PeakDay`
+*   - `DutyCycle`
+*   - `Direct`
+*   - `MF`
+*   - `FaultStudy`
+*   - `M2`
+*   - `M3`
+*   - `LD2`
+*   - `AutoAdd`
+*   - `Dynamics`
+*   - `Harmonics`
+*   - `Time`
+*   - `HarmonicT`
+:::
+
+
+(enum-visualizequantity)=
+## Visualize: Quantity
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Currents`
+*   - `Voltages`
+*   - `Powers`
+:::
+
+
+
+

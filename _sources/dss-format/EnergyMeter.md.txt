@@ -1,0 +1,202 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# EnergyMeter
+
+(
+    Circuit Element,
+    Meter Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Element`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - Vsource.source
+    - 
+    - Name (Full Object name) of element to which the monitor is connected.
+*   - 2
+    - `Terminal`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the monitor is connected. 1 or 2, typically.
+*   - 3
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-energymeteraction), action)*
+    - 
+    - 
+    - {Clear (reset) | Save | Take | Zonedump | Allocate | Reduce} <br><br>(A)llocate = Allocate loads on the meter zone to match PeakCurrent.<br>(C)lear = reset all registers to zero<br>(R)educe = reduces zone by merging lines (see Set Keeplist & ReduceOption)<br>(S)ave = saves the current register values to a file.<br>   File name is "MTR_metername.csv".<br>(T)ake = Takes a sample at present solution<br>(Z)onedump = Dump names of elements in meter zone to a file<br>   File name is "Zone_metername.csv".
+*   - 4
+    - `Option`
+    - array of strings
+    - [E, R, C]
+    - 
+    - Enter a string ARRAY of any combination of the following. Options processed left-to-right:<br><br>(E)xcess : UE/EEN is estimate of energy over capacity <br>(T)otal : UE/EEN is total energy after capacity exceeded<br>(R)adial : Treats zone as a radial circuit<br>(M)esh : Treats zone as meshed network (not radial).<br>(C)ombined : Load UE/EEN computed from combination of overload and undervoltage.<br>(V)oltage : Load UE/EEN computed based on voltage only.<br><br>Example: option=(E, R)
+*   - 5
+    - `kVANormal`
+    - real
+    - 0.0
+    - 
+    - Upper limit on kVA load in the zone, Normal configuration. Default is 0.0 (ignored). Overrides limits on individual lines for overload EEN. With "LocalOnly=Yes" option, uses only load in metered branch.
+*   - 6
+    - `kVAEmerg`
+    - real
+    - 0.0
+    - 
+    - Upper limit on kVA load in the zone, Emergency configuration. Default is 0.0 (ignored). Overrides limits on individual lines for overload UE. With "LocalOnly=Yes" option, uses only load in metered branch.
+*   - 7
+    - `PeakCurrent`
+    - array of reals
+    - [400.0, 400.0, 400.0]
+    - 
+    - ARRAY of current magnitudes representing the peak currents measured at this location for the load allocation function. Enter one current for each phase
+*   - 8
+    - `ZoneList`
+    - array of strings
+    - 
+    - 
+    - ARRAY of full element names for this meter's zone. Default is for meter to find its own zone. If specified, DSS uses this list instead.  Can access the names in a single-column text file.  Examples: <br><br>zonelist=[line.L1, transformer.T1, Line.L3] <br>zonelist=(file=branchlist.txt)
+*   - 9
+    - `LocalOnly`
+    - boolean
+    - False
+    - 
+    - If Yes, meter considers only the monitored element for EEN and UE calcs.  Uses whole zone for losses.
+*   - 10
+    - `Mask`
+    - array of reals
+    - [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+    - 
+    - Mask for adding registers whenever all meters are totalized.  Array of floating point numbers representing the multiplier to be used for summing each register from this meter. Default = (1, 1, 1, 1, ... ).  You only have to enter as many as are changed (positional). Useful when two meters monitor same energy, etc.
+*   - 11
+    - `Losses`
+    - boolean
+    - True
+    - 
+    - Compute Zone losses. If NO, then no losses at all are computed.
+*   - 12
+    - `LineLosses`
+    - boolean
+    - True
+    - 
+    - Compute Line losses. If NO, then none of the losses are computed.
+*   - 13
+    - `XfmrLosses`
+    - boolean
+    - True
+    - 
+    - Compute Transformer losses. If NO, transformers are ignored in loss calculations.
+*   - 14
+    - `SeqLosses`
+    - boolean
+    - True
+    - 
+    - Compute Sequence losses in lines and segregate by line mode losses and zero mode losses.
+*   - 15
+    - `3PhaseLosses`
+    - boolean
+    - 
+    - 
+    - Compute Line losses and segregate by 3-phase and other (1- and 2-phase) line losses. 
+*   - 16
+    - `VBaseLosses`
+    - boolean
+    - True
+    - 
+    - Compute losses and segregate by voltage base. If NO, then voltage-based tabulation is not reported.
+*   - 17
+    - `PhaseVoltageReport`
+    - boolean
+    - False
+    - 
+    - Report min, max, and average phase voltages for the zone and tabulate by voltage base. Demand Intervals must be turned on (Set Demand=true) and voltage bases must be defined for this property to take effect. Result is in a separate report file.
+*   - 18
+    - `Int_Rate`
+    - real
+    - 0.0
+    - 
+    - Average number of annual interruptions for head of the meter zone (source side of zone or feeder).
+*   - 19
+    - `Int_Duration`
+    - real
+    - 0.0
+    - 
+    - Average annual duration, in hr, of interruptions for head of the meter zone (source side of zone or feeder).
+*   - 20
+    - `SAIFI`
+    - real
+    - 
+    - 
+    - (Read only) Makes SAIFI result available via return on query (? energymeter.myMeter.SAIFI.
+*   - 21
+    - `SAIFIkW`
+    - real
+    - 
+    - 
+    - (Read only) Makes SAIFIkW result available via return on query (? energymeter.myMeter.SAIFIkW.
+*   - 22
+    - `SAIDI`
+    - real
+    - 
+    - 
+    - (Read only) Makes SAIDI result available via return on query (? energymeter.myMeter.SAIDI.
+*   - 23
+    - `CAIDI`
+    - real
+    - 
+    - 
+    - (Read only) Makes CAIDI result available via return on query (? energymeter.myMeter.CAIDI.
+*   - 24
+    - `CustInterrupts`
+    - real
+    - 
+    - 
+    - (Read only) Makes Total Customer Interrupts value result available via return on query (? energymeter.myMeter.CustInterrupts.
+*   - 25
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 26
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 27
+    - `Like`
+    - string<br>*([EnergyMeter](#EnergyMeter) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-energymeteraction)=
+### EnergyMeter: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Allocate`
+*   - `Clear`
+*   - `Reduce`
+*   - `Save`
+*   - `TakeSample`
+*   - `ZoneDump`
+:::
+
+

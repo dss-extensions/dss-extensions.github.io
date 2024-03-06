@@ -1,0 +1,316 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# Load
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of Phases, this load.  Load is evenly divided among phases.
+*   - 2
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Bus to which the load is connected.  May include specific node specification.
+*   - 3
+    - `kV`
+    - real
+    - 12.47
+    - kV
+    - Nominal rated (1.0 per unit) voltage, kV, for load. For 2- and 3-phase loads, specify phase-phase kV. Otherwise, specify actual kV across each branch of the load. If wye (star), specify phase-neutral kV. If delta or phase-phase connected, specify phase-phase kV.
+*   - 4
+    - `kW`
+    - real
+    - 
+    - 
+    - Total base kW for the load.  Normally, you would enter the maximum kW for the load for the first year and allow it to be adjusted by the load shapes, growth shapes, and global load multiplier.<br><br>Legal ways to define base load:<br>kW, PF<br>kW, kvar<br>kVA, PF<br>XFKVA × Allocationfactor, PF<br>kWh / (kWhdays × 24) × Cfactor, PF
+*   - 5
+    - `PF`
+    - real
+    - 
+    - 
+    - Load power factor.  Enter negative for leading powerfactor (when kW and kvar have opposite signs.)
+*   - 6
+    - `Model`
+    - integer<br>*(from enum. [Model](#enum-loadmodel))*
+    - 1
+    - 
+    - Integer code for the model to use for load variation with voltage. Valid values are:<br><br>1:Standard constant P+jQ load. (Default)<br>2:Constant impedance load. <br>3:Const P, Quadratic Q (like a motor).<br>4:Nominal Linear P, Quadratic Q (feeder mix). Use this with CVRfactor.<br>5:Constant Current Magnitude<br>6:Const P, Fixed Q<br>7:Const P, Fixed Impedance Q<br>8:ZIPV (7 values)<br><br>For Types 6 and 7, only the P is modified by load multipliers.
+*   - 7
+    - `Yearly`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for yearly simulations.  Must be previously defined as a Loadshape object. Is set to the Daily load shape  when Daily is defined.  The daily load shape is repeated in this case. Set Status=Fixed to ignore Loadshape designation. Set to NONE to reset to no loadshape. The default is no variation.
+*   - 8
+    - `Daily`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for daily simulations.  Must be previously defined as a Loadshape object of 24 hrs, typically. Set Status=Fixed to ignore Loadshape designation. Set to NONE to reset to no loadshape. Default is no variation (constant) if not defined. Side effect: Sets Yearly load shape if not already defined.
+*   - 9
+    - `Duty`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for duty cycle simulations.  Must be previously defined as a Loadshape object.  Typically would have time intervals less than 1 hr. Designate the number of points to solve using the Set Number=xxxx command. If there are fewer points in the actual shape, the shape is assumed to repeat.Set to NONE to reset to no loadshape. Set Status=Fixed to ignore Loadshape designation.  Defaults to Daily curve If not specified.
+*   - 10
+    - `Growth`
+    - string<br>*([GrowthShape](#GrowthShape) name)*
+    - 
+    - 
+    - Characteristic  to use for growth factors by years.  Must be previously defined as a Growthshape object. Defaults to circuit default growth factor (see Set Growth command).
+*   - 11
+    - `Conn`
+    - string<br>*(from enum. [](#enum-connection))*
+    - Wye
+    - 
+    - ={wye or LN | delta or LL}.  Default is wye.
+*   - 12
+    - `kvar`
+    - real
+    - 
+    - 
+    - Specify the base kvar for specifying load as kW & kvar.  Assumes kW has been already defined.  Alternative to specifying the power factor.  Side effect:  the power factor and kVA is altered to agree.
+*   - 13
+    - `RNeut`
+    - real
+    - -1.0
+    - Ω
+    - Neutral resistance of wye (star)-connected load in actual ohms. If entered as a negative value, the neutral can be open, or floating, or it can be connected to node 0 (ground), which is the usual default. If >=0 be sure to explicitly specify the node connection for the neutral, or last, conductor. Otherwise, the neutral impedance will be shorted to ground.
+*   - 14
+    - `XNeut`
+    - real
+    - 0.0
+    - Ω
+    - Neutral reactance of wye(star)-connected load in actual ohms. May be positive or negative.
+*   - 15
+    - `Status`
+    - string<br>*(from enum. [Status](#enum-loadstatus))*
+    - Variable
+    - 
+    - ={Variable | Fixed | Exempt}.  Default is variable. If Fixed, no load multipliers apply;  however, growth multipliers do apply.  All multipliers apply to Variable loads.  Exempt loads are not modified by the global load multiplier, such as in load duration curves, etc.  Daily multipliers do apply, so setting this property to Exempt is a good way to represent industrial load that stays the same day-after-day for the period study.
+*   - 16
+    - `Class`
+    - integer
+    - 1
+    - 
+    - An arbitrary integer number representing the class of load so that load values may be segregated by load value. Default is 1; not used internally.
+*   - 17
+    - `VMinpu`
+    - real
+    - 0.95
+    - 
+    - Default = 0.95.  Minimum per unit voltage for which the MODEL is assumed to apply. Lower end of normal voltage range.Below this value, the load model reverts to a constant impedance model that matches the model at the transition voltage. See also "Vlowpu" which causes the model to match Model=2 below the transition voltage.
+*   - 18
+    - `VMaxpu`
+    - real
+    - 1.05
+    - 
+    - Default = 1.05.  Maximum per unit voltage for which the MODEL is assumed to apply. Above this value, the load model reverts to a constant impedance model.
+*   - 19
+    - `VMinNorm`
+    - real
+    - 0.0
+    - 
+    - Minimum per unit voltage for load EEN evaluations, Normal limit.  Default = 0, which defaults to system "vminnorm" property (see Set Command under Executive).  If this property is specified, it ALWAYS overrides the system specification. This allows you to have different criteria for different loads. Set to zero to revert to the default system value.
+*   - 20
+    - `VMinEmerg`
+    - real
+    - 0.0
+    - 
+    - Minimum per unit voltage for load UE evaluations, Emergency limit.  Default = 0, which defaults to system "vminemerg" property (see Set Command under Executive).  If this property is specified, it ALWAYS overrides the system specification. This allows you to have different criteria for different loads. Set to zero to revert to the default system value.
+*   - 21
+    - `XfkVA`
+    - real
+    - 
+    - kVA
+    - Default = 0.0.  Rated kVA of service transformer for allocating loads based on connected kVA at a bus. Side effect:  kW, PF, and kvar are modified. See help on kVA.
+*   - 22
+    - `AllocationFactor`
+    - real
+    - 
+    - 
+    - Default = 0.5.  Allocation factor for allocating loads based on connected kVA at a bus. Side effect:  kW, PF, and kvar are modified by multiplying this factor times the XFKVA (if > 0).
+*   - 23
+    - `kVA`
+    - real
+    - 
+    - 
+    - Specify base Load in kVA (and power factor)<br><br>Legal ways to define base load:<br>kW, PF<br>kW, kvar<br>kVA, PF<br>XFKVA × Allocationfactor, PF<br>kWh / (kWhdays × 24) × Cfactor, PF
+*   - 24
+    - `%Mean`
+    - real
+    - 
+    - 
+    - Percent mean value for load to use for monte carlo studies if no loadshape is assigned to this load.
+*   - 25
+    - `%StdDev`
+    - real
+    - 
+    - 
+    - Percent Std deviation value for load to use for monte carlo studies if no loadshape is assigned to this load.
+*   - 26
+    - `CVRWatts`
+    - real
+    - 1.0
+    - 
+    - Percent reduction in active power (watts) per 1% reduction in voltage from 100% rated.<br> Typical values range from 0.4 to 0.8. Applies to Model=4 only.<br> Intended to represent conservation voltage reduction or voltage optimization measures.
+*   - 27
+    - `CVRVars`
+    - real
+    - 2.0
+    - 
+    - Percent reduction in reactive power (vars) per 1% reduction in voltage from 100% rated. <br> Typical values range from 2 to 3. Applies to Model=4 only.<br> Intended to represent conservation voltage reduction or voltage optimization measures.
+*   - 28
+    - `kWh`
+    - real
+    - 
+    - kWh
+    - kWh billed for this period. See help on kVA and Cfactor and kWhDays.
+*   - 29
+    - `kWhDays`
+    - real
+    - 
+    - 
+    - Length of kWh billing period in days (24 hr days). Average demand is computed using this value.
+*   - 30
+    - `CFactor`
+    - real
+    - 
+    - 
+    - Factor relating average kW to peak kW. See kWh and kWhdays. See kVA.
+*   - 31
+    - `CVRCurve`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Default is NONE. Curve describing both watt and var factors as a function of time. Refers to a LoadShape object with both Mult and Qmult defined. Define a Loadshape to agree with yearly or daily curve according to the type of analysis being done. If NONE, the CVRwatts and CVRvars factors are used and assumed constant.
+*   - 32
+    - `NumCust`
+    - integer
+    - 1
+    - 
+    - Number of customers, this load.
+*   - 33
+    - `ZIPV`
+    - array of reals
+    - 
+    - 
+    - Array of 7 coefficients:<br><br> First 3 are ZIP weighting factors for real power (should sum to 1)<br> Next 3 are ZIP weighting factors for reactive power (should sum to 1)<br> Last 1 is cut-off voltage in p.u. of base kV; load is 0 below this cut-off<br> No defaults; all coefficients must be specified if using model=8.
+*   - 34
+    - `%SeriesRL`
+    - real
+    - 
+    - 
+    - Percent of load that is series R-L for Harmonic studies. Remainder is assumed to be parallel R and L. This can have a significant impact on the amount of damping observed in Harmonics solutions.
+*   - 35
+    - `RelWeight`
+    - real
+    - 1.0
+    - 
+    - Relative weighting factor for reliability calcs. Used to designate high priority loads such as hospitals, etc. <br><br>Is multiplied by number of customers and load kW during reliability calcs.
+*   - 36
+    - `VLowpu`
+    - real
+    - 0.5
+    - 
+    - Per unit voltage at which the model switches to same as constant Z model (model=2). This allows more consistent convergence at very low voltaes due to opening switches or solving for fault situations.
+*   - 37
+    - `puXHarm`
+    - real
+    - 
+    - 
+    - Special reactance, pu (based on kVA, kV properties), for the series impedance branch in the load model for HARMONICS analysis. Generally used to represent motor load blocked rotor reactance. If not specified (that is, set =0, the default value), the series branch is computed from the percentage of the nominal load at fundamental frequency specified by the %SERIESRL property. <br><br>Applies to load model in HARMONICS mode only.<br><br>A typical value would be approximately 0.20 pu based on kVA × %SeriesRL / 100.0.
+*   - 38
+    - `XRHarm`
+    - real
+    - 6.0
+    - 
+    - X/R ratio of the special harmonics mode reactance specified by the puXHARM property at fundamental frequency.
+*   - 39
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - defaultload
+    - 
+    - Name of harmonic current spectrum for this load.
+*   - 40
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 41
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 42
+    - `Like`
+    - string<br>*([Load](#Load) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-loadmodel)=
+### Load: Model
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+    - Description
+*   - `1`
+    - Constant PQ
+*   - `2`
+    - Constant Z
+*   - `3`
+    - Motor (constant P, quadratic Q)
+*   - `4`
+    - CVR (linear P, quadratic Q)
+*   - `5`
+    - Constant I
+*   - `6`
+    - Constant P, fixed Q
+*   - `7`
+    - Constant P, fixed X
+*   - `8`
+    - ZIPV
+:::
+
+
+(enum-loadstatus)=
+### Load: Status
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Variable`
+*   - `Fixed`
+*   - `Exempt`
+:::
+
+

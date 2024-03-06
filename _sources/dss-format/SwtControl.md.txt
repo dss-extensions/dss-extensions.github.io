@@ -1,0 +1,114 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# SwtControl
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `SwitchedObj`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Name of circuit element switch that the SwtControl operates. Specify the full object class and name.
+*   - 2
+    - `SwitchedTerm`
+    - integer
+    - 1
+    - 
+    - Terminal number of the controlled element switch. 1 or 2, typically.
+*   - 3
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-swtcontrolaction))*
+    - 
+    - 
+    - After specified delay time, and if not locked, causes the controlled switch to open or close.<br>***Redundant with State***
+*   - 4
+    - `Lock`
+    - boolean
+    - False
+    - 
+    - Delayed action. Sends CTRL_LOCK or CTRL_UNLOCK message to control queue. After delay time, controlled switch is locked in its present open / close state or unlocked. Switch will not respond to either manual (Action) or automatic (APIs) control or internal OpenDSS Reset when locked.
+*   - 5
+    - `Delay`
+    - real
+    - 120.0
+    - s
+    - Operating time delay of the switch.
+*   - 6
+    - `Normal`
+    - string<br>*(from enum. [State](#enum-swtcontrolstate))*
+    - closed
+    - 
+    - Normal state of the switch. If not Locked, the switch reverts to this state for reset, change of mode, etc. Defaults to first Action or State specified if not specifically declared.
+*   - 7
+    - `State`
+    - string<br>*(from enum. [State](#enum-swtcontrolstate))*
+    - 
+    - 
+    - Present state of the switch. Upon setting, immediately forces state of switch.
+*   - 8
+    - `Reset`
+    - boolean<br>*(action)*
+    - False
+    - 
+    - If Yes, forces Reset of switch to Normal state and removes Lock independently of any internal reset command for mode change, etc.
+*   - 9
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 10
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 11
+    - `Like`
+    - string<br>*([SwtControl](#SwtControl) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-swtcontrolaction)=
+### SwtControl: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `close`
+*   - `open`
+:::
+
+
+(enum-swtcontrolstate)=
+### SwtControl: State
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `closed`
+*   - `open`
+:::
+
+

@@ -1,0 +1,105 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# GICsource
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Volts`
+    - real
+    - 
+    - 
+    - Voltage magnitude of the GIC voltage induced across the associated line. When specified, induced voltage is assumed defined by Voltage and Angle properties. <br><br>Specify this value<br><br>OR<br><br>EN, EE, lat1, lon1, lat2, lon2. <br><br>Not both!!  Last one entered will take precedence. Assumed identical in each phase of the Line object.
+*   - 2
+    - `Angle`
+    - real
+    - 
+    - °
+    - Phase angle of first phase. See Voltage property
+*   - 3
+    - `Frequency`
+    - real
+    - 0.1
+    - Hz
+    - Source frequency. Defaults to 0.1 Hz. So GICSource=0 at power frequency.
+*   - 4
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of phases. All three phases are assumed in phase (zero sequence)
+*   - 5
+    - `EN`
+    - real
+    - 
+    - V/km
+    - Northward Electric field. If specified, Voltage and Angle are computed from EN, EE, lat and lon values.
+*   - 6
+    - `EE`
+    - real
+    - 
+    - V/km
+    - Eastward Electric field. If specified, Voltage and Angle are computed from EN, EE, lat and lon values.
+*   - 7
+    - `Lat1`
+    - real
+    - 
+    - °
+    - Latitude of Bus1 of the line
+*   - 8
+    - `Lon1`
+    - real
+    - 
+    - °
+    - Longitude of Bus1 of the line
+*   - 9
+    - `Lat2`
+    - real
+    - 
+    - °
+    - Latitude of Bus2 of the line
+*   - 10
+    - `Lon2`
+    - real
+    - 
+    - °
+    - Longitude of Bus2 of the line
+*   - 11
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - 
+    - 
+    - Not used.
+*   - 12
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Not used.
+*   - 13
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 14
+    - `Like`
+    - string<br>*([GICsource](#GICsource) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

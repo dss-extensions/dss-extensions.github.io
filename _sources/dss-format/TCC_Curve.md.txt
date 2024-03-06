@@ -1,0 +1,44 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# TCC_Curve
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NPts`
+    - integer
+    - 
+    - 
+    - Number of points to expect in time-current arrays.
+*   - 2
+    - `C_Array`
+    - array of reals
+    - 
+    - 
+    - Array of current (or voltage) values corresponding to time values (see help on T_Array).
+*   - 3
+    - `T_Array`
+    - array of reals
+    - 
+    - 
+    - Array of time values in sec. Typical array syntax: <br>t_array = (1, 2, 3, 4, ...)<br><br>Can also substitute a file designation: <br>t_array =  (file=filename)<br><br>The specified file has one value per line.
+*   - 4
+    - `Like`
+    - string<br>*([TCC_Curve](#TCC_Curve) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

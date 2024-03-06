@@ -1,0 +1,104 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# XYcurve
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NPts`
+    - integer
+    - 
+    - 
+    - Max number of points to expect in curve. This could get reset to the actual number of points defined if less than specified.
+*   - 2
+    - `Points`
+    - array of reals
+    - 
+    - 
+    - One way to enter the points in a curve. Enter x and y values as one array in the order [x1, y1, x2, y2, ...]. For example:<br><br>Points=[1,100 2,200 3, 300] <br><br>Values separated by commas or white space. Zero fills arrays if insufficient number of values.<br>***Redundant with XArray***
+*   - 3
+    - `YArray`
+    - array of reals
+    - 
+    - 
+    - Alternate way to enter Y values. Enter an array of Y values corresponding to the X values.  You can also use the syntax: <br>Yarray = (file=filename)     !for text file one value per line<br>Yarray = (dblfile=filename)  !for packed file of doubles<br>Yarray = (sngfile=filename)  !for packed file of singles <br><br>Note: this property will reset Npts to a smaller value if the  number of values in the files are fewer.
+*   - 4
+    - `XArray`
+    - array of reals
+    - 
+    - 
+    - Alternate way to enter X values. Enter an array of X values corresponding to the Y values.  You can also use the syntax: <br>Xarray = (file=filename)     !for text file one value per line<br>Xarray = (dblfile=filename)  !for packed file of doubles<br>Xarray = (sngfile=filename)  !for packed file of singles <br><br>Note: this property will reset Npts to a smaller value if the  number of values in the files are fewer.
+*   - 5
+    - `CSVFile`
+    - string
+    - 
+    - 
+    - Switch input of X-Y curve data to a CSV file containing X, Y points one per line. NOTE: This action may reset the number of points to a lower value.
+*   - 6
+    - `SngFile`
+    - string
+    - 
+    - 
+    - Switch input of X-Y curve data to a binary file of SINGLES containing X, Y points packed one after another. NOTE: This action may reset the number of points to a lower value.
+*   - 7
+    - `DblFile`
+    - string
+    - 
+    - 
+    - Switch input of X-Y  curve data to a binary file of DOUBLES containing X, Y points packed one after another. NOTE: This action may reset the number of points to a lower value.
+*   - 8
+    - `X`
+    - real
+    - 
+    - 
+    - Enter a value and then retrieve the interpolated Y value from the Y property. On input shifted then scaled to original curve. Scaled then shifted on output.
+*   - 9
+    - `Y`
+    - real
+    - 
+    - 
+    - Enter a value and then retrieve the interpolated X value from the X property. On input shifted then scaled to original curve. Scaled then shifted on output.
+*   - 10
+    - `XShift`
+    - real
+    - 0.0
+    - 
+    - Shift X property values (in/out) by this amount of offset. Does not change original definition of arrays.
+*   - 11
+    - `YShift`
+    - real
+    - 0.0
+    - 
+    - Shift Y property values (in/out) by this amount of offset. Does not change original definition of arrays.
+*   - 12
+    - `XScale`
+    - real
+    - 1.0
+    - 
+    - Scale X property values (in/out) by this factor. Does not change original definition of arrays.
+*   - 13
+    - `YScale`
+    - real
+    - 1.0
+    - 
+    - Scale Y property values (in/out) by this factor. Does not change original definition of arrays.
+*   - 14
+    - `Like`
+    - string<br>*([XYcurve](#XYcurve) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

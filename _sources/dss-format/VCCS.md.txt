@@ -1,0 +1,123 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# VCCS
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which source is connected.<br>bus1=busname<br>bus1=busname.1.2.3
+*   - 2
+    - `Phases`
+    - integer
+    - 1
+    - 
+    - Number of phases.
+*   - 3
+    - `PRated`
+    - real
+    - 250.0
+    - kW
+    - Total rated power.
+*   - 4
+    - `VRated`
+    - real
+    - 208.0
+    - V
+    - Rated line-to-line voltage.
+*   - 5
+    - `Ppct`
+    - real
+    - 100.0
+    - 
+    - Steady-state operating output, in percent of rated.
+*   - 6
+    - `BP1`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - XYCurve defining the input piece-wise linear block.
+*   - 7
+    - `BP2`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - XYCurve defining the output piece-wise linear block.
+*   - 8
+    - `Filter`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - XYCurve defining the digital filter coefficients (x numerator, y denominator).
+*   - 9
+    - `FSample`
+    - real
+    - 5000.0
+    - Hz
+    - Sample frequency for the digital filter.
+*   - 10
+    - `RMSMode`
+    - boolean
+    - False
+    - 
+    - True if only Hz is used to represent a phase-locked loop (PLL), ignoring the BP1, BP2 and time-domain transformations.
+*   - 11
+    - `IMaxpu`
+    - real
+    - 1.1
+    - 
+    - Maximum output current in per-unit of rated.
+*   - 12
+    - `VRMSTau`
+    - real
+    - 0.002
+    - 
+    - Time constant in sensing Vrms for the PLL.
+*   - 13
+    - `IRMSTau`
+    - real
+    - 0.002
+    - 
+    - Time constant in producing Irms from the PLL.
+*   - 14
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - default
+    - 
+    - Harmonic spectrum assumed for this source.
+*   - 15
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 16
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 17
+    - `Like`
+    - string<br>*([VCCS](#VCCS) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

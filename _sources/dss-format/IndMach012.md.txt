@@ -1,0 +1,186 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# IndMach012
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of Phases, this Induction Machine.  
+*   - 2
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Bus to which the Induction Machine is connected.  May include specific node specification.
+*   - 3
+    - `kV`
+    - real
+    - 12.47
+    - kV
+    - Nominal rated (1.0 per unit) voltage, kV. For 2- and 3-phase machines, specify phase-phase kV. Otherwise, specify actual kV across each branch of the machine. If wye (star), specify phase-neutral kV. If delta or phase-phase connected, specify phase-phase kV.
+*   - 4
+    - `kW`
+    - real
+    - 1000.0
+    - 
+    - Shaft Power, kW, for the Induction Machine.  A positive value denotes power for a load. <br>Negative value denotes an induction generator. 
+*   - 5
+    - `PF`
+    - real
+    - 
+    - 
+    - [Read Only] Present power factor for the machine. 
+*   - 6
+    - `Conn`
+    - string<br>*(from enum. [](#enum-connection))*
+    - Delta
+    - 
+    - Connection of stator: Delta or Wye. Default is Delta.
+*   - 7
+    - `kVA`
+    - real
+    - 1200.0
+    - 
+    - Rated kVA for the machine.
+*   - 8
+    - `H`
+    - real
+    - 1.0
+    - 
+    - Per unit mass constant of the machine.  MW-sec/MVA.
+*   - 9
+    - `D`
+    - real
+    - 1.0
+    - 
+    - Damping constant. Usual range is 0 to 4. Adjust to get damping in Dynamics mode,
+*   - 10
+    - `puRs`
+    - real
+    - 0.005
+    - 
+    - Per unit stator resistance.
+*   - 11
+    - `puXs`
+    - real
+    - 0.106
+    - 
+    - Per unit stator leakage reactance.
+*   - 12
+    - `puRr`
+    - real
+    - 0.007
+    - 
+    - Per unit rotor  resistance.
+*   - 13
+    - `puXr`
+    - real
+    - 0.12
+    - 
+    - Per unit rotor leakage reactance.
+*   - 14
+    - `puXm`
+    - real
+    - 4.0
+    - 
+    - Per unit magnetizing reactance.
+*   - 15
+    - `Slip`
+    - real
+    - 0.007
+    - 
+    - Initial slip value.
+*   - 16
+    - `MaxSlip`
+    - real
+    - 0.1
+    - 
+    - Max slip value to allow. Set this before setting slip.
+*   - 17
+    - `SlipOption`
+    - string<br>*(from enum. [Slip Option](#enum-indmach012slip-option))*
+    - VariableSlip
+    - 
+    - Option for slip model.
+*   - 18
+    - `Yearly`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for yearly simulations.  Must be previously defined as a Loadshape object. Is set to the Daily load shape  when Daily is defined.  The daily load shape is repeated in this case. Set Status=Fixed to ignore Loadshape designation. Set to NONE to reset to no loadshape. The default is no variation.
+*   - 19
+    - `Daily`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for daily simulations.  Must be previously defined as a Loadshape object of 24 hrs, typically. Set Status=Fixed to ignore Loadshape designation. Set to NONE to reset to no loadshape. Default is no variation (constant) if not defined. Side effect: Sets Yearly load shape if not already defined.
+*   - 20
+    - `Duty`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - LOADSHAPE object to use for duty cycle simulations.  Must be previously defined as a Loadshape object.  Typically would have time intervals less than 1 hr. Designate the number of points to solve using the Set Number=xxxx command. If there are fewer points in the actual shape, the shape is assumed to repeat.Set to NONE to reset to no loadshape. Set Status=Fixed to ignore Loadshape designation.  Defaults to Daily curve If not specified.
+*   - 21
+    - `DebugTrace`
+    - boolean
+    - False
+    - 
+    - Write DebugTrace file.
+*   - 22
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - default
+    - 
+    - Name of harmonic voltage or current spectrum for this IndMach012. Voltage behind Xd" for machine - default.
+*   - 23
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 24
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 25
+    - `Like`
+    - string<br>*([IndMach012](#IndMach012) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-indmach012slip-option)=
+### IndMach012: Slip Option
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `VariableSlip`
+*   - `FixedSlip`
+:::
+
+

@@ -1,0 +1,81 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# GenDispatcher
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Element`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Full object name of the circuit element, typically a line or transformer, which the control is monitoring. There is no default; must be specified.
+*   - 2
+    - `Terminal`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the GenDispatcher control is connected. 1 or 2, typically. Make sure you have the direction on the power matching the sign of kWLimit.
+*   - 3
+    - `kWLimit`
+    - real
+    - 8000.0
+    - 
+    - kW Limit for the monitored element. The generators are dispatched to hold the power in band.
+*   - 4
+    - `kWBand`
+    - real
+    - 100.0
+    - 
+    - Bandwidth (kW) of the dead band around the target limit.No dispatch changes are attempted if the power in the monitored terminal stays within this band.
+*   - 5
+    - `kvarLimit`
+    - real
+    - 4000.0
+    - 
+    - Max kvar to be delivered through the element.  Uses same dead band as kW.
+*   - 6
+    - `GenList`
+    - array of strings
+    - 
+    - 
+    - Array list of generators to be dispatched.  If not specified, all generators in the circuit are assumed dispatchable.
+*   - 7
+    - `Weights`
+    - array of reals
+    - 
+    - 
+    - Array of proportional weights corresponding to each generator in the GenList. The needed kW to get back to center band is dispatched to each generator according to these weights.
+*   - 8
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 9
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 10
+    - `Like`
+    - string<br>*([GenDispatcher](#GenDispatcher) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

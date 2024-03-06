@@ -1,0 +1,135 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# GICLine
+
+(
+    Circuit Element,
+    PC Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Bus1`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which the main terminal (1) is connected.<br>bus1=busname<br>bus1=busname.1.2.3
+*   - 2
+    - `Bus2`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of bus to which 2nd terminal is connected.<br>bus2=busname<br>bus2=busname.1.2.3<br><br>No Default; must be specified.
+*   - 3
+    - `Volts`
+    - real
+    - 
+    - V
+    - Voltage magnitude, in volts, of the GIC voltage induced across this line. When specified, voltage source is assumed defined by Voltage and Angle properties. <br><br>Specify this value<br><br>OR<br><br>EN, EE, lat1, lon1, lat2, lon2. <br><br>Not both!!  Last one entered will take precedence. Assumed identical in each phase of the Line object.
+*   - 4
+    - `Angle`
+    - real
+    - 
+    - 
+    - Phase angle in degrees of first phase. See Voltage property
+*   - 5
+    - `Frequency`
+    - real
+    - 0.1
+    - Hz
+    - Source frequency.
+*   - 6
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of phases.
+*   - 7
+    - `R`
+    - real
+    - 
+    - Ω
+    - Resistance of line, impedance in series with GIC voltage source. 
+*   - 8
+    - `X`
+    - real
+    - 0.0
+    - Ω
+    - Reactance at base frequency. This value is generally not important for GIC studies but may be used if desired.
+*   - 9
+    - `C`
+    - real
+    - 0.0
+    - μF
+    - Value of line blocking capacitance. A zero value implies that there is no line blocking capacitor.
+*   - 10
+    - `EN`
+    - real
+    - 
+    - V/km
+    - Northward Electric field. If specified, Voltage and Angle are computed from EN, EE, lat and lon values.
+*   - 11
+    - `EE`
+    - real
+    - 
+    - V/km
+    - Eastward Electric field. If specified, Voltage and Angle are computed from EN, EE, lat and lon values.
+*   - 12
+    - `Lat1`
+    - real
+    - 
+    - °
+    - Latitude of Bus1
+*   - 13
+    - `Lon1`
+    - real
+    - 
+    - °
+    - Longitude of Bus1
+*   - 14
+    - `Lat2`
+    - real
+    - 
+    - °
+    - Latitude of Bus2
+*   - 15
+    - `Lon2`
+    - real
+    - 
+    - °
+    - Longitude of Bus2
+*   - 16
+    - `Spectrum`
+    - string<br>*([Spectrum](#Spectrum) name)*
+    - 
+    - 
+    - Inherited Property for all PCElements. Name of harmonic spectrum for this source.
+*   - 17
+    - `BaseFreq`
+    - real
+    - 
+    - 
+    - Inherited Property for all PCElements. Base frequency for specification of reactance value.
+*   - 18
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 19
+    - `Like`
+    - string<br>*([GICLine](#GICLine) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::

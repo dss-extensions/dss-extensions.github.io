@@ -1,0 +1,196 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# CapControl
+
+(
+    Circuit Element,
+    Control Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `Element`
+    - string<br>*([CktElement](#circuit-elements) name)*
+    - 
+    - 
+    - Full object name of the circuit element, typically a line or transformer, to which the capacitor control's PT and/or CT are connected.There is no default; must be specified.
+*   - 2
+    - `Terminal`
+    - integer
+    - 1
+    - 
+    - Number of the terminal of the circuit element to which the CapControl is connected. 1 or 2, typically.
+*   - 3
+    - `Capacitor`
+    - string<br>*([Capacitor](#Capacitor) name)*
+    - 
+    - 
+    - Name of Capacitor element which the CapControl controls. No Default; Must be specified.Do not specify the full object name; "Capacitor" is assumed for the object class.  Example:<br><br>Capacitor=cap1
+*   - 4
+    - `Type`
+    - string<br>*(from enum. [Type](#enum-capcontroltype))*
+    - Current
+    - 
+    - Control type.  Specify the ONsetting and OFFsetting appropriately with the type of control. (See help for ONsetting)
+*   - 5
+    - `PTRatio`
+    - real
+    - 60.0
+    - 
+    - Ratio of the PT that converts the monitored voltage to the control voltage. If the capacitor is Wye, the 1st phase line-to-neutral voltage is monitored.  Else, the line-to-line voltage (1st - 2nd phase) is monitored.
+*   - 6
+    - `CTRatio`
+    - real
+    - 60.0
+    - 
+    - Ratio of the CT from line amps to control ampere setting for current and kvar control types. 
+*   - 7
+    - `OnSetting`
+    - real
+    - 300.0
+    - 
+    - Value at which the control arms to switch the capacitor ON (or ratchet up a step).  <br><br>Type of Control:<br><br>Current: Line Amps / CTratio<br>Voltage: Line-Neutral (or Line-Line for delta) Volts / PTratio<br>kvar:    Total kvar, all phases (3-phase for pos seq model). This is directional. <br>PF:      Power Factor, Total power in monitored terminal. Negative for Leading. <br>Time:    Hrs from Midnight as a floating point number (decimal). 7:30am would be entered as 7.5.<br>Follow:  Follows a loadshape (ControlSignal) to determine when to turn ON/OFF the capacitor. If the value is different than 0 the capacitor will connect to the grid, otherwise, it will be disconnected.
+*   - 8
+    - `OffSetting`
+    - real
+    - 200.0
+    - 
+    - Value at which the control arms to switch the capacitor OFF. (See help for ONsetting)For Time control, is OK to have Off time the next day ( < On time)
+*   - 9
+    - `Delay`
+    - real
+    - 15.0
+    - 
+    - Time delay, in seconds, from when the control is armed before it sends out the switching command to turn ON.  The control may reset before the action actually occurs. This is used to determine which capacity control will act first. Default is 15.  You may specify any floating point number to achieve a model of whatever condition is necessary.
+*   - 10
+    - `VoltOverride`
+    - boolean
+    - False
+    - 
+    - Switch to indicate whether VOLTAGE OVERRIDE is to be considered. Vmax and Vmin must be set to reasonable values if this property is Yes.
+*   - 11
+    - `VMax`
+    - real
+    - 126.0
+    - V
+    - Maximum voltage. If the voltage across the capacitor divided by the PTRATIO is greater than this voltage, the capacitor will switch OFF regardless of other control settings. Default is 126 (goes with a PT ratio of 60 for 12.47 kV system).
+*   - 12
+    - `VMin`
+    - real
+    - 115.0
+    - V
+    - Minimum voltage. If the voltage across the capacitor divided by the PTRATIO is less than this voltage, the capacitor will switch ON regardless of other control settings. Default is 115 (goes with a PT ratio of 60 for 12.47 kV system).
+*   - 13
+    - `DelayOff`
+    - real
+    - 15.0
+    - s
+    - Time delay for control to turn OFF when present state is ON.
+*   - 14
+    - `DeadTime`
+    - real
+    - 300.0
+    - s
+    - Dead time after capacitor is turned OFF before it can be turned back ON.
+*   - 15
+    - `CTPhase`
+    - string<br>*(from enum. [](#enum-monitored-phase))*
+    - 1
+    - 
+    - Number of the phase being monitored for CURRENT control or one of {AVG | MAX | MIN} for all phases. If delta or L-L connection, enter the first or the two phases being monitored [1-2, 2-3, 3-1]. Must be less than the number of phases. Does not apply to kvar control which uses all phases by default.
+*   - 16
+    - `PTPhase`
+    - string<br>*(from enum. [](#enum-monitored-phase))*
+    - 1
+    - 
+    - Number of the phase being monitored for VOLTAGE control or one of {AVG | MAX | MIN} for all phases. If delta or L-L connection, enter the first or the two phases being monitored [1-2, 2-3, 3-1]. Must be less than the number of phases. Does not apply to kvar control which uses all phases by default.
+*   - 17
+    - `VBus`
+    - string
+    - 
+    - 
+    - Name of bus to use for voltage override function. Default is bus at monitored terminal. Sometimes it is useful to monitor a bus in another location to emulate various DMS control algorithms.
+*   - 18
+    - `EventLog`
+    - boolean
+    - False
+    - 
+    - Log control actions to Eventlog.
+*   - 19
+    - `UserModel`
+    - string
+    - 
+    - 
+    - Name of DLL containing user-written CapControl model, overriding the default model.  Set to "none" to negate previous setting. 
+*   - 20
+    - `UserData`
+    - string
+    - 
+    - 
+    - String (in quotes or parentheses if necessary) that gets passed to the user-written CapControl model Edit function for defining the data required for that model. 
+*   - 21
+    - `pctMinkvar`
+    - real
+    - 50.0
+    - 
+    - For PF control option, min percent of total bank kvar at which control will close capacitor switch.
+*   - 22
+    - `Reset`
+    - boolean<br>*(action)*
+    - False
+    - 
+    - If Yes, forces Reset of this CapControl.
+*   - 23
+    - `ControlSignal`
+    - string<br>*([LoadShape](#LoadShape) name)*
+    - 
+    - 
+    - Load shape used for controlling the connection/disconnection of the capacitor to the grid, when the load shape is DIFFERENT than ZERO (0) the capacitor will be ON and connected to the grid. Otherwise, if the load shape value is EQUAL to ZERO (0) the capacitor bank will be OFF and disconnected from the grid.
+*   - 24
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 25
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 26
+    - `Like`
+    - string<br>*([CapControl](#CapControl) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-capcontroltype)=
+### CapControl: Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Current`
+*   - `Voltage`
+*   - `kvar`
+*   - `Time`
+*   - `PowerFactor`
+*   - `Follow`
+:::
+
+

@@ -1,0 +1,175 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# GICTransformer
+
+(
+    Circuit Element,
+    PD Element
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `BusH`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of High-side(H) bus. Examples:<br>BusH=busname<br>BusH=busname.1.2.3
+*   - 2
+    - `BusNH`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of Neutral bus for H, or first, winding. Defaults to all phases connected to H-side bus, node 0, if not specified and transformer type is either GSU or YY. (Shunt Wye Connection to ground reference)For Auto, this is automatically set to the X bus.
+*   - 3
+    - `BusX`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of Low-side(X) bus, if type=Auto or YY. 
+*   - 4
+    - `BusNX`
+    - string<br>*(bus def.)*
+    - 
+    - 
+    - Name of Neutral bus for X, or Second, winding. Defaults to all phases connected to X-side bus, node 0, if not specified. (Shunt Wye Connection to ground reference)
+*   - 5
+    - `Phases`
+    - integer
+    - 3
+    - 
+    - Number of Phases.
+*   - 6
+    - `Type`
+    - string<br>*(from enum. [Type](#enum-gictransformertype))*
+    - GSU
+    - 
+    - Type of transformer.
+*   - 7
+    - `R1`
+    - real
+    - 
+    - Ω
+    - Resistance, each phase, for H winding, (Series winding, if Auto).
+*   - 8
+    - `R2`
+    - real
+    - 
+    - Ω
+    - Resistance, each phase, ohms for X winding, (Common winding, if Auto).
+*   - 9
+    - `kVLL1`
+    - real
+    - 500.0
+    - kV
+    - Optional. Voltage LL rating for H winding (winding 1). Required if you are going to export vars for power flow analysis or enter winding resistances in percent.
+*   - 10
+    - `kVLL2`
+    - real
+    - 138.0
+    - kV
+    - Optional. Voltage LL rating for X winding (winding 2). Required if you are going to export vars for power flow analysis or enter winding resistances in percent..
+*   - 11
+    - `MVA`
+    - real
+    - 100.0
+    - MVA
+    - Optional. MVA Rating assumed Transformer. Used for computing vars due to GIC and winding resistances if kV and MVA ratings are specified.
+*   - 12
+    - `VarCurve`
+    - string<br>*([XYcurve](#XYcurve) name)*
+    - 
+    - 
+    - Optional. XYCurve object name. Curve is expected as TOTAL pu vars vs pu GIC amps/phase. Vars are in pu of the MVA property. No Default value. Required only if you are going to export vars for power flow analysis. See K property.
+*   - 13
+    - `%R1`
+    - real
+    - 
+    - 
+    - Optional. Percent Resistance, each phase, for H winding (1), (Series winding, if Auto).<br><br>Alternative way to enter R1 value. It is the actual resistances in ohmns that matter. MVA and kV should be specified.
+*   - 14
+    - `%R2`
+    - real
+    - 
+    - 
+    - Optional. Percent Resistance, each phase, for X winding (2), (Common winding, if Auto).<br><br>Alternative way to enter R2 value. It is the actual resistances in ohms that matter. MVA and kV should be specified.
+*   - 15
+    - `K`
+    - real
+    - 2.2
+    - 
+    - Mvar K factor. Default way to convert GIC Amps in H winding (winding 1) to Mvar. Commonly-used simple multiplier for estimating Mvar losses for power flow analysis. <br><br>Mvar = K × kvLL × (GIC per phase) / 1000 <br><br>Mutually exclusive with using the VarCurve property and pu curves.If you specify this (default), VarCurve is ignored.
+*   - 16
+    - `NormAmps`
+    - real
+    - 0.0
+    - 
+    - Normal rated current.
+*   - 17
+    - `EmergAmps`
+    - real
+    - 0.0
+    - 
+    - Maximum or emergency current rating.
+*   - 18
+    - `FaultRate`
+    - real
+    - 0.0
+    - 
+    - GICTransformer.faultrate
+*   - 19
+    - `pctPerm`
+    - real
+    - 100.0
+    - 
+    - Percent of failures that become permanent.
+*   - 20
+    - `Repair`
+    - real
+    - 0.0
+    - 
+    - Hours to repair.
+*   - 21
+    - `BaseFreq`
+    - real
+    - 
+    - Hz
+    - Base Frequency for ratings.
+*   - 22
+    - `Enabled`
+    - boolean
+    - True
+    - 
+    - Indicates whether this element is enabled.
+*   - 23
+    - `Like`
+    - string<br>*([GICTransformer](#GICTransformer) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-gictransformertype)=
+### GICTransformer: Type
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `GSU`
+*   - `Auto`
+*   - `YY`
+:::
+
+

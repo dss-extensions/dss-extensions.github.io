@@ -1,0 +1,186 @@
+---
+html_theme.sidebar_secondary.remove: true
+---
+
+# LoadShape
+
+(
+        General
+)
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Index
+    - Name
+    - Type
+    - Default
+    - Units
+    - Description
+*   - 1
+    - `NPts`
+    - integer
+    - 
+    - 
+    - Max number of points to expect in load shape vectors. This gets reset to the number of multiplier values found (in files only) if less than specified.
+*   - 2
+    - `Interval`
+    - real
+    - 
+    - hour
+    - Time interval for fixed interval data, hrs. If Interval is set to 0, then time data (in hours) may be at either regular or  irregular intervals and time value must be specified using either the Hour property or input files. Then values are interpolated when Interval=0, but not for fixed interval data.  <br><br>See also "sinterval" and "minterval".
+*   - 3
+    - `Mult`
+    - array of reals
+    - 
+    - 
+    - Array of multiplier values for active power (P) or other key value (such as pu V for Vsource). <br><br>You can also use the syntax: <br><br>mult = (file=filename)     !for text file one value per line<br>mult = (dblfile=filename)  !for packed file of doubles<br>mult = (sngfile=filename)  !for packed file of singles <br>mult = (file=MyCSVFile.csv, col=3, header=yes)  !for multicolumn CSV files <br><br>Note: this property will reset Npts if the  number of values in the files are fewer.<br><br>Same as Pmult<br>***Redundant with PMult***
+*   - 4
+    - `Hour`
+    - array of reals
+    - 
+    - 
+    - Array of hour values. Only necessary to define for variable interval data (Interval=0). If you set Interval>0 to denote fixed interval data, DO NOT USE THIS PROPERTY. You can also use the syntax: <br>hour = (file=filename)     !for text file one value per line<br>hour = (dblfile=filename)  !for packed file of doubles<br>hour = (sngfile=filename)  !for packed file of singles 
+*   - 5
+    - `Mean`
+    - real
+    - 
+    - 
+    - Mean of the active power multipliers.  This is computed on demand the first time a value is needed.  However, you may set it to another value independently. Used for Monte Carlo load simulations.
+*   - 6
+    - `StdDev`
+    - real
+    - 
+    - 
+    - Standard deviation of active power multipliers.  This is computed on demand the first time a value is needed.  However, you may set it to another value independently.Is overwritten if you subsequently read in a curve<br><br>Used for Monte Carlo load simulations.
+*   - 7
+    - `CSVFile`
+    - string
+    - 
+    - 
+    - Switch input of active power load curve data to a CSV text file containing (hour, mult) points, or simply (mult) values for fixed time interval data, one per line. NOTE: This action may reset the number of points to a lower value.
+*   - 8
+    - `SngFile`
+    - string
+    - 
+    - 
+    - Switch input of active power load curve data to a binary file of singles containing (hour, mult) points, or simply (mult) values for fixed time interval data, packed one after another. NOTE: This action may reset the number of points to a lower value.
+*   - 9
+    - `DblFile`
+    - string
+    - 
+    - 
+    - Switch input of active power load curve data to a binary file of doubles containing (hour, mult) points, or simply (mult) values for fixed time interval data, packed one after another. NOTE: This action may reset the number of points to a lower value.
+*   - 10
+    - `Action`
+    - string<br>*(from enum. [Action](#enum-loadshapeaction), action)*
+    - 
+    - 
+    - {NORMALIZE | DblSave | SngSave} After defining load curve data, setting action=normalize will modify the multipliers so that the peak is 1.0. The mean and std deviation are recomputed.<br><br>Setting action=DblSave or SngSave will cause the present mult and qmult values to be written to either a packed file of double or single. The filename is the loadshape name. The mult array will have a "_P" appended on the file name and the qmult array, if it exists, will have "_Q" appended.
+*   - 11
+    - `QMult`
+    - array of reals
+    - 
+    - 
+    - Array of multiplier values for reactive power (Q).  You can also use the syntax: <br>qmult = (file=filename)     !for text file one value per line<br>qmult = (dblfile=filename)  !for packed file of doubles<br>qmult = (sngfile=filename)  !for packed file of singles <br>qmult = (file=MyCSVFile.csv, col=4, header=yes)  !for multicolumn CSV files 
+*   - 12
+    - `UseActual`
+    - boolean
+    - False
+    - 
+    - If true, signifies to Load, Generator, Vsource, or other objects to use the return value as the actual kW, kvar, kV, or other value rather than a multiplier. Nominally for AMI Load data but may be used for other functions.
+*   - 13
+    - `PMax`
+    - real
+    - 1.0
+    - kW
+    - kW value at the time of max power. Is automatically set upon reading in a loadshape. Use this property to override the value automatically computed or to retrieve the value computed.
+*   - 14
+    - `QMax`
+    - real
+    - 0.0
+    - kvar
+    - kvar value at the time of max kW power. Is automatically set upon reading in a loadshape. Use this property to override the value automatically computed or to retrieve the value computed.
+*   - 15
+    - `SInterval`
+    - real
+    - 
+    - s
+    - Specify fixed interval in SECONDS. Alternate way to specify Interval property.<br>***Redundant with Interval***
+*   - 16
+    - `MInterval`
+    - real
+    - 
+    - minute
+    - Specify fixed interval in MINUTES. Alternate way to specify Interval property.<br>***Redundant with Interval***
+*   - 17
+    - `PBase`
+    - real
+    - 0.0
+    - kW
+    - Base P value for normalization. Default is zero, meaning the peak will be used.
+*   - 18
+    - `QBase`
+    - real
+    - 0.0
+    - kvar
+    - Base Q value for normalization. Default is zero, meaning the peak will be used.
+*   - 19
+    - `PMult`
+    - array of reals
+    - 
+    - 
+    - Synonym for "mult".
+*   - 20
+    - `PQCSVFile`
+    - string
+    - 
+    - 
+    - Switch input to a CSV text file containing (active, reactive) power (P, Q) multiplier pairs, one per row. <br>If the interval=0, there should be 3 items on each line: (hour, Pmult, Qmult)
+*   - 21
+    - `MemoryMapping`
+    - boolean
+    - False
+    - 
+    - Enables the memory mapping functionality for dealing with large amounts of load shapes. <br>By default is False. Use it to accelerate the model loading when the containing a large number of load shapes.
+*   - 22
+    - `Interpolation`
+    - string<br>*(from enum. [Interpolation](#enum-loadshapeinterpolation))*
+    - Avg
+    - 
+    - Defines the interpolation method used for connecting distant dots within the load shape.<br><br>By default is AVG (average), which will return a multiplier for missing intervals based on the closest multiplier in time.<br>EDGE interpolation keeps the last known value for missing intervals until the next defined multiplier arrives.
+*   - 23
+    - `Like`
+    - string<br>*([LoadShape](#LoadShape) name)*<br>[deprecated]{.fg-warning}
+    - 
+    - 
+    - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
+:::
+
+## Enumerations
+
+(enum-loadshapeaction)=
+### LoadShape: Action
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Normalize`
+*   - `DblSave`
+*   - `SngSave`
+:::
+
+
+(enum-loadshapeinterpolation)=
+### LoadShape: Interpolation
+
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - Value
+*   - `Avg`
+*   - `Edge`
+:::
+
+
