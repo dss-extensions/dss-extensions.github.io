@@ -8,10 +8,12 @@ html_theme.sidebar_secondary.remove: true
     Conductor Data
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/WireData.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -102,3 +104,58 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the top 20 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 113
+    - [`GridFormingInverter/GFM_IEEE8500/WireData.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/WireData.dss)
+*   - 113
+    - [`IEEETestCases/8500-Node/WireData.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/WireData.dss)
+*   - 17
+    - [`Test/IEEELineGeometry.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEELineGeometry.dss)
+*   - 17
+    - [`IEEETestCases/LineCodes/IEEELineGeometry.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/LineCodes/IEEELineGeometry.dss)
+*   - 12
+    - [`EPRITestCircuits/ckt24/Wiredata_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt24/Wiredata_ckt24.dss)
+*   - 12
+    - [`ADiakoptics/ckt24/Wiredata_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ADiakoptics/ckt24/Wiredata_ckt24.dss)
+*   - 12
+    - [`MemoryMappingLoadShapes/ckt24/Wiredata_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/MemoryMappingLoadShapes/ckt24/Wiredata_ckt24.dss)
+*   - 10
+    - [`EPRITestCircuits/ckt5/WireData_ckt5.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt5/WireData_ckt5.dss)
+*   - 4
+    - [`Test/IEEE13_Assets.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_Assets.dss)
+*   - 4
+    - [`Test/IEEE13_LineAndCableSpacing.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_LineAndCableSpacing.dss)
+*   - 4
+    - [`epri_dpv/M1/WireData.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/M1/WireData.DSS)
+*   - 4
+    - [`Examples/CIM/IEEE13_Assets.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/CIM/IEEE13_Assets.dss)
+*   - 4
+    - [`IEEETestCases/4Bus-OYOD-Bal/4Bus-OYOD-Bal.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/4Bus-OYOD-Bal/4Bus-OYOD-Bal.DSS)
+*   - 4
+    - [`IEEETestCases/NEVTestCase/LineGeometry.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/NEVTestCase/LineGeometry.DSS)
+*   - 3
+    - [`Test/BundleDemo.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/BundleDemo.DSS)
+*   - 3
+    - [`Test/IEEE13_LineGeometry.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_LineGeometry.dss)
+*   - 3
+    - [`Test/IEEE13_LineSpacing.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_LineSpacing.dss)
+*   - 3
+    - [`Test/IEEE13_SpacingGeometry.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_SpacingGeometry.dss)
+*   - 3
+    - [`Examples/VCCS/DG_Prot_Fdr.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/VCCS/DG_Prot_Fdr.dss)
+*   - 3
+    - [`IEEETestCases/DG_Protection/DG_Prot_Fdr.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/DG_Protection/DG_Prot_Fdr.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

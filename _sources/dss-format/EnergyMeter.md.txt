@@ -9,10 +9,12 @@ html_theme.sidebar_secondary.remove: true
     Meter Element
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/EnergyMeter2.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -181,7 +183,6 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
-
 ## Enumerations
 
 (enum-energymeteraction)=
@@ -200,3 +201,58 @@ html_theme.sidebar_secondary.remove: true
 :::
 
 
+## Sample links
+                        
+These are the top 20 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 77
+    - [`IEEETestCases/LVTestCaseNorthAmerican/energy_meters.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/LVTestCaseNorthAmerican/energy_meters.dss)
+*   - 3
+    - [`Examples/civinlar model/civanlar.dss`](<https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/civinlar model/civanlar.dss>)
+*   - 2
+    - [`IEEETestCases/123Bus/Run_IEEE123Bus.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/123Bus/Run_IEEE123Bus.DSS)
+*   - 1
+    - [`EPRITestCircuits/ckt24/Monitors_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt24/Monitors_ckt24.dss)
+*   - 1
+    - [`EPRITestCircuits/ckt24/master_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt24/master_ckt24.dss)
+*   - 1
+    - [`EPRITestCircuits/ckt5/RunVplot_ckt5.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt5/RunVplot_ckt5.dss)
+*   - 1
+    - [`EPRITestCircuits/ckt5/Master_ckt5.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt5/Master_ckt5.dss)
+*   - 1
+    - [`EPRITestCircuits/ckt7/Monitors_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt7/Monitors_ckt7.dss)
+*   - 1
+    - [`EPRITestCircuits/ckt7/Master_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt7/Master_ckt7.dss)
+*   - 1
+    - [`epri_dpv/J1/monitors.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/J1/monitors.dss)
+*   - 1
+    - [`epri_dpv/K1/Master_NoPV.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/K1/Master_NoPV.dss)
+*   - 1
+    - [`epri_dpv/M1/Master_NoPV.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/M1/Master_NoPV.dss)
+*   - 1
+    - [`Examples/Scripts/OneWeekScript.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Scripts/OneWeekScript.dss)
+*   - 1
+    - [`Examples/civinlar model/regulator.dss`](<https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/civinlar model/regulator.dss>)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE123/P174_Run_VoltageProfile.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE123/P174_Run_VoltageProfile.DSS)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE123/RevRegTest.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE123/RevRegTest.dss)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMDaily.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMDaily.DSS)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMDailySwapRef.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMDailySwapRef.DSS)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMWholeDaily.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMWholeDaily.DSS)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMSnap.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE123/Run_IEEE123Bus_GFMSnap.DSS)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

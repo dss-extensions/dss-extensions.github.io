@@ -9,10 +9,12 @@ html_theme.sidebar_secondary.remove: true
     Control Element
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/CapControl1.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -175,7 +177,6 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
-
 ## Enumerations
 
 (enum-capcontroltype)=
@@ -194,3 +195,46 @@ html_theme.sidebar_secondary.remove: true
 :::
 
 
+## Sample links
+                        
+These are the 14 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 9
+    - [`GridFormingInverter/GFM_IEEE8500/CapControls.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/CapControls.DSS)
+*   - 9
+    - [`IEEETestCases/8500-Node/CapControls.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/CapControls.DSS)
+*   - 5
+    - [`epri_dpv/J1/Capacitors.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/J1/Capacitors.dss)
+*   - 4
+    - [`EPRITestCircuits/ckt5/Capacitors_ckt5.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt5/Capacitors_ckt5.dss)
+*   - 3
+    - [`epri_dpv/M1/Capacitors.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/M1/Capacitors.dss)
+*   - 2
+    - [`Test/IEEE13_Assets.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_Assets.dss)
+*   - 2
+    - [`Test/CapControlFollow.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/CapControlFollow.dss)
+*   - 2
+    - [`EPRITestCircuits/ckt7/Capacitors_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt7/Capacitors_ckt7.dss)
+*   - 2
+    - [`Examples/CIM/IEEE13_Assets.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/CIM/IEEE13_Assets.dss)
+*   - 2
+    - [`ADiakoptics/EPRI_Ckt7-G/Capacitors_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ADiakoptics/EPRI_Ckt7-G/Capacitors_ckt7.dss)
+*   - 1
+    - [`Test/Master_TestCapInterface.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/Master_TestCapInterface.DSS)
+*   - 1
+    - [`Examples/Manual/Example1.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Manual/Example1.DSS)
+*   - 1
+    - [`Examples/civinlar model/regulator.dss`](<https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/civinlar model/regulator.dss>)
+*   - 1
+    - [`Paulo_Example/DSSFiles/wind_control.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Paulo_Example/DSSFiles/wind_control.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

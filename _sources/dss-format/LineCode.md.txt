@@ -8,10 +8,12 @@ html_theme.sidebar_secondary.remove: true
         General
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/LineCode1.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -186,3 +188,58 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the top 20 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 1607
+    - [`GridFormingInverter/GFM_IEEE8500/LineCodes.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/LineCodes.dss)
+*   - 1607
+    - [`IEEETestCases/8500-Node/LineCodes.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/LineCodes.dss)
+*   - 172
+    - [`EPRITestCircuits/ckt7/LineCodes_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt7/LineCodes_ckt7.dss)
+*   - 172
+    - [`ADiakoptics/EPRI_Ckt7-G/LineCodes_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ADiakoptics/EPRI_Ckt7-G/LineCodes_ckt7.dss)
+*   - 69
+    - [`GridFormingInverter/GFM_IEEE8500/LineCodes2.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/LineCodes2.DSS)
+*   - 69
+    - [`IEEETestCases/8500-Node/LineCodes2.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/LineCodes2.DSS)
+*   - 41
+    - [`epri_dpv/J1/LineCodes.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/J1/LineCodes.dss)
+*   - 29
+    - [`Examples/Matlab/IEEE123LineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Matlab/IEEE123LineCodes.DSS)
+*   - 29
+    - [`Examples/StoCtrl_SeasonTarget/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/StoCtrl_SeasonTarget/IEEELineCodes.DSS)
+*   - 29
+    - [`Celso_Example/DSSFiles/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Celso_Example/DSSFiles/IEEELineCodes.DSS)
+*   - 29
+    - [`GridFormingInverter/GFM_IEEE123/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE123/IEEELineCodes.DSS)
+*   - 29
+    - [`GridFormingInverter/GFM_AmpsLimit_123/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_AmpsLimit_123/IEEELineCodes.DSS)
+*   - 29
+    - [`ADiakoptics/IEEE_13_Bus/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ADiakoptics/IEEE_13_Bus/IEEELineCodes.DSS)
+*   - 29
+    - [`IBRDynamics_Cases/GFL_IEEE123/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/IBRDynamics_Cases/GFL_IEEE123/IEEELineCodes.DSS)
+*   - 29
+    - [`IBRDynamics_Cases/GFM_IEEE123/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/IBRDynamics_Cases/GFM_IEEE123/IEEELineCodes.DSS)
+*   - 29
+    - [`IBRDynamics_Cases/GFM_IEEE123_AmpLimit/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/IBRDynamics_Cases/GFM_IEEE123_AmpLimit/IEEELineCodes.DSS)
+*   - 29
+    - [`IEEETestCases/123Bus/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/123Bus/IEEELineCodes.DSS)
+*   - 29
+    - [`IEEETestCases/13Bus/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/13Bus/IEEELineCodes.DSS)
+*   - 29
+    - [`IEEETestCases/34Bus/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/34Bus/IEEELineCodes.DSS)
+*   - 29
+    - [`IEEETestCases/37Bus/IEEELineCodes.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/37Bus/IEEELineCodes.DSS)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

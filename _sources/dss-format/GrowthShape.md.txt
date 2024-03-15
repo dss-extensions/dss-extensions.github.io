@@ -8,10 +8,12 @@ html_theme.sidebar_secondary.remove: true
         General
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/GrowthShape.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default

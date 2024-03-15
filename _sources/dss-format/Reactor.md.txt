@@ -9,10 +9,12 @@ html_theme.sidebar_secondary.remove: true
     PD Element
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/Reactor.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -181,3 +183,52 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the 17 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 80
+    - [`IEEETestCases/NEVTestCase/Grounds.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/NEVTestCase/Grounds.DSS)
+*   - 12
+    - [`IEEETestCases/NEVTestCase/Loads.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/NEVTestCase/Loads.DSS)
+*   - 7
+    - [`Examples/GICExample/GIC_Example.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/GICExample/GIC_Example.dss)
+*   - 6
+    - [`Test/ReactorConfigs.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/ReactorConfigs.dss)
+*   - 2
+    - [`Test/REACTORTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/REACTORTest.DSS)
+*   - 2
+    - [`Test/Source012Test.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/Source012Test.dss)
+*   - 2
+    - [`IEEETestCases/NEVTestCase/Substation.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/NEVTestCase/Substation.DSS)
+*   - 1
+    - [`Test/TestAuto.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/TestAuto.dss)
+*   - 1
+    - [`EPRITestCircuits/ckt5/Transformers_ckt5.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt5/Transformers_ckt5.dss)
+*   - 1
+    - [`epri_dpv/K1/Substation.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/K1/Substation.dss)
+*   - 1
+    - [`Examples/Scripts/ZigZagTransformer.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Scripts/ZigZagTransformer.DSS)
+*   - 1
+    - [`Examples/Scripts/ZigZagTransformerWithVar.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Scripts/ZigZagTransformerWithVar.DSS)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE8500/Generators.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/Generators.dss)
+*   - 1
+    - [`GridFormingInverter/GFM_IEEE8500/Transformers.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/Transformers.dss)
+*   - 1
+    - [`IEEETestCases/4Bus-OYOD-Bal/4Bus-OYOD-Bal.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/4Bus-OYOD-Bal/4Bus-OYOD-Bal.DSS)
+*   - 1
+    - [`IEEETestCases/8500-Node/Generators.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/Generators.dss)
+*   - 1
+    - [`IEEETestCases/8500-Node/Transformers.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/Transformers.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

@@ -177,7 +177,7 @@ These are general enumerations, lists of acceptable values, that can be used in 
 *   - `avg`
 :::
 
-**This is a "hybrid" enumeration.** The related input properties accepts the values listed in this table and integer numbers greater than 1.
+**This is a "hybrid" enumeration.** The related input properties accepts the values listed in this table and integer numbers greater than 0.
 
 (enum-phase-sequence)=
 ## Phase Sequence
@@ -208,7 +208,7 @@ These are general enumerations, lists of acceptable values, that can be used in 
 *   - `LLPrimary`
 :::
 
-**This is a "hybrid" enumeration.** The related input properties accepts the values listed in this table and integer numbers greater than 1.
+**This is a "hybrid" enumeration.** The related input properties accepts the values listed in this table and integer numbers greater than 0.
 
 (enum-random-type)=
 ## Random Type

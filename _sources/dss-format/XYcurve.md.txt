@@ -8,10 +8,12 @@ html_theme.sidebar_secondary.remove: true
         General
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/XYCurveObject.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -102,3 +104,58 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the top 20 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 6
+    - [`Examples/ExpControl/SystemPCC.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ExpControl/SystemPCC.dss)
+*   - 4
+    - [`InvControl/DRC/Daily_DRC-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/DRC/Daily_DRC-2.dss)
+*   - 4
+    - [`InvControl/DRC/Daily_DRC_avg-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/DRC/Daily_DRC_avg-2.dss)
+*   - 4
+    - [`InvControl/DRC/Daily_DRC_kVAlimitation_P-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/DRC/Daily_DRC_kVAlimitation_P-2.dss)
+*   - 4
+    - [`InvControl/DRC/Daily_DRC_kVAlimitation_Q-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/DRC/Daily_DRC_kVAlimitation_Q-2.dss)
+*   - 4
+    - [`InvControl/DRC/Daily_DRC_kvarlimitation-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/DRC/Daily_DRC_kvarlimitation-2.dss)
+*   - 4
+    - [`InvControl/VV_DRC/Daily_VVDRC-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_DRC/Daily_VVDRC-2.dss)
+*   - 4
+    - [`InvControl/VV_DRC/Daily_VVDRC_avg-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_DRC/Daily_VVDRC_avg-2.dss)
+*   - 4
+    - [`InvControl/VV_DRC/Daily_VVDRC_kVAlimitation_P-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_DRC/Daily_VVDRC_kVAlimitation_P-2.dss)
+*   - 4
+    - [`InvControl/VV_DRC/Daily_VVDRC_kVAlimitation_Q-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_DRC/Daily_VVDRC_kVAlimitation_Q-2.dss)
+*   - 4
+    - [`InvControl/VV_DRC/Daily_VVDRC_kvarlimitation-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_DRC/Daily_VVDRC_kvarlimitation-2.dss)
+*   - 4
+    - [`InvControl/VV_DRC/Daily_VVDRC_ravg-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_DRC/Daily_VVDRC_ravg-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/Daily_VVVW_VWnooperation-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/Daily_VVVW_VWnooperation-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/SnapShot_VVVW_VWnooperation-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/SnapShot_VVVW_VWnooperation-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/Daily_VVVW_varMax_PMPPPU_kVAlimitation_Qpriority-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/Daily_VVVW_varMax_PMPPPU_kVAlimitation_Qpriority-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/SnapShot_VVVW_varAval_PMPPPU_kvarlimit-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/SnapShot_VVVW_varAval_PMPPPU_kvarlimit-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/Daily_VVVW_varAval_PMPPPU_kvarlimit-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/Daily_VVVW_varAval_PMPPPU_kvarlimit-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/Daily_VVVW_varMax_PMPPPU_pctPmpp60-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/Daily_VVVW_varMax_PMPPPU_pctPmpp60-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/Daily_VVVW_varMax_PMPPPU_kVAlimitation_Ppriority-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/Daily_VVVW_varMax_PMPPPU_kVAlimitation_Ppriority-2.dss)
+*   - 4
+    - [`InvControl/VV_VW/SnapShot_VVVW_varMax_PMPPPU_pctPmpp60-2.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/InverterModels/PVSystem/InvControl/VV_VW/SnapShot_VVVW_varMax_PMPPPU_pctPmpp60-2.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

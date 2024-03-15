@@ -9,10 +9,12 @@ html_theme.sidebar_secondary.remove: true
     PC Element
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/IndMach012.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -169,7 +171,6 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
-
 ## Enumerations
 
 (enum-indmach012slip-option)=

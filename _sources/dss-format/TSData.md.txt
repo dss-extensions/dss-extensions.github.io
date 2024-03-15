@@ -9,10 +9,11 @@ html_theme.sidebar_secondary.remove: true
     Cable Data
 )
 
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -145,3 +146,32 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the 7 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 2
+    - [`Test/IEEELineGeometry.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEELineGeometry.dss)
+*   - 1
+    - [`Test/CableParameters.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/CableParameters.dss)
+*   - 1
+    - [`Test/Cable_constants.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/Cable_constants.DSS)
+*   - 1
+    - [`Test/IEEE13_Assets.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_Assets.dss)
+*   - 1
+    - [`Test/IEEE13_LineAndCableSpacing.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/IEEE13_LineAndCableSpacing.dss)
+*   - 1
+    - [`Test/TextTsCable750MCM.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/TextTsCable750MCM.dss)
+*   - 1
+    - [`Examples/CIM/IEEE13_Assets.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/CIM/IEEE13_Assets.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

@@ -9,10 +9,12 @@ html_theme.sidebar_secondary.remove: true
     PD Element
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/Line.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -247,3 +249,58 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the top 20 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 3891
+    - [`EPRITestCircuits/ckt24/sec_serv_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt24/sec_serv_ckt24.dss)
+*   - 3891
+    - [`ADiakoptics/ckt24/sec_serv_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ADiakoptics/ckt24/sec_serv_ckt24.dss)
+*   - 3891
+    - [`MemoryMappingLoadShapes/ckt24/sec_serv_ckt24.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/MemoryMappingLoadShapes/ckt24/sec_serv_ckt24.dss)
+*   - 2526
+    - [`GridFormingInverter/GFM_IEEE8500/Lines-Geometry.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/Lines-Geometry.dss)
+*   - 2526
+    - [`GridFormingInverter/GFM_IEEE8500/Lines.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/Lines.dss)
+*   - 2526
+    - [`IEEETestCases/8500-Node/Lines-Geometry.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/Lines-Geometry.dss)
+*   - 2526
+    - [`IEEETestCases/8500-Node/Lines.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/Lines.dss)
+*   - 1379
+    - [`EPRITestCircuits/ckt5/Loads_ckt5.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt5/Loads_ckt5.dss)
+*   - 1245
+    - [`IEEETestCases/LVTestCaseNorthAmerican/Master.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/LVTestCaseNorthAmerican/Master.dss)
+*   - 1225
+    - [`epri_dpv/J1/Lines.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/J1/Lines.dss)
+*   - 1177
+    - [`GridFormingInverter/GFM_IEEE8500/Triplex_Lines.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Microgrid/GridFormingInverter/GFM_IEEE8500/Triplex_Lines.DSS)
+*   - 1177
+    - [`IEEETestCases/8500-Node/Triplex_Lines.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/8500-Node/Triplex_Lines.DSS)
+*   - 1050
+    - [`EPRITestCircuits/ckt5/Lines_ckt5.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt5/Lines_ckt5.dss)
+*   - 867
+    - [`EPRITestCircuits/ckt7/Services_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt7/Services_ckt7.dss)
+*   - 867
+    - [`ADiakoptics/EPRI_Ckt7-G/Services_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ADiakoptics/EPRI_Ckt7-G/Services_ckt7.dss)
+*   - 646
+    - [`epri_dpv/K1/Lines.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/K1/Lines.dss)
+*   - 390
+    - [`IEEETestCases/LVTestCaseNorthAmerican/SecPar.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/LVTestCaseNorthAmerican/SecPar.dss)
+*   - 320
+    - [`epri_dpv/K1/services.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/epri_dpv/K1/services.dss)
+*   - 289
+    - [`EPRITestCircuits/ckt7/Lines_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/EPRITestCircuits/ckt7/Lines_ckt7.dss)
+*   - 289
+    - [`ADiakoptics/EPRI_Ckt7-G/Lines_ckt7.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/ADiakoptics/EPRI_Ckt7-G/Lines_ckt7.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

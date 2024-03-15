@@ -9,10 +9,12 @@ html_theme.sidebar_secondary.remove: true
     PD Element
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/Fault.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -121,3 +123,58 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the top 20 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 7
+    - [`Test/TD21RelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/TD21RelayTest.DSS)
+*   - 7
+    - [`Test/DistanceRelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/DistanceRelayTest.DSS)
+*   - 7
+    - [`Test/ReverseDistanceRelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/ReverseDistanceRelayTest.DSS)
+*   - 7
+    - [`Test/ReverseTD21RelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/ReverseTD21RelayTest.DSS)
+*   - 7
+    - [`Examples/DistanceRelays/DistanceRelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/DistanceRelays/DistanceRelayTest.DSS)
+*   - 7
+    - [`Examples/DistanceRelays/ReverseDistanceRelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/DistanceRelays/ReverseDistanceRelayTest.DSS)
+*   - 7
+    - [`Examples/DistanceRelays/ReverseTD21RelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/DistanceRelays/ReverseTD21RelayTest.DSS)
+*   - 7
+    - [`Examples/DistanceRelays/TD21RelayTest.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/DistanceRelays/TD21RelayTest.DSS)
+*   - 6
+    - [`Examples/Manual/Example2.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Manual/Example2.DSS)
+*   - 2
+    - [`Test/BundleDemo.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/BundleDemo.DSS)
+*   - 2
+    - [`Examples/VCCS/DG_Prot_Fdr.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/VCCS/DG_Prot_Fdr.dss)
+*   - 2
+    - [`IEEETestCases/DG_Protection/DG_Prot_Fdr.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/DG_Protection/DG_Prot_Fdr.dss)
+*   - 2
+    - [`IEEETestCases/4Bus-YYD/YYD-Master.DSS`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/4Bus-YYD/YYD-Master.DSS)
+*   - 1
+    - [`Test/Dynamic_Kundur.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/Dynamic_Kundur.dss)
+*   - 1
+    - [`Test/AutoTrans/Auto1bus.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/AutoTrans/Auto1bus.dss)
+*   - 1
+    - [`Test/AutoTrans/Auto3bus.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/AutoTrans/Auto3bus.dss)
+*   - 1
+    - [`Test/AutoTrans/AutoAuto.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/AutoTrans/AutoAuto.dss)
+*   - 1
+    - [`Test/AutoTrans/AutoHLT.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Test/AutoTrans/AutoHLT.dss)
+*   - 1
+    - [`Examples/Scripts/1-Phase Transformer.DSS`](<https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Scripts/1-Phase Transformer.DSS>)
+*   - 1
+    - [`Examples/Scripts/59NRelayDemo.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Scripts/59NRelayDemo.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

@@ -9,10 +9,12 @@ html_theme.sidebar_secondary.remove: true
     PC Element
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/GICLineObject.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -133,3 +135,20 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+This is the single sample file with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 15
+    - [`Examples/GICExample/GIC_Example.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/GICExample/GIC_Example.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

@@ -8,10 +8,12 @@ html_theme.sidebar_secondary.remove: true
         General
 )
 
+EPRI's OpenDSS Documentation for this component: https://opendss.epri.com/TCC_Curve.html
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -42,3 +44,24 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
+## Sample links
+                        
+These are the 3 sample files with occurrences of this DSS object.
+                 
+:::{list-table}
+:header-rows: 1
+:align: center
+*   - \# of occurrences
+    - Link
+*   - 9
+    - [`Examples/VCCS/DG_Prot_Fdr.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/VCCS/DG_Prot_Fdr.dss)
+*   - 9
+    - [`IEEETestCases/DG_Protection/DG_Prot_Fdr.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/IEEETestCases/DG_Protection/DG_Prot_Fdr.dss)
+*   - 1
+    - [`Examples/Scripts/59NRelayDemo.dss`](https://github.com/dss-extensions/electricdss-tst/blob/master/Version8/Distrib/Examples/Scripts/59NRelayDemo.dss)
+:::
+
+Links are provided to the https://github.com/dss-extensions/electricdss-src repository since there are some edits and fixes. Otherwise, these
+files should be available on the [official OpenDSS SVN](https://sourceforge.net/p/electricdss/code/HEAD/tree/) or in the OpenDSS application
+folder if your have a local installation.
+                        

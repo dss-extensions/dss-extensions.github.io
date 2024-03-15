@@ -9,10 +9,11 @@ html_theme.sidebar_secondary.remove: true
     PC Element
 )
 
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default

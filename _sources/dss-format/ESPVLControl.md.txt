@@ -9,10 +9,11 @@ html_theme.sidebar_secondary.remove: true
     Control Element
 )
 
+
 :::{list-table}
 :header-rows: 1
 :align: center
-*   - Index
+*   - \#
     - Name
     - Type
     - Default
@@ -103,7 +104,6 @@ html_theme.sidebar_secondary.remove: true
     - 
     - Make like another object, e.g.:<br><br>New Capacitor.C2 like=c1  ...
 :::
-
 ## Enumerations
 
 (enum-espvlcontroltype)=
