@@ -581,9 +581,9 @@ document.write(`
 <section id="the-active-paradigm">
 <h2>The “Active…” paradigm<a class="headerlink" href="#the-active-paradigm" title="Link to this heading">#</a></h2>
 <p><strong>What is activation?</strong> In the context of OpenDSS, activation usually means select a certain object for manipulation at certain collections. The paradigm is used both in the classic API and in the internal code of OpenDSS, although the implementation on DSS-Extensions has been slowly moving away from that concept for the internal code.</p>
-<p>One important aspect to consider is that each class with a dedicated tracks an active object, and activating one object from the dedicated interfaces also activates it in the parent interfaces.</p>
+<p>One important aspect to consider is that each class with a dedicated interface tracks an active object, and activating one object from the dedicated interfaces also activates it in the parent interfaces.</p>
 <p><strong>There is one exception.</strong> The Lines API, as implemented in EPRI’s OpenDSS distribution, does not track the lines by itself. Instead, it relies on the more general “ActiveCktElement”. Unfortunately, any operation that changes the active circuit element then results in the Lines interface losing track of the current line. This was changed on DSS-Extensions to make the Lines API work like the other APIs, but there is a compatibility flag that could be used if required.</p>
-<p>For example, activating a Load by name (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.Name</span> <span class="pre">=</span> <span class="pre">&quot;target_load_name&quot;</span></code>), iteration (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.First</span></code>, <code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.Next</span></code>) or index (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.idx</span> <span class="pre">=</span> <span class="pre">a_valid_integer_index</span></code>) would through the Loads interface:</p>
+<p>For example, activating a Load by name (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.Name</span> <span class="pre">=</span> <span class="pre">&quot;target_load_name&quot;</span></code>), iteration (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.First</span></code>, <code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.Next</span></code>) or index (<code class="docutils literal notranslate"><span class="pre">dss.ActiveCircuit.Loads.idx</span> <span class="pre">=</span> <span class="pre">a_valid_integer_index</span></code>) through the Loads interface:</p>
 <ul class="simple">
 <li><p>Sets the target as the active load in the Loads interface.</p></li>
 <li><p><strong>Does not</strong> set “ActiveDSSClass” to the Load class.</p></li>
@@ -609,7 +609,7 @@ document.write(`
 <p>Important takeaways:</p>
 <ul class="simple">
 <li><p>Only when activating the element through the dedicated interfaces activates it there.</p></li>
-<li><p>Most ways to activate elements sets “ActiveCktElement” and “ActiveDSSElement”. A user can only interact with element at a time through the more general interfaces.</p></li>
+<li><p>Most ways to activate elements sets “ActiveCktElement” and “ActiveDSSElement”. A user can only interact with an element at a time through the more general interfaces.</p></li>
 <li><p>With the exception of Lines in EPRI’s official OpenDSS, one can safely use the dedicated interfaces to access some of the data/state. For example, it is safe to use the Loads interface and the Transformers interface in succession without reactivating the elements.</p></li>
 <li><p>The PDElements interface uses the current ActiveCktElement, so anything that changes that will affect the PDElements interface too.</p></li>
 <li><p>Other DSS commands can iterate through the internal collections and can change the active elements to point to something else.</p></li>
